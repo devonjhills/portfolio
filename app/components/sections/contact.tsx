@@ -128,7 +128,7 @@ export function Contact() {
       // In a real app, you'd send the data to your backend
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);

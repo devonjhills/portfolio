@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Download, Github, Linkedin, Mail } from "lucide-react";
 import { ShootingStarsHero } from "../ui/shooting-stars-hero";
 
@@ -13,7 +13,7 @@ export function Hero() {
   };
 
   return (
-    <ShootingStarsHero className="min-h-screen w-full flex md:items-center md:justify-center bg-background dark:bg-neutral-900 antialiased overflow-hidden">
+    <ShootingStarsHero className="min-h-screen w-full flex md:items-center md:justify-center bg-background antialiased overflow-hidden">
       <div className="p-4 max-w-7xl mx-auto w-full pt-20 md:pt-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
