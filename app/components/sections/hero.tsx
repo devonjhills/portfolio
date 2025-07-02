@@ -105,10 +105,10 @@ export function Hero() {
             variants={itemVariants}
             className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center">
             {[
-              { text: "7+ Years", subtext: "Experience" },
-              { text: "Millions", subtext: "Users Served" },
-              { text: "React/TS", subtext: "Expert" },
-              { text: "Healthcare", subtext: "Domain" },
+              { text: "Millions of Users", subtext: "High-Traffic Apps" },
+              { text: "React & TypeScript", subtext: "Architecture" },
+              { text: "Mission-Critical", subtext: "Production Support" },
+              { text: "Quality-Driven", subtext: "Automated Testing" },
             ].map((highlight) => (
               <div
                 key={highlight.text}

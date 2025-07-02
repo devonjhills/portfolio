@@ -57,7 +57,7 @@ const journeyData: JourneyItem[] = [
     title: "Software Engineer III",
     company: "Ad Hoc LLC",
     location: "Remote",
-    duration: "Nov 2021 - Apr 2025",
+    duration: "Nov 2021 - Present",
     description:
       "Building and maintaining mission-critical React/TypeScript applications for HealthCare.gov's health plan enrollment workflows, serving millions of users.",
     achievements: [
