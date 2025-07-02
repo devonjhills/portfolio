@@ -4,7 +4,7 @@ A sophisticated, modern portfolio website built with Next.js 15, showcasing my p
 
 ## 🚀 Live Demo
 
-Visit the live portfolio at [devonhills.dev] (update with actual URL)
+Visit the live portfolio at [devonhills.dev](devonhills.dev)
 
 ## ✨ Features
 
