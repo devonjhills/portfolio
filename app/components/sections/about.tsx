@@ -1,90 +1,95 @@
+// src/components/About.tsx
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { 
-  Code2, 
-  Database, 
-  Globe, 
-  Brain, 
-  Cloud, 
-  Zap, 
-  Users, 
-  Target, 
-  Download, 
-  MapPin, 
-  GraduationCap,
+import { motion, useInView, Variants } from "framer-motion";
+import {
+  Code2,
+  Database,
+  Globe,
+  Brain,
+  Cloud,
+  Zap,
+  Users,
+  Target,
   Heart,
   Coffee,
   Gamepad2,
-  Camera
+  Camera,
 } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
 
-// Key achievements
+// Data can be kept outside the component for clarity
 const achievements = [
   {
-    icon: <Target className="h-5 w-5" />,
+    icon: <Target className="h-8 w-8 text-primary" />,
     title: "HealthCare.gov Impact",
-    description: "Redesigned health plan comparison cards improving enrollment completion rates for millions",
-    highlight: "Millions of users served"
+    description:
+      "Redesigned key enrollment UI, directly improving completion rates for millions of Americans.",
   },
   {
-    icon: <Zap className="h-5 w-5" />,
-    title: "Performance Optimization",
-    description: "Built Redux-based state management optimizing performance under high loads",
-    highlight: "Zero-downtime reliability"
+    icon: <Zap className="h-8 w-8 text-primary" />,
+    title: "Performance at Scale",
+    description:
+      "Engineered a Redux-based state management system that maintained high performance under peak traffic loads.",
   },
   {
-    icon: <Users className="h-5 w-5" />,
+    icon: <Users className="h-8 w-8 text-primary" />,
     title: "Accessibility Leadership",
-    description: "Maintained WCAG/Section 508 compliance for government applications",
-    highlight: "100% accessibility compliance"
+    description:
+      "Championed and maintained WCAG & Section 508 compliance, ensuring universal access to critical services.",
   },
   {
-    icon: <Brain className="h-5 w-5" />,
-    title: "Technical Leadership",
-    description: "Led documentation efforts and coding standards that improved team velocity",
-    highlight: "Reduced onboarding time"
+    icon: <Brain className="h-8 w-8 text-primary" />,
+    title: "Mentorship & Standards",
+    description:
+      "Led documentation efforts and established coding standards that significantly improved team velocity and onboarding.",
   },
 ];
 
-// Skills categories with modern organization
 const skillCategories = [
   {
     title: "Frontend Mastery",
-    icon: <Globe className="h-5 w-5" />,
-    colorClass: "bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800",
-    skills: ["React", "TypeScript", "Next.js", "Redux", "Tailwind CSS"],
-    description: "Building responsive, accessible user interfaces"
+    icon: <Globe className="h-6 w-6" />,
+    skills: [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Redux",
+      "Tailwind CSS",
+      "Framer Motion",
+    ],
   },
   {
     title: "Backend & Systems",
-    icon: <Database className="h-5 w-5" />,
-    colorClass: "bg-green-50 dark:bg-green-950/50 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800",
-    skills: ["Ruby on Rails", "Node.js", "PostgreSQL", "RESTful APIs"],
-    description: "Full-stack development and database design"
+    icon: <Database className="h-6 w-6" />,
+    skills: [
+      "Ruby on Rails",
+      "Node.js",
+      "PostgreSQL",
+      "RESTful APIs",
+      "GraphQL",
+    ],
   },
   {
-    title: "Quality Assurance",
-    icon: <Code2 className="h-5 w-5" />,
-    colorClass: "bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800",
-    skills: ["Playwright", "Jest", "axe-core", "TDD"],
-    description: "Comprehensive testing and accessibility"
+    title: "Quality & Testing",
+    icon: <Code2 className="h-6 w-6" />,
+    skills: ["Playwright", "Jest", "RTL", "axe-core", "TDD", "Storybook"],
   },
   {
     title: "DevOps & Cloud",
-    icon: <Cloud className="h-5 w-5" />,
-    colorClass: "bg-orange-50 dark:bg-orange-950/50 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-800",
-    skills: ["AWS", "Jenkins", "Docker", "CI/CD"],
-    description: "Infrastructure and deployment automation"
+    icon: <Cloud className="h-6 w-6" />,
+    skills: ["AWS", "Jenkins", "Docker", "CI/CD", "Vercel"],
   },
 ];
 
-// Personal interests
 const interests = [
   { icon: <Coffee className="h-4 w-4" />, name: "Coffee Enthusiast" },
   { icon: <Gamepad2 className="h-4 w-4" />, name: "Gaming" },
@@ -94,214 +99,142 @@ const interests = [
 
 export function About() {
   const ref = useRef(null);
+  // Trigger animation when the section is 20% in view, but only once.
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
-  const containerVariants = {
+  // Correctly typed animation variants
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        delayChildren: 0.2,
         staggerChildren: 0.1,
       },
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.6 },
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
     },
   };
 
   return (
-    <section 
-      id="about" 
-      ref={ref} 
-      className="py-20 bg-background relative overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+    <section
+      id="about"
+      ref={ref}
+      className="relative bg-muted/30 py-24 px-4 sm:px-6 lg:px-8">
+      {/* Background grid pattern */}
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+
+      {/* Tokyo Night gradient background */}
+      <div className="absolute bottom-0 left-[-20%] right-0 top-[-10%] -z-10 aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-primary/15 via-secondary/10 to-accent/15 opacity-60 blur-3xl" aria-hidden="true"></div>
+
+      <div className="mx-auto max-w-6xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-        >
+          className="flex flex-col items-center gap-20">
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-              About <span className="text-primary">Me</span>
+          <motion.div variants={itemVariants} className="text-center">
+            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+              About Me
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              My professional journey showcasing growth, impact, and continuous learning in software development.
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">
+              A passionate software engineer with a proven track record of
+              building scalable, accessible, and user-centric applications that
+              make a difference.
             </p>
           </motion.div>
 
-          {/* Quick Info Cards */}
-          <motion.div variants={itemVariants} className="mb-20">
-            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <Card className="text-center hover:border-primary/50 transition-colors">
-                <CardContent className="pt-6">
-                  <GraduationCap className="h-8 w-8 text-primary mx-auto mb-2" />
-                  <h3 className="font-semibold mb-1">Education</h3>
-                  <p className="text-sm text-muted-foreground">BS Computer Science</p>
-                  <p className="text-xs text-muted-foreground">UMass Lowell (Cum Laude)</p>
-                </CardContent>
-              </Card>
-              
-              <Card className="text-center hover:border-primary/50 transition-colors">
-                <CardContent className="pt-6">
-                  <MapPin className="h-8 w-8 text-primary mx-auto mb-2" />
-                  <h3 className="font-semibold mb-1">Location</h3>
-                  <p className="text-sm text-muted-foreground">Remote (United States)</p>
-                  <p className="text-xs text-muted-foreground">Open to opportunities</p>
-                </CardContent>
-              </Card>
-              
-              <Card className="text-center hover:border-primary/50 transition-colors">
-                <CardContent className="pt-6">
-                  <Download className="h-8 w-8 text-primary mx-auto mb-2" />
-                  <h3 className="font-semibold mb-1">Resume</h3>
-                  <motion.a
-                    href="/Devon_Hills_Resume_2025_Newest.pdf"
-                    download
-                    className="text-sm text-primary hover:text-primary/80 transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Download PDF
-                  </motion.a>
-                </CardContent>
-              </Card>
-            </div>
-          </motion.div>
-
-          {/* Key Achievements Showcase */}
-          <motion.div variants={itemVariants} className="mb-20">
-            <h3 className="text-3xl font-bold text-center mb-12">Impact & Achievements</h3>
-            <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          {/* Achievements Grid */}
+          <motion.div variants={itemVariants} className="w-full">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {achievements.map((achievement) => (
-                <motion.div
+                <Card
                   key={achievement.title}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                >
-                  <Card className="h-full hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                          {achievement.icon}
-                        </div>
-                        <div>
-                          <CardTitle className="text-lg">{achievement.title}</CardTitle>
-                          <Badge variant="outline" className="mt-1">
-                            {achievement.highlight}
-                          </Badge>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">
-                        {achievement.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                  className="bg-card/50 backdrop-blur-sm border-border/50 flex items-start gap-6 p-6">
+                  <div>{achievement.icon}</div>
+                  <div>
+                    <CardTitle className="mb-2 text-lg">
+                      {achievement.title}
+                    </CardTitle>
+                    <CardDescription>{achievement.description}</CardDescription>
+                  </div>
+                </Card>
               ))}
             </div>
           </motion.div>
 
-          {/* Skills & Expertise */}
-          <motion.div variants={itemVariants} className="mb-20">
-            <h3 className="text-3xl font-bold text-center mb-12">Technical Expertise</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-              {skillCategories.map((category, index) => (
-                <motion.div
+          {/* Technical Expertise Section */}
+          <motion.div variants={itemVariants} className="w-full">
+            <h3 className="mb-12 text-center text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Technical Expertise
+            </h3>
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+              {skillCategories.map((category) => (
+                <Card
                   key={category.title}
-                  variants={itemVariants}
-                  whileHover={{ 
-                    scale: 1.05,
-                    rotate: index % 2 === 0 ? 1 : -1 
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                >
-                  <Card className="h-full hover:border-primary/50 transition-all duration-300 group">
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                          {category.icon}
-                        </div>
-                        <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                          {category.title}
-                        </CardTitle>
+                  className="bg-card/50 backdrop-blur-sm border-border/50 group h-full transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
+                      <div className="rounded-lg bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary/20">
+                        {category.icon}
                       </div>
-                      <CardDescription className="text-sm">
-                        {category.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex flex-wrap gap-2">
-                        {category.skills.map((skill, skillIndex) => (
-                          <motion.div
-                            key={skill}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                            transition={{ delay: skillIndex * 0.05 + index * 0.1 }}
-                            whileHover={{ scale: 1.1 }}
-                          >
-                            <Badge variant="outline" className={`text-xs ${category.colorClass}`}>
-                              {skill}
-                            </Badge>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                      <CardTitle>{category.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill) => (
+                        <Badge key={skill} variant="secondary">
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </motion.div>
 
-          {/* Personal Touch */}
-          <motion.div variants={itemVariants} className="text-center">
-            <Card className="max-w-4xl mx-auto">
+          {/* Beyond the Code Section */}
+          <motion.div variants={itemVariants} className="w-full">
+            <Card className="mx-auto max-w-full text-center">
               <CardHeader>
-                <CardTitle className="text-2xl">Beyond the Code</CardTitle>
-                <CardDescription>
-                  When I&apos;m not building user experiences, you&apos;ll find me exploring these interests
-                </CardDescription>
+                <CardTitle className="flex items-center justify-center gap-3 text-2xl md:text-3xl">
+                  <Heart className="h-7 w-7 text-primary" />
+                  Beyond the Code
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-wrap justify-center gap-4 mb-6">
-                  {interests.map((interest, index) => (
-                    <motion.div
+                <p className="mb-6 text-lg text-muted-foreground">
+                  When I&apos;m not building user experiences, I&apos;m
+                  usually...
+                </p>
+                <div className="mb-8 flex flex-wrap justify-center gap-4">
+                  {interests.map((interest) => (
+                    <Badge
                       key={interest.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                      transition={{ delay: index * 0.1 + 0.5 }}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <Badge variant="outline" className="flex items-center gap-2 py-2 px-3">
-                        {interest.icon}
-                        {interest.name}
-                      </Badge>
-                    </motion.div>
+                      variant="outline"
+                      className="flex items-center gap-2 px-4 py-2 text-sm">
+                      {interest.icon}
+                      <span>{interest.name}</span>
+                    </Badge>
                   ))}
                 </div>
-                
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button size="lg" asChild className="gap-2">
-                    <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
-                      <Download className="h-5 w-5" />
-                      Download Full Resume
-                    </a>
-                  </Button>
-                </motion.div>
+                <p className="text-muted-foreground leading-relaxed">
+                  I believe the best software comes from understanding people.
+                  My diverse interests in creativity and community help me bring
+                  empathy and a fresh perspective to every project.
+                </p>
               </CardContent>
             </Card>
           </motion.div>

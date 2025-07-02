@@ -8,8 +8,8 @@ type ThemeProviderProps = ComponentProps<typeof NextThemesProvider>
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return (
     <NextThemesProvider
-      attribute="data-theme"
-      defaultTheme="system"
+      attribute="class"
+      defaultTheme="dark"
       enableSystem
       disableTransitionOnChange
       {...props}

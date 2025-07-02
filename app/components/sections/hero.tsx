@@ -1,8 +1,11 @@
+// src/components/Hero.tsx
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Download, Github, Linkedin, Mail } from "lucide-react";
-import { ShootingStarsHero } from "../ui/shooting-stars-hero";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 export function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -12,82 +15,176 @@ export function Hero() {
     }
   };
 
+  // Animation variants for the container and its children
+  const containerVariants: Variants = {
+    // <--- 2. Add the Variants type
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    // <--- 2. Add the Variants type
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <ShootingStarsHero className="min-h-screen w-full flex md:items-center md:justify-center bg-background antialiased overflow-hidden">
-      <div className="p-4 max-w-7xl mx-auto w-full pt-20 md:pt-0">
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-background antialiased">
+      {/* Background: Subtle dot pattern */}
+      <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] dark:bg-[radial-gradient(rgba(255,255,255,0.1)_1px,transparent_1px)]"></div>
+
+      {/* Background: Gradient for visual depth */}
+      <div className="absolute bottom-0 left-[-20%] right-0 top-[-10%] -z-10 h-[500px] w-[500px] rounded-full bg-gradient-to-r from-primary/20 via-accent/10 to-transparent"></div>
+
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <h1 className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground mb-4">
-            Hi, I&apos;m <span className="text-primary">Devon Hills</span>
-          </h1>
-          
-          <p className="mt-4 font-normal text-base text-muted-foreground max-w-lg text-center mx-auto mb-8">
-            Software Engineer III with 7+ years building mission-critical React/TypeScript applications for HealthCare.gov, serving millions of users. Expert in accessibility, performance optimization, and production support.
-          </p>
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col items-center text-center">
+          {/* Profile Avatar */}
+          <motion.div variants={itemVariants}>
+            <Avatar className="w-32 h-32 mb-8 border-4 border-primary/30 shadow-2xl shadow-primary/20 ring-4 ring-primary/10">
+              <AvatarImage
+                src="/avatar.png"
+                alt="Devon Hills"
+                className="object-cover"
+              />
+              <AvatarFallback className="text-2xl font-semibold bg-primary/10 text-primary">
+                DH
+              </AvatarFallback>
+            </Avatar>
+          </motion.div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <motion.button
-              onClick={() => scrollToSection("projects")}
-              className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold text-lg hover:opacity-90 transition-all"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              View My Work
-            </motion.button>
+          <motion.div variants={itemVariants}>
+            <Badge
+              variant="outline"
+              className="mb-6 cursor-default border-primary/30 bg-card/50 px-4 py-2 text-sm font-medium text-primary backdrop-blur-sm hover:border-primary/50">
+              <div className="mr-2 h-2 w-2 animate-pulse rounded-full bg-secondary"></div>
+              Available for New Opportunities
+            </Badge>
+          </motion.div>
 
-            <motion.a
-              href="/Devon_Hills_Resume_2025_Newest.pdf"
-              download
-              className="border border-border text-foreground px-8 py-3 rounded-lg font-semibold text-lg hover:bg-accent transition-all flex items-center gap-2 justify-center"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Download className="h-5 w-5" />
-              Resume
-            </motion.a>
-          </div>
+          <motion.div variants={itemVariants} className="space-y-4">
+            <h1 className="text-5xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl">
+              Devon Hills
+            </h1>
+            <div className="text-2xl font-medium text-primary md:text-3xl lg:text-4xl">
+              Full-Stack Software Engineer
+            </div>
+          </motion.div>
 
-          <div className="flex justify-center gap-4">
-            <motion.a
-              href="https://github.com/devonjhills"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 border border-border text-foreground hover:bg-accent hover:border-primary rounded-lg transition-all"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="GitHub"
-            >
-              <Github className="h-5 w-5" />
-            </motion.a>
+          <motion.p
+            variants={itemVariants}
+            className="mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl leading-relaxed">
+            I build mission-critical applications serving{" "}
+            <span className="font-semibold text-primary">
+              millions of users
+            </span>{" "}
+            at HealthCare.gov. Passionate about creating exceptional user
+            experiences with{" "}
+            <span className="font-semibold text-secondary">
+              React, TypeScript
+            </span>
+            , and modern web technologies.
+          </motion.p>
 
-            <motion.a
-              href="https://linkedin.com/in/devonjhills"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 border border-border text-foreground hover:bg-accent hover:border-primary rounded-lg transition-all"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-5 w-5" />
-            </motion.a>
+          <motion.div
+            variants={itemVariants}
+            className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center">
+            {[
+              { text: "7+ Years", subtext: "Experience" },
+              { text: "Millions", subtext: "Users Served" },
+              { text: "React/TS", subtext: "Expert" },
+              { text: "Healthcare", subtext: "Domain" },
+            ].map((highlight) => (
+              <div
+                key={highlight.text}
+                className="flex flex-col items-center rounded-lg border border-primary/20 bg-card/50 px-4 py-3 backdrop-blur-sm">
+                <div className="text-lg font-bold text-primary">
+                  {highlight.text}
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  {highlight.subtext}
+                </div>
+              </div>
+            ))}
+          </motion.div>
 
-            <motion.a
-              href="mailto:devonjhills@gmail.com"
-              className="p-3 border border-border text-foreground hover:bg-accent hover:border-primary rounded-lg transition-all"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5" />
-            </motion.a>
-          </div>
+          <motion.div
+            variants={itemVariants}
+            className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
+            <Button
+              size="lg"
+              className="w-full sm:w-auto"
+              onClick={() => scrollToSection("projects")}>
+              🚀 Explore My Work
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="w-full sm:w-auto">
+              <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
+                <Download className="mr-2 h-5 w-5" />
+                Get Resume
+              </a>
+            </Button>
+            <Button
+              size="lg"
+              variant="ghost"
+              className="w-full sm:w-auto"
+              onClick={() => scrollToSection("contact")}>
+              💬 Let&apos;s Talk
+            </Button>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="mt-8 flex justify-center gap-4">
+            {[
+              {
+                icon: Github,
+                href: "https://github.com/devonjhills",
+                label: "GitHub",
+              },
+              {
+                icon: Linkedin,
+                href: "https://linkedin.com/in/devonjhills",
+                label: "LinkedIn",
+              },
+              {
+                icon: Mail,
+                href: "mailto:devonjhills@gmail.com",
+                label: "Email",
+              },
+            ].map(({ icon: Icon, href, label }) => (
+              <Button key={label} asChild variant="ghost" size="icon">
+                <a
+                  href={href}
+                  {...(href.includes("mailto")
+                    ? {}
+                    : { target: "_blank", rel: "noopener noreferrer" })}
+                  aria-label={label}>
+                  <Icon className="h-5 w-5" />
+                </a>
+              </Button>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
-    </ShootingStarsHero>
+    </section>
   );
 }
