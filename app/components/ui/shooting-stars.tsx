@@ -17,8 +17,6 @@ interface ShootingStarsProps {
   maxSpeed?: number;
   minDelay?: number;
   maxDelay?: number;
-  starColor?: string;
-  trailColor?: string;
   starWidth?: number;
   starHeight?: number;
   className?: string;
@@ -47,14 +45,17 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
   maxSpeed = 40,
   minDelay = 800,
   maxDelay = 2500,
-  starColor = "#9E00FF",
-  trailColor = "#2EB9DF",
-  starWidth = 20,
-  starHeight = 2,
+  starWidth = 15,
+  starHeight = 1.5,
   className,
 }) => {
   const [star, setStar] = useState<ShootingStar | null>(null);
+  const [mounted, setMounted] = useState(false);
   const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const createStar = () => {
@@ -115,6 +116,34 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
     return () => cancelAnimationFrame(animationFrame);
   }, [star]);
 
+  // Prevent hydration mismatch by only determining theme colors after mount
+  const isDark = mounted && (
+    document.documentElement.classList.contains('dark') ||
+    (document.documentElement.getAttribute('data-theme') === 'dark') ||
+    (!document.documentElement.getAttribute('data-theme') && 
+     window.matchMedia('(prefers-color-scheme: dark)').matches)
+  );
+  
+  const actualStarColor = isDark ? '#ffffff' : '#000000';
+  const actualTrailColor = isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.4)';
+
+  // Don't render anything until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <svg
+        ref={svgRef}
+        className={cn("w-full h-full absolute inset-0", className)}
+      >
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: 'rgba(0, 0, 0, 0.4)', stopOpacity: 0 }} />
+            <stop offset="100%" style={{ stopColor: '#000000', stopOpacity: 1 }} />
+          </linearGradient>
+        </defs>
+      </svg>
+    );
+  }
+
   return (
     <svg
       ref={svgRef}
@@ -135,10 +164,10 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
       )}
       <defs>
         <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style={{ stopColor: trailColor, stopOpacity: 0 }} />
+          <stop offset="0%" style={{ stopColor: actualTrailColor, stopOpacity: 0 }} />
           <stop
             offset="100%"
-            style={{ stopColor: starColor, stopOpacity: 1 }}
+            style={{ stopColor: actualStarColor, stopOpacity: 1 }}
           />
         </linearGradient>
       </defs>

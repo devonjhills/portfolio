@@ -1,10 +1,10 @@
 "use client";
 
-import { motion } from "motion/react";
-import { useInView } from "motion/react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { ExternalLink, Github, Star, TrendingUp, Code, Folder, ChevronRight, Eye } from "lucide-react";
+import { Card, CardDescription, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
@@ -31,9 +31,11 @@ const projects = [
     featured: true,
     metrics: {
       stars: "1",
-      size: "220MB",
+      commits: "50+",
       impact: "Complete automation"
-    }
+    },
+    icon: <Code className="h-6 w-6" />,
+    color: "from-blue-500 to-cyan-500"
   },
   {
     id: 2,
@@ -54,34 +56,38 @@ const projects = [
     featured: false,
     metrics: {
       grants: "500+",
-      categories: "12",
-      impact: "SEO optimized"
-    }
+      categories: "12", 
+      users: "Growing"
+    },
+    icon: <TrendingUp className="h-6 w-6" />,
+    color: "from-green-500 to-emerald-500"
   }
 ];
 
 export function Projects() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  // const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
+        delayChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
+        ease: "easeOut",
       },
     },
   };
@@ -99,105 +105,201 @@ export function Projects() {
           animate={isInView ? "visible" : "hidden"}
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground mb-4">
-              Featured <span className="text-catppuccin-pink">Projects</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A showcase of my recent work in full-stack development, automation tools, and government technology solutions.
+          <motion.div variants={itemVariants} className="text-center mb-20">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <Folder className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">
+                Featured <span className="text-primary">Projects</span>
+              </h2>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              A showcase of my recent work in full-stack development, automation tools, 
+              and government technology solutions that demonstrate technical excellence and real-world impact.
             </p>
           </motion.div>
 
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          {/* Enhanced Projects Grid */}
+          <div className="space-y-8 max-w-6xl mx-auto">
             {projects.map((project) => (
               <motion.div
                 key={project.id}
                 variants={itemVariants}
-                className="h-full"
+                className="group"
+                // onHoverStart={() => setHoveredProject(project.id)}
+                // onHoverEnd={() => setHoveredProject(null)}
               >
-                <Card className="h-full flex flex-col">
-                  <CardHeader>
-                    <div className="flex items-start justify-between mb-2">
-                      <CardTitle className="text-xl">{project.title}</CardTitle>
-                      {project.featured && (
-                        <Badge variant="secondary" className="ml-2">
-                          Featured
-                        </Badge>
-                      )}
+                <Card className={`cyber-card overflow-hidden transition-all duration-500 ${
+                  project.featured 
+                    ? 'border-primary/50 shadow-lg shadow-primary/10' 
+                    : 'hover:border-primary/30'
+                }`}>
+                  <div className="grid lg:grid-cols-4 gap-0">
+                    
+                    {/* Project Icon & Header */}
+                    <div className={`relative p-8 bg-gradient-to-br ${project.color} bg-opacity-10 lg:col-span-1`}>
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-between mb-4">
+                          <div className={`p-3 rounded-xl bg-gradient-to-br ${project.color} shadow-lg`}>
+                            <div className="text-white">
+                              {project.icon}
+                            </div>
+                          </div>
+                          {project.featured && (
+                            <Badge className="bg-primary text-primary-foreground border-0">
+                              <Star className="h-3 w-3 mr-1" />
+                              Featured
+                            </Badge>
+                          )}
+                        </div>
+                        
+                        <CardTitle className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
+                          {project.title}
+                        </CardTitle>
+                        
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.categories.map((category) => (
+                            <Badge key={category} variant="secondary" className="text-xs bg-background/50">
+                              {category}
+                            </Badge>
+                          ))}
+                        </div>
+
+                        {/* Quick Metrics */}
+                        <div className="grid grid-cols-3 gap-2 text-center">
+                          {Object.entries(project.metrics).map(([key, value]) => (
+                            <div key={key} className="bg-background/20 rounded-lg p-2">
+                              <div className="text-sm font-bold text-foreground">{value}</div>
+                              <div className="text-xs text-muted-foreground capitalize">{key}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex flex-wrap gap-1 mb-2">
-                      {project.categories.map((category) => (
-                        <Badge key={category} variant="outline" className="text-xs">
-                          {category}
-                        </Badge>
-                      ))}
-                    </div>
-                    <CardDescription className="text-sm">
-                      {project.description}
-                    </CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent className="flex-1 flex flex-col">
-                    {/* Technologies */}
-                    <div className="mb-4">
-                      <div className="flex flex-wrap gap-1">
-                        {project.technologies.slice(0, 4).map((tech) => (
-                          <Badge key={tech} variant="secondary" className="text-xs">
-                            {tech}
-                          </Badge>
-                        ))}
-                        {project.technologies.length > 4 && (
-                          <Badge variant="outline" className="text-xs">
-                            +{project.technologies.length - 4}
-                          </Badge>
+
+                    {/* Project Details */}
+                    <div className="p-8 lg:col-span-3">
+                      <CardDescription className="text-base leading-relaxed mb-6 text-foreground">
+                        {project.longDescription}
+                      </CardDescription>
+
+                      {/* Key Features */}
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                          <Eye className="h-4 w-4 text-primary" />
+                          Key Features
+                        </h4>
+                        <div className="grid md:grid-cols-2 gap-2">
+                          {project.features.slice(0, 4).map((feature, idx) => (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                              transition={{ delay: idx * 0.1 + 0.5 }}
+                              className="flex items-start gap-2 text-sm text-muted-foreground"
+                            >
+                              <ChevronRight className="h-3 w-3 text-primary mt-0.5 flex-shrink-0" />
+                              <span>{feature}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Technologies */}
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                          <Code className="h-4 w-4 text-primary" />
+                          Technologies
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {project.technologies.map((tech, idx) => (
+                            <motion.div
+                              key={tech}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                              transition={{ delay: idx * 0.05 + 0.3 }}
+                              whileHover={{ scale: 1.05 }}
+                            >
+                              <Badge 
+                                variant="outline" 
+                                className="text-xs bg-primary/5 border-primary/20 text-primary hover:bg-primary/10 transition-colors"
+                              >
+                                {tech}
+                              </Badge>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex flex-wrap gap-3">
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <Button variant="outline" size="sm" asChild className="group/btn">
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Github className="h-4 w-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
+                              View Code
+                            </a>
+                          </Button>
+                        </motion.div>
+                        
+                        {project.liveUrl && (
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <Button size="sm" asChild className="group/btn">
+                              <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <ExternalLink className="h-4 w-4 mr-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                                Live Demo
+                              </a>
+                            </Button>
+                          </motion.div>
                         )}
                       </div>
                     </div>
+                  </div>
 
-                    {/* Metrics */}
-                    <div className="mb-6">
-                      <div className="grid grid-cols-3 gap-4 text-center">
-                        {Object.entries(project.metrics).map(([key, value]) => (
-                          <div key={key}>
-                            <div className="text-sm font-semibold">{value}</div>
-                            <div className="text-xs text-muted-foreground capitalize">{key}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="flex gap-2 mt-auto">
-                      <Button variant="outline" size="sm" asChild>
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-4 w-4 mr-2" />
-                          Code
-                        </a>
-                      </Button>
-                      
-                      {project.liveUrl && (
-                        <Button size="sm" asChild>
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Demo
-                          </a>
-                        </Button>
-                      )}
-                    </div>
-                  </CardContent>
+                  {/* Hover Effect Overlay */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    initial={false}
+                  />
                 </Card>
               </motion.div>
             ))}
           </div>
+
+          {/* View More Projects CTA */}
+          <motion.div variants={itemVariants} className="text-center mt-16">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Button variant="outline" size="lg" asChild className="group">
+                <a
+                  href="https://github.com/devonjhills"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="h-5 w-5 mr-2 group-hover:rotate-12 transition-transform" />
+                  View All Projects on GitHub
+                  <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </Button>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

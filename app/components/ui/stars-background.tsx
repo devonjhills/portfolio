@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "../../lib/utils";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface Star {
   x: number;
@@ -29,6 +29,11 @@ export const StarsBackground: React.FC<StarsBackgroundProps> = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const starsRef = useRef<Star[]>([]);
   const animationFrameRef = useRef<number>();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -51,7 +56,7 @@ export const StarsBackground: React.FC<StarsBackgroundProps> = ({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           z: Math.random(),
-          size: Math.random() * 4 + 1,
+          size: Math.random() * 2 + 0.5,
         });
       }
 
@@ -71,8 +76,13 @@ export const StarsBackground: React.FC<StarsBackgroundProps> = ({
         }
 
         // Use white stars in dark mode, dark stars in light mode
-        const isDark = document.documentElement.classList.contains('dark') || 
-                      window.matchMedia('(prefers-color-scheme: dark)').matches;
+        // Only check theme after component is mounted to prevent hydration mismatch
+        const isDark = mounted && (
+          document.documentElement.classList.contains('dark') ||
+          (document.documentElement.getAttribute('data-theme') === 'dark') ||
+          (!document.documentElement.getAttribute('data-theme') && 
+           window.matchMedia('(prefers-color-scheme: dark)').matches)
+        );
         const starColor = isDark ? `rgba(255, 255, 255, ${opacity})` : `rgba(0, 0, 0, ${opacity * 0.4})`;
         ctx.fillStyle = starColor;
         ctx.fillRect(star.x, star.y, star.size, star.size);
@@ -98,7 +108,7 @@ export const StarsBackground: React.FC<StarsBackgroundProps> = ({
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [starDensity, allStarsTwinkle, twinkleProbability, minTwinkleSpeed, maxTwinkleSpeed]);
+  }, [starDensity, allStarsTwinkle, twinkleProbability, minTwinkleSpeed, maxTwinkleSpeed, mounted]);
 
   return (
     <canvas

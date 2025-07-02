@@ -16,18 +16,16 @@ export const ShootingStarsHero: React.FC<ShootingStarsHeroProps> = ({
   return (
     <div className={cn("relative", className)}>
       <ShootingStars 
-        starColor="hsl(var(--primary))"
-        trailColor="hsl(var(--primary) / 0.6)"
         minSpeed={15}
         maxSpeed={40}
         minDelay={600}
         maxDelay={2000}
-        starWidth={25}
-        starHeight={3}
+        starWidth={18}
+        starHeight={2}
         className="absolute inset-0 z-0"
       />
       <StarsBackground 
-        starDensity={0.0003}
+        starDensity={0.0002}
         allStarsTwinkle={false}
         twinkleProbability={0.1}
         minTwinkleSpeed={0.1}
