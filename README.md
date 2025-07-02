@@ -4,11 +4,12 @@ A sophisticated, modern portfolio website built with Next.js 15, showcasing my p
 
 ## 🚀 Live Demo
 
-Visit the live portfolio at [your-domain.com] (update with actual URL)
+Visit the live portfolio at [devonhills.dev] (update with actual URL)
 
 ## ✨ Features
 
 ### Modern Design & UX
+
 - **Beautiful Animations** - Powered by Framer Motion with smooth transitions and micro-interactions
 - **Responsive Design** - Mobile-first approach optimized for all device sizes
 - **Dark/Light Mode** - Automatic theme switching with system preference detection
@@ -16,13 +17,14 @@ Visit the live portfolio at [your-domain.com] (update with actual URL)
 - **Interactive Components** - Hover effects, 3D transformations, and scroll-triggered animations
 
 ### Advanced UI Components
+
 - **Aceternity UI Timeline** - Professional experience showcase with detailed achievements
 - **Animated Backgrounds** - Shooting stars and twinkling stars effects
 - **Floating Dock** - Social media links with smooth animations
 - **shadcn/ui Components** - Consistent design system with cards, badges, and forms
-- **Contact Form** - Full validation with success/error feedback
 
 ### Technical Highlights
+
 - **Next.js 15** with App Router for optimal performance
 - **React 19** with modern hooks and patterns
 - **TypeScript** with strict mode for type safety
@@ -42,26 +44,34 @@ Visit the live portfolio at [your-domain.com] (update with actual URL)
 ## 📱 Portfolio Sections
 
 ### Hero Section
+
 - Animated shooting stars background
 - Professional introduction with call-to-action
 - Floating social media dock
 
 ### About Me
+
 - Professional overview with quick info cards
 - Impact & achievements showcase
 - Technical expertise with categorized skill badges
 - Personal interests and downloadable resume
 
 ### Experience
+
 - Interactive timeline with detailed work history
 - Complete professional journey from education to current role
 - Achievements, technologies, and responsibilities for each position
 
 ### Projects
-- Showcase of key projects with descriptions
-- Technology stacks and links to demos/repositories
+
+- **Etsy Digital Mockup Tools** (Featured) - Python automation suite with Flask web interface
+- **Government Grant Directory** - Next.js SEO-optimized directory with Grants.gov API
+- **Ruby Book Collection Manager** - Full-stack Rails/React app with real-time processing visualization
+- Interactive project showcase with detailed modals
+- Technology stacks and links to GitHub repositories
 
 ### Contact
+
 - Animated stars background
 - Real-time availability status
 - Contact form with validation
@@ -70,18 +80,21 @@ Visit the live portfolio at [your-domain.com] (update with actual URL)
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm, yarn, pnpm, or bun
 
 ### Installation
 
 1. Clone the repository
+
 ```bash
 git clone [repository-url]
 cd my_portfolio
 ```
 
 2. Install dependencies
+
 ```bash
 npm install
 # or
@@ -91,6 +104,7 @@ pnpm install
 ```
 
 3. Run the development server
+
 ```bash
 npm run dev
 # or
@@ -138,16 +152,19 @@ public/
 ## 🎨 Design System
 
 ### Colors
+
 - **Primary**: Used for accent colors and interactive elements
 - **Muted**: For secondary text and subtle backgrounds
 - **Background**: Adaptive light/dark theme support
 
 ### Typography
+
 - **Font**: Geist Sans and Geist Mono
 - **Responsive**: Scales appropriately across devices
 - **Hierarchy**: Clear heading and body text distinction
 
 ### Components
+
 - **Consistent Spacing**: Using Tailwind's spacing scale
 - **Interactive States**: Hover, focus, and active states
 - **Accessibility**: WCAG compliant with proper ARIA labels
@@ -155,12 +172,14 @@ public/
 ## 🔧 Customization
 
 ### Updating Content
+
 - **Personal Info**: Update `app/components/sections/about.tsx`
 - **Experience**: Modify `app/components/sections/experience.tsx`
 - **Projects**: Edit `app/components/sections/projects.tsx`
 - **Contact**: Update `app/components/sections/contact.tsx`
 
 ### Styling
+
 - **Colors**: Modify CSS custom properties in `app/globals.css`
 - **Components**: Customize shadcn/ui components in `app/components/ui/`
 - **Animations**: Adjust Framer Motion variants in component files
@@ -175,12 +194,15 @@ public/
 ## 🌐 Deployment
 
 ### Vercel (Recommended)
+
 1. Push code to GitHub
 2. Connect repository to Vercel
 3. Deploy with automatic builds
 
 ### Other Platforms
+
 The application can be deployed to any platform that supports Next.js:
+
 - Netlify
 - AWS Amplify
 - Railway
@@ -189,11 +211,13 @@ The application can be deployed to any platform that supports Next.js:
 ## 👨‍💻 About the Developer
 
 **Devon Hills** - Software Engineer III at Ad Hoc LLC
+
 - 7+ years building mission-critical React/TypeScript applications
 - Specialized in HealthCare.gov serving millions of users
 - Expert in accessibility, performance optimization, and modern web development
 
 ### Contact
+
 - **Email**: devonjhills@gmail.com
 - **LinkedIn**: [linkedin.com/in/devonjhills](https://linkedin.com/in/devonjhills)
 - **GitHub**: [github.com/devonjhills](https://github.com/devonjhills)

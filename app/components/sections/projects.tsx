@@ -74,7 +74,6 @@ const projects: Project[] = [
       "AI-powered content generation for titles & tags",
       "Real-time logging with a modern web interface",
     ],
-    liveUrl: "https://github.com/devonjhills/etsy-digital-mockup-tools",
     githubUrl: "https://github.com/devonjhills/etsy-digital-mockup-tools",
     featured: true,
     image: "/projects/mockup-tools.png",
@@ -106,6 +105,36 @@ const projects: Project[] = [
     githubUrl: "https://github.com/devonjhills/government-grant-directory",
     featured: false,
     image: "/projects/grants.png",
+  },
+  {
+    id: 3,
+    title: "Ruby Book Collection Manager",
+    description:
+      "A full-stack web application for managing personal book collections with real-time Rails processing visualization.",
+    longDescription:
+      "Built with Ruby on Rails backend and React frontend, this application allows users to track their reading progress, add ratings and notes, and search for books via the Open Library API. Features a unique educational component showing Rails backend processing in real-time for learning purposes.",
+    technologies: [
+      "Ruby on Rails",
+      "React",
+      "PostgreSQL",
+      "JWT",
+      "Open Library API",
+      "Tailwind CSS",
+      "Vite",
+    ],
+    features: [
+      "Complete book management with reading status tracking",
+      "Smart search integration with Open Library API",
+      "JWT-based secure authentication system",
+      "Real-time Rails processing visualization for education",
+      "Rating and personal notes system",
+      "Responsive design with Tailwind CSS",
+      "Full CRUD operations for book management",
+      "Demo account with sample data",
+    ],
+    githubUrl: "https://github.com/devonjhills/ruby-book-wishlist",
+    featured: false,
+    image: "/projects/ruby-book.png",
   },
 ];
 

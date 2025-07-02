@@ -41,7 +41,7 @@ type JourneyItem = {
 
 const journeyData: JourneyItem[] = [
   {
-    date: "Future",
+    date: "..Future?",
     title: "Your Next Collaboration?",
     company: "Let's Build Something Amazing Together",
     location: "Remote / On-site",

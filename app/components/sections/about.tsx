@@ -12,10 +12,13 @@ import {
   Zap,
   Users,
   Target,
-  Heart,
   Coffee,
   Gamepad2,
-  Camera,
+  FilmIcon,
+  Unplug,
+  PlaneTakeoff,
+  BookOpen,
+  Cat,
 } from "lucide-react";
 import {
   Card,
@@ -92,9 +95,11 @@ const skillCategories = [
 
 const interests = [
   { icon: <Coffee className="h-4 w-4" />, name: "Coffee Enthusiast" },
+  { icon: <Cat className="h-4 w-4" />, name: "My Cats" },
   { icon: <Gamepad2 className="h-4 w-4" />, name: "Gaming" },
-  { icon: <Camera className="h-4 w-4" />, name: "Photography" },
-  { icon: <Heart className="h-4 w-4" />, name: "Open Source" },
+  { icon: <FilmIcon className="h-4 w-4" />, name: "Movies" },
+  { icon: <BookOpen className="h-4 w-4" />, name: "Reading" },
+  { icon: <PlaneTakeoff className="h-4 w-4" />, name: "Traveling" },
 ];
 
 export function About() {
@@ -134,7 +139,9 @@ export function About() {
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px]"></div>
 
       {/* Tokyo Night gradient background */}
-      <div className="absolute bottom-0 left-[-20%] right-0 top-[-10%] -z-10 aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-primary/15 via-secondary/10 to-accent/15 opacity-60 blur-3xl" aria-hidden="true"></div>
+      <div
+        className="absolute bottom-0 left-[-20%] right-0 top-[-10%] -z-10 aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-primary/15 via-secondary/10 to-accent/15 opacity-60 blur-3xl"
+        aria-hidden="true"></div>
 
       <div className="mx-auto max-w-6xl">
         <motion.div
@@ -210,14 +217,14 @@ export function About() {
             <Card className="mx-auto max-w-full text-center">
               <CardHeader>
                 <CardTitle className="flex items-center justify-center gap-3 text-2xl md:text-3xl">
-                  <Heart className="h-7 w-7 text-primary" />
+                  <Unplug className="h-7 w-7 text-primary" />
                   Beyond the Code
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="mb-6 text-lg text-muted-foreground">
-                  When I&apos;m not building user experiences, I&apos;m
-                  usually...
+                  When I&apos;m not building user experiences, my interests
+                  are...
                 </p>
                 <div className="mb-8 flex flex-wrap justify-center gap-4">
                   {interests.map((interest) => (
