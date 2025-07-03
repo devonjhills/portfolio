@@ -57,15 +57,6 @@ export function Contact() {
       id="contact"
       ref={ref}
       className="relative bg-background py-24 px-4 sm:px-6 lg:px-8">
-      {/* Subtle background grid pattern, consistent with other sections */}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-      <div
-        className="absolute -z-10 left-1/2 top-0 -translate-x-1/2 xl:-top-6 aspect-[1155/678] w-[72rem] bg-gradient-to-tr from-accent/20 via-primary/15 to-secondary/10 opacity-60 blur-3xl"
-        style={{
-          clipPath:
-            "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-        }}>
-      </div>
 
       <div className="mx-auto max-w-6xl">
         <motion.div

@@ -135,13 +135,6 @@ export function About() {
       id="about"
       ref={ref}
       className="relative bg-muted/30 py-24 px-4 sm:px-6 lg:px-8">
-      {/* Background grid pattern */}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-
-      {/* Tokyo Night gradient background */}
-      <div
-        className="absolute bottom-0 left-[-20%] right-0 top-[-10%] -z-10 aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-primary/15 via-secondary/10 to-accent/15 opacity-60 blur-3xl"
-        aria-hidden="true"></div>
 
       <div className="mx-auto max-w-6xl">
         <motion.div

@@ -63,8 +63,6 @@ export function Hero() {
     <section
       id="home"
       className="relative w-full min-h-screen-minus-nav pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden antialiased">
-      <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(hsl(var(--muted))_1px,transparent_1px)] [background-size:24px_24px]"></div>
-      <div className="absolute top-0 left-0 -z-10 h-full w-2/3 bg-gradient-to-r from-primary/5 via-transparent to-transparent"></div>
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
