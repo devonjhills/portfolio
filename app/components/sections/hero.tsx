@@ -93,23 +93,24 @@ export function Hero() {
             <motion.p
               variants={itemVariants}
               className="mt-8 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-              I build mission-critical applications serving{" "}
+              Software Engineer with{" "}
               <span className="font-semibold text-primary/90">
-                millions of users
+                7+ years of experience,
               </span>{" "}
-              at HealthCare.gov with{" "}
+              including building mission-critical applications for{" "}
               <span className="font-semibold text-secondary/90">
-                React & TypeScript
+                millions of users at HealthCare.gov
               </span>
-              . Beyond my professional work, I create full-stack solutions using{" "}
+              . Expert in modern web technologies including{" "}
               <span className="font-semibold text-accent/90">
-                Next.js, Python, Ruby on Rails
+                React, TypeScript, Next.js, Python, and Ruby on Rails
               </span>
-              , and modern tools like{" "}
+              . Proven track record of delivering{" "}
               <span className="font-semibold text-primary/90">
-                AI APIs, Docker, and cloud platforms
-              </span>
-              .
+                scalable, high-performance applications
+              </span>{" "}
+              with comprehensive testing, CI/CD pipelines, and cloud
+              infrastructure.
             </motion.p>
 
             {/* --- Key Strengths Grid --- */}
@@ -190,7 +191,7 @@ export function Hero() {
                 <Button
                   asChild
                   size="lg"
-                  variant="secondary"
+                  variant="outline"
                   className="w-full h-12 font-medium">
                   <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
                     <Download className="mr-2 h-5 w-5" />
@@ -233,7 +234,7 @@ export function Hero() {
                     <Button
                       key={label}
                       asChild
-                      variant="outline"
+                      variant="secondary"
                       size="icon"
                       className="h-12 w-12 rounded-full border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all">
                       <a

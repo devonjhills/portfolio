@@ -1,87 +1,85 @@
-/* ===== Font Imports: Modern & Tech-Focused ===== */
-/* Sora: A geometric sans-serif for a clean, technical, yet elegant feel for UI and headings. */
-/* JetBrains Mono: A premier monospaced font for developers, with excellent readability and code ligatures. */
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+/* Fonts are now loaded via Next.js font optimization in layout.tsx */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  /* ===== Color Palette: "Midnight Slate & Neon Teal" ===== */
-  /* A sophisticated, cool-toned dark theme with a vibrant, tech-inspired accent. */
+  /* ===== Color Palette: "Cyber Neon" ===== */
+  /* Electric portfolio theme with neon accents for maximum impact */
   :root {
-    --background: 220 18% 8%; /* Deep, cool charcoal */
-    --foreground: 210 20% 94%; /* Soft off-white */
+    /* Cyber Neon: Professional dark theme with electric accents */
+    --background: 222 84% 5%; /* Deep dark navy */
+    --foreground: 210 40% 98%; /* Pure white */
 
-    --muted: 220 15% 18%;
-    --muted-foreground: 210 15% 65%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 10% 65%;
 
-    --popover: 220 20% 6%;
-    --popover-foreground: 210 20% 94%;
+    --popover: 222 84% 4%;
+    --popover-foreground: 210 40% 98%;
 
-    --card: 220 18% 11%;
-    --card-foreground: 210 20% 94%;
+    --card: 222 84% 5%;
+    --card-foreground: 210 40% 98%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
 
-    --primary: 170 80% 45%; /* Vibrant Neon Teal */
-    --primary-foreground: 220 18% 8%; /* Dark, for high contrast on primary buttons */
+    --primary: 142 76% 36%; /* Electric green */
+    --primary-foreground: 222 84% 5%;
 
-    --secondary: 300 50% 60%; /* Subtle cool magenta */
-    --secondary-foreground: 210 20% 94%;
+    --secondary: 262 83% 58%; /* Electric purple */
+    --secondary-foreground: 210 40% 98%;
 
-    --accent: 38 92% 55%; /* Warm gold for a highlight */
-    --accent-foreground: 220 18% 8%;
+    --accent: 47 96% 53%; /* Electric yellow */
+    --accent-foreground: 222 84% 5%;
 
-    --destructive: 0 63% 50%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
 
-    --ring: 170 85% 50%;
+    --ring: 142 76% 36%;
 
     --radius: 0.5rem; /* A crisp, modern radius */
   }
 
   .light {
-    --background: 0 0% 98%; /* Clean off-white */
-    --foreground: 220 15% 20%; /* Dark slate gray */
+    /* Clean minimal light theme */
+    --background: 0 0% 100%;
+    --foreground: 222 84% 5%;
 
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 20%;
+    --popover-foreground: 222 84% 5%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 15% 20%;
+    --card-foreground: 222 84% 5%;
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
 
-    --primary: 170 75% 40%; /* Slightly darker teal for accessibility */
+    --primary: 142 76% 36%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 300 55% 55%;
+    --secondary: 262 83% 58%;
     --secondary-foreground: 0 0% 100%;
 
-    --accent: 38 90% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 47 96% 53%;
+    --accent-foreground: 222 84% 5%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --ring: 170 75% 40%;
+    --ring: 142 76% 36%;
   }
 
   * {
     @apply border-border;
   }
 
-  /* Main body styling with the new font */
   body {
     @apply bg-background text-foreground;
-    font-family: "Sora", system-ui, -apple-system, sans-serif;
+    font-family: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -97,12 +95,11 @@
     @apply font-semibold tracking-tight;
   }
 
-  /* Code blocks with the awesome JetBrains Mono font and ligatures enabled */
   code,
   pre {
-    font-family: "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code",
+    font-family: var(--font-jetbrains-mono), "SF Mono", Monaco, "Cascadia Code",
       "Roboto Mono", Consolas, "Courier New", monospace;
-    font-variant-ligatures: common-ligatures; /* Enable ligatures like '=>' becoming '⇒' */
+    font-variant-ligatures: common-ligatures;
   }
 
   html {
@@ -135,7 +132,6 @@
 
 /* Optional: You can keep or modify these gradient utilities */
 @layer components {
-  /* Subtle theme gradient for hero sections or cards */
   .gradient-primary {
     background: linear-gradient(
       135deg,
@@ -149,6 +145,15 @@
       135deg,
       hsl(var(--accent) / 0.1) 0%,
       hsl(var(--primary) / 0.1) 100%
+    );
+  }
+
+  .gradient-cyber {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.2) 0%,
+      hsl(var(--secondary) / 0.2) 50%,
+      hsl(var(--accent) / 0.2) 100%
     );
   }
 }
