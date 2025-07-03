@@ -22,6 +22,7 @@ import {
 } from "../ui/card";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import { Vortex } from "../ui/vortex";
 
 // Data can be kept outside for clarity
 const contactInfo = [
@@ -89,8 +90,16 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative bg-background py-16 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      className="relative overflow-hidden py-16 px-4 sm:px-6 lg:px-8">
+      <Vortex
+        backgroundColor="transparent"
+        rangeY={800}
+        particleCount={500}
+        baseHue={142}
+        containerClassName="max-w-6xl mx-auto"
+        className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
+      >
+      <div className="mx-auto max-w-6xl relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -257,6 +266,7 @@ export function Contact() {
           </motion.div>
         </motion.div>
       </div>
+      </Vortex>
     </section>
   );
 }
