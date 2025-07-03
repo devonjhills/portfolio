@@ -1,6 +1,6 @@
 # Devon Hills - Portfolio
 
-A sophisticated, modern portfolio website built with Next.js 15, showcasing my professional experience as a Software Engineer III with expertise in React, TypeScript, and full-stack development.
+A sophisticated, modern portfolio website built with Next.js 15, showcasing my professional experience as a Software Engineer with expertise in React, TypeScript, and full-stack development.
 
 ## 🚀 Live Demo
 
