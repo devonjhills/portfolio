@@ -80,6 +80,37 @@ const projects: Project[] = [
   },
   {
     id: 2,
+    title: "What To Watch? - Movie & TV Discovery App",
+    description:
+      "A modern, full-stack movie and TV discovery platform with user authentication and personal watchlists.",
+    longDescription:
+      "A production-ready, responsive movie and TV discovery platform built with Next.js 15, TypeScript, and Supabase. Features comprehensive search, user authentication, dark/light mode, and personal watchlist management. Demonstrates modern React patterns, full-stack development, and responsive design principles.",
+    technologies: [
+      "Next.js 15",
+      "TypeScript",
+      "Supabase",
+      "Tailwind CSS",
+      "SWR",
+      "TMDB API",
+      "Framer Motion",
+    ],
+    features: [
+      "Full-stack authentication with Supabase Auth",
+      "Personal watchlist with real-time updates",
+      "Advanced search across movies, TV shows, and people",
+      "Dark/light mode with system preference detection",
+      "Responsive design with mobile-first approach",
+      "Performance optimized with SWR caching",
+      "SEO optimization with dynamic meta tags",
+      "WCAG compliant accessibility features",
+    ],
+    liveUrl: "https://movie-search-app-rho-ten.vercel.app/",
+    githubUrl: "https://github.com/devonjhills/movie-search-app",
+    featured: false,
+    image: "/projects/movieapp.png",
+  },
+  {
+    id: 3,
     title: "Government Grant Directory",
     description:
       "An SEO-optimized directory for small business and nonprofit grants, sourced from the Grants.gov API.",
@@ -107,7 +138,7 @@ const projects: Project[] = [
     image: "/projects/grants.png",
   },
   {
-    id: 3,
+    id: 4,
     title: "Ruby Book Collection Manager",
     description:
       "A full-stack web application for managing personal book collections with real-time Rails processing visualization.",
