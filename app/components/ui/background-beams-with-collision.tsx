@@ -150,7 +150,7 @@ const CollisionMechanism = React.forwardRef<
       }
     };
 
-    const animationInterval = setInterval(checkCollision, 50);
+    const animationInterval = setInterval(checkCollision, 100);
 
     return () => clearInterval(animationInterval);
   }, [cycleCollisionDetected, containerRef]);
@@ -219,7 +219,7 @@ const CollisionMechanism = React.forwardRef<
 CollisionMechanism.displayName = "CollisionMechanism";
 
 const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
-  const spans = Array.from({ length: 20 }, (_, index) => ({
+  const spans = Array.from({ length: 12 }, (_, index) => ({
     id: index,
     initialX: 0,
     initialY: 0,
