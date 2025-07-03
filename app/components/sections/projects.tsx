@@ -60,7 +60,7 @@ const projects: Project[] = [
       "Python",
       "Flask",
       "Pillow",
-      "Google Gemini",
+      "Google Gemini API",
       "Etsy API",
       "OAuth 2.0",
       "Docker",

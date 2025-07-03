@@ -1,128 +1,129 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@400;500;600;700&display=swap");
+/* ===== Font Imports: Modern & Tech-Focused ===== */
+/* Sora: A geometric sans-serif for a clean, technical, yet elegant feel for UI and headings. */
+/* JetBrains Mono: A premier monospaced font for developers, with excellent readability and code ligatures. */
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* ===== Color Palette: "Midnight Slate & Neon Teal" ===== */
+  /* A sophisticated, cool-toned dark theme with a vibrant, tech-inspired accent. */
   :root {
-    --background: 222 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222 84% 6.8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 84% 6.8%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 84% 4.9%;
-    --secondary: 270 95% 75%;
-    --secondary-foreground: 222 84% 4.9%;
-    --muted: 217 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 142 76% 55%;
-    --accent-foreground: 222 84% 4.9%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 32.6% 17.5%;
-    --input: 217 32.6% 17.5%;
-    --ring: 217 91% 60%;
-    --chart-1: 217 91% 60%;
-    --chart-2: 270 95% 75%;
-    --chart-3: 142 76% 55%;
-    --chart-4: 33 100% 70%;
-    --chart-5: 340 82% 67%;
-    --radius: 0.65rem;
+    --background: 220 18% 8%; /* Deep, cool charcoal */
+    --foreground: 210 20% 94%; /* Soft off-white */
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 210 15% 65%;
+
+    --popover: 220 20% 6%;
+    --popover-foreground: 210 20% 94%;
+
+    --card: 220 18% 11%;
+    --card-foreground: 210 20% 94%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+
+    --primary: 170 80% 45%; /* Vibrant Neon Teal */
+    --primary-foreground: 220 18% 8%; /* Dark, for high contrast on primary buttons */
+
+    --secondary: 300 50% 60%; /* Subtle cool magenta */
+    --secondary-foreground: 210 20% 94%;
+
+    --accent: 38 92% 55%; /* Warm gold for a highlight */
+    --accent-foreground: 220 18% 8%;
+
+    --destructive: 0 63% 50%;
+    --destructive-foreground: 210 20% 98%;
+
+    --ring: 170 85% 50%;
+
+    --radius: 0.5rem; /* A crisp, modern radius */
   }
 
   .light {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 217 91% 55%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 270 95% 65%;
-    --secondary-foreground: 0 0% 100%;
+    --background: 0 0% 98%; /* Clean off-white */
+    --foreground: 220 15% 20%; /* Dark slate gray */
+
     --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 142 76% 45%;
+    --muted-foreground: 215 16% 47%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+
+    --primary: 170 75% 40%; /* Slightly darker teal for accessibility */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 300 55% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 38 90% 50%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
+
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 217 91% 55%;
-    --radius: 0.65rem;
-    --chart-1: 217 91% 55%;
-    --chart-2: 270 95% 65%;
-    --chart-3: 142 76% 45%;
-    --chart-4: 33 100% 60%;
-    --chart-5: 340 82% 57%;
+
+    --ring: 170 75% 40%;
   }
 
   * {
     @apply border-border;
   }
 
-  /* Ensure rounded corners are consistent across themes */
-  .rounded-lg {
-    border-radius: var(--radius) !important;
-  }
-  
-  .rounded-xl {
-    border-radius: calc(var(--radius) * 1.5) !important;
-  }
-  
-  .rounded-full {
-    border-radius: 9999px !important;
-  }
-
+  /* Main body styling with the new font */
   body {
     @apply bg-background text-foreground;
-    font-family: "Inter", "Source Sans 3", system-ui, -apple-system, sans-serif;
+    font-family: "Sora", system-ui, -apple-system, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Typography hierarchy */
+  /* Heading styles for clear hierarchy */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: "Source Sans 3", "Inter", system-ui, -apple-system, sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.025em;
+    @apply font-semibold tracking-tight;
   }
 
+  /* Code blocks with the awesome JetBrains Mono font and ligatures enabled */
   code,
   pre {
-    font-family: "Source Code Pro", "SF Mono", Monaco, "Cascadia Code",
+    font-family: "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code",
       "Roboto Mono", Consolas, "Courier New", monospace;
+    font-variant-ligatures: common-ligatures; /* Enable ligatures like '=>' becoming '⇒' */
   }
 
   html {
     scroll-behavior: smooth;
   }
 
-  /* Beautiful text selection */
+  /* Beautiful text selection that matches the theme */
   ::selection {
     background-color: hsl(var(--primary) / 0.15);
     color: hsl(var(--primary));
   }
 
-  /* Modern scrollbar */
+  /* Modern, themed scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background-color: hsl(var(--muted) / 0.3);
+    background-color: hsl(var(--background));
   }
   ::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--primary) / 0.6);
+    background-color: hsl(var(--primary) / 0.5);
     border-radius: 9999px;
     border: 2px solid transparent;
     background-clip: content-box;
@@ -132,64 +133,28 @@
   }
 }
 
+/* Optional: You can keep or modify these gradient utilities */
 @layer components {
-  /* Theme gradient backgrounds */
+  /* Subtle theme gradient for hero sections or cards */
   .gradient-primary {
     background: linear-gradient(
       135deg,
-      hsl(var(--primary) / 0.15) 0%,
-      hsl(var(--accent) / 0.15) 50%,
-      hsl(var(--secondary) / 0.15) 100%
-    );
-  }
-
-  .gradient-secondary {
-    background: linear-gradient(
-      45deg,
-      hsl(var(--secondary) / 0.15) 0%,
-      hsl(var(--primary) / 0.15) 100%
+      hsl(var(--primary) / 0.1) 0%,
+      hsl(var(--secondary) / 0.1) 100%
     );
   }
 
   .gradient-accent {
     background: linear-gradient(
       135deg,
-      hsl(var(--accent) / 0.12) 0%,
-      hsl(var(--info) / 0.12) 50%,
-      hsl(var(--success) / 0.12) 100%
+      hsl(var(--accent) / 0.1) 0%,
+      hsl(var(--primary) / 0.1) 100%
     );
   }
+}
 
-  /* Color utility classes */
-  .text-success {
-    color: hsl(var(--success));
-  }
-
-  .text-warning {
-    color: hsl(var(--warning));
-  }
-
-  .text-info {
-    color: hsl(var(--info));
-  }
-
-  .text-highlight {
-    color: hsl(var(--highlight));
-  }
-
-  .bg-success {
-    background-color: hsl(var(--success));
-  }
-
-  .bg-warning {
-    background-color: hsl(var(--warning));
-  }
-
-  .bg-info {
-    background-color: hsl(var(--info));
-  }
-
-  .bg-highlight {
-    background-color: hsl(var(--highlight));
+@layer utilities {
+  .min-h-screen-minus-nav {
+    min-height: calc(100vh - 5rem); /* Adjust 5rem to your navbar's height */
   }
 }

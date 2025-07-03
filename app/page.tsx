@@ -5,6 +5,7 @@ import { About } from './components/sections/about'
 import { Projects } from './components/sections/projects'
 import { Experience } from './components/sections/experience'
 import { Contact } from './components/sections/contact'
+import { ScrollToTop } from './components/ui/scroll-to-top'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   )
 }
