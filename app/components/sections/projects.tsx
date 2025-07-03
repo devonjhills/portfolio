@@ -11,14 +11,12 @@ import {
   ChevronRight,
   Eye,
   CheckCircle2,
-  Folder,
 } from "lucide-react";
 import {
   Card,
   CardContent,
   CardDescription,
   CardFooter,
-  CardHeader,
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
@@ -183,7 +181,7 @@ const itemVariants: Variants = {
   visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-// Sub-component for individual project cards for cleanliness
+// Project card component
 const ProjectCard = ({
   project,
   onViewDetails,
@@ -191,39 +189,53 @@ const ProjectCard = ({
   project: Project;
   onViewDetails: (project: Project) => void;
 }) => (
-  <Card className="flex h-full flex-col overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
-    <CardHeader>
-      <div className="mb-4 flex items-center justify-between">
-        <Folder className="h-8 w-8 text-primary" />
-        {project.featured && (
-          <Badge variant="secondary">
-            <Star className="mr-1 h-3 w-3" />
-            Featured
-          </Badge>
-        )}
-      </div>
-      <CardTitle className="text-xl">{project.title}</CardTitle>
-      <CardDescription className="flex-grow">
+  <Card className="group flex h-full flex-col overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
+    <div className="relative aspect-video overflow-hidden bg-muted/30">
+      <Image
+        src={project.image}
+        alt={`${project.title} screenshot`}
+        fill
+        className="object-cover transition-transform group-hover:scale-105"
+      />
+      {project.featured && (
+        <Badge className="absolute top-3 left-3 bg-primary/90 text-primary-foreground">
+          <Star className="mr-1 h-3 w-3" />
+          Featured
+        </Badge>
+      )}
+      {project.liveUrl && (
+        <Button
+          size="sm"
+          variant="secondary"
+          className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
+          asChild>
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        </Button>
+      )}
+    </div>
+    <CardContent className="flex-1 p-6">
+      <CardTitle className="text-xl mb-3">{project.title}</CardTitle>
+      <CardDescription className="text-base mb-4 leading-relaxed">
         {project.description}
       </CardDescription>
-    </CardHeader>
-    <CardContent>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 mb-6">
         {project.technologies.map((tech) => (
-          <Badge key={tech} variant="default">
+          <Badge key={tech} variant="secondary" className="text-xs">
             {tech}
           </Badge>
         ))}
       </div>
     </CardContent>
-    <CardFooter className="mt-auto flex gap-4 pt-6">
-      <Button variant="outline" className="w-full" asChild>
+    <CardFooter className="flex gap-3 p-6 pt-0">
+      <Button variant="outline" className="flex-1" asChild>
         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
           <Github className="mr-2 h-4 w-4" /> Code
         </a>
       </Button>
-      <Button className="w-full" onClick={() => onViewDetails(project)}>
-        <Eye className="mr-2 h-4 w-4" /> View Details
+      <Button className="flex-1" onClick={() => onViewDetails(project)}>
+        <Eye className="mr-2 h-4 w-4" /> Details
       </Button>
     </CardFooter>
   </Card>
@@ -238,52 +250,71 @@ export function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative bg-background py-24 px-4 sm:px-6 lg:px-8">
+      className="relative bg-background py-20 px-4 sm:px-6 lg:px-8">
       {/* Background Decoration */}
       <div className="absolute inset-0 -z-10 overflow-hidden bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px]"></div>
 
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="flex flex-col items-center gap-16">
+          className="space-y-16">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-              Featured Projects
+            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              Projects
             </h2>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">
-              A selection of my work, demonstrating technical skill and a
-              passion for creating impactful software.
+            <p className="mt-4 max-w-3xl mx-auto text-lg leading-8 text-muted-foreground">
+              A showcase of my technical expertise across full-stack
+              development, API integrations, and modern web technologies.
             </p>
           </motion.div>
 
           {/* Projects Grid */}
-          <motion.div
-            variants={containerVariants}
-            className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
-            {projects.map((project) => (
-              <motion.div key={project.id} variants={itemVariants}>
-                <ProjectCard
-                  project={project}
-                  onViewDetails={setSelectedProject}
-                />
-              </motion.div>
-            ))}
+          <motion.div variants={itemVariants} className="w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {projects.map((project) => (
+                <motion.div key={project.id} variants={itemVariants}>
+                  <ProjectCard
+                    project={project}
+                    onViewDetails={setSelectedProject}
+                  />
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
-          {/* CTA to GitHub */}
-          <motion.div variants={itemVariants}>
-            <Button size="lg" variant="outline" asChild>
-              <a
-                href="https://github.com/devonjhills"
-                target="_blank"
-                rel="noopener noreferrer">
-                View All Projects on GitHub{" "}
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
+          {/* Skills Highlight */}
+          <motion.div variants={itemVariants} className="w-full">
+            <Card className="bg-muted/30 border-primary/20">
+              <CardContent className="p-8 text-center">
+                <h3 className="text-xl font-semibold text-foreground mb-4">
+                  Technologies & Frameworks I Work With
+                </h3>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {Array.from(new Set(projects.flatMap((p) => p.technologies)))
+                    .sort()
+                    .map((tech) => (
+                      <Badge key={tech} variant="outline" className="px-3 py-1">
+                        {tech}
+                      </Badge>
+                    ))}
+                </div>
+                <div className="mt-6">
+                  <Button size="lg" variant="outline" asChild>
+                    <a
+                      href="https://github.com/devonjhills"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      <Github className="mr-2 h-4 w-4" />
+                      View All Projects on GitHub
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
         </motion.div>
       </div>

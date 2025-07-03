@@ -152,9 +152,3 @@
     );
   }
 }
-
-@layer utilities {
-  .min-h-screen-minus-nav {
-    min-height: calc(100vh - 5rem); /* Adjust 5rem to your navbar's height */
-  }
-}

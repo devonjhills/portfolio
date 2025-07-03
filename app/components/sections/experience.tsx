@@ -3,13 +3,7 @@
 
 import { useRef } from "react";
 import { motion, useInView, Variants } from "framer-motion";
-import {
-  Target,
-  Download,
-  GraduationCap,
-  CheckCircle2,
-  ChevronDown,
-} from "lucide-react";
+import { Target, GraduationCap, CheckCircle2, ChevronDown } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -41,33 +35,47 @@ type JourneyItem = {
 
 const journeyData: JourneyItem[] = [
   {
-    date: "..Future?",
-    title: "Your Next Collaboration?",
-    company: "Let's Build Something Amazing Together",
-    location: "Remote / On-site",
-    duration: "Ready to start",
+    date: "Next",
+    title: "Your Next Team Member?",
+    company: "Ready for New Challenges",
+    location: "Remote / Hybrid / On-site",
+    duration: "Ready to Start",
     description:
-      "Looking for a skilled React/TypeScript engineer with healthcare domain expertise? Let's discuss how I can contribute to your team's mission and build something impactful together.",
-    achievements: [],
-    technologies: [],
+      "Seeking a React/TypeScript engineer with 7+ years of experience and healthcare domain expertise? I bring proven skills in building mission-critical applications, leading technical initiatives, and driving impactful solutions.",
+    achievements: [
+      "7+ years of full-stack development experience",
+      "Mission-critical application expertise serving millions of users",
+      "Government security clearance and compliance experience",
+      "Technical leadership and mentorship background",
+      "24/7 production support and incident response experience",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Ruby on Rails",
+      "PostgreSQL",
+      "AWS",
+      "CI/CD",
+    ],
     icon: <Target className="h-5 w-5 text-primary" />,
   },
   {
-    date: "2021 - 2025",
+    date: "2021 - Present",
     title: "Software Engineer III",
     company: "Ad Hoc LLC",
     location: "Remote",
-    duration: "Nov 2021 - Present",
+    duration: "Nov 2021 - Present (3+ years)",
     description:
-      "Building and maintaining mission-critical React/TypeScript applications for HealthCare.gov's health plan enrollment workflows, serving millions of users.",
+      "Building and maintaining full-stack React/TypeScript applications for HealthCare.gov health plan enrollment workflows, serving millions of Americans during high-traffic enrollment periods.",
     achievements: [
-      "Redesigned health plan comparison cards using choice architecture principles, improving enrollment completion rates.",
-      "Engineered a Redux-based state management system for dynamic filtering, optimizing performance under high loads.",
-      "Developed comprehensive accessibility testing infrastructure using axe-core to maintain WCAG/Section 508 compliance.",
-      "Built automated end-to-end testing suites with Playwright and React Testing Library.",
-      "Maintained and optimized Jenkins CI/CD pipelines with AWS cloud infrastructure.",
-      "Led technical documentation efforts and established coding standards that improved team velocity.",
-      "Participated in a 24/7 on-call rotation using PagerDuty during peak enrollment periods.",
+      "Drove projects from concept to completion, redesigning health plan comparison cards using choice architecture principles based on UX research",
+      "Built robust backend APIs and executed complex Ruby logic for Medicare eligibility rules and coverage transitions",
+      "Engineered Redux-based state management for dynamic filtering and comparison features, optimizing performance under peak loads",
+      "Developed comprehensive accessibility testing infrastructure using axe-core, maintaining WCAG/Section 508 compliance",
+      "Built automated testing suites with Playwright and React Testing Library, including end-to-end workflow validation",
+      "Established coding standards and best practices that improved team velocity and reduced onboarding time",
+      "Maintained 24/7 production support using PagerDuty, responding to critical incidents during peak enrollment periods",
+      "Led Ruby version and critical gem upgrades ensuring stable deployments",
     ],
     technologies: [
       "React",
@@ -78,6 +86,8 @@ const journeyData: JourneyItem[] = [
       "AWS",
       "Jenkins",
       "Playwright",
+      "React Testing Library",
+      "axe-core",
     ],
     icon: <Target className="h-5 w-5 text-primary" />,
   },
@@ -86,38 +96,42 @@ const journeyData: JourneyItem[] = [
     title: "Software Engineer",
     company: "Raytheon Technologies",
     location: "Tewksbury, MA",
-    duration: "Jul 2018 - Nov 2021",
+    duration: "Jul 2018 - Nov 2021 (3+ years)",
     description:
-      "Architected and maintained mission-critical software components using C++, conducting systematic debugging and root cause analysis for complex technical issues.",
+      "Architected and maintained mission-critical software components using C++ for defense applications, conducting systematic debugging and root cause analysis for complex technical issues.",
     achievements: [
-      "Led technical documentation initiatives and mentored junior developers.",
-      "Established coding standards that improved team productivity and code quality.",
-      "Collaborated in cross-functional Agile/SCRUM teams to deliver high-performance applications.",
-      "Acquired and maintained a DoD Secret security clearance.",
-      "Conducted systematic debugging and root cause analysis for complex technical issues.",
+      "Led technical documentation initiatives and mentored junior developers, establishing coding standards",
+      "Improved team productivity and code quality through systematic code review processes",
+      "Collaborated in cross-functional Agile/SCRUM teams to deliver high-performance applications on schedule",
+      "Acquired and maintained DoD Secret security clearance for classified defense projects",
+      "Conducted systematic debugging and root cause analysis for complex embedded systems issues",
+      "Contributed to mission-critical defense applications with strict reliability requirements",
     ],
     technologies: [
       "C++",
-      "Agile/SCRUM",
-      "Jira",
-      "Debugging",
       "Embedded Systems",
+      "Agile/SCRUM",
+      "JIRA",
+      "Version Control",
+      "Debugging Tools",
+      "Defense Systems",
     ],
     icon: <Target className="h-5 w-5 text-primary" />,
   },
   {
-    date: "2017",
+    date: "2013 - 2017",
     title: "BS, Computer Science",
-    company: "University of Massachusetts",
+    company: "University of Massachusetts Lowell",
     location: "Lowell, MA",
     duration: "Graduated May 2017",
     description:
-      "Graduated with a focus on software engineering principles, algorithms, and computer systems.",
+      "Bachelor of Science in Computer Science with cum laude honors, focusing on software engineering principles, algorithms, and computer systems architecture.",
     achievements: [
-      "Graduated cum laude with high academic honors.",
-      "Achieved Dean's List recognition for multiple semesters.",
-      "Strong foundation in algorithms, data structures, and software design.",
-      "Coursework in programming languages, databases, and computer architecture.",
+      "Graduated cum laude with high academic honors (GPA distinction)",
+      "Achieved Dean's List recognition for multiple consecutive semesters",
+      "Built strong foundation in algorithms, data structures, and software design patterns",
+      "Completed comprehensive coursework in programming languages, database systems, and computer architecture",
+      "Developed problem-solving skills through rigorous mathematical and computational training",
     ],
     technologies: [
       "Java",
@@ -126,6 +140,8 @@ const journeyData: JourneyItem[] = [
       "SQL",
       "Data Structures",
       "Algorithms",
+      "Software Design",
+      "Database Systems",
     ],
     icon: <GraduationCap className="h-5 w-5 text-primary" />,
   },
@@ -133,7 +149,12 @@ const journeyData: JourneyItem[] = [
 
 // Sub-component for the content of each timeline item
 const JourneyCard = ({ item }: { item: JourneyItem }) => (
-  <Card className="w-full">
+  <Card
+    className={`w-full ${
+      item.date === "Next"
+        ? "border-green-500/50 bg-green-50/50 dark:bg-green-950/20"
+        : ""
+    }`}>
     <CardHeader>
       <div className="flex items-start justify-between">
         <div>
@@ -146,6 +167,11 @@ const JourneyCard = ({ item }: { item: JourneyItem }) => (
           </CardDescription>
         </div>
         {item.date === "Present" && <Badge>Current</Badge>}
+        {item.date === "Next" && (
+          <Badge className="bg-green-500/10 text-green-600 border-green-500/30 dark:text-green-400">
+            Available
+          </Badge>
+        )}
       </div>
     </CardHeader>
     <CardContent className="space-y-6">
@@ -229,7 +255,7 @@ export function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="relative bg-muted/30 py-24 px-4 sm:px-6 lg:px-8">
+      className="relative bg-muted/30 py-20 px-4 sm:px-6 lg:px-8">
       {/* Background Decoration */}
       <div className="absolute inset-0 -z-10 overflow-hidden bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px]"></div>
 
@@ -238,29 +264,22 @@ export function Experience() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="flex flex-col items-center gap-16">
+          className="space-y-16">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-              My Journey
+            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              Professional Journey
             </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-              A timeline of my professional experience, from foundational
-              education to impactful engineering roles.
+            <p className="mt-4 max-w-3xl mx-auto text-lg leading-8 text-muted-foreground">
+              From academic excellence to mission-critical software engineering
+              - a progression of technical leadership, innovation, and impactful
+              contributions across healthcare technology and defense systems.
             </p>
           </motion.div>
 
           {/* Timeline */}
-          <Timeline data={timelineItems} />
-
-          {/* Download Resume CTA */}
           <motion.div variants={itemVariants}>
-            <Button size="lg" asChild>
-              <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
-                <Download className="mr-2 h-5 w-5" />
-                Download Full Resume
-              </a>
-            </Button>
+            <Timeline data={timelineItems} />
           </motion.div>
         </motion.div>
       </div>

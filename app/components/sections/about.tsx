@@ -23,7 +23,6 @@ import {
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "../ui/card";
@@ -35,61 +34,69 @@ const achievements = [
     icon: <Target className="h-8 w-8 text-primary" />,
     title: "HealthCare.gov Impact",
     description:
-      "Redesigned key enrollment UI, directly improving completion rates for millions of Americans.",
+      "Redesigned health plan comparison cards using choice architecture principles, serving millions of users during high-traffic enrollment periods.",
   },
   {
     icon: <Zap className="h-8 w-8 text-primary" />,
-    title: "Performance at Scale",
+    title: "Full-Stack Leadership",
     description:
-      "Engineered a Redux-based state management system that maintained high performance under peak traffic loads.",
+      "Drove projects from concept to completion, building React/TypeScript frontends and Ruby APIs for Medicare eligibility rules and coverage transitions.",
   },
   {
     icon: <Users className="h-8 w-8 text-primary" />,
-    title: "Accessibility Leadership",
+    title: "Accessibility Excellence",
     description:
-      "Championed and maintained WCAG & Section 508 compliance, ensuring universal access to critical services.",
+      "Developed comprehensive accessibility testing infrastructure using axe-core and maintained WCAG/Section 508 compliance for government applications.",
   },
   {
     icon: <Brain className="h-8 w-8 text-primary" />,
-    title: "Mentorship & Standards",
+    title: "Technical Leadership",
     description:
-      "Led documentation efforts and established coding standards that significantly improved team velocity and onboarding.",
+      "Established coding standards and best practices that improved team velocity and reduced onboarding time while mentoring junior developers.",
   },
 ];
 
 const skillCategories = [
   {
-    title: "Frontend Mastery",
+    title: "Frontend Development",
     icon: <Globe className="h-6 w-6" />,
     skills: [
       "React",
       "TypeScript",
-      "Next.js",
+      "JavaScript",
       "Redux",
-      "Tailwind CSS",
-      "Framer Motion",
+      "HTML5",
+      "CSS3",
+      "Responsive Design",
+      "SPA",
     ],
   },
   {
-    title: "Backend & Systems",
+    title: "Backend & Full-Stack",
     icon: <Database className="h-6 w-6" />,
     skills: [
       "Ruby on Rails",
       "Node.js",
       "PostgreSQL",
       "RESTful APIs",
-      "GraphQL",
+      "Server-side Development",
     ],
   },
   {
-    title: "Quality & Testing",
+    title: "Testing & Quality",
     icon: <Code2 className="h-6 w-6" />,
-    skills: ["Playwright", "Jest", "RTL", "axe-core", "TDD", "Storybook"],
+    skills: [
+      "Playwright",
+      "React Testing Library",
+      "axe-core",
+      "WCAG/Section 508",
+      "TDD",
+    ],
   },
   {
-    title: "DevOps & Cloud",
+    title: "DevOps & Tools",
     icon: <Cloud className="h-6 w-6" />,
-    skills: ["AWS", "Jenkins", "Docker", "CI/CD", "Vercel"],
+    skills: ["AWS", "Jenkins", "CI/CD", "Docker", "Git", "Firebase"],
   },
 ];
 
@@ -134,109 +141,198 @@ export function About() {
     <section
       id="about"
       ref={ref}
-      className="relative bg-muted/30 py-24 px-4 sm:px-6 lg:px-8">
-
-      <div className="mx-auto max-w-6xl">
+      className="relative bg-muted/30 py-16 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="flex flex-col items-center gap-20">
+          className="space-y-16">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
               About Me
             </h2>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">
-              A passionate software engineer with a proven track record of
-              building scalable, accessible, and user-centric applications that
-              make a difference.
+            <p className="mt-4 max-w-3xl mx-auto text-lg leading-8 text-muted-foreground">
+              Full-Stack Software Developer with 7+ years of experience
+              specializing in React, TypeScript, and modern JavaScript
+              development. Expert in building accessible, high-traffic
+              applications serving millions of users with strong problem-solving
+              skills in healthcare technology solutions.
             </p>
           </motion.div>
 
-          {/* Achievements Grid */}
-          <motion.div variants={itemVariants} className="w-full">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              {achievements.map((achievement) => (
-                <Card
-                  key={achievement.title}
-                  className="bg-card/50 backdrop-blur-sm border-border/50 flex items-start gap-6 p-6">
-                  <div>{achievement.icon}</div>
-                  <div>
-                    <CardTitle className="mb-2 text-lg">
-                      {achievement.title}
-                    </CardTitle>
-                    <CardDescription>{achievement.description}</CardDescription>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Technical Expertise Section */}
-          <motion.div variants={itemVariants} className="w-full">
-            <h3 className="mb-12 text-center text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Technical Expertise
-            </h3>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-              {skillCategories.map((category) => (
-                <Card
-                  key={category.title}
-                  className="bg-card/50 backdrop-blur-sm border-border/50 group h-full transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
-                  <CardHeader>
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-lg bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary/20">
-                        {category.icon}
-                      </div>
-                      <CardTitle>{category.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {category.skills.map((skill) => (
-                        <Badge key={skill} variant="secondary">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Beyond the Code Section */}
-          <motion.div variants={itemVariants} className="w-full">
-            <Card className="mx-auto max-w-full text-center">
-              <CardHeader>
-                <CardTitle className="flex items-center justify-center gap-3 text-2xl md:text-3xl">
-                  <Unplug className="h-7 w-7 text-primary" />
-                  Beyond the Code
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-6 text-lg text-muted-foreground">
-                  When I&apos;m not building user experiences, my interests
-                  are...
-                </p>
-                <div className="mb-8 flex flex-wrap justify-center gap-4">
-                  {interests.map((interest) => (
-                    <Badge
-                      key={interest.name}
-                      variant="outline"
-                      className="flex items-center gap-2 px-4 py-2 text-sm">
-                      {interest.icon}
-                      <span>{interest.name}</span>
-                    </Badge>
+          {/* Main Content Grid */}
+          <motion.div
+            variants={itemVariants}
+            className="grid lg:grid-cols-3 gap-8">
+            {/* Left Column - Key Impact & Achievements */}
+            <div className="lg:col-span-2 space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-foreground mb-6">
+                  Key Impact & Achievements
+                </h3>
+                <div className="grid gap-6">
+                  {achievements.map((achievement) => (
+                    <Card
+                      key={achievement.title}
+                      className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/30 transition-all">
+                      <CardContent className="p-6">
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg">
+                            {achievement.icon}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-foreground mb-2">
+                              {achievement.title}
+                            </h4>
+                            <p className="text-muted-foreground text-sm leading-relaxed">
+                              {achievement.description}
+                            </p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  I believe the best software comes from understanding people.
-                  My diverse interests in creativity and community help me bring
-                  empathy and a fresh perspective to every project.
-                </p>
-              </CardContent>
-            </Card>
+              </div>
+
+              {/* Technical Skills - Horizontal Layout */}
+              <div>
+                <h3 className="text-2xl font-bold text-foreground mb-6">
+                  Technical Expertise
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {skillCategories.map((category) => (
+                    <Card
+                      key={category.title}
+                      className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/30 transition-all">
+                      <CardHeader className="pb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 bg-primary/10 rounded-lg text-primary">
+                            {category.icon}
+                          </div>
+                          <CardTitle className="text-lg">
+                            {category.title}
+                          </CardTitle>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex flex-wrap gap-2">
+                          {category.skills.map((skill) => (
+                            <Badge
+                              key={skill}
+                              variant="secondary"
+                              className="text-xs">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Quick Facts & Personal */}
+            <div className="space-y-8">
+              {/* Professional Background */}
+              <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-xl">
+                    <Target className="h-6 w-6 text-primary" />
+                    Professional Background
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">
+                        Current Role
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Software Engineer III at Ad Hoc LLC (Nov 2021 - Present)
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">
+                        Previous Experience
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Software Engineer at Raytheon Technologies (Jul 2018 -
+                        Nov 2021)
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">
+                        Education
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        BS Computer Science, UMass Lowell (2017) - Graduated cum
+                        laude
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">
+                        Security Clearance
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        DoD Secret clearance (acquired at Raytheon)
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Core Strengths */}
+              <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-xl">
+                    <Brain className="h-6 w-6 text-primary" />
+                    Core Strengths
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {[
+                      "24/7 Production Support",
+                      "Agile/SCRUM Leadership",
+                      "Performance Optimization",
+                      "Cross-functional Collaboration",
+                      "Technical Documentation",
+                    ].map((strength) => (
+                      <div key={strength} className="flex items-center gap-3">
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        <span className="text-sm font-medium">{strength}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Personal Interests - Compact */}
+              <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-xl">
+                    <Unplug className="h-6 w-6 text-primary" />
+                    Personal Interests
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    {interests.map((interest) => (
+                      <div
+                        key={interest.name}
+                        className="flex items-center gap-2 text-sm">
+                        {interest.icon}
+                        <span>{interest.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </motion.div>
         </motion.div>
       </div>

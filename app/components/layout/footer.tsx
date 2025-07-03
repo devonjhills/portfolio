@@ -1,7 +1,8 @@
 // src/components/Footer.tsx
 "use client";
 
-import { Code2, Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 import { Button } from "../ui/button";
 import {
   Tooltip,
@@ -36,7 +37,13 @@ export function Footer() {
       <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
         {/* Left Side: Copyright */}
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Code2 className="h-4 w-4" />
+          <Image
+            src="/logo.png"
+            alt="Devon Hills Logo"
+            width={24}
+            height={24}
+            className="h-6 w-6"
+          />
           <span>© {currentYear} Devon Hills</span>
         </div>
 

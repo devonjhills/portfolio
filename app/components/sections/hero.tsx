@@ -62,9 +62,8 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen-minus-nav pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden antialiased">
-
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      className="relative w-full min-h-screen overflow-hidden antialiased">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -160,7 +159,9 @@ export function Hero() {
                     </div>
                     <div>
                       <p className="font-medium text-foreground">Location</p>
-                      <p className="text-sm text-muted-foreground">Based near Boston, MA</p>
+                      <p className="text-sm text-muted-foreground">
+                        Based near Boston, MA
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -169,7 +170,9 @@ export function Hero() {
                     </div>
                     <div>
                       <p className="font-medium text-foreground">Work Style</p>
-                      <p className="text-sm text-muted-foreground">Remote • Hybrid</p>
+                      <p className="text-sm text-muted-foreground">
+                        Remote • Hybrid
+                      </p>
                     </div>
                   </div>
                 </div>
