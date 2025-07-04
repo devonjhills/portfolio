@@ -1,7 +1,7 @@
 // src/components/About.tsx
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef } from "react";
 import { motion, useInView, Variants } from "framer-motion";
 import {
   Code2,

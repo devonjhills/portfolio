@@ -256,9 +256,6 @@ export function Experience() {
       id="experience"
       ref={ref}
       className="relative bg-muted/30 py-20 px-4 sm:px-6 lg:px-8">
-      {/* Background Decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-
       <div className="mx-auto max-w-6xl">
         <motion.div
           variants={containerVariants}

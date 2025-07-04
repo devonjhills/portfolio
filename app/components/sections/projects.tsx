@@ -22,14 +22,13 @@ import {
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetFooter,
-} from "../ui/sheet";
-import { ScrollArea } from "../ui/scroll-area";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../ui/dialog";
 
 // Define a type for your project for better type safety
 type Project = {
@@ -190,51 +189,54 @@ const ProjectCard = ({
   onViewDetails: (project: Project) => void;
 }) => (
   <Card className="group flex h-full flex-col overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
-    <div className="relative aspect-video overflow-hidden bg-muted/30">
-      <Image
-        src={project.image}
-        alt={`${project.title} screenshot`}
-        fill
-        className="object-cover transition-transform group-hover:scale-105"
-      />
-      {project.featured && (
-        <Badge className="absolute top-3 left-3 bg-primary/90 text-primary-foreground">
-          <Star className="mr-1 h-3 w-3" />
-          Featured
-        </Badge>
-      )}
-      {project.liveUrl && (
-        <Button
-          size="sm"
-          variant="secondary"
-          className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
-          asChild>
-          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-            <ExternalLink className="h-4 w-4" />
-          </a>
-        </Button>
-      )}
-    </div>
-    <CardContent className="flex-1 p-6">
-      <CardTitle className="text-xl mb-3">{project.title}</CardTitle>
-      <CardDescription className="text-base mb-4 leading-relaxed">
+    <CardContent className="flex-1 p-4">
+      <div className="flex items-start justify-between mb-3">
+        <CardTitle className="text-lg font-semibold leading-tight">
+          {project.title}
+        </CardTitle>
+        <div className="flex items-center gap-2 ml-2">
+          {project.featured && (
+            <Badge className="bg-primary/90 text-primary-foreground text-xs px-2 py-1">
+              <Star className="mr-1 h-3 w-3" />
+              Featured
+            </Badge>
+          )}
+          {project.liveUrl && (
+            <Button
+              size="sm"
+              variant="ghost"
+              className="h-8 w-8 p-0 opacity-70 hover:opacity-100"
+              asChild>
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </Button>
+          )}
+        </div>
+      </div>
+      <CardDescription className="text-sm mb-3 leading-relaxed line-clamp-2">
         {project.description}
       </CardDescription>
-      <div className="flex flex-wrap gap-2 mb-6">
-        {project.technologies.map((tech) => (
-          <Badge key={tech} variant="secondary" className="text-xs">
+      <div className="flex flex-wrap gap-1 mb-4">
+        {project.technologies.slice(0, 4).map((tech) => (
+          <Badge key={tech} variant="secondary" className="text-xs px-2 py-1">
             {tech}
           </Badge>
         ))}
+        {project.technologies.length > 4 && (
+          <Badge variant="outline" className="text-xs px-2 py-1">
+            +{project.technologies.length - 4}
+          </Badge>
+        )}
       </div>
     </CardContent>
-    <CardFooter className="flex gap-3 p-6 pt-0">
-      <Button variant="outline" className="flex-1" asChild>
+    <CardFooter className="flex gap-2 p-4 pt-0">
+      <Button variant="outline" size="sm" className="flex-1" asChild>
         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
           <Github className="mr-2 h-4 w-4" /> Code
         </a>
       </Button>
-      <Button className="flex-1" onClick={() => onViewDetails(project)}>
+      <Button size="sm" className="flex-1" onClick={() => onViewDetails(project)}>
         <Eye className="mr-2 h-4 w-4" /> Details
       </Button>
     </CardFooter>
@@ -251,9 +253,6 @@ export function Projects() {
       id="projects"
       ref={ref}
       className="relative bg-background py-20 px-4 sm:px-6 lg:px-8">
-      {/* Background Decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-
       <div className="mx-auto max-w-7xl">
         <motion.div
           variants={containerVariants}
@@ -273,7 +272,7 @@ export function Projects() {
 
           {/* Projects Grid */}
           <motion.div variants={itemVariants} className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.map((project) => (
                 <motion.div key={project.id} variants={itemVariants}>
                   <ProjectCard
@@ -319,72 +318,113 @@ export function Projects() {
         </motion.div>
       </div>
 
-      {/* Project Details Sheet */}
-      <Sheet
+      {/* Project Details Dialog */}
+      <Dialog
         open={!!selectedProject}
-        onOpenChange={(isOpen) => !isOpen && setSelectedProject(null)}>
-        <SheetContent className="flex w-full flex-col p-0 sm:max-w-2xl">
+        onOpenChange={(isOpen: boolean) => !isOpen && setSelectedProject(null)}>
+        <DialogContent className="!w-full !max-w-none sm:!max-w-6xl !h-[90vh] p-0 overflow-hidden">
           {selectedProject && (
             <>
-              <SheetHeader className="p-6">
-                <SheetTitle className="text-3xl">
+              <DialogHeader className="p-6 pb-4">
+                <DialogTitle className="text-2xl">
                   {selectedProject.title}
-                </SheetTitle>
-                <SheetDescription className="text-base">
+                </DialogTitle>
+                <DialogDescription className="text-base mt-2">
                   {selectedProject.longDescription}
-                </SheetDescription>
-              </SheetHeader>
-              <ScrollArea className="flex-1">
-                <div className="space-y-8 px-6 pb-6">
-                  {/* Image */}
-                  <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
-                    <Image
-                      src={selectedProject.image}
-                      alt={`${selectedProject.title} screenshot`}
-                      fill
-                      className="object-cover"
-                    />
+                </DialogDescription>
+              </DialogHeader>
+              
+              {/* Scrollable content area */}
+              <div className="flex-1 overflow-y-auto px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-6">
+                  {/* Left column: Project image */}
+                  <div className="space-y-4">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+                      <Image
+                        src={selectedProject.image}
+                        alt={`${selectedProject.title} screenshot`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    
+                    {/* Project status badges */}
+                    <div className="flex gap-2">
+                      {selectedProject.featured && (
+                        <Badge className="bg-primary/90 text-primary-foreground">
+                          <Star className="mr-1 h-3 w-3" />
+                          Featured
+                        </Badge>
+                      )}
+                      {selectedProject.liveUrl && (
+                        <Badge variant="outline" className="border-green-500 text-green-600">
+                          Live
+                        </Badge>
+                      )}
+                    </div>
                   </div>
-                  {/* Features */}
-                  <div>
-                    <h3 className="mb-4 text-xl font-semibold">Key Features</h3>
-                    <ul className="space-y-3">
-                      {selectedProject.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
-                          <span className="text-muted-foreground">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                  
+                  {/* Right column: Details */}
+                  <div className="space-y-6">
+                    {/* Technologies */}
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3">Technologies</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProject.technologies.map((tech) => (
+                          <Badge key={tech} variant="secondary" className="text-sm">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Features */}
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3">Key Features</h3>
+                      <ul className="space-y-3">
+                        {selectedProject.features.map((feature, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 text-primary flex-shrink-0" />
+                            <span className="text-sm text-muted-foreground">
+                              {feature}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </ScrollArea>
-              <SheetFooter className="p-6 pt-4 bg-muted/50">
-                <Button variant="outline" asChild>
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <Github className="mr-2 h-4 w-4" /> View Code
-                  </a>
-                </Button>
-                {selectedProject.liveUrl && (
-                  <Button asChild>
+              </div>
+              
+              {/* Footer with action buttons */}
+              <DialogFooter className="p-6 pt-4 bg-muted/30 border-t">
+                <div className="flex gap-3 w-full sm:w-auto">
+                  <Button variant="outline" size="lg" asChild>
                     <a
-                      href={selectedProject.liveUrl}
+                      href={selectedProject.githubUrl}
                       target="_blank"
-                      rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                      rel="noopener noreferrer"
+                      className="flex-1 sm:flex-none">
+                      <Github className="mr-2 h-4 w-4" /> View Code
                     </a>
                   </Button>
-                )}
-              </SheetFooter>
+                  {selectedProject.liveUrl && (
+                    <Button size="lg" asChild>
+                      <a
+                        href={selectedProject.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 sm:flex-none">
+                        <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </DialogFooter>
             </>
           )}
-        </SheetContent>
-      </Sheet>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
