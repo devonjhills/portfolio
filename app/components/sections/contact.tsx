@@ -90,7 +90,7 @@ export function Contact() {
       id="contact"
       ref={ref}
       className="relative overflow-hidden py-16 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl relative z-10">
+      <div className="mx-auto max-w-7xl relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -112,7 +112,7 @@ export function Contact() {
             variants={itemVariants}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Primary Contact Card */}
-            <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+            <Card className="border-primary/20">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
                   <Badge className="bg-green-500/10 text-green-600 border-green-500/30">
@@ -129,13 +129,17 @@ export function Contact() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex flex-col gap-3">
-                  <Button className="w-full" asChild>
+                  <Button size="lg" className="w-full h-12 font-medium" asChild>
                     <a href="mailto:devonjhills@gmail.com">
                       <Mail className="mr-2 h-4 w-4" />
                       Get in Touch
                     </a>
                   </Button>
-                  <Button variant="outline" className="w-full" asChild>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full h-12 font-medium"
+                    asChild>
                     <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
                       <Download className="mr-2 h-4 w-4" />
                       Download Resume

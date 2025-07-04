@@ -5,72 +5,72 @@
 @tailwind utilities;
 
 @layer base {
-  /* ===== Color Palette: "Cyber Neon" ===== */
-  /* Electric portfolio theme with neon accents for maximum impact */
+  /* ===== Ultra-Modern Professional Color Palette ===== */
+  /* A cutting-edge color scheme that balances professionalism with personality */
   :root {
-    /* Cyber Neon: Professional dark theme with electric accents */
-    --background: 222 84% 5%; /* Deep dark navy */
-    --foreground: 210 40% 98%; /* Pure white */
+    /* Dark Mode: Sophisticated dark with vibrant accents */
+    --background: 222 17% 8%; /* Deep space gray */
+    --foreground: 210 30% 98%; /* Pure white with subtle blue tint */
 
-    --muted: 215 28% 17%;
-    --muted-foreground: 217 10% 65%;
+    --muted: 220 15% 18%; /* Elevated muted areas */
+    --muted-foreground: 220 10% 80%;
 
-    --popover: 222 84% 4%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 222 17% 10%;
+    --popover-foreground: 210 30% 98%;
 
-    --card: 222 84% 5%;
-    --card-foreground: 210 40% 98%;
+    --card: 222 16% 12%; /* Card elevation with depth */
+    --card-foreground: 210 30% 98%;
 
-    --border: 215 28% 17%;
-    --input: 215 28% 17%;
+    --border: 220 15% 25%; /* Visible but subtle borders */
+    --input: 222 16% 15%;
 
-    --primary: 142 76% 36%; /* Electric green */
-    --primary-foreground: 222 84% 5%;
+    --primary: 158 95% 48%; /* Electric teal - vibrant yet professional */
+    --primary-foreground: 158 15% 5%;
 
-    --secondary: 262 83% 58%; /* Electric purple */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 212 100% 65%; /* Deep sky blue */
+    --secondary-foreground: 212 15% 98%;
 
-    --accent: 47 96% 53%; /* Electric yellow */
-    --accent-foreground: 222 84% 5%;
+    --accent: 45 93% 58%; /* Golden yellow */
+    --accent-foreground: 45 15% 10%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --ring: 142 76% 36%;
+    --ring: 158 95% 48%; /* Matching primary for focus */
 
-    --radius: 0.5rem; /* A crisp, modern radius */
+    --radius: 0.5rem; /* Slightly more rounded */
   }
 
   .light {
-    /* Clean minimal light theme */
-    --background: 0 0% 100%;
-    --foreground: 222 84% 5%;
+    /* Light Mode: Ultra-clean with bold accents */
+    --background: 0 0% 99%; /* Near-white */
+    --foreground: 222 24% 12%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 10% 40%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 84% 5%;
+    --popover-foreground: 222 24% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 84% 5%;
+    --card-foreground: 222 24% 12%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --border: 220 15% 85%;
+    --input: 0 0% 100%;
 
-    --primary: 142 76% 36%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 158 85% 40%; /* Rich teal */
+    --primary-foreground: 158 15% 98%;
 
-    --secondary: 262 83% 58%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 212 85% 55%;
+    --secondary-foreground: 212 15% 98%;
 
-    --accent: 47 96% 53%;
-    --accent-foreground: 222 84% 5%;
+    --accent: 45 85% 48%;
+    --accent-foreground: 45 15% 98%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --ring: 142 76% 36%;
+    --ring: 158 85% 40%;
   }
 
   * {
@@ -78,54 +78,127 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
+    @apply bg-background text-foreground font-sans;
     font-feature-settings: "rlig" 1, "calt" 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Heading styles for clear hierarchy */
+  /* Ultra-modern heading styles */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @apply font-semibold tracking-tight;
+    @apply font-bold tracking-tighter;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
   }
 
+  /* Code blocks with professional styling */
   code,
   pre {
     font-family: var(--font-jetbrains-mono), "SF Mono", Monaco, "Cascadia Code",
       "Roboto Mono", Consolas, "Courier New", monospace;
     font-variant-ligatures: common-ligatures;
+    @apply bg-muted/50 rounded-md px-1 py-0.5;
   }
 
+  /* Smooth scrolling with momentum */
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
   }
 
-  /* Beautiful text selection that matches the theme */
+  /* High-impact selection styling */
   ::selection {
-    background-color: hsl(var(--primary) / 0.15);
-    color: hsl(var(--primary));
+    @apply bg-primary text-primary-foreground;
+    text-shadow: none;
   }
 
-  /* Modern, themed scrollbar */
+  /* Futuristic scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    @apply w-3;
   }
   ::-webkit-scrollbar-track {
-    background-color: hsl(var(--background));
+    @apply bg-background;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--primary) / 0.5);
-    border-radius: 9999px;
-    border: 2px solid transparent;
-    background-clip: content-box;
+    @apply bg-primary rounded-full;
+    border: 2px solid hsl(var(--background));
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: hsl(var(--primary));
+    @apply bg-primary/90;
+  }
+}
+
+@layer components {
+  /* Enhanced border styling */
+  .border {
+    @apply border-opacity-30;
+  }
+
+  /* Next-level shadows with depth */
+  .shadow-lg {
+    box-shadow: 0 10px 25px -5px hsl(var(--foreground) / 0.1),
+      0 8px 10px -6px hsl(var(--foreground) / 0.1) !important;
+  }
+
+  .shadow-md {
+    box-shadow: 0 4px 15px -3px hsl(var(--foreground) / 0.1),
+      0 2px 6px -4px hsl(var(--foreground) / 0.1) !important;
+  }
+
+  /* Hover transformations */
+  .hover\:shadow-lg:hover {
+    box-shadow: 0 20px 35px -7px hsl(var(--foreground) / 0.15),
+      0 10px 15px -5px hsl(var(--foreground) / 0.1) !important;
+    transform: translateY(-3px) scale(1.01);
+  }
+
+  /* Ultra-smooth transitions */
+  .transition-all {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  /* Vibrant color utilities */
+  .bg-primary {
+    @apply bg-opacity-100;
+  }
+
+  /* Sophisticated hover states */
+  .hover\:bg-primary:hover {
+    @apply bg-primary/90;
+    transform: translateY(-1px);
+  }
+
+  /* Modern group interactions */
+  .group:hover .group-hover\:bg-primary {
+    @apply bg-primary/90;
+    transform: translateY(-1px);
+  }
+
+  /* Special effects */
+  .hover\:shadow-primary:hover {
+    box-shadow: 4px 4px 0 hsl(var(--primary) / 0.8),
+      8px 8px 0 hsl(var(--primary) / 0.4) !important;
+    transform: translate(-4px, -4px);
+  }
+
+  /* Enhanced focus states */
+  .focus\:ring-2:focus {
+    @apply outline-none ring-2 ring-offset-2 ring-offset-background;
+  }
+
+  /* Premium badge styling */
+  .bg-primary\/10 {
+    @apply backdrop-blur-sm;
+  }
+
+  /* Glass morphism effect */
+  .bg-muted\/30 {
+    @apply backdrop-blur-sm bg-opacity-30;
   }
 }

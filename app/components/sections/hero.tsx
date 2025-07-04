@@ -11,14 +11,11 @@ import {
   ShieldCheck,
   CodeXml,
   Users,
-  ArrowRight,
-  MapPin,
-  Briefcase,
+  Eye,
 } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { BackgroundBeamsWithCollision } from "../ui/background-beams-with-collision";
 
 export function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -27,236 +24,203 @@ export function Hero() {
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    },
   };
 
-  // --- THE FIX IS HERE ---
-  // We explicitly tell TypeScript this object is of type 'Variants'
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 100 },
+      transition: { type: "spring", stiffness: 100, damping: 15 },
     },
   };
 
   const highlights = [
-    { icon: Users, text: "Millions of Users", subtext: "High-Traffic Apps" },
+    {
+      icon: Users,
+      text: "High-Traffic Applications",
+      subtext: "Serving millions of users daily",
+    },
     {
       icon: CodeXml,
-      text: "React & TypeScript",
-      subtext: "Modern Architecture",
+      text: "Modern Tech Stack",
+      subtext: "React, TypeScript, Next.js, and Node.js",
     },
     {
       icon: ShieldCheck,
-      text: "Mission-Critical",
-      subtext: "Production Reliability",
+      text: "Production Reliability",
+      subtext: "Mission-critical systems in healthcare & gov-tech",
     },
     {
       icon: Rocket,
-      text: "Quality-Driven",
-      subtext: "Automated Testing & CI/CD",
+      text: "Quality-Driven Development",
+      subtext: "CI/CD, automated testing, and performance optimization",
     },
   ];
 
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden antialiased">
-      <BackgroundBeamsWithCollision className="max-w-6xl mx-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-24 flex items-center justify-center">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 items-start">
-            {/* ====== Left Column: Identity & Details ====== */}
-            <div className="lg:col-span-2 flex flex-col items-center lg:items-start text-center lg:text-left">
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col lg:flex-row items-center gap-8">
-                <Avatar className="w-32 h-32 lg:w-40 lg:h-40 border-4 border-primary/30 shadow-lg">
-                  <AvatarImage src="/avatar.png" alt="Devon Hills" />
-                  <AvatarFallback className="text-4xl font-semibold bg-primary/10 text-primary">
-                    DH
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex flex-col">
-                  <h1 className="text-4xl sm:text-5xl font-bold tracking-tighter text-foreground">
-                    Devon Hills
-                  </h1>
-                  <p className="mt-1 text-2xl font-medium text-primary">
-                    Full-Stack Software Engineer
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.p
-                variants={itemVariants}
-                className="mt-8 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-                Software Engineer with{" "}
-                <span className="font-semibold text-primary/90">
-                  7+ years of experience,
-                </span>{" "}
-                including building mission-critical applications for{" "}
-                <span className="font-semibold text-secondary/90">
-                  millions of users at HealthCare.gov
-                </span>
-                . Expert in modern web technologies including{" "}
-                <span className="font-semibold text-accent/90">
-                  React, TypeScript, Next.js, Python, and Ruby on Rails
-                </span>
-                . Proven track record of delivering{" "}
-                <span className="font-semibold text-primary/90">
-                  scalable, high-performance applications
-                </span>{" "}
-                with comprehensive testing, CI/CD pipelines, and cloud
-                infrastructure.
-              </motion.p>
-
-              {/* --- Key Strengths Grid --- */}
-              <motion.div variants={itemVariants} className="mt-12 w-full">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {highlights.map((highlight) => (
-                    <div
-                      key={highlight.text}
-                      className="flex items-center gap-4 rounded-lg border border-border/50 bg-card/50 p-4 backdrop-blur-sm">
-                      <highlight.icon className="h-8 w-8 text-primary flex-shrink-0" />
-                      <div>
-                        <p className="font-bold text-foreground">
-                          {highlight.text}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {highlight.subtext}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* ====== Right Column: Action Panel ====== */}
+      className="relative bg-background min-h-[calc(100vh)] flex items-center">
+      <div className="mx-auto max-w-7xl w-full py-20 px-4 sm:px-6 lg:px-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+          {/* Left Column - Avatar & Headline */}
+          <div className="lg:w-1/2 text-center lg:text-left space-y-8">
             <motion.div
               variants={itemVariants}
-              className="w-full lg:sticky lg:top-24 h-full flex flex-col">
-              <div className="w-full h-full rounded-xl border border-border bg-card/50 p-6 shadow-lg backdrop-blur-md flex flex-col justify-between">
-                {/* Status Badge */}
-                <div className="text-center">
-                  <Badge className="w-full flex items-center justify-center gap-2 p-4 text-sm font-medium border-teal-500/30 bg-teal-500/10 text-teal-400 rounded-lg">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    Available for New Opportunities
-                  </Badge>
-                </div>
+              className="flex justify-center lg:justify-start">
+              <Badge
+                variant="outline"
+                className="px-4 py-2 border-primary/50 text-primary font-semibold rounded-full shadow-sm">
+                <span className="relative flex h-2 w-2 mr-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Available for New Opportunities
+              </Badge>
+            </motion.div>
 
-                {/* Info Section */}
-                <div className="space-y-4">
-                  <div className="bg-muted/30 rounded-lg p-4 space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10">
-                        <MapPin className="h-4 w-4 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-foreground">Location</p>
-                        <p className="text-sm text-muted-foreground">
-                          Based near Boston, MA
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10">
-                        <Briefcase className="h-4 w-4 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-foreground">
-                          Work Style
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          Remote • Hybrid
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="space-y-3">
-                  <Button
-                    size="lg"
-                    className="w-full group h-12 font-medium"
-                    onClick={() => scrollToSection("projects")}>
-                    Explore My Work{" "}
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                  <Button
-                    asChild
-                    size="lg"
-                    variant="outline"
-                    className="w-full h-12 font-medium">
-                    <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
-                      <Download className="mr-2 h-5 w-5" />
-                      Download Resume
-                    </a>
-                  </Button>
-                </div>
-
-                {/* Contact Section */}
-                <div className="space-y-4">
-                  <div className="relative">
-                    <div className="absolute inset-0 flex items-center">
-                      <span className="w-full border-t border-border"></span>
-                    </div>
-                    <div className="relative flex justify-center text-xs uppercase">
-                      <span className="bg-card px-3 py-1 text-muted-foreground font-medium tracking-wide">
-                        Get in Touch
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-center gap-4">
-                    {[
-                      {
-                        icon: Github,
-                        href: "https://github.com/devonjhills",
-                        label: "GitHub",
-                      },
-                      {
-                        icon: Linkedin,
-                        href: "https://linkedin.com/in/devonjhills",
-                        label: "LinkedIn",
-                      },
-                      {
-                        icon: Mail,
-                        href: "mailto:devonjhills@gmail.com",
-                        label: "Email",
-                      },
-                    ].map(({ icon: Icon, href, label }) => (
-                      <Button
-                        key={label}
-                        asChild
-                        variant="secondary"
-                        size="icon"
-                        className="h-12 w-12 rounded-full border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all">
-                        <a
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={label}>
-                          <Icon className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-                        </a>
-                      </Button>
-                    ))}
-                  </div>
+            <motion.div
+              variants={itemVariants}
+              className="flex justify-center lg:justify-start">
+              <div className="relative p-1 group inline-block">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-primary/70 opacity-60 group-hover:opacity-80 transition-opacity duration-500 animate-slow-spin"></div>
+                <div className="relative bg-background/60 rounded-full p-1">
+                  <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-transparent">
+                    <AvatarImage src="/avatar.png" alt="Devon Hills" />
+                    <AvatarFallback className="text-4xl font-bold bg-primary/10 text-primary">
+                      DH
+                    </AvatarFallback>
+                  </Avatar>
                 </div>
               </div>
             </motion.div>
-          </motion.div>
-        </div>
-      </BackgroundBeamsWithCollision>
+
+            <motion.h1
+              variants={itemVariants}
+              className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+              Devon Hills
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-lg leading-8 text-muted-foreground max-w-lg mx-auto lg:mx-0">
+              Full-Stack Software Engineer crafting robust, scalable, and
+              user-centric web applications. Specializing in building
+              mission-critical solutions from concept to deployment.
+            </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Button
+                size="lg"
+                className="w-full sm:w-auto h-12 px-8 font-medium"
+                onClick={() => scrollToSection("experience")}>
+                <Eye className="mr-2 h-4 w-4" />
+                Explore My Work
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto h-12 px-8 font-medium">
+                <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download Resume
+                </a>
+              </Button>
+            </motion.div>
+          </div>
+
+          {/* Right Column - Highlights & Contact */}
+          <div className="lg:w-1/2 space-y-10">
+            {/* Highlights Grid */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-xl font-semibold text-foreground mb-6">
+                Core Expertise
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                {highlights.map((highlight) => (
+                  <motion.div
+                    key={highlight.text}
+                    variants={itemVariants}
+                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-primary/3 transition-colors duration-300">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <highlight.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground text-base">
+                        {highlight.text}
+                      </p>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {highlight.subtext}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Contact Section */}
+            <motion.div variants={itemVariants} className="space-y-4">
+              <h3 className="text-xl font-semibold text-foreground">
+                Let's Connect
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                I'm passionate about building great software and always open to
+                discussing new projects, creative ideas, or opportunities to be
+                part of an ambitious team.
+              </p>
+              <div className="flex items-center gap-3 pt-2">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="icon"
+                  className="h-11 w-11 rounded-full">
+                  <a
+                    href="https://github.com/devonjhills"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub">
+                    <Github className="h-4 w-4" />
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="icon"
+                  className="h-11 w-11 rounded-full">
+                  <a
+                    href="https://linkedin.com/in/devonjhills"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn">
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="icon"
+                  className="h-11 w-11 rounded-full">
+                  <a href="mailto:devonjhills@gmail.com" aria-label="Email">
+                    <Mail className="h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

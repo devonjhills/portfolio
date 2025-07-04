@@ -39,7 +39,7 @@ const journeyData: JourneyItem[] = [
     title: "Your Next Team Member?",
     company: "Ready for New Challenges",
     location: "Remote / Hybrid / On-site",
-    duration: "Ready to Start",
+    duration: "",
     description:
       "Seeking a React/TypeScript engineer with 7+ years of experience and healthcare domain expertise? I bring proven skills in building mission-critical applications, leading technical initiatives, and driving impactful solutions.",
     achievements: [
@@ -119,11 +119,11 @@ const journeyData: JourneyItem[] = [
     icon: <Target className="h-5 w-5 text-primary" />,
   },
   {
-    date: "2013 - 2017",
+    date: "2014 - 2017",
     title: "BS, Computer Science",
     company: "University of Massachusetts Lowell",
     location: "Lowell, MA",
-    duration: "Graduated May 2017",
+    duration: "Graduated December 2017",
     description:
       "Bachelor of Science in Computer Science with cum laude honors, focusing on software engineering principles, algorithms, and computer systems architecture.",
     achievements: [
@@ -248,16 +248,20 @@ export function Experience() {
     },
   };
 
-  const timelineItems = useMemo(() => journeyData.map((item) => ({
-    title: item.date,
-    content: <JourneyCard item={item} />,
-  })), []);
+  const timelineItems = useMemo(
+    () =>
+      journeyData.map((item) => ({
+        title: item.date,
+        content: <JourneyCard item={item} />,
+      })),
+    []
+  );
 
   return (
     <section
       id="experience"
       ref={ref}
-      className="relative bg-muted/30 py-20 px-4 sm:px-6 lg:px-8">
+      className="relative bg-background py-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <motion.div
           variants={containerVariants}

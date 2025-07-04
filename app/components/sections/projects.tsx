@@ -267,7 +267,7 @@ export function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative bg-background py-20 px-4 sm:px-6 lg:px-8">
+      className="relative bg-muted/30 py-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           variants={containerVariants}
@@ -299,7 +299,7 @@ export function Projects() {
               
               {/* More to Come Card */}
               <motion.div variants={itemVariants}>
-                <Card className="group flex h-full flex-col justify-center items-center text-center overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 bg-gradient-to-br from-muted/50 to-muted/30 border-dashed border-2">
+                <Card className="group flex h-full flex-col justify-center items-center text-center overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 border-dashed border-2">
                   <CardContent className="flex-1 p-6 flex flex-col justify-center items-center">
                     <div className="mb-4 p-4 bg-primary/10 rounded-full">
                       <Github className="h-8 w-8 text-primary" />
