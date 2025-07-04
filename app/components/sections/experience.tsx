@@ -1,7 +1,7 @@
 // src/components/Experience.tsx
 "use client";
 
-import { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import { motion, useInView, Variants } from "framer-motion";
 import { Target, GraduationCap, CheckCircle2, ChevronDown } from "lucide-react";
 import {
@@ -148,7 +148,7 @@ const journeyData: JourneyItem[] = [
 ];
 
 // Sub-component for the content of each timeline item
-const JourneyCard = ({ item }: { item: JourneyItem }) => (
+const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
   <Card
     className={`w-full ${
       item.date === "Next"
@@ -225,7 +225,9 @@ const JourneyCard = ({ item }: { item: JourneyItem }) => (
       )}
     </CardContent>
   </Card>
-);
+));
+
+JourneyCard.displayName = "JourneyCard";
 
 export function Experience() {
   const ref = useRef(null);
@@ -246,10 +248,10 @@ export function Experience() {
     },
   };
 
-  const timelineItems = journeyData.map((item) => ({
+  const timelineItems = useMemo(() => journeyData.map((item) => ({
     title: item.date,
     content: <JourneyCard item={item} />,
-  }));
+  })), []);
 
   return (
     <section

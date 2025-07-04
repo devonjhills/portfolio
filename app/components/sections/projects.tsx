@@ -1,7 +1,7 @@
 // src/components/Projects.tsx
 "use client";
 
-import { useRef, useState } from "react";
+import React, { useRef, useState, useMemo, useCallback } from "react";
 import { motion, useInView, Variants } from "framer-motion";
 import Image from "next/image";
 import {
@@ -181,7 +181,7 @@ const itemVariants: Variants = {
 };
 
 // Project card component
-const ProjectCard = ({
+const ProjectCard = React.memo(({
   project,
   onViewDetails,
 }: {
@@ -241,12 +241,27 @@ const ProjectCard = ({
       </Button>
     </CardFooter>
   </Card>
-);
+));
+
+ProjectCard.displayName = "ProjectCard";
 
 export function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  
+  const handleViewDetails = useCallback((project: Project) => {
+    setSelectedProject(project);
+  }, []);
+  
+  const handleDialogClose = useCallback((isOpen: boolean) => {
+    if (!isOpen) setSelectedProject(null);
+  }, []);
+  
+  const uniqueTechnologies = useMemo(() => 
+    Array.from(new Set(projects.flatMap((p) => p.technologies))).sort(), 
+    []
+  );
 
   return (
     <section
@@ -277,10 +292,37 @@ export function Projects() {
                 <motion.div key={project.id} variants={itemVariants}>
                   <ProjectCard
                     project={project}
-                    onViewDetails={setSelectedProject}
+                    onViewDetails={handleViewDetails}
                   />
                 </motion.div>
               ))}
+              
+              {/* More to Come Card */}
+              <motion.div variants={itemVariants}>
+                <Card className="group flex h-full flex-col justify-center items-center text-center overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 bg-gradient-to-br from-muted/50 to-muted/30 border-dashed border-2">
+                  <CardContent className="flex-1 p-6 flex flex-col justify-center items-center">
+                    <div className="mb-4 p-4 bg-primary/10 rounded-full">
+                      <Github className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle className="text-lg font-semibold mb-3">
+                      More Projects Coming Soon
+                    </CardTitle>
+                    <CardDescription className="text-sm mb-4 leading-relaxed">
+                      I'm always working on new projects and exploring cutting-edge technologies. Check out my GitHub for the latest updates!
+                    </CardDescription>
+                    <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground transition-all" asChild>
+                      <a
+                        href="https://github.com/devonjhills"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <Github className="mr-2 h-4 w-4" />
+                        View All Projects
+                        <ChevronRight className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -292,25 +334,11 @@ export function Projects() {
                   Technologies & Frameworks I Work With
                 </h3>
                 <div className="flex flex-wrap justify-center gap-3">
-                  {Array.from(new Set(projects.flatMap((p) => p.technologies)))
-                    .sort()
-                    .map((tech) => (
-                      <Badge key={tech} variant="outline" className="px-3 py-1">
-                        {tech}
-                      </Badge>
-                    ))}
-                </div>
-                <div className="mt-6">
-                  <Button size="lg" variant="outline" asChild>
-                    <a
-                      href="https://github.com/devonjhills"
-                      target="_blank"
-                      rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      View All Projects on GitHub
-                      <ChevronRight className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
+                  {uniqueTechnologies.map((tech) => (
+                    <Badge key={tech} variant="outline" className="px-3 py-1">
+                      {tech}
+                    </Badge>
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -321,52 +349,54 @@ export function Projects() {
       {/* Project Details Dialog */}
       <Dialog
         open={!!selectedProject}
-        onOpenChange={(isOpen: boolean) => !isOpen && setSelectedProject(null)}>
-        <DialogContent className="!w-full !max-w-none sm:!max-w-6xl !h-[90vh] p-0 overflow-hidden">
+        onOpenChange={handleDialogClose}>
+        <DialogContent className="!w-full !max-w-none sm:!max-w-7xl !h-[95vh] p-0 overflow-hidden" forceMount>
           {selectedProject && (
-            <>
-              <DialogHeader className="p-6 pb-4">
-                <DialogTitle className="text-2xl">
+            <div className="flex flex-col h-full">
+              {/* Header */}
+              <DialogHeader className="p-4 sm:p-6 pb-3 sm:pb-4 border-b bg-background/95 backdrop-blur">
+                <DialogTitle className="text-xl sm:text-2xl pr-8">
                   {selectedProject.title}
                 </DialogTitle>
-                <DialogDescription className="text-base mt-2">
+                <DialogDescription className="text-sm sm:text-base mt-1 sm:mt-2 pr-8">
                   {selectedProject.longDescription}
                 </DialogDescription>
               </DialogHeader>
               
-              {/* Scrollable content area */}
-              <div className="flex-1 overflow-y-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-6">
-                  {/* Left column: Project image */}
-                  <div className="space-y-4">
-                    <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
-                      <Image
-                        src={selectedProject.image}
-                        alt={`${selectedProject.title} screenshot`}
-                        fill
-                        className="object-cover"
-                      />
+              {/* Main content area - optimized for space */}
+              <div className="flex-1 overflow-y-auto">
+                {/* Mobile layout: stacked vertically */}
+                <div className="block lg:hidden">
+                  <div className="p-4 space-y-6">
+                    {/* Mobile: Large image at top */}
+                    <div className="space-y-3">
+                      <div className="relative aspect-video w-full overflow-hidden rounded-lg border shadow-lg">
+                        <Image
+                          src={selectedProject.image}
+                          alt={`${selectedProject.title} screenshot`}
+                          fill
+                          className="object-cover"
+                          priority
+                        />
+                      </div>
+                      
+                      {/* Project status badges */}
+                      <div className="flex gap-2">
+                        {selectedProject.featured && (
+                          <Badge className="bg-primary/90 text-primary-foreground">
+                            <Star className="mr-1 h-3 w-3" />
+                            Featured
+                          </Badge>
+                        )}
+                        {selectedProject.liveUrl && (
+                          <Badge variant="outline" className="border-green-500 text-green-600">
+                            Live
+                          </Badge>
+                        )}
+                      </div>
                     </div>
                     
-                    {/* Project status badges */}
-                    <div className="flex gap-2">
-                      {selectedProject.featured && (
-                        <Badge className="bg-primary/90 text-primary-foreground">
-                          <Star className="mr-1 h-3 w-3" />
-                          Featured
-                        </Badge>
-                      )}
-                      {selectedProject.liveUrl && (
-                        <Badge variant="outline" className="border-green-500 text-green-600">
-                          Live
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-                  
-                  {/* Right column: Details */}
-                  <div className="space-y-6">
-                    {/* Technologies */}
+                    {/* Mobile: Technologies */}
                     <div>
                       <h3 className="text-lg font-semibold mb-3">Technologies</h3>
                       <div className="flex flex-wrap gap-2">
@@ -378,7 +408,7 @@ export function Projects() {
                       </div>
                     </div>
                     
-                    {/* Features */}
+                    {/* Mobile: Features */}
                     <div>
                       <h3 className="text-lg font-semibold mb-3">Key Features</h3>
                       <ul className="space-y-3">
@@ -394,10 +424,75 @@ export function Projects() {
                     </div>
                   </div>
                 </div>
+
+                {/* Desktop layout: two columns with larger image */}
+                <div className="hidden lg:block">
+                  <div className="p-6 h-full">
+                    <div className="grid grid-cols-3 gap-8 h-full">
+                      {/* Left column: Larger project image (2/3 width) */}
+                      <div className="col-span-2 space-y-4">
+                        <div className="relative w-full overflow-hidden rounded-lg border shadow-lg" style={{ aspectRatio: '16/10' }}>
+                          <Image
+                            src={selectedProject.image}
+                            alt={`${selectedProject.title} screenshot`}
+                            fill
+                            className="object-cover"
+                            priority
+                          />
+                        </div>
+                        
+                        {/* Project status badges */}
+                        <div className="flex gap-2">
+                          {selectedProject.featured && (
+                            <Badge className="bg-primary/90 text-primary-foreground">
+                              <Star className="mr-1 h-3 w-3" />
+                              Featured
+                            </Badge>
+                          )}
+                          {selectedProject.liveUrl && (
+                            <Badge variant="outline" className="border-green-500 text-green-600">
+                              Live
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+                      
+                      {/* Right column: Details (1/3 width) */}
+                      <div className="col-span-1 space-y-6 overflow-y-auto">
+                        {/* Technologies */}
+                        <div>
+                          <h3 className="text-lg font-semibold mb-3">Technologies</h3>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedProject.technologies.map((tech) => (
+                              <Badge key={tech} variant="secondary" className="text-sm">
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        {/* Features */}
+                        <div>
+                          <h3 className="text-lg font-semibold mb-3">Key Features</h3>
+                          <ul className="space-y-3">
+                            {selectedProject.features.map((feature, i) => (
+                              <li key={i} className="flex items-start gap-3">
+                                <CheckCircle2 className="mt-0.5 h-4 w-4 text-primary flex-shrink-0" />
+                                <span className="text-sm text-muted-foreground">
+                                  {feature}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               
               {/* Footer with action buttons */}
-              <DialogFooter className="p-6 pt-4 bg-muted/30 border-t">
+              <DialogFooter className="p-4 sm:p-6 pt-3 sm:pt-4 bg-muted/30 border-t">
                 <div className="flex gap-3 w-full sm:w-auto">
                   <Button variant="outline" size="lg" asChild>
                     <a
@@ -421,7 +516,7 @@ export function Projects() {
                   )}
                 </div>
               </DialogFooter>
-            </>
+            </div>
           )}
         </DialogContent>
       </Dialog>

@@ -129,31 +129,3 @@
     background-color: hsl(var(--primary));
   }
 }
-
-/* Optional: You can keep or modify these gradient utilities */
-@layer components {
-  .gradient-primary {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--primary) / 0.1) 0%,
-      hsl(var(--secondary) / 0.1) 100%
-    );
-  }
-
-  .gradient-accent {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--accent) / 0.1) 0%,
-      hsl(var(--primary) / 0.1) 100%
-    );
-  }
-
-  .gradient-cyber {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--primary) / 0.2) 0%,
-      hsl(var(--secondary) / 0.2) 50%,
-      hsl(var(--accent) / 0.2) 100%
-    );
-  }
-}

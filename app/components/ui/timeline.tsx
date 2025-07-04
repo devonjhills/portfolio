@@ -1,6 +1,6 @@
 "use client";
 import { useScroll, useTransform, motion } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 
 interface TimelineEntry {
   title: string;
@@ -27,10 +27,13 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
+  // Memoize timeline items to prevent unnecessary re-renders
+  const timelineItems = useMemo(() => data, [data]);
+
   return (
     <div className="w-full bg-background font-sans md:px-10" ref={containerRef}>
       <div ref={ref} className="relative max-w-6xl mx-auto pb-20">
-        {data.map((item, index) => (
+        {timelineItems.map((item, index) => (
           <div
             key={index}
             className="flex justify-start pt-10 md:pt-40 md:gap-10">
@@ -62,6 +65,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               opacity: opacityTransform,
             }}
             className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-primary via-accent to-transparent from-[0%] via-[10%] rounded-full"
+            transition={{ type: "spring", stiffness: 100, damping: 30 }}
           />
         </div>
       </div>
