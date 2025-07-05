@@ -20,12 +20,7 @@ import {
   BookOpen,
   Cat,
 } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 
 // Data can be kept outside the component for clarity
@@ -222,7 +217,7 @@ export function About() {
                           {category.skills.map((skill) => (
                             <Badge
                               key={skill}
-                              variant="secondary"
+                              variant="default"
                               className="text-xs">
                               {skill}
                             </Badge>

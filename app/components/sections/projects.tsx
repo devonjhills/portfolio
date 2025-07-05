@@ -181,67 +181,75 @@ const itemVariants: Variants = {
 };
 
 // Project card component
-const ProjectCard = React.memo(({
-  project,
-  onViewDetails,
-}: {
-  project: Project;
-  onViewDetails: (project: Project) => void;
-}) => (
-  <Card className="group flex h-full flex-col overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
-    <CardContent className="flex-1 p-4">
-      <div className="flex items-start justify-between mb-3">
-        <CardTitle className="text-lg font-semibold leading-tight">
-          {project.title}
-        </CardTitle>
-        <div className="flex items-center gap-2 ml-2">
-          {project.featured && (
-            <Badge className="bg-primary/90 text-primary-foreground text-xs px-2 py-1">
-              <Star className="mr-1 h-3 w-3" />
-              Featured
+const ProjectCard = React.memo(
+  ({
+    project,
+    onViewDetails,
+  }: {
+    project: Project;
+    onViewDetails: (project: Project) => void;
+  }) => (
+    <Card className="group flex h-full flex-col overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
+      <CardContent className="flex-1 p-4">
+        <div className="flex items-start justify-between mb-3">
+          <CardTitle className="text-lg font-semibold leading-tight">
+            {project.title}
+          </CardTitle>
+          <div className="flex items-center gap-2 ml-2">
+            {project.featured && (
+              <Badge className="bg-primary/90 text-primary-foreground text-xs px-2 py-1">
+                <Star className="mr-1 h-3 w-3" />
+                Featured
+              </Badge>
+            )}
+            {project.liveUrl && (
+              <Button
+                size="sm"
+                variant="ghost"
+                className="h-8 w-8 p-0 opacity-70 hover:opacity-100"
+                asChild>
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </Button>
+            )}
+          </div>
+        </div>
+        <CardDescription className="text-sm mb-3 leading-relaxed line-clamp-2">
+          {project.description}
+        </CardDescription>
+        <div className="flex flex-wrap gap-1 mb-4">
+          {project.technologies.slice(0, 4).map((tech) => (
+            <Badge key={tech} variant="default" className="text-xs px-2 py-1">
+              {tech}
+            </Badge>
+          ))}
+          {project.technologies.length > 4 && (
+            <Badge variant="outline" className="text-xs px-2 py-1">
+              +{project.technologies.length - 4}
             </Badge>
           )}
-          {project.liveUrl && (
-            <Button
-              size="sm"
-              variant="ghost"
-              className="h-8 w-8 p-0 opacity-70 hover:opacity-100"
-              asChild>
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </Button>
-          )}
         </div>
-      </div>
-      <CardDescription className="text-sm mb-3 leading-relaxed line-clamp-2">
-        {project.description}
-      </CardDescription>
-      <div className="flex flex-wrap gap-1 mb-4">
-        {project.technologies.slice(0, 4).map((tech) => (
-          <Badge key={tech} variant="secondary" className="text-xs px-2 py-1">
-            {tech}
-          </Badge>
-        ))}
-        {project.technologies.length > 4 && (
-          <Badge variant="outline" className="text-xs px-2 py-1">
-            +{project.technologies.length - 4}
-          </Badge>
-        )}
-      </div>
-    </CardContent>
-    <CardFooter className="flex gap-2 p-4 pt-0">
-      <Button variant="outline" size="sm" className="flex-1" asChild>
-        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-          <Github className="mr-2 h-4 w-4" /> Code
-        </a>
-      </Button>
-      <Button size="sm" className="flex-1" onClick={() => onViewDetails(project)}>
-        <Eye className="mr-2 h-4 w-4" /> Details
-      </Button>
-    </CardFooter>
-  </Card>
-));
+      </CardContent>
+      <CardFooter className="flex gap-2 p-4 pt-0">
+        <Button variant="outline" size="sm" className="flex-1" asChild>
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+            <Github className="mr-2 h-4 w-4" /> Code
+          </a>
+        </Button>
+        <Button
+          size="sm"
+          className="flex-1"
+          onClick={() => onViewDetails(project)}>
+          <Eye className="mr-2 h-4 w-4" /> Details
+        </Button>
+      </CardFooter>
+    </Card>
+  )
+);
 
 ProjectCard.displayName = "ProjectCard";
 
@@ -249,17 +257,17 @@ export function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  
+
   const handleViewDetails = useCallback((project: Project) => {
     setSelectedProject(project);
   }, []);
-  
+
   const handleDialogClose = useCallback((isOpen: boolean) => {
     if (!isOpen) setSelectedProject(null);
   }, []);
-  
-  const uniqueTechnologies = useMemo(() => 
-    Array.from(new Set(projects.flatMap((p) => p.technologies))).sort(), 
+
+  const uniqueTechnologies = useMemo(
+    () => Array.from(new Set(projects.flatMap((p) => p.technologies))).sort(),
     []
   );
 
@@ -296,7 +304,7 @@ export function Projects() {
                   />
                 </motion.div>
               ))}
-              
+
               {/* More to Come Card */}
               <motion.div variants={itemVariants}>
                 <Card className="group flex h-full flex-col justify-center items-center text-center overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 border-dashed border-2">
@@ -308,9 +316,15 @@ export function Projects() {
                       More Projects Coming Soon
                     </CardTitle>
                     <CardDescription className="text-sm mb-4 leading-relaxed">
-                      I'm always working on new projects and exploring cutting-edge technologies. Check out my GitHub for the latest updates!
+                      I&apos;m always working on new projects and exploring
+                      cutting-edge technologies. Check out my GitHub for the
+                      latest updates!
                     </CardDescription>
-                    <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground transition-all" asChild>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="group-hover:bg-primary group-hover:text-primary-foreground transition-all"
+                      asChild>
                       <a
                         href="https://github.com/devonjhills"
                         target="_blank"
@@ -347,10 +361,10 @@ export function Projects() {
       </div>
 
       {/* Project Details Dialog */}
-      <Dialog
-        open={!!selectedProject}
-        onOpenChange={handleDialogClose}>
-        <DialogContent className="!w-full !max-w-none sm:!max-w-7xl !h-[95vh] p-0 overflow-hidden" forceMount>
+      <Dialog open={!!selectedProject} onOpenChange={handleDialogClose}>
+        <DialogContent
+          className="!w-full !max-w-none sm:!max-w-7xl !h-[95vh] p-0 overflow-hidden"
+          forceMount>
           {selectedProject && (
             <div className="flex flex-col h-full">
               {/* Header */}
@@ -362,7 +376,7 @@ export function Projects() {
                   {selectedProject.longDescription}
                 </DialogDescription>
               </DialogHeader>
-              
+
               {/* Main content area - optimized for space */}
               <div className="flex-1 overflow-y-auto">
                 {/* Mobile layout: stacked vertically */}
@@ -379,7 +393,7 @@ export function Projects() {
                           priority
                         />
                       </div>
-                      
+
                       {/* Project status badges */}
                       <div className="flex gap-2">
                         {selectedProject.featured && (
@@ -389,28 +403,37 @@ export function Projects() {
                           </Badge>
                         )}
                         {selectedProject.liveUrl && (
-                          <Badge variant="outline" className="border-green-500 text-green-600">
+                          <Badge
+                            variant="outline"
+                            className="border-green-500 text-green-600">
                             Live
                           </Badge>
                         )}
                       </div>
                     </div>
-                    
+
                     {/* Mobile: Technologies */}
                     <div>
-                      <h3 className="text-lg font-semibold mb-3">Technologies</h3>
+                      <h3 className="text-lg font-semibold mb-3">
+                        Technologies
+                      </h3>
                       <div className="flex flex-wrap gap-2">
                         {selectedProject.technologies.map((tech) => (
-                          <Badge key={tech} variant="secondary" className="text-sm">
+                          <Badge
+                            key={tech}
+                            variant="default"
+                            className="text-sm">
                             {tech}
                           </Badge>
                         ))}
                       </div>
                     </div>
-                    
+
                     {/* Mobile: Features */}
                     <div>
-                      <h3 className="text-lg font-semibold mb-3">Key Features</h3>
+                      <h3 className="text-lg font-semibold mb-3">
+                        Key Features
+                      </h3>
                       <ul className="space-y-3">
                         {selectedProject.features.map((feature, i) => (
                           <li key={i} className="flex items-start gap-3">
@@ -431,7 +454,9 @@ export function Projects() {
                     <div className="grid grid-cols-3 gap-8 h-full">
                       {/* Left column: Larger project image (2/3 width) */}
                       <div className="col-span-2 space-y-4">
-                        <div className="relative w-full overflow-hidden rounded-lg border shadow-lg" style={{ aspectRatio: '16/10' }}>
+                        <div
+                          className="relative w-full overflow-hidden rounded-lg border shadow-lg"
+                          style={{ aspectRatio: "16/10" }}>
                           <Image
                             src={selectedProject.image}
                             alt={`${selectedProject.title} screenshot`}
@@ -440,7 +465,7 @@ export function Projects() {
                             priority
                           />
                         </div>
-                        
+
                         {/* Project status badges */}
                         <div className="flex gap-2">
                           {selectedProject.featured && (
@@ -450,30 +475,39 @@ export function Projects() {
                             </Badge>
                           )}
                           {selectedProject.liveUrl && (
-                            <Badge variant="outline" className="border-green-500 text-green-600">
+                            <Badge
+                              variant="outline"
+                              className="border-green-500 text-green-600">
                               Live
                             </Badge>
                           )}
                         </div>
                       </div>
-                      
+
                       {/* Right column: Details (1/3 width) */}
                       <div className="col-span-1 space-y-6 overflow-y-auto">
                         {/* Technologies */}
                         <div>
-                          <h3 className="text-lg font-semibold mb-3">Technologies</h3>
+                          <h3 className="text-lg font-semibold mb-3">
+                            Technologies
+                          </h3>
                           <div className="flex flex-wrap gap-2">
                             {selectedProject.technologies.map((tech) => (
-                              <Badge key={tech} variant="secondary" className="text-sm">
+                              <Badge
+                                key={tech}
+                                variant="default"
+                                className="text-sm">
                                 {tech}
                               </Badge>
                             ))}
                           </div>
                         </div>
-                        
+
                         {/* Features */}
                         <div>
-                          <h3 className="text-lg font-semibold mb-3">Key Features</h3>
+                          <h3 className="text-lg font-semibold mb-3">
+                            Key Features
+                          </h3>
                           <ul className="space-y-3">
                             {selectedProject.features.map((feature, i) => (
                               <li key={i} className="flex items-start gap-3">
@@ -490,7 +524,7 @@ export function Projects() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Footer with action buttons */}
               <DialogFooter className="p-4 sm:p-6 pt-3 sm:pt-4 bg-muted/30 border-t">
                 <div className="flex gap-3 w-full sm:w-auto">

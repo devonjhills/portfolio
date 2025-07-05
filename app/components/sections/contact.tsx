@@ -184,7 +184,7 @@ export function Contact() {
                     </div>
                     <div className="flex items-center gap-2">
                       {contact.primary && (
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="default" className="text-xs">
                           Preferred
                         </Badge>
                       )}

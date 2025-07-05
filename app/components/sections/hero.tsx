@@ -173,12 +173,12 @@ export function Hero() {
             {/* Contact Section */}
             <motion.div variants={itemVariants} className="space-y-4">
               <h3 className="text-xl font-semibold text-foreground">
-                Let's Connect
+                Let&apos;s Connect
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                I'm passionate about building great software and always open to
-                discussing new projects, creative ideas, or opportunities to be
-                part of an ambitious team.
+                I&apos;m passionate about building great software and always
+                open to discussing new projects, creative ideas, or
+                opportunities to be part of an ambitious team.
               </p>
               <div className="flex items-center gap-3 pt-2">
                 <Button

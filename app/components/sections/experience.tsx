@@ -216,7 +216,7 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
           <h4 className="font-semibold mb-3">Technologies</h4>
           <div className="flex flex-wrap gap-2">
             {item.technologies.map((tech) => (
-              <Badge key={tech} variant="secondary">
+              <Badge key={tech} variant="default">
                 {tech}
               </Badge>
             ))}
