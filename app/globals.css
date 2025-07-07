@@ -3,82 +3,94 @@
 @tailwind utilities;
 
 @layer base {
-  /* ===== Enterprise-Grade Professional Theme ===== */
-  /* WCAG AAA compliant with sophisticated green branding */
+  /*
+  * ===================================================================
+  * MODERN PROFESSIONAL MONOCHROMATIC THEME
+  * ===================================================================
+  * A clean, minimalist, and professional theme focusing on typography,
+  * spacing, and a refined grayscale palette.
+  * Designed for focus and readability.
+  * ===================================================================
+  */
   :root {
-    /* Dusk Mode: Lighter dark theme with warm undertones */
-    --background: 222 25% 12%; /* Lighter dusk background */
-    --foreground: 210 40% 96%; /* Softer white */
+    /* Dark Mode: Charcoal & Off-White with Green Accents */
+    --background: 240 10% 8%; /* #141414 - Less dark charcoal */
+    --foreground: 0 0% 98%; /* #fafafa - A soft, easy-on-the-eyes white */
 
-    --muted: 222 20% 16%; /* Lighter elevated surfaces */
-    --muted-foreground: 215 25% 75%; /* Brighter muted text */
+    --muted: 240 3.7% 18%; /* #2d2d30 - Lighter muted background */
+    --muted-foreground: 240 5% 64.9%; /* #a1a1aa */
 
-    --popover: 222 25% 14%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 240 10% 10%; /* #191919 - Slightly lighter than background */
+    --popover-foreground: 0 0% 98%; /* #fafafa */
 
-    --card: 222 22% 14%; /* Lighter card background */
-    --card-foreground: 210 40% 96%;
+    --card: 240 10% 10%; /* #191919 - Slightly lighter than background */
+    --card-foreground: 0 0% 98%; /* #fafafa */
 
-    --border: 220 18% 25%; /* More visible borders */
-    --input: 222 22% 18%;
+    --border: 240 3.7% 22%; /* #383838 - More visible borders */
+    --input: 240 3.7% 18%; /* #2d2d30 - Input background */
 
-    --primary: 142 65% 42%; /* Slightly brighter green */
-    --primary-foreground: 142 65% 95%; /* Light green on dark green */
+    /* Primary color now uses green for better brand identity */
+    --primary: 142 76% 36%; /* #16a34a - Green primary */
+    --primary-foreground: 0 0% 98%; /* #fafafa */
 
-    --secondary: 215 25% 28%; /* Lighter gray-blue */
-    --secondary-foreground: 210 40% 95%;
+    --secondary: 240 3.7% 18%; /* #2d2d30 - Secondary background */
+    --secondary-foreground: 0 0% 98%; /* #fafafa */
 
-    --accent: 142 25% 32%; /* Brighter green accent */
-    --accent-foreground: 142 65% 85%; /* Light green text */
+    --accent: 142 84% 42%; /* #22c55e - Brighter green accent */
+    --accent-foreground: 0 0% 98%; /* #fafafa */
 
-    --destructive: 0 75% 60%;
-    --destructive-foreground: 0 0% 98%;
+    /* A slightly desaturated red for a more modern feel */
+    --destructive: 0 62.8% 30.6%; /* #d63a3a */
+    --destructive-foreground: 0 0% 98%; /* #fafafa */
 
-    --ring: 142 65% 45%;
+    --ring: 142 84% 42%; /* #22c55e - Brighter green focus rings */
 
-    /* Section background variations for better contrast */
-    --section-primary: 222 25% 12%; /* Main background */
-    --section-secondary: 222 22% 15%; /* Slightly lighter */
-    --section-tertiary: 222 20% 18%; /* Even lighter */
+    /* Section backgrounds for alternating design */
+    --section-primary: 240 10% 8%; /* #141414 - Main background */
+    --section-secondary: 240 6% 12%; /* #1a1a1d - Slightly lighter alternate */
+    --section-tertiary: 240 3.7% 18%; /* #2d2d30 - Tertiary background */
+    --section-accent: 142 84% 42%; /* #22c55e - Brighter green accent */
 
-    --radius: 0.625rem; /* Perfect enterprise radius */
+    --radius: 0.5rem;
   }
 
   .light {
-    /* Light Mode: Premium clean aesthetic */
-    --background: 0 0% 100%; /* Pure white */
-    --foreground: 222 25% 12%; /* Rich dark text */
+    /* Light Mode: White & Near-Black with Green Accents */
+    --background: 0 0% 100%; /* #ffffff */
+    --foreground: 240 10% 3.9%; /* #0a0a0a */
 
-    --muted: 210 30% 98%; /* Premium light gray */
-    --muted-foreground: 215 25% 50%; /* Professional muted text */
+    --muted: 240 4.8% 95.9%; /* #f4f4f5 */
+    --muted-foreground: 240 3.8% 46.1%; /* #71717a */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 25% 12%;
+    --popover: 0 0% 100%; /* #ffffff */
+    --popover-foreground: 240 10% 3.9%; /* #0a0a0a */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 25% 12%;
+    --card: 0 0% 100%; /* #ffffff */
+    --card-foreground: 240 10% 3.9%; /* #0a0a0a */
 
-    --border: 220 15% 92%; /* Refined light borders */
-    --input: 0 0% 100%;
+    --border: 240 5.9% 90%; /* #e4e4e7 */
+    --input: 240 5.9% 90%; /* #e4e4e7 */
 
-    --primary: 142 65% 38%; /* Consistent premium green */
-    --primary-foreground: 142 65% 95%;
+    /* Primary color uses green for consistent brand identity */
+    --primary: 142 76% 36%; /* #16a34a - Green primary */
+    --primary-foreground: 0 0% 98%; /* #fafafa */
 
-    --secondary: 210 30% 96%; /* Light sophisticated gray */
-    --secondary-foreground: 222 25% 15%;
+    --secondary: 240 4.8% 95.9%; /* #f4f4f5 */
+    --secondary-foreground: 240 5.9% 10%; /* #18181b */
 
-    --accent: 142 25% 96%; /* Very subtle green tint */
-    --accent-foreground: 142 65% 20%; /* Dark green text */
+    --accent: 142 84% 42%; /* #22c55e - Brighter green accent */
+    --accent-foreground: 0 0% 98%; /* #fafafa */
 
-    --destructive: 0 75% 55%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%; /* #ef4444 */
+    --destructive-foreground: 0 0% 98%; /* #fafafa */
 
-    --ring: 142 65% 45%;
+    --ring: 142 84% 42%; /* #22c55e - Brighter green focus rings */
 
-    /* Section background variations for better contrast */
-    --section-primary: 0 0% 100%; /* Pure white */
-    --section-secondary: 210 30% 98%; /* Slightly gray */
-    --section-tertiary: 210 30% 96%; /* Light gray */
+    /* Section backgrounds for alternating design */
+    --section-primary: 0 0% 100%; /* #ffffff - Main background */
+    --section-secondary: 240 4.8% 97.5%; /* #f8f8f9 - Slightly darker alternate */
+    --section-tertiary: 240 4.8% 95.9%; /* #f4f4f5 - Tertiary background */
+    --section-accent: 142 84% 42%; /* #22c55e - Brighter green accent */
   }
 
   * {
@@ -87,165 +99,252 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-weight: 400;
-    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400; /* Standard weight for body copy */
+    line-height: 1.6;
+    letter-spacing: normal; /* Reset for better readability */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    line-height: 1.6;
-    letter-spacing: 0.01em;
-    /* Premium professional background */
   }
 
-  /* Premium enterprise typography */
+  /* --- Refined Typography --- */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-    font-weight: 600;
+    font-family: var(--font-heading), system-ui, sans-serif;
     letter-spacing: -0.025em;
-    line-height: 1.25;
-    color: hsl(var(--foreground));
-    margin: 0;
-    /* Clean professional headings */
+    line-height: 1.2;
+    /* Color is inherited from body, ensuring it matches foreground */
   }
 
   h1 {
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: 1.1;
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    letter-spacing: -0.03em;
   }
 
   h2 {
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.2;
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 600; /* Standard semi-bold */
+    font-size: clamp(2rem, 4vw, 2.75rem);
   }
 
   h3 {
     font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.25;
-    font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
   }
 
   h4 {
     font-weight: 600;
-    letter-spacing: -0.01em;
-    font-size: 1.25rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   }
 
-  h5 {
-    font-weight: 600;
-    font-size: 1.125rem;
-  }
-
-  h6 {
-    font-weight: 600;
-    font-size: 1rem;
-  }
-
-  /* Premium code styling */
+  /* --- Code Blocks --- */
   code {
-    font-family: var(--font-jetbrains-mono), "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
-    font-variant-ligatures: common-ligatures;
-    @apply bg-muted/60 text-foreground rounded px-1.5 py-0.5 text-sm font-medium;
-    border: 1px solid hsl(var(--border));
+    font-family: var(--font-code), monospace;
+    @apply bg-muted/50 text-muted-foreground rounded px-1.5 py-1 text-sm font-normal;
   }
 
   pre {
-    font-family: var(--font-jetbrains-mono), "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
-    @apply bg-muted/40 text-foreground rounded-lg p-4 text-sm leading-relaxed overflow-x-auto;
-    border: 1px solid hsl(var(--border));
+    font-family: var(--font-code), monospace;
+    @apply bg-muted/50 rounded-lg border p-4 text-sm leading-relaxed overflow-x-auto;
   }
 
   pre code {
-    @apply bg-transparent border-0 p-0;
+    @apply bg-transparent border-none p-0 text-foreground;
+  }
+}
+
+@layer components {
+  /*
+  * ===================================================================
+  * REFINED COMPONENT STYLES
+  * ===================================================================
+  * Overrides for Shadcn/UI (or other component libraries) to match
+  * the minimalist aesthetic. These are examples, apply them via `className`.
+  * e.g. <Card className="card-minimal">
+  * ===================================================================
+  */
+
+  /* --- Minimalist Card --- */
+  /* Use by adding this class to your Card component */
+  .card-minimal {
+    @apply border bg-transparent transition-all duration-300;
+    box-shadow: 0 1px 2px 0 hsl(var(--foreground) / 0.02);
   }
 
-  /* Enhanced scrolling */
+  .card-minimal:hover {
+    @apply border-primary/50 bg-muted/30;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px 0 hsl(var(--foreground) / 0.04);
+  }
+
+  /* --- Refined Button --- */
+  /* Apply to the <Button /> component's `className` prop */
+  .btn-primary-outline {
+    @apply border border-primary/50 bg-transparent text-primary;
+  }
+
+  .btn-primary-outline:hover {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  /* --- General Focus State --- */
+  :focus-visible {
+    @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
+    outline: none;
+  }
+}
+
+@layer utilities {
+  /*
+  * ===================================================================
+  * ANIMATIONS & UTILITIES
+  * ===================================================================
+  */
+
+  /* --- Smooth Animations --- */
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* --- Global Settings --- */
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 5rem; /* For fixed headers */
   }
 
-  /* Focus management */
-  [tabindex="-1"]:focus {
-    outline: 0 !important;
-  }
-
-  /* Improved link styling */
-  a {
-    color: hsl(var(--primary));
-    text-decoration: none;
-    transition: color 0.15s ease-in-out;
-  }
-
-  a:hover {
-    color: hsl(var(--primary) / 0.8);
-    text-decoration: underline;
-  }
-
-  a:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-
-  /* Professional selection styling */
+  /* --- Selection Highlight --- */
   ::selection {
-    background: hsl(var(--primary) / 0.2);
-    color: hsl(var(--foreground));
-    text-shadow: none;
+    background: hsl(var(--primary) / 0.15);
   }
 
-  ::-moz-selection {
-    background: hsl(var(--primary) / 0.2);
-    color: hsl(var(--foreground));
-    text-shadow: none;
-  }
-
-  /* Premium scrollbar styling */
+  /* --- Custom Scrollbar --- */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
-  
+
   ::-webkit-scrollbar-track {
-    background: hsl(var(--muted));
-    border-radius: 4px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground) / 0.3);
-    border-radius: 4px;
-    border: 1px solid hsl(var(--background));
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 0.6);
-  }
-  
-  ::-webkit-scrollbar-corner {
-    background: hsl(var(--muted));
+    @apply bg-muted/50;
   }
 
-  /* Section background utilities for better contrast */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/70;
+  }
+
+  /* --- Section Background Utilities --- */
   .section-primary {
-    background: hsl(var(--section-primary));
+    background-color: hsl(var(--section-primary));
   }
 
   .section-secondary {
-    background: hsl(var(--section-secondary));
+    background-color: hsl(var(--section-secondary));
   }
 
   .section-tertiary {
-    background: hsl(var(--section-tertiary));
+    background-color: hsl(var(--section-tertiary));
+  }
+
+  .section-accent {
+    background-color: hsl(var(--section-accent));
+  }
+
+  /* --- Green Accent Utilities --- */
+  .text-accent {
+    color: hsl(var(--accent));
+  }
+
+  .bg-accent {
+    background-color: hsl(var(--accent));
+  }
+
+  .border-accent {
+    border-color: hsl(var(--accent));
+  }
+
+  .ring-accent {
+    --tw-ring-color: hsl(var(--accent));
+  }
+
+  /* --- Gradient Text Utility --- */
+  .gradient-text {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 600;
+    background: linear-gradient(135deg, 
+      hsl(var(--foreground)) 0%, 
+      hsl(var(--primary)) 50%, 
+      hsl(var(--accent)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  /* --- Enhanced Badge Styles --- */
+  .badge-accent {
+    background-color: hsl(var(--accent) / 0.1);
+    color: hsl(var(--accent));
+    border: 1px solid hsl(var(--accent) / 0.2);
+  }
+
+  .badge-accent:hover {
+    background-color: hsl(var(--accent) / 0.2);
+  }
+
+  /* --- Enhanced Button Styles --- */
+  .btn-accent {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+    border: 1px solid hsl(var(--accent));
+  }
+
+  .btn-accent:hover {
+    background-color: hsl(var(--accent) / 0.9);
+  }
+
+  .btn-accent-outline {
+    background-color: transparent;
+    color: hsl(var(--accent));
+    border: 1px solid hsl(var(--accent));
+  }
+
+  .btn-accent-outline:hover {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
   }
 }

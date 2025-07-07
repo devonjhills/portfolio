@@ -16,7 +16,6 @@ import {
 import { FloatingDock } from "../ui/floating-dock";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
 
 export function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -66,15 +65,15 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative section-primary min-h-[calc(100vh)] flex items-center">
-      <div className="mx-auto max-w-7xl w-full py-20 px-4 sm:px-6 lg:px-8">
+      className="relative section-primary min-h-screen flex items-center py-12 lg:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
-          {/* Left Column - Avatar & Headline */}
-          <div className="lg:w-1/2 text-center lg:text-left space-y-8">
+          className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
+          {/* Left Column - Content */}
+          <div className="text-center lg:text-left space-y-6">
             <motion.div
               variants={itemVariants}
               className="flex justify-center lg:justify-start">
@@ -107,13 +106,13 @@ export function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+              className="gradient-text">
               Devon Hills
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
-              className="text-lg leading-8 text-muted-foreground max-w-lg mx-auto lg:mx-0">
+              className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
               Senior Software Engineer with 7+ years building mission-critical
               applications serving millions of users. Expert in React/TypeScript
               for HealthCare.gov and government systems with proven 24/7
@@ -123,39 +122,35 @@ export function Hero() {
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto h-12 px-8 font-medium"
+              <button
+                className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:shadow-lg w-full sm:w-auto inline-flex items-center justify-center"
                 onClick={() => scrollToSection("experience")}>
                 <Eye className="mr-2 h-4 w-4" />
                 Explore My Work
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="secondary"
-                className="w-full sm:w-auto h-12 px-8 font-medium">
-                <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
-                  <Download className="mr-2 h-4 w-4" />
-                  Download Resume
-                </a>
-              </Button>
+              </button>
+              <a
+                href="/Devon_Hills_Resume_2025_Newest.pdf"
+                download
+                className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:bg-secondary/80 w-full sm:w-auto inline-flex items-center justify-center">
+                <Download className="mr-2 h-4 w-4" />
+                Download Resume
+              </a>
             </motion.div>
           </div>
 
           {/* Right Column - Highlights & Contact */}
-          <div className="lg:w-1/2 space-y-10">
+          <div className="space-y-8">
             {/* Highlights Grid */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-semibold text-foreground mb-6">
+              <h3 className="text-xl font-semibold mb-4">
                 Core Expertise
               </h3>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid gap-4">
                 {highlights.map((highlight) => (
                   <motion.div
                     key={highlight.text}
                     variants={itemVariants}
-                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-primary/3 transition-colors duration-300">
+                    className="bg-card rounded-lg p-4 transition-all flex items-start gap-4">
                     <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                       <highlight.icon className="h-5 w-5 text-primary" />
                     </div>
@@ -174,15 +169,14 @@ export function Hero() {
 
             {/* Contact Section */}
             <motion.div variants={itemVariants} className="space-y-4">
-              <h3 className="text-xl font-semibold text-foreground">
+              <h3 className="text-xl font-semibold">
                 Let&apos;s Connect
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 Proven track record building user-centric applications at scale.
-                Ready to bring my healthcare technology expertise and full-stack
-                capabilities to your team.
+                Ready to bring my healthcare technology expertise to your team.
               </p>
-              <div className="flex justify-center lg:justify-start pt-2">
+              <div className="flex justify-center lg:justify-start">
                 <FloatingDock
                   items={[
                     {

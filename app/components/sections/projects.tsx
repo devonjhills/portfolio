@@ -20,7 +20,6 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
@@ -36,6 +35,7 @@ type Project = {
   title: string;
   description: string;
   longDescription: string;
+  techStackLearning: string;
   technologies: string[];
   features: string[];
   liveUrl?: string;
@@ -53,6 +53,7 @@ const projects: Project[] = [
       "An automation suite for Etsy sellers with AI content generation and full marketplace integration.",
     longDescription:
       "This powerful toolkit streamlines the entire workflow from product creation to Etsy listing, featuring advanced Python processing, Flask web interface, and complete OAuth 2.0 + PKCE authentication. Designed for scalability and professional use.",
+    techStackLearning: "Deep dive into Python automation, API integrations, OAuth 2.0 security, and Flask web development. This project enhanced my skills in image processing, AI integration, and building production-ready tools for real business use cases.",
     technologies: [
       "Python",
       "Flask",
@@ -82,6 +83,7 @@ const projects: Project[] = [
       "A modern, full-stack movie and TV discovery platform with user authentication and personal watchlists.",
     longDescription:
       "A production-ready, responsive movie and TV discovery platform built with Next.js 15, TypeScript, and Supabase. Features comprehensive search, user authentication, dark/light mode, and personal watchlist management. Demonstrates modern React patterns, full-stack development, and responsive design principles.",
+    techStackLearning: "Mastered Next.js 15 App Router, TypeScript best practices, Supabase backend integration, and SWR for data fetching. This project strengthened my full-stack development skills and modern React patterns for production applications.",
     technologies: [
       "Next.js 15",
       "TypeScript",
@@ -113,6 +115,7 @@ const projects: Project[] = [
       "An SEO-optimized directory for small business and nonprofit grants, sourced from the Grants.gov API.",
     longDescription:
       "Built with Next.js and TypeScript, this directory serves entrepreneurs and nonprofits by making funding opportunities easily discoverable. Optimized for search engines and AI parsers with structured data and semantic markup.",
+    techStackLearning: "Specialized in SEO optimization, structured data implementation, and government API integration. This project expanded my knowledge in search engine optimization, JSON-LD markup, and building discoverable web applications.",
     technologies: [
       "Next.js",
       "TypeScript",
@@ -141,6 +144,7 @@ const projects: Project[] = [
       "A full-stack web application for managing personal book collections with real-time Rails processing visualization.",
     longDescription:
       "Built with Ruby on Rails backend and React frontend, this application allows users to track their reading progress, add ratings and notes, and search for books via the Open Library API. Features a unique educational component showing Rails backend processing in real-time for learning purposes.",
+    techStackLearning: "Gained expertise in Ruby on Rails backend development, PostgreSQL database design, JWT authentication, and Rails-React integration. This project broadened my full-stack capabilities beyond JavaScript ecosystems.",
     technologies: [
       "Ruby on Rails",
       "React",
@@ -189,63 +193,71 @@ const ProjectCard = React.memo(
     project: Project;
     onViewDetails: (project: Project) => void;
   }) => (
-    <Card className="group flex h-full flex-col overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
-      <CardContent className="flex-1 p-4">
-        <div className="flex items-start justify-between mb-3">
-          <CardTitle className="text-lg font-semibold leading-tight">
+    <Card className="bg-card group flex h-full flex-col overflow-hidden border-l-4 border-l-accent/20 hover:border-l-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/10">
+      <CardContent className="flex-1 p-5">
+        <div className="flex items-start justify-between mb-4">
+          <CardTitle className="text-lg font-semibold leading-tight text-foreground group-hover:text-accent transition-colors">
             {project.title}
           </CardTitle>
           <div className="flex items-center gap-2 ml-2">
             {project.featured && (
-              <Badge className="bg-primary/90 text-primary-foreground text-xs px-2 py-1">
+              <Badge className="bg-accent/90 text-accent-foreground text-xs px-2 py-1 shadow-sm">
                 <Star className="mr-1 h-3 w-3" />
                 Featured
               </Badge>
             )}
             {project.liveUrl && (
-              <Button
-                size="sm"
-                variant="ghost"
-                className="h-8 w-8 p-0 opacity-70 hover:opacity-100"
-                asChild>
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </Button>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center h-8 w-8 p-0 opacity-70 hover:opacity-100 hover:text-accent transition-all">
+                <ExternalLink className="h-4 w-4" />
+              </a>
             )}
           </div>
         </div>
-        <CardDescription className="text-sm mb-3 leading-relaxed line-clamp-2">
+        <CardDescription className="text-sm mb-4 leading-relaxed line-clamp-3 text-muted-foreground">
           {project.description}
         </CardDescription>
-        <div className="flex flex-wrap gap-1 mb-4">
+        
+        {/* Tech Stack Learning Section */}
+        <div className="mb-4 p-3 bg-accent/5 rounded-lg border border-accent/10">
+          <div className="text-xs font-medium text-accent mb-1 flex items-center gap-1">
+            <span className="w-2 h-2 bg-accent rounded-full"></span>
+            Tech Stack Growth
+          </div>
+          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+            {project.techStackLearning}
+          </p>
+        </div>
+        
+        <div className="flex flex-wrap gap-1.5 mb-4">
           {project.technologies.slice(0, 4).map((tech) => (
-            <Badge key={tech} variant="default" className="text-xs px-2 py-1">
+            <Badge key={tech} variant="default" className="text-xs px-2.5 py-1 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors">
               {tech}
             </Badge>
           ))}
           {project.technologies.length > 4 && (
-            <Badge variant="outline" className="text-xs px-2 py-1">
+            <Badge variant="outline" className="text-xs px-2.5 py-1 border-accent/30 text-accent hover:bg-accent/10">
               +{project.technologies.length - 4}
             </Badge>
           )}
         </div>
       </CardContent>
-      <CardFooter className="flex gap-2 p-4 pt-0">
-        <Button variant="outline" size="sm" className="flex-1" asChild>
-          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-            <Github className="mr-2 h-4 w-4" /> Code
-          </a>
-        </Button>
-        <Button
-          size="sm"
-          className="flex-1"
+      <CardFooter className="flex gap-3 p-5 pt-0">
+        <a
+          href={project.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-secondary text-secondary-foreground px-4 py-2.5 rounded-lg font-medium transition-all hover:bg-secondary/80 flex-1 text-sm inline-flex items-center justify-center border border-secondary/20 hover:border-secondary/40">
+          <Github className="mr-2 h-4 w-4" /> Code
+        </a>
+        <button
+          className="bg-accent text-accent-foreground px-4 py-2.5 rounded-lg font-medium transition-all hover:bg-accent/90 hover:shadow-lg flex-1 text-sm inline-flex items-center justify-center border border-accent/20"
           onClick={() => onViewDetails(project)}>
           <Eye className="mr-2 h-4 w-4" /> Details
-        </Button>
+        </button>
       </CardFooter>
     </Card>
   )
@@ -275,27 +287,28 @@ export function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative section-secondary py-20 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+      className="relative section-secondary py-16 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-16">
+          className="space-y-12">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <h2 className="gradient-text">
               Projects
             </h2>
-            <p className="mt-4 max-w-3xl mx-auto text-lg leading-8 text-muted-foreground">
-              A showcase of my technical expertise across full-stack
-              development, API integrations, and modern web technologies.
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              A showcase of my technical expertise and continuous learning across full-stack
+              development, API integrations, and modern web technologies. Each project represents
+              a deliberate expansion of my technical capabilities.
             </p>
           </motion.div>
 
           {/* Projects Grid */}
           <motion.div variants={itemVariants} className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project) => (
                 <motion.div key={project.id} variants={itemVariants}>
                   <ProjectCard
@@ -307,7 +320,7 @@ export function Projects() {
 
               {/* More to Come Card */}
               <motion.div variants={itemVariants}>
-                <Card className="group flex h-full flex-col justify-center items-center text-center overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 border-dashed border-2">
+                <Card className="bg-card group flex h-full flex-col justify-center items-center text-center overflow-hidden border-dashed border-2">
                   <CardContent className="flex-1 p-6 flex flex-col justify-center items-center">
                     <div className="mb-4 p-4 bg-primary/10 rounded-full">
                       <Github className="h-8 w-8 text-primary" />
@@ -320,20 +333,15 @@ export function Projects() {
                       cutting-edge technologies. Check out my GitHub for the
                       latest updates!
                     </CardDescription>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="group-hover:bg-primary group-hover:text-primary-foreground transition-all"
-                      asChild>
-                      <a
-                        href="https://github.com/devonjhills"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        <Github className="mr-2 h-4 w-4" />
-                        View All Projects
-                        <ChevronRight className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
+                    <a
+                      href="https://github.com/devonjhills"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-secondary text-secondary-foreground px-4 py-2 rounded-md font-medium transition-all hover:bg-secondary/80 group-hover:bg-primary group-hover:text-primary-foreground inline-flex items-center">
+                      <Github className="mr-2 h-4 w-4" />
+                      View All Projects
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </a>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -342,7 +350,7 @@ export function Projects() {
 
           {/* Skills Highlight */}
           <motion.div variants={itemVariants} className="w-full">
-            <Card className="bg-muted/30 border-primary/20">
+            <Card className="bg-card">
               <CardContent className="p-8 text-center">
                 <h3 className="text-xl font-semibold text-foreground mb-4">
                   Technologies used in my projects
@@ -363,190 +371,118 @@ export function Projects() {
       {/* Project Details Dialog */}
       <Dialog open={!!selectedProject} onOpenChange={handleDialogClose}>
         <DialogContent
-          className="!w-full !max-w-none sm:!max-w-7xl !h-[95vh] p-0 overflow-hidden"
+          className="w-[95vw] max-w-4xl max-h-[90vh] p-0 overflow-hidden"
           forceMount>
           {selectedProject && (
-            <div className="flex flex-col h-full">
+            <div className="flex flex-col h-full max-h-[90vh]">
               {/* Header */}
-              <DialogHeader className="p-4 sm:p-6 pb-3 sm:pb-4 border-b bg-background/95 backdrop-blur">
-                <DialogTitle className="text-xl sm:text-2xl pr-8">
+              <DialogHeader className="p-4 sm:p-6 pb-3 sm:pb-4 border-b bg-background/95 backdrop-blur flex-shrink-0">
+                <DialogTitle className="text-lg sm:text-xl pr-8">
                   {selectedProject.title}
                 </DialogTitle>
-                <DialogDescription className="text-sm sm:text-base mt-1 sm:mt-2 pr-8">
+                <DialogDescription className="text-sm mt-1 sm:mt-2 pr-8">
                   {selectedProject.longDescription}
                 </DialogDescription>
               </DialogHeader>
 
-              {/* Main content area - optimized for space */}
+              {/* Main content area - fully scrollable */}
               <div className="flex-1 overflow-y-auto">
-                {/* Mobile layout: stacked vertically */}
-                <div className="block lg:hidden">
-                  <div className="p-4 space-y-6">
-                    {/* Mobile: Large image at top */}
-                    <div className="space-y-3">
-                      <div className="relative aspect-video w-full overflow-hidden rounded-lg border shadow-lg">
-                        <Image
-                          src={selectedProject.image}
-                          alt={`${selectedProject.title} screenshot`}
-                          fill
-                          className="object-cover"
-                          priority
-                        />
-                      </div>
+                <div className="p-4 sm:p-6 space-y-6">
+                  {/* Tech Stack Learning Section */}
+                  <div className="bg-accent/5 border border-accent/10 rounded-lg p-4">
+                    <h3 className="text-base font-semibold mb-2 text-accent flex items-center gap-2">
+                      <span className="w-2 h-2 bg-accent rounded-full"></span>
+                      Tech Stack Growth
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {selectedProject.techStackLearning}
+                    </p>
+                  </div>
 
-                      {/* Project status badges */}
-                      <div className="flex gap-2">
-                        {selectedProject.featured && (
-                          <Badge className="bg-primary/90 text-primary-foreground">
-                            <Star className="mr-1 h-3 w-3" />
-                            Featured
-                          </Badge>
-                        )}
-                        {selectedProject.liveUrl && (
-                          <Badge
-                            variant="outline"
-                            className="border-green-500 text-green-600">
-                            Live
-                          </Badge>
-                        )}
-                      </div>
+                  {/* Image */}
+                  <div className="space-y-3">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-lg border shadow-lg">
+                      <Image
+                        src={selectedProject.image}
+                        alt={`${selectedProject.title} screenshot`}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
                     </div>
 
-                    {/* Mobile: Technologies */}
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3">
-                        Technologies
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedProject.technologies.map((tech) => (
-                          <Badge
-                            key={tech}
-                            variant="default"
-                            className="text-sm">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Mobile: Features */}
-                    <div>
-                      <h3 className="text-lg font-semibold mb-3">
-                        Key Features
-                      </h3>
-                      <ul className="space-y-3">
-                        {selectedProject.features.map((feature, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <CheckCircle2 className="mt-0.5 h-4 w-4 text-primary flex-shrink-0" />
-                            <span className="text-sm text-muted-foreground">
-                              {feature}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
+                    {/* Project status badges */}
+                    <div className="flex gap-2">
+                      {selectedProject.featured && (
+                        <Badge className="bg-accent/90 text-accent-foreground">
+                          <Star className="mr-1 h-3 w-3" />
+                          Featured
+                        </Badge>
+                      )}
+                      {selectedProject.liveUrl && (
+                        <Badge
+                          variant="outline"
+                          className="border-accent text-accent">
+                          Live
+                        </Badge>
+                      )}
                     </div>
                   </div>
-                </div>
 
-                {/* Desktop layout: two columns with larger image */}
-                <div className="hidden lg:block">
-                  <div className="p-6 h-full">
-                    <div className="grid grid-cols-3 gap-8 h-full">
-                      {/* Left column: Larger project image (2/3 width) */}
-                      <div className="col-span-2 space-y-4">
-                        <div
-                          className="relative w-full overflow-hidden rounded-lg border shadow-lg"
-                          style={{ aspectRatio: "16/10" }}>
-                          <Image
-                            src={selectedProject.image}
-                            alt={`${selectedProject.title} screenshot`}
-                            fill
-                            className="object-cover"
-                            priority
-                          />
-                        </div>
-
-                        {/* Project status badges */}
-                        <div className="flex gap-2">
-                          {selectedProject.featured && (
-                            <Badge className="bg-primary/90 text-primary-foreground">
-                              <Star className="mr-1 h-3 w-3" />
-                              Featured
-                            </Badge>
-                          )}
-                          {selectedProject.liveUrl && (
-                            <Badge
-                              variant="outline"
-                              className="border-green-500 text-green-600">
-                              Live
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Right column: Details (1/3 width) */}
-                      <div className="col-span-1 space-y-6 overflow-y-auto">
-                        {/* Technologies */}
-                        <div>
-                          <h3 className="text-lg font-semibold mb-3">
-                            Technologies
-                          </h3>
-                          <div className="flex flex-wrap gap-2">
-                            {selectedProject.technologies.map((tech) => (
-                              <Badge
-                                key={tech}
-                                variant="default"
-                                className="text-sm">
-                                {tech}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Features */}
-                        <div>
-                          <h3 className="text-lg font-semibold mb-3">
-                            Key Features
-                          </h3>
-                          <ul className="space-y-3">
-                            {selectedProject.features.map((feature, i) => (
-                              <li key={i} className="flex items-start gap-3">
-                                <CheckCircle2 className="mt-0.5 h-4 w-4 text-primary flex-shrink-0" />
-                                <span className="text-sm text-muted-foreground">
-                                  {feature}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
+                  {/* Technologies */}
+                  <div>
+                    <h3 className="text-base font-semibold mb-3">
+                      Technologies Used
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.technologies.map((tech) => (
+                        <Badge
+                          key={tech}
+                          variant="default"
+                          className="text-sm bg-primary/10 text-primary border border-primary/20">
+                          {tech}
+                        </Badge>
+                      ))}
                     </div>
+                  </div>
+
+                  {/* Features */}
+                  <div>
+                    <h3 className="text-base font-semibold mb-3">
+                      Key Features
+                    </h3>
+                    <ul className="space-y-3">
+                      {selectedProject.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 text-accent flex-shrink-0" />
+                          <span className="text-sm text-muted-foreground">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>
 
               {/* Footer with action buttons */}
-              <DialogFooter className="p-4 sm:p-6 pt-3 sm:pt-4 bg-muted/30 border-t">
+              <DialogFooter className="p-4 sm:p-6 pt-3 sm:pt-4 bg-muted/30 border-t flex-shrink-0">
                 <div className="flex gap-3 w-full sm:w-auto">
-                  <Button variant="outline" size="lg" asChild>
+                  <a
+                    href={selectedProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:bg-secondary/80 flex-1 sm:flex-none inline-flex items-center justify-center">
+                    <Github className="mr-2 h-4 w-4" /> View Code
+                  </a>
+                  {selectedProject.liveUrl && (
                     <a
-                      href={selectedProject.githubUrl}
+                      href={selectedProject.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 sm:flex-none">
-                      <Github className="mr-2 h-4 w-4" /> View Code
+                      className="bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:bg-accent/90 flex-1 sm:flex-none inline-flex items-center justify-center">
+                      <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
                     </a>
-                  </Button>
-                  {selectedProject.liveUrl && (
-                    <Button size="lg" asChild>
-                      <a
-                        href={selectedProject.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 sm:flex-none">
-                        <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
-                      </a>
-                    </Button>
                   )}
                 </div>
               </DialogFooter>

@@ -12,6 +12,7 @@ import {
   Zap,
   Users,
   Target,
+  ChevronDown,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
@@ -93,6 +94,10 @@ export function About() {
   // Trigger animation when the section is 20% in view, but only once.
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
+  const scrollToExperience = () => {
+    document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   // Correctly typed animation variants
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -120,19 +125,19 @@ export function About() {
     <section
       id="about"
       ref={ref}
-      className="relative section-secondary py-12 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      className="relative section-secondary py-16 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-12">
+          className="space-y-16">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <h2 className="gradient-text">
               About Me
             </h2>
-            <p className="mt-4 max-w-3xl mx-auto text-lg leading-8 text-muted-foreground">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Proven Software Engineer with 7+ years building mission-critical
               React/TypeScript applications for HealthCare.gov, serving millions
               of users during high-traffic enrollment periods. Expert in
@@ -144,8 +149,8 @@ export function About() {
           {/* Hero Stats & Key Info Row */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <Card className="text-center bg-card/50 backdrop-blur-sm border-border/50">
+            className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card className="bg-card text-center p-6">
               <CardContent className="p-4">
                 <div className="text-2xl font-bold text-primary mb-1">7+</div>
                 <div className="text-sm text-muted-foreground">
@@ -153,7 +158,7 @@ export function About() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="text-center bg-card/50 backdrop-blur-sm border-border/50">
+            <Card className="bg-card text-center p-6">
               <CardContent className="p-4">
                 <div className="text-2xl font-bold text-primary mb-1">
                   Millions
@@ -163,7 +168,7 @@ export function About() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="text-center bg-card/50 backdrop-blur-sm border-border/50">
+            <Card className="bg-card text-center p-6">
               <CardContent className="p-4">
                 <div className="text-2xl font-bold text-primary mb-1">
                   Full-Stack
@@ -171,7 +176,7 @@ export function About() {
                 <div className="text-sm text-muted-foreground">Expertise</div>
               </CardContent>
             </Card>
-            <Card className="text-center bg-card/50 backdrop-blur-sm border-border/50">
+            <Card className="bg-card text-center p-6">
               <CardContent className="p-4">
                 <div className="text-2xl font-bold text-primary mb-1">
                   Always
@@ -184,8 +189,8 @@ export function About() {
           {/* Main Content - Optimized Layout */}
           <motion.div variants={itemVariants} className="space-y-8">
             {/* Professional Timeline & Core Strengths - Horizontal */}
-            <div className="grid lg:grid-cols-2 gap-6">
-              <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+            <div className="grid lg:grid-cols-2 gap-8">
+              <Card className="bg-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <Target className="h-6 w-6 text-primary" />
@@ -230,10 +235,18 @@ export function About() {
                       </p>
                     </div>
                   </div>
+                  <div className="pt-4 border-t border-border/50">
+                    <button
+                      onClick={scrollToExperience}
+                      className="w-full bg-primary/10 hover:bg-primary/20 text-primary px-4 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2 group">
+                      <span>View Full Experience Timeline</span>
+                      <ChevronDown className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
+                    </button>
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+              <Card className="bg-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <Brain className="h-6 w-6 text-primary" />
@@ -264,15 +277,13 @@ export function About() {
 
             {/* Key Achievements - Horizontal Cards */}
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                Key Impact & Achievements
-              </h3>
-              <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+              <h3 className="mb-6">Key Impact & Achievements</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {achievements.map((achievement) => (
                   <Card
                     key={achievement.title}
-                    className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/30 transition-all">
-                    <CardContent className="p-5">
+                    className="bg-card h-full">
+                    <CardContent className="p-6">
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className="p-3 bg-primary/10 rounded-lg">
                           {achievement.icon}
@@ -294,14 +305,12 @@ export function About() {
 
             {/* Technical Skills - Inline Badge Layout */}
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                Technical Expertise
-              </h3>
-              <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+              <h3 className="mb-6">Technical Expertise</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {skillCategories.map((category) => (
                   <Card
                     key={category.title}
-                    className="bg-card/50 backdrop-blur-sm border-border/50">
+                    className="bg-card h-full">
                     <CardHeader className="pb-3">
                       <CardTitle className="flex items-center gap-3 text-lg">
                         <div className="p-2 bg-primary/10 rounded-lg text-primary">

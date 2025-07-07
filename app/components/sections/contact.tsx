@@ -20,7 +20,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 
 // Data can be kept outside for clarity
@@ -89,8 +88,8 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative section-primary overflow-hidden py-16 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl relative z-10">
+      className="relative section-primary overflow-hidden py-16 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -98,10 +97,10 @@ export function Contact() {
           className="space-y-12">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <h2 className="gradient-text">
               Ready to Hire a Proven Engineer?
             </h2>
-            <p className="mt-3 mx-auto max-w-2xl text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               7+ years building mission-critical applications for millions of
               users. Available for your next role - let&apos;s build something
               great together.
@@ -113,7 +112,7 @@ export function Contact() {
             variants={itemVariants}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Primary Contact Card */}
-            <Card className="border-primary/20">
+            <Card className="bg-card border-primary/30">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
                   <Badge className="bg-green-500/10 text-green-600 border-green-500/30">
@@ -130,28 +129,25 @@ export function Contact() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex flex-col gap-3">
-                  <Button size="lg" className="w-full h-12 font-medium" asChild>
-                    <a href="mailto:devonjhills@gmail.com">
-                      <Mail className="mr-2 h-4 w-4" />
-                      Schedule Interview
-                    </a>
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="w-full h-12 font-medium"
-                    asChild>
-                    <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Resume
-                    </a>
-                  </Button>
+                  <a
+                    href="mailto:devonjhills@gmail.com"
+                    className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:shadow-lg w-full inline-flex items-center justify-center">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Schedule Interview
+                  </a>
+                  <a
+                    href="/Devon_Hills_Resume_2025_Newest.pdf"
+                    download
+                    className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:bg-secondary/80 w-full inline-flex items-center justify-center">
+                    <Download className="mr-2 h-4 w-4" />
+                    Download Resume
+                  </a>
                 </div>
               </CardContent>
             </Card>
 
             {/* Contact Methods */}
-            <Card>
+            <Card className="bg-card">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg">Connect With Me</CardTitle>
                 <CardDescription className="text-sm">
@@ -171,7 +167,7 @@ export function Contact() {
                         ? undefined
                         : "noopener noreferrer"
                     }
-                    className="flex items-center gap-3 p-3 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-200 group cursor-pointer">
+                    className="flex items-center gap-3 p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group cursor-pointer">
                     <div className="p-2 bg-primary/10 rounded-lg text-primary group-hover:bg-primary/20 transition-colors">
                       {contact.icon}
                     </div>
@@ -199,7 +195,7 @@ export function Contact() {
             </Card>
 
             {/* What I Offer + Quick Details */}
-            <Card className="md:col-span-2 lg:col-span-1">
+            <Card className="bg-card md:col-span-2 lg:col-span-1">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg">What I Offer</CardTitle>
               </CardHeader>
@@ -251,11 +247,11 @@ export function Contact() {
 
           {/* Footer Message */}
           <motion.div variants={itemVariants} className="text-center">
-            <div className="bg-muted/20 rounded-lg p-6 border border-primary/10">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
+            <div className="bg-card rounded-lg p-8 border border-primary/20">
+              <h3 className="text-xl font-semibold text-foreground mb-3">
                 Why Choose Me for Your Team?
               </h3>
-              <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+              <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
                 Proven experience with HealthCare.gov scale, accessibility
                 compliance, and 24/7 production support. Ready to deliver
                 results from day one.

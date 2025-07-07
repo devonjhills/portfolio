@@ -12,7 +12,6 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
 import {
   Collapsible,
   CollapsibleContent,
@@ -150,7 +149,7 @@ const journeyData: JourneyItem[] = [
 // Sub-component for the content of each timeline item
 const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
   <Card
-    className={`w-full ${
+    className={`bg-card w-full ${
       item.date === "Next"
         ? "border-green-500/50 bg-green-50/50 dark:bg-green-950/20"
         : ""
@@ -202,10 +201,10 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
           </div>
           {item.achievements.length > 3 && (
             <CollapsibleTrigger asChild>
-              <Button variant="link" className="group p-0 text-sm mt-4">
+              <button className="group p-0 text-sm mt-4 text-primary hover:underline transition-colors">
                 Show {item.achievements.length - 3} more
                 <ChevronDown className="ml-1 h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
-              </Button>
+              </button>
             </CollapsibleTrigger>
           )}
         </Collapsible>
@@ -261,19 +260,19 @@ export function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="relative section-tertiary py-20 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      className="relative section-primary py-16 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-16">
+          className="space-y-12">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <h2 className="gradient-text">
               Professional Journey
             </h2>
-            <p className="mt-4 max-w-3xl mx-auto text-lg leading-8 text-muted-foreground">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               From academic excellence to mission-critical software engineering
               - a progression of technical leadership, innovation, and impactful
               contributions across healthcare technology and defense systems.
