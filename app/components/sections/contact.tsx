@@ -57,7 +57,7 @@ const quickFacts = [
   {
     icon: <MapPin className="h-5 w-5" />,
     label: "Location",
-    value: "Boston, MA Area",
+    value: "Lowell, MA (Remote Ready)",
   },
   {
     icon: <Calendar className="h-5 w-5" />,
@@ -89,7 +89,7 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative overflow-hidden py-16 px-4 sm:px-6 lg:px-8">
+      className="relative section-primary overflow-hidden py-16 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl relative z-10">
         <motion.div
           variants={containerVariants}
@@ -99,11 +99,12 @@ export function Contact() {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Let&apos;s Build Something Amazing
+              Ready to Hire a Proven Engineer?
             </h2>
             <p className="mt-3 mx-auto max-w-2xl text-lg text-muted-foreground">
-              Ready to discuss your next project? I&apos;m available for new
-              opportunities and collaborative projects.
+              7+ years building mission-critical applications for millions of
+              users. Available for your next role - let&apos;s build something
+              great together.
             </p>
           </motion.div>
 
@@ -120,11 +121,11 @@ export function Contact() {
                   </Badge>
                 </div>
                 <CardTitle className="text-lg">
-                  Ready to Start Your Project
+                  Hire an Expert Engineer
                 </CardTitle>
                 <CardDescription className="text-sm">
-                  Experienced React/TypeScript engineer with healthcare domain
-                  expertise.
+                  HealthCare.gov engineer with proven track record serving
+                  millions of users. Ready to start immediately.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -132,11 +133,11 @@ export function Contact() {
                   <Button size="lg" className="w-full h-12 font-medium" asChild>
                     <a href="mailto:devonjhills@gmail.com">
                       <Mail className="mr-2 h-4 w-4" />
-                      Get in Touch
+                      Schedule Interview
                     </a>
                   </Button>
                   <Button
-                    variant="outline"
+                    variant="secondary"
                     size="lg"
                     className="w-full h-12 font-medium"
                     asChild>
@@ -252,12 +253,12 @@ export function Contact() {
           <motion.div variants={itemVariants} className="text-center">
             <div className="bg-muted/20 rounded-lg p-6 border border-primary/10">
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Ready to Build the Future Together?
+                Why Choose Me for Your Team?
               </h3>
               <p className="text-muted-foreground text-sm max-w-xl mx-auto">
-                Whether you&apos;re looking for a senior engineer or technical
-                leader, I&apos;m excited to learn about your project and explore
-                how we can collaborate.
+                Proven experience with HealthCare.gov scale, accessibility
+                compliance, and 24/7 production support. Ready to deliver
+                results from day one.
               </p>
             </div>
           </motion.div>

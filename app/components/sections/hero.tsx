@@ -13,6 +13,7 @@ import {
   Users,
   Eye,
 } from "lucide-react";
+import { FloatingDock } from "../ui/floating-dock";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -42,30 +43,30 @@ export function Hero() {
   const highlights = [
     {
       icon: Users,
-      text: "High-Traffic Applications",
-      subtext: "Serving millions of users daily",
-    },
-    {
-      icon: CodeXml,
-      text: "Modern Tech Stack",
-      subtext: "React, TypeScript, Next.js, and Node.js",
+      text: "HealthCare.gov Impact",
+      subtext: "Serving millions during high-traffic enrollment periods",
     },
     {
       icon: ShieldCheck,
-      text: "Production Reliability",
-      subtext: "Mission-critical systems in healthcare & gov-tech",
+      text: "Accessibility Excellence",
+      subtext: "WCAG/Section 508 compliance for government applications",
+    },
+    {
+      icon: CodeXml,
+      text: "React/TypeScript Expert",
+      subtext: "7+ years building scalable frontend systems",
     },
     {
       icon: Rocket,
-      text: "Quality-Driven Development",
-      subtext: "CI/CD, automated testing, and performance optimization",
+      text: "24/7 Production Support",
+      subtext: "Critical incident response & system reliability",
     },
   ];
 
   return (
     <section
       id="home"
-      className="relative bg-background min-h-[calc(100vh)] flex items-center">
+      className="relative section-primary min-h-[calc(100vh)] flex items-center">
       <div className="mx-auto max-w-7xl w-full py-20 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
@@ -84,7 +85,7 @@ export function Hero() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                Available for New Opportunities
+                Open to New Opportunities
               </Badge>
             </motion.div>
 
@@ -113,9 +114,10 @@ export function Hero() {
             <motion.p
               variants={itemVariants}
               className="text-lg leading-8 text-muted-foreground max-w-lg mx-auto lg:mx-0">
-              Full-Stack Software Engineer crafting robust, scalable, and
-              user-centric web applications. Specializing in building
-              mission-critical solutions from concept to deployment.
+              Senior Software Engineer with 7+ years building mission-critical
+              applications serving millions of users. Expert in React/TypeScript
+              for HealthCare.gov and government systems with proven 24/7
+              production reliability.
             </motion.p>
 
             <motion.div
@@ -131,7 +133,7 @@ export function Hero() {
               <Button
                 asChild
                 size="lg"
-                variant="outline"
+                variant="secondary"
                 className="w-full sm:w-auto h-12 px-8 font-medium">
                 <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
                   <Download className="mr-2 h-4 w-4" />
@@ -176,46 +178,32 @@ export function Hero() {
                 Let&apos;s Connect
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                I&apos;m passionate about building great software and always
-                open to discussing new projects, creative ideas, or
-                opportunities to be part of an ambitious team.
+                Proven track record building user-centric applications at scale.
+                Ready to bring my healthcare technology expertise and full-stack
+                capabilities to your team.
               </p>
-              <div className="flex items-center gap-3 pt-2">
-                <Button
-                  asChild
-                  variant="outline"
-                  size="icon"
-                  className="h-11 w-11 rounded-full">
-                  <a
-                    href="https://github.com/devonjhills"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub">
-                    <Github className="h-4 w-4" />
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="icon"
-                  className="h-11 w-11 rounded-full">
-                  <a
-                    href="https://linkedin.com/in/devonjhills"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn">
-                    <Linkedin className="h-4 w-4" />
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="icon"
-                  className="h-11 w-11 rounded-full">
-                  <a href="mailto:devonjhills@gmail.com" aria-label="Email">
-                    <Mail className="h-4 w-4" />
-                  </a>
-                </Button>
+              <div className="flex justify-center lg:justify-start pt-2">
+                <FloatingDock
+                  items={[
+                    {
+                      title: "Email",
+                      icon: <Mail className="h-4 w-4" />,
+                      href: "mailto:devonjhills@gmail.com",
+                    },
+                    {
+                      title: "GitHub",
+                      icon: <Github className="h-4 w-4" />,
+                      href: "https://github.com/devonjhills",
+                    },
+                    {
+                      title: "LinkedIn",
+                      icon: <Linkedin className="h-4 w-4" />,
+                      href: "https://linkedin.com/in/devonjhills",
+                    },
+                  ]}
+                  desktopClassName=""
+                  mobileClassName=""
+                />
               </div>
             </motion.div>
           </div>

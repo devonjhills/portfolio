@@ -4,27 +4,22 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
+import { FloatingDock } from "../ui/floating-dock";
 
 const socialLinks = [
   {
-    label: "Email",
-    icon: Mail,
+    title: "Email",
+    icon: <Mail className="h-4 w-4" />,
     href: "mailto:devonjhills@gmail.com",
   },
   {
-    label: "GitHub",
-    icon: Github,
+    title: "GitHub",
+    icon: <Github className="h-4 w-4" />,
     href: "https://github.com/devonjhills",
   },
   {
-    label: "LinkedIn",
-    icon: Linkedin,
+    title: "LinkedIn",
+    icon: <Linkedin className="h-4 w-4" />,
     href: "https://linkedin.com/in/devonjhills",
   },
 ];
@@ -71,28 +66,12 @@ export function Footer() {
         </div>
 
         {/* Right Side: Social Links */}
-        <div className="flex items-center space-x-2">
-          <TooltipProvider delayDuration={0}>
-            {socialLinks.map(({ label, icon: Icon, href }) => (
-              <Tooltip key={label}>
-                <TooltipTrigger asChild>
-                  <Button asChild variant="ghost" size="icon">
-                    <a
-                      href={href}
-                      {...(href.includes("mailto")
-                        ? {}
-                        : { target: "_blank", rel: "noopener noreferrer" })}
-                      aria-label={label}>
-                      <Icon className="h-5 w-5" />
-                    </a>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{label}</p>
-                </TooltipContent>
-              </Tooltip>
-            ))}
-          </TooltipProvider>
+        <div className="flex items-center">
+          <FloatingDock
+            items={socialLinks}
+            desktopClassName="h-12 pb-2"
+            mobileClassName=""
+          />
         </div>
       </div>
     </footer>

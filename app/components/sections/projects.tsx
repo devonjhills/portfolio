@@ -275,7 +275,7 @@ export function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative bg-muted/30 py-20 px-4 sm:px-6 lg:px-8">
+      className="relative section-secondary py-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           variants={containerVariants}
@@ -345,7 +345,7 @@ export function Projects() {
             <Card className="bg-muted/30 border-primary/20">
               <CardContent className="p-8 text-center">
                 <h3 className="text-xl font-semibold text-foreground mb-4">
-                  Technologies & Frameworks I Work With
+                  Technologies used in my projects
                 </h3>
                 <div className="flex flex-wrap justify-center gap-3">
                   {uniqueTechnologies.map((tech) => (

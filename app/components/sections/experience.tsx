@@ -66,15 +66,15 @@ const journeyData: JourneyItem[] = [
     location: "Remote",
     duration: "Nov 2021 - Present (3+ years)",
     description:
-      "Building and maintaining full-stack React/TypeScript applications for HealthCare.gov health plan enrollment workflows, serving millions of Americans during high-traffic enrollment periods.",
+      "Built and maintained React/TypeScript applications for HealthCare.gov health plan enrollment workflows, serving millions of users during high-traffic enrollment periods with focus on accessibility and performance.",
     achievements: [
-      "Drove projects from concept to completion, redesigning health plan comparison cards using choice architecture principles based on UX research",
+      "Redesigned health plan comparison cards using choice architecture principles based on customer feedback and UX research, improving user enrollment completion rates for millions of users",
       "Built robust backend APIs and executed complex Ruby logic for Medicare eligibility rules and coverage transitions",
       "Engineered Redux-based state management for dynamic filtering and comparison features, optimizing performance under peak loads",
       "Developed comprehensive accessibility testing infrastructure using axe-core, maintaining WCAG/Section 508 compliance",
       "Built automated testing suites with Playwright and React Testing Library, including end-to-end workflow validation",
-      "Established coding standards and best practices that improved team velocity and reduced onboarding time",
-      "Maintained 24/7 production support using PagerDuty, responding to critical incidents during peak enrollment periods",
+      "Led technical documentation efforts and established coding standards that improved team velocity and reduced onboarding time",
+      "Participated in 24/7 on-call rotation using PagerDuty, responding to critical incidents and maintaining system reliability during peak enrollment periods serving millions of users",
       "Led Ruby version and critical gem upgrades ensuring stable deployments",
     ],
     technologies: [
@@ -261,7 +261,7 @@ export function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="relative bg-background py-20 px-4 sm:px-6 lg:px-8">
+      className="relative section-tertiary py-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <motion.div
           variants={containerVariants}
