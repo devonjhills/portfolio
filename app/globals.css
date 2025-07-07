@@ -5,10 +5,11 @@
 @layer base {
   /*
   * ===================================================================
-  * SOFT NEOBRUTALIST/RETROFUTURIST DESIGN SYSTEM
+  * SOFT RETROFUTURIST / NEOMODERN DESIGN SYSTEM
   * ===================================================================
-  * A modern interpretation of brutalist design with softer edges,
-  * vibrant colors, and futuristic elements. Professional yet striking.
+  * A design system inspired by nostalgic futurism. Features a muted,
+  * warm palette, off-black/off-white bases for comfort, and clean
+  * brutalist lines for a professional, yet distinctive, aesthetic.
   * ===================================================================
   */
   :root {
@@ -39,8 +40,6 @@
     --popover: 220 10% 10%; /* #16181b - Darker for a "pop-over" effect */
     --popover-foreground: 40 8% 95%; /* #f3f2f1 */
 
-    /* --- [ Unchanged variables below, they adapt to the new palette ] --- */
-
     /* Professional Neobrutalist Shadows - Adjusted for subtlety */
     --shadow-brutal: 4px 4px 0px hsl(var(--primary) / 0.8),
       0 2px 8px hsl(var(--background) / 0.3);
@@ -61,8 +60,7 @@
     --glow-accent: 0 0 20px hsl(var(--accent) / 0.3);
     --glow-soft: 0 0 10px hsl(var(--foreground) / 0.05);
 
-    /* [ Typography, Spacing, Radius, and other variables remain the same ] */
-    /* ... (rest of your :root variables) ... */
+    /* Typography Scale */
     --font-scale-6xl: clamp(3.5rem, 8vw, 6rem);
     --font-scale-5xl: clamp(2.5rem, 6vw, 4rem);
     --font-scale-4xl: clamp(2rem, 5vw, 3rem);
@@ -73,6 +71,8 @@
     --font-scale-base: clamp(1rem, 1.5vw, 1.125rem);
     --font-scale-sm: clamp(0.875rem, 1.25vw, 1rem);
     --font-scale-xs: clamp(0.75rem, 1vw, 0.875rem);
+
+    /* Spacing System */
     --space-px: 1px;
     --space-0: 0;
     --space-1: 0.25rem;
@@ -92,6 +92,8 @@
     --space-48: 12rem;
     --space-56: 14rem;
     --space-64: 16rem;
+
+    /* Border Radius */
     --radius-none: 0;
     --radius-sm: 0.125rem;
     --radius-base: 0.25rem;
@@ -101,6 +103,8 @@
     --radius-2xl: 1rem;
     --radius-3xl: 1.5rem;
     --radius-full: 9999px;
+
+    /* Subtle Brutalist Elements */
     --border-brutal: 2px;
     --border-brutal-thick: 3px;
     --border-brutal-mega: 4px;
@@ -437,10 +441,10 @@
   /* Cyberpunk Grid Background */
   .bg-grid {
     background-image: linear-gradient(
-        hsl(var(--primary) / 0.2) 2px,
-        transparent 2px
+        hsl(var(--primary) / 0.1) 1px,
+        transparent 1px
       ),
-      linear-gradient(90deg, hsl(var(--primary) / 0.2) 2px, transparent 2px);
+      linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
