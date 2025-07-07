@@ -193,7 +193,7 @@ const ProjectCard = React.memo(
     project: Project;
     onViewDetails: (project: Project) => void;
   }) => (
-    <Card className="bg-card group flex h-full flex-col overflow-hidden border-l-4 border-l-accent/20 hover:border-l-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/10">
+    <Card className="bg-card border-2 border-primary/30 shadow-brutal group flex h-full flex-col overflow-hidden">
       <CardContent className="flex-1 p-5">
         <div className="flex items-start justify-between mb-4">
           <CardTitle className="text-lg font-semibold leading-tight text-foreground group-hover:text-accent transition-colors">
@@ -201,7 +201,7 @@ const ProjectCard = React.memo(
           </CardTitle>
           <div className="flex items-center gap-2 ml-2">
             {project.featured && (
-              <Badge className="bg-accent/90 text-accent-foreground text-xs px-2 py-1 shadow-sm">
+              <Badge className="bg-accent text-accent-foreground text-xs px-2 py-1 shadow-brutal-accent border border-accent">
                 <Star className="mr-1 h-3 w-3" />
                 Featured
               </Badge>
@@ -234,12 +234,12 @@ const ProjectCard = React.memo(
         
         <div className="flex flex-wrap gap-1.5 mb-4">
           {project.technologies.slice(0, 4).map((tech) => (
-            <Badge key={tech} variant="default" className="text-xs px-2.5 py-1 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors">
+            <Badge key={tech} variant="default" className="text-xs px-2.5 py-1 bg-primary/20 text-primary border border-primary/40 hover:bg-primary/30 transition-colors">
               {tech}
             </Badge>
           ))}
           {project.technologies.length > 4 && (
-            <Badge variant="outline" className="text-xs px-2.5 py-1 border-accent/30 text-accent hover:bg-accent/10">
+            <Badge variant="outline" className="text-xs px-2.5 py-1 border-accent bg-accent/10 text-accent hover:bg-accent/20">
               +{project.technologies.length - 4}
             </Badge>
           )}
@@ -250,11 +250,11 @@ const ProjectCard = React.memo(
           href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-secondary text-secondary-foreground px-4 py-2.5 rounded-lg font-medium transition-all hover:bg-secondary/80 flex-1 text-sm inline-flex items-center justify-center border border-secondary/20 hover:border-secondary/40">
+          className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2.5 font-semibold transition-all shadow-brutal-secondary flex-1 inline-flex items-center justify-center rounded-lg">
           <Github className="mr-2 h-4 w-4" /> Code
         </a>
         <button
-          className="bg-accent text-accent-foreground px-4 py-2.5 rounded-lg font-medium transition-all hover:bg-accent/90 hover:shadow-lg flex-1 text-sm inline-flex items-center justify-center border border-accent/20"
+          className="bg-accent text-accent-foreground hover:bg-accent/90 px-4 py-2.5 font-semibold transition-all shadow-brutal-accent flex-1 inline-flex items-center justify-center rounded-lg"
           onClick={() => onViewDetails(project)}>
           <Eye className="mr-2 h-4 w-4" /> Details
         </button>
@@ -320,7 +320,7 @@ export function Projects() {
 
               {/* More to Come Card */}
               <motion.div variants={itemVariants}>
-                <Card className="bg-card group flex h-full flex-col justify-center items-center text-center overflow-hidden border-dashed border-2">
+                <Card className="bg-card border-2 border-dashed border-border shadow-brutal-soft group flex h-full flex-col justify-center items-center text-center overflow-hidden">
                   <CardContent className="flex-1 p-6 flex flex-col justify-center items-center">
                     <div className="mb-4 p-4 bg-primary/10 rounded-full">
                       <Github className="h-8 w-8 text-primary" />
@@ -337,7 +337,7 @@ export function Projects() {
                       href="https://github.com/devonjhills"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-secondary text-secondary-foreground px-4 py-2 rounded-md font-medium transition-all hover:bg-secondary/80 group-hover:bg-primary group-hover:text-primary-foreground inline-flex items-center">
+                      className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2 font-semibold transition-all shadow-brutal-secondary inline-flex items-center rounded-lg">
                       <Github className="mr-2 h-4 w-4" />
                       View All Projects
                       <ChevronRight className="ml-2 h-4 w-4" />
@@ -414,7 +414,7 @@ export function Projects() {
                     {/* Project status badges */}
                     <div className="flex gap-2">
                       {selectedProject.featured && (
-                        <Badge className="bg-accent/90 text-accent-foreground">
+                        <Badge className="bg-accent text-accent-foreground border border-accent shadow-brutal-accent">
                           <Star className="mr-1 h-3 w-3" />
                           Featured
                         </Badge>
@@ -422,7 +422,7 @@ export function Projects() {
                       {selectedProject.liveUrl && (
                         <Badge
                           variant="outline"
-                          className="border-accent text-accent">
+                          className="border-accent bg-accent/15 text-accent">
                           Live
                         </Badge>
                       )}
@@ -439,7 +439,7 @@ export function Projects() {
                         <Badge
                           key={tech}
                           variant="default"
-                          className="text-sm bg-primary/10 text-primary border border-primary/20">
+                          className="text-sm bg-primary/20 text-primary border border-primary/40">
                           {tech}
                         </Badge>
                       ))}

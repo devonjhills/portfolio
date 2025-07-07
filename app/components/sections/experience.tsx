@@ -3,7 +3,7 @@
 
 import React, { useRef, useMemo } from "react";
 import { motion, useInView, Variants } from "framer-motion";
-import { Target, GraduationCap, CheckCircle2, ChevronDown } from "lucide-react";
+import { Target, GraduationCap, CheckCircle2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -12,11 +12,6 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "../ui/collapsible";
 import { Timeline } from "../ui/timeline"; // Your custom timeline component
 
 // Define a type for your journey items
@@ -167,7 +162,7 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
         </div>
         {item.date === "Present" && <Badge>Current</Badge>}
         {item.date === "Next" && (
-          <Badge className="bg-green-500/10 text-green-600 border-green-500/30 dark:text-green-400">
+          <Badge className="bg-secondary text-secondary-foreground border border-secondary shadow-brutal-secondary">
             Available
           </Badge>
         )}
@@ -177,37 +172,19 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
       <p className="text-muted-foreground">{item.description}</p>
 
       {item.achievements.length > 0 && (
-        <Collapsible>
-          <div className="space-y-4">
-            <h4 className="font-semibold flex items-center gap-2">
-              {item.icon} Key Achievements
-            </h4>
-            <ul className="space-y-3 pl-2">
-              {item.achievements.slice(0, 3).map((achievement, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
-                  <span className="text-muted-foreground">{achievement}</span>
-                </li>
-              ))}
-            </ul>
-            <CollapsibleContent className="space-y-3 pl-2">
-              {item.achievements.slice(3).map((achievement, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
-                  <span className="text-muted-foreground">{achievement}</span>
-                </li>
-              ))}
-            </CollapsibleContent>
-          </div>
-          {item.achievements.length > 3 && (
-            <CollapsibleTrigger asChild>
-              <button className="group p-0 text-sm mt-4 text-primary hover:underline transition-colors">
-                Show {item.achievements.length - 3} more
-                <ChevronDown className="ml-1 h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
-              </button>
-            </CollapsibleTrigger>
-          )}
-        </Collapsible>
+        <div className="space-y-4">
+          <h4 className="font-semibold flex items-center gap-2">
+            {item.icon} Key Achievements
+          </h4>
+          <ul className="space-y-3 pl-2">
+            {item.achievements.map((achievement, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
+                <span className="text-muted-foreground">{achievement}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
       {item.technologies.length > 0 && (
@@ -215,7 +192,7 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
           <h4 className="font-semibold mb-3">Technologies</h4>
           <div className="flex flex-wrap gap-2">
             {item.technologies.map((tech) => (
-              <Badge key={tech} variant="default">
+              <Badge key={tech} variant="default" className="bg-primary/20 text-primary border border-primary/40">
                 {tech}
               </Badge>
             ))}

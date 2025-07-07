@@ -5,92 +5,126 @@
 @layer base {
   /*
   * ===================================================================
-  * MODERN PROFESSIONAL MONOCHROMATIC THEME
+  * SOFT NEOBRUTALIST/RETROFUTURIST DESIGN SYSTEM
   * ===================================================================
-  * A clean, minimalist, and professional theme focusing on typography,
-  * spacing, and a refined grayscale palette.
-  * Designed for focus and readability.
+  * A modern interpretation of brutalist design with softer edges,
+  * vibrant colors, and futuristic elements. Professional yet striking.
   * ===================================================================
   */
   :root {
-    /* Dark Mode: Charcoal & Off-White with Green Accents */
-    --background: 240 10% 8%; /* #141414 - Less dark charcoal */
-    --foreground: 0 0% 98%; /* #fafafa - A soft, easy-on-the-eyes white */
+    /* Muted & Thematic Accent Colors */
+    --primary: 215 60% 65%; /* #8ab4f0 - Washed Denim Blue, approachable and professional */
+    --primary-foreground: 220 10% 5%; /* #0c0d0e - Deep, near-black for high contrast */
+    --secondary: 140 40% 55%; /* #5cb07a - Muted CRT Green, a nod to vintage tech */
+    --secondary-foreground: 220 10% 5%; /* #0c0d0e */
+    --accent: 38 85% 60%; /* #f5b245 - Warm Amber/Gold, for highlights */
+    --accent-foreground: 220 10% 5%; /* #0c0d0e */
+    --warning: 45 80% 60%; /* #f2c25c - Softer, less saturated yellow */
+    --warning-foreground: 220 10% 5%; /* #0c0d0e */
+    --destructive: 0 75% 60%; /* #e95c5c - A softer, but still urgent, red */
+    --destructive-foreground: 40 8% 95%; /* #f3f2f1 */
 
-    --muted: 240 3.7% 18%; /* #2d2d30 - Lighter muted background */
-    --muted-foreground: 240 5% 64.9%; /* #a1a1aa */
+    /* Neutral Base - Soft Dark Mode */
+    --background: 220 10% 12%; /* #1c1e22 - Very dark, desaturated blue-gray */
+    --foreground: 40 8% 95%; /* #f3f2f1 - Warm, parchment-like off-white */
+    --muted: 220 10% 18%; /* #2a2c33 - A subtle step up from the background */
+    --muted-foreground: 220 8% 65%; /* #9da1b1 - Muted text for secondary info */
+    --border: 220 10% 25%; /* #383b46 - Clearly visible but not harsh borders */
+    --input: 220 10% 18%; /* #2a2c33 */
+    --ring: 215 60% 65%; /* #8ab4f0 - Focus rings match the primary color */
 
-    --popover: 240 10% 10%; /* #191919 - Slightly lighter than background */
-    --popover-foreground: 0 0% 98%; /* #fafafa */
+    /* Card & Popover */
+    --card: 220 10% 15%; /* #212429 - Slightly lighter than background for depth */
+    --card-foreground: 40 8% 95%; /* #f3f2f1 */
+    --popover: 220 10% 10%; /* #16181b - Darker for a "pop-over" effect */
+    --popover-foreground: 40 8% 95%; /* #f3f2f1 */
 
-    --card: 240 10% 10%; /* #191919 - Slightly lighter than background */
-    --card-foreground: 0 0% 98%; /* #fafafa */
+    /* --- [ Unchanged variables below, they adapt to the new palette ] --- */
 
-    --border: 240 3.7% 22%; /* #383838 - More visible borders */
-    --input: 240 3.7% 18%; /* #2d2d30 - Input background */
+    /* Professional Neobrutalist Shadows - Adjusted for subtlety */
+    --shadow-brutal: 4px 4px 0px hsl(var(--primary) / 0.8),
+      0 2px 8px hsl(var(--background) / 0.3);
+    --shadow-brutal-secondary: 3px 3px 0px hsl(var(--secondary) / 0.8),
+      0 2px 8px hsl(var(--background) / 0.2);
+    --shadow-brutal-accent: 3px 3px 0px hsl(var(--accent) / 0.8),
+      0 2px 8px hsl(var(--background) / 0.2);
+    --shadow-brutal-soft: 2px 2px 0px hsl(var(--border) / 0.5),
+      0 1px 4px hsl(var(--background) / 0.1);
+    --shadow-brutal-hover: 6px 6px 0px hsl(var(--primary) / 0.9),
+      0 4px 12px hsl(var(--primary) / 0.15);
+    --shadow-brutal-mega: 8px 8px 0px hsl(var(--accent)),
+      0 4px 16px hsl(var(--accent) / 0.15);
 
-    /* Primary color now uses green for better brand identity */
-    --primary: 142 76% 36%; /* #16a34a - Green primary */
-    --primary-foreground: 0 0% 98%; /* #fafafa */
+    /* Glowing Effects - Softened */
+    --glow-primary: 0 0 20px hsl(var(--primary) / 0.4);
+    --glow-secondary: 0 0 20px hsl(var(--secondary) / 0.3);
+    --glow-accent: 0 0 20px hsl(var(--accent) / 0.3);
+    --glow-soft: 0 0 10px hsl(var(--foreground) / 0.05);
 
-    --secondary: 240 3.7% 18%; /* #2d2d30 - Secondary background */
-    --secondary-foreground: 0 0% 98%; /* #fafafa */
-
-    --accent: 142 84% 42%; /* #22c55e - Brighter green accent */
-    --accent-foreground: 0 0% 98%; /* #fafafa */
-
-    /* A slightly desaturated red for a more modern feel */
-    --destructive: 0 62.8% 30.6%; /* #d63a3a */
-    --destructive-foreground: 0 0% 98%; /* #fafafa */
-
-    --ring: 142 84% 42%; /* #22c55e - Brighter green focus rings */
-
-    /* Section backgrounds for alternating design */
-    --section-primary: 240 10% 8%; /* #141414 - Main background */
-    --section-secondary: 240 6% 12%; /* #1a1a1d - Slightly lighter alternate */
-    --section-tertiary: 240 3.7% 18%; /* #2d2d30 - Tertiary background */
-    --section-accent: 142 84% 42%; /* #22c55e - Brighter green accent */
-
-    --radius: 0.5rem;
+    /* [ Typography, Spacing, Radius, and other variables remain the same ] */
+    /* ... (rest of your :root variables) ... */
+    --font-scale-6xl: clamp(3.5rem, 8vw, 6rem);
+    --font-scale-5xl: clamp(2.5rem, 6vw, 4rem);
+    --font-scale-4xl: clamp(2rem, 5vw, 3rem);
+    --font-scale-3xl: clamp(1.75rem, 4vw, 2.25rem);
+    --font-scale-2xl: clamp(1.5rem, 3vw, 1.875rem);
+    --font-scale-xl: clamp(1.25rem, 2.5vw, 1.5rem);
+    --font-scale-lg: clamp(1.125rem, 2vw, 1.25rem);
+    --font-scale-base: clamp(1rem, 1.5vw, 1.125rem);
+    --font-scale-sm: clamp(0.875rem, 1.25vw, 1rem);
+    --font-scale-xs: clamp(0.75rem, 1vw, 0.875rem);
+    --space-px: 1px;
+    --space-0: 0;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+    --space-40: 10rem;
+    --space-48: 12rem;
+    --space-56: 14rem;
+    --space-64: 16rem;
+    --radius-none: 0;
+    --radius-sm: 0.125rem;
+    --radius-base: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+    --radius-full: 9999px;
+    --border-brutal: 2px;
+    --border-brutal-thick: 3px;
+    --border-brutal-mega: 4px;
+    --border-brutal-ultra: 6px;
+    --offset-brutal: 6px;
+    --offset-brutal-large: 10px;
   }
 
   .light {
-    /* Light Mode: White & Near-Black with Green Accents */
-    --background: 0 0% 100%; /* #ffffff */
-    --foreground: 240 10% 3.9%; /* #0a0a0a */
-
-    --muted: 240 4.8% 95.9%; /* #f4f4f5 */
-    --muted-foreground: 240 3.8% 46.1%; /* #71717a */
-
+    /* Light mode overrides - Warm & Airy */
+    --background: 40 8% 97%; /* #f8f7f6 - Very light, warm paper */
+    --foreground: 220 10% 12%; /* #1c1e22 - Dark, cool gray for contrast */
+    --muted: 40 5% 90%; /* #e7e6e5 - Soft gray for muted backgrounds */
+    --muted-foreground: 220 8% 45%; /* #686a76 - Legible, soft text */
+    --border: 40 5% 85%; /* #dcdbd9 - Subtle but clear borders */
+    --input: 40 5% 94%; /* #f1f0ef - Slightly off-white for inputs */
+    --card: 0 0% 100%; /* #ffffff - Clean white for cards */
+    --card-foreground: 220 10% 12%; /* #1c1e22 */
     --popover: 0 0% 100%; /* #ffffff */
-    --popover-foreground: 240 10% 3.9%; /* #0a0a0a */
+    --popover-foreground: 220 10% 12%; /* #1c1e22 */
 
-    --card: 0 0% 100%; /* #ffffff */
-    --card-foreground: 240 10% 3.9%; /* #0a0a0a */
-
-    --border: 240 5.9% 90%; /* #e4e4e7 */
-    --input: 240 5.9% 90%; /* #e4e4e7 */
-
-    /* Primary color uses green for consistent brand identity */
-    --primary: 142 76% 36%; /* #16a34a - Green primary */
-    --primary-foreground: 0 0% 98%; /* #fafafa */
-
-    --secondary: 240 4.8% 95.9%; /* #f4f4f5 */
-    --secondary-foreground: 240 5.9% 10%; /* #18181b */
-
-    --accent: 142 84% 42%; /* #22c55e - Brighter green accent */
-    --accent-foreground: 0 0% 98%; /* #fafafa */
-
-    --destructive: 0 84.2% 60.2%; /* #ef4444 */
-    --destructive-foreground: 0 0% 98%; /* #fafafa */
-
-    --ring: 142 84% 42%; /* #22c55e - Brighter green focus rings */
-
-    /* Section backgrounds for alternating design */
-    --section-primary: 0 0% 100%; /* #ffffff - Main background */
-    --section-secondary: 240 4.8% 97.5%; /* #f8f8f9 - Slightly darker alternate */
-    --section-tertiary: 240 4.8% 95.9%; /* #f4f4f5 - Tertiary background */
-    --section-accent: 142 84% 42%; /* #22c55e - Brighter green accent */
+    /* Adjust shadows for light mode to be more distinct */
+    --shadow-brutal-soft: 3px 3px 0px hsl(var(--border));
+    --glow-soft: 0 0 10px hsl(var(--foreground) / 0.03);
   }
 
   * {
@@ -98,17 +132,16 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-weight: 400; /* Standard weight for body copy */
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-size: var(--font-scale-base);
     line-height: 1.6;
-    letter-spacing: normal; /* Reset for better readability */
+    letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* --- Refined Typography --- */
+  /* Enhanced Typography System */
   h1,
   h2,
   h3,
@@ -116,235 +149,588 @@
   h5,
   h6 {
     font-family: var(--font-heading), system-ui, sans-serif;
-    letter-spacing: -0.025em;
-    line-height: 1.2;
-    /* Color is inherited from body, ensuring it matches foreground */
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: hsl(var(--foreground));
   }
 
   h1 {
-    font-weight: 700;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    letter-spacing: -0.03em;
+    font-size: var(--font-scale-6xl);
+    text-shadow: 2px 2px 0px hsl(var(--primary) / 0.2);
   }
 
   h2 {
-    font-weight: 600; /* Standard semi-bold */
-    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-size: var(--font-scale-4xl);
+    text-shadow: 1px 1px 0px hsl(var(--secondary) / 0.2);
   }
 
   h3 {
-    font-weight: 600;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: var(--font-scale-3xl);
+    text-shadow: 1px 1px 0px hsl(var(--accent) / 0.2);
   }
 
   h4 {
-    font-weight: 600;
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-size: var(--font-scale-2xl);
   }
 
-  /* --- Code Blocks --- */
+  h5 {
+    font-size: var(--font-scale-xl);
+  }
+
+  h6 {
+    font-size: var(--font-scale-lg);
+  }
+
+  /* Enhanced Code Blocks */
   code {
     font-family: var(--font-code), monospace;
-    @apply bg-muted/50 text-muted-foreground rounded px-1.5 py-1 text-sm font-normal;
+    font-size: var(--font-scale-sm);
+    background: hsl(var(--muted));
+    color: hsl(var(--accent));
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-base);
+    border: 1px solid hsl(var(--border));
+    font-weight: 500;
   }
 
   pre {
     font-family: var(--font-code), monospace;
-    @apply bg-muted/50 rounded-lg border p-4 text-sm leading-relaxed overflow-x-auto;
+    font-size: var(--font-scale-sm);
+    background: hsl(var(--muted));
+    border: var(--border-brutal) solid hsl(var(--border));
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    overflow-x: auto;
+    box-shadow: var(--shadow-brutal-soft);
   }
 
   pre code {
-    @apply bg-transparent border-none p-0 text-foreground;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: hsl(var(--foreground));
+  }
+
+  /* Enhanced Selection */
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: var(--radius-full);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: var(--radius-full);
+    border: 2px solid hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+    box-shadow: var(--glow-primary);
+  }
+
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--space-20);
   }
 }
 
 @layer components {
   /*
   * ===================================================================
-  * REFINED COMPONENT STYLES
-  * ===================================================================
-  * Overrides for Shadcn/UI (or other component libraries) to match
-  * the minimalist aesthetic. These are examples, apply them via `className`.
-  * e.g. <Card className="card-minimal">
+  * NEOBRUTALIST COMPONENT STYLES
   * ===================================================================
   */
 
-  /* --- Minimalist Card --- */
-  /* Use by adding this class to your Card component */
-  .card-minimal {
-    @apply border bg-transparent transition-all duration-300;
-    box-shadow: 0 1px 2px 0 hsl(var(--foreground) / 0.02);
+  /* Brutalist Cards */
+  .card-brutal {
+    @apply bg-card border-card-foreground/20 rounded-lg overflow-hidden;
+    border: var(--border-brutal) solid hsl(var(--border));
+    box-shadow: var(--shadow-brutal-soft);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .card-minimal:hover {
-    @apply border-primary/50 bg-muted/30;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px 0 hsl(var(--foreground) / 0.04);
+  .card-brutal:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--shadow-brutal-hover);
   }
 
-  /* --- Refined Button --- */
-  /* Apply to the <Button /> component's `className` prop */
-  .btn-primary-outline {
-    @apply border border-primary/50 bg-transparent text-primary;
+  .card-brutal-primary {
+    @apply card-brutal;
+    border-color: hsl(var(--primary));
+    box-shadow: var(--shadow-brutal);
   }
 
-  .btn-primary-outline:hover {
-    @apply bg-primary text-primary-foreground;
+  .card-brutal-primary:hover {
+    box-shadow: var(--shadow-brutal-hover);
+    filter: drop-shadow(var(--glow-primary));
   }
 
-  /* --- General Focus State --- */
-  :focus-visible {
-    @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
-    outline: none;
+  .card-brutal-secondary {
+    @apply card-brutal;
+    border-color: hsl(var(--secondary));
+    box-shadow: var(--shadow-brutal-secondary);
+  }
+
+  .card-brutal-accent {
+    @apply card-brutal;
+    border-color: hsl(var(--accent));
+    box-shadow: var(--shadow-brutal-accent);
+  }
+
+  /* Mega Brutal Cards for Maximum Impact */
+  .card-mega-brutal {
+    @apply bg-card border-card-foreground/20 rounded-none overflow-hidden;
+    border: var(--border-brutal-mega) solid hsl(var(--foreground));
+    box-shadow: var(--shadow-brutal-mega);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-mega-brutal:hover {
+    transform: translate(-8px, -8px);
+    box-shadow: 24px 24px 0px hsl(var(--accent));
+  }
+
+  /* Brutalist Buttons */
+  .btn-brutal {
+    @apply font-bold uppercase tracking-wide;
+    padding: var(--space-3) var(--space-6);
+    border: var(--border-brutal) solid;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-scale-sm);
+    font-family: var(--font-heading), system-ui, sans-serif;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .btn-brutal:hover {
+    transform: translate(-2px, -2px);
+  }
+
+  .btn-brutal:active {
+    transform: translate(0, 0);
+  }
+
+  .btn-brutal-primary {
+    @apply btn-brutal;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-color: hsl(var(--primary));
+    box-shadow: var(--shadow-brutal);
+  }
+
+  .btn-brutal-primary:hover {
+    box-shadow: var(--shadow-brutal-hover);
+    filter: drop-shadow(var(--glow-primary));
+  }
+
+  .btn-brutal-secondary {
+    @apply btn-brutal;
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    border-color: hsl(var(--secondary));
+    box-shadow: var(--shadow-brutal-secondary);
+  }
+
+  .btn-brutal-accent {
+    @apply btn-brutal;
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+    border-color: hsl(var(--accent));
+    box-shadow: var(--shadow-brutal-accent);
+  }
+
+  .btn-brutal-outline {
+    @apply btn-brutal;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--border));
+    box-shadow: var(--shadow-brutal-soft);
+  }
+
+  .btn-brutal-outline:hover {
+    background: hsl(var(--muted));
+    box-shadow: var(--shadow-brutal-hover);
+  }
+
+  /* Brutalist Badges */
+  .badge-brutal {
+    @apply uppercase tracking-wide font-bold;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-scale-xs);
+    font-family: var(--font-heading), system-ui, sans-serif;
+    border: 2px solid;
+    border-radius: var(--radius-base);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .badge-brutal-primary {
+    @apply badge-brutal;
+    background: hsl(var(--primary) / 0.1);
+    color: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+  }
+
+  .badge-brutal-secondary {
+    @apply badge-brutal;
+    background: hsl(var(--secondary) / 0.1);
+    color: hsl(var(--secondary));
+    border-color: hsl(var(--secondary));
+  }
+
+  .badge-brutal-accent {
+    @apply badge-brutal;
+    background: hsl(var(--accent) / 0.1);
+    color: hsl(var(--accent));
+    border-color: hsl(var(--accent));
+  }
+
+  .badge-brutal-muted {
+    @apply badge-brutal;
+    background: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    border-color: hsl(var(--border));
+  }
+
+  /* Focus States */
+  .focus-brutal:focus-visible {
+    outline: var(--border-brutal) solid hsl(var(--primary));
+    outline-offset: var(--space-1);
+    box-shadow: var(--glow-primary);
+  }
+
+  /* Glowing Text Effects */
+  .text-glow-primary {
+    color: hsl(var(--primary));
+    text-shadow: var(--glow-primary);
+  }
+
+  .text-glow-secondary {
+    color: hsl(var(--secondary));
+    text-shadow: var(--glow-secondary);
+  }
+
+  .text-glow-accent {
+    color: hsl(var(--accent));
+    text-shadow: var(--glow-accent);
+  }
+
+  /* Cyberpunk Grid Background */
+  .bg-grid {
+    background-image: linear-gradient(
+        hsl(var(--primary) / 0.2) 2px,
+        transparent 2px
+      ),
+      linear-gradient(90deg, hsl(var(--primary) / 0.2) 2px, transparent 2px);
+    background-size: 24px 24px;
+  }
+
+  /* Harsh Geometric Patterns */
+  .bg-diagonal-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      hsl(var(--accent) / 0.1) 0px,
+      hsl(var(--accent) / 0.1) 2px,
+      transparent 2px,
+      transparent 12px
+    );
+  }
+
+  .bg-brutal-blocks {
+    background-image: linear-gradient(
+        90deg,
+        hsl(var(--secondary) / 0.1) 50%,
+        transparent 50%
+      ),
+      linear-gradient(hsl(var(--primary) / 0.1) 50%, transparent 50%);
+    background-size: 40px 40px;
+  }
+
+  /* Neon Border Effect */
+  .border-neon {
+    border: 2px solid hsl(var(--primary));
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.5),
+      inset 0 0 5px hsl(var(--primary) / 0.1);
+  }
+
+  .border-neon-secondary {
+    border: 2px solid hsl(var(--secondary));
+    box-shadow: 0 0 5px hsl(var(--secondary) / 0.5),
+      inset 0 0 5px hsl(var(--secondary) / 0.1);
+  }
+
+  .border-neon-accent {
+    border: 2px solid hsl(var(--accent));
+    box-shadow: 0 0 5px hsl(var(--accent) / 0.5),
+      inset 0 0 5px hsl(var(--accent) / 0.1);
+  }
+
+  /* Gradient Backgrounds */
+  .bg-gradient-brutal {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.1) 0%,
+      hsl(var(--secondary) / 0.1) 50%,
+      hsl(var(--accent) / 0.1) 100%
+    );
+  }
+
+  .bg-gradient-cyber {
+    background: linear-gradient(
+      45deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--muted)) 50%,
+      hsl(var(--background)) 100%
+    );
   }
 }
 
 @layer utilities {
   /*
   * ===================================================================
-  * ANIMATIONS & UTILITIES
+  * UTILITY CLASSES
   * ===================================================================
   */
 
-  /* --- Smooth Animations --- */
-  .animate-fade-in {
-    animation: fade-in 0.5s ease-out forwards;
+  /* Spacing Utilities */
+  .space-brutal {
+    margin: var(--space-8);
+  }
+  .space-brutal-x {
+    margin-left: var(--space-8);
+    margin-right: var(--space-8);
+  }
+  .space-brutal-y {
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-8);
+  }
+  .p-brutal {
+    padding: var(--space-8);
+  }
+  .px-brutal {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+  .py-brutal {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
   }
 
-  .animate-slide-up {
-    animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* Animation Utilities */
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
   }
 
-  @keyframes fade-in {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-slide-brutal {
+    animation: slide-brutal 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  .animate-bounce-brutal {
+    animation: bounce-brutal 1s infinite;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+    }
+    to {
+      box-shadow: 0 0 30px hsl(var(--primary) / 0.8);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 5px hsl(var(--primary) / 0.5));
+    }
+    50% {
+      opacity: 0.8;
+      filter: drop-shadow(0 0 20px hsl(var(--primary) / 0.8));
+    }
+  }
+
+  @keyframes slide-brutal {
     from {
       opacity: 0;
+      transform: translateX(-100px) translateY(20px);
     }
     to {
       opacity: 1;
+      transform: translateX(0) translateY(0);
     }
   }
 
-  @keyframes slide-up {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-    }
-    to {
-      opacity: 1;
+  @keyframes bounce-brutal {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
       transform: translateY(0);
     }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
   }
 
-  /* --- Global Settings --- */
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 5rem; /* For fixed headers */
+  /* Text Utilities */
+  .text-brutal {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  /* --- Selection Highlight --- */
-  ::selection {
-    background: hsl(var(--primary) / 0.15);
+  .text-cyber {
+    font-family: var(--font-code), monospace;
+    font-weight: 500;
+    letter-spacing: 0.025em;
   }
 
-  /* --- Custom Scrollbar --- */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  /* Transform Utilities */
+  .transform-brutal {
+    transform: translate(-4px, -4px);
   }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-muted/50;
+  .transform-brutal-hover:hover {
+    transform: translate(-6px, -6px);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  ::-webkit-scrollbar-thumb {
-    @apply bg-border rounded-full;
-    border: 2px solid transparent;
-    background-clip: content-box;
+  /* Color Utilities */
+  .text-primary {
+    color: hsl(var(--primary));
   }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary/70;
+  .text-secondary {
+    color: hsl(var(--secondary));
   }
-
-  /* --- Section Background Utilities --- */
-  .section-primary {
-    background-color: hsl(var(--section-primary));
-  }
-
-  .section-secondary {
-    background-color: hsl(var(--section-secondary));
-  }
-
-  .section-tertiary {
-    background-color: hsl(var(--section-tertiary));
-  }
-
-  .section-accent {
-    background-color: hsl(var(--section-accent));
-  }
-
-  /* --- Green Accent Utilities --- */
   .text-accent {
     color: hsl(var(--accent));
   }
+  .text-warning {
+    color: hsl(var(--warning));
+  }
+  .text-destructive {
+    color: hsl(var(--destructive));
+  }
 
+  .bg-primary {
+    background-color: hsl(var(--primary));
+  }
+  .bg-secondary {
+    background-color: hsl(var(--secondary));
+  }
   .bg-accent {
     background-color: hsl(var(--accent));
   }
+  .bg-warning {
+    background-color: hsl(var(--warning));
+  }
+  .bg-destructive {
+    background-color: hsl(var(--destructive));
+  }
 
+  .border-primary {
+    border-color: hsl(var(--primary));
+  }
+  .border-secondary {
+    border-color: hsl(var(--secondary));
+  }
   .border-accent {
     border-color: hsl(var(--accent));
   }
-
-  .ring-accent {
-    --tw-ring-color: hsl(var(--accent));
+  .border-warning {
+    border-color: hsl(var(--warning));
+  }
+  .border-destructive {
+    border-color: hsl(var(--destructive));
   }
 
-  /* --- Gradient Text Utility --- */
-  .gradient-text {
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 600;
-    background: linear-gradient(135deg, 
-      hsl(var(--foreground)) 0%, 
-      hsl(var(--primary)) 50%, 
-      hsl(var(--accent)) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1.2;
-    letter-spacing: -0.025em;
+  /* Responsive Design Utilities */
+  @screen sm {
+    .space-brutal-sm {
+      margin: var(--space-6);
+    }
+    .p-brutal-sm {
+      padding: var(--space-6);
+    }
   }
 
-  /* --- Enhanced Badge Styles --- */
-  .badge-accent {
-    background-color: hsl(var(--accent) / 0.1);
-    color: hsl(var(--accent));
-    border: 1px solid hsl(var(--accent) / 0.2);
+  @screen md {
+    .space-brutal-md {
+      margin: var(--space-10);
+    }
+    .p-brutal-md {
+      padding: var(--space-10);
+    }
   }
 
-  .badge-accent:hover {
-    background-color: hsl(var(--accent) / 0.2);
+  @screen lg {
+    .space-brutal-lg {
+      margin: var(--space-12);
+    }
+    .p-brutal-lg {
+      padding: var(--space-12);
+    }
   }
 
-  /* --- Enhanced Button Styles --- */
-  .btn-accent {
-    background-color: hsl(var(--accent));
-    color: hsl(var(--accent-foreground));
-    border: 1px solid hsl(var(--accent));
+  /* Container Utilities */
+  .container-brutal {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
   }
 
-  .btn-accent:hover {
-    background-color: hsl(var(--accent) / 0.9);
+  @screen sm {
+    .container-brutal {
+      padding: 0 var(--space-8);
+    }
   }
 
-  .btn-accent-outline {
-    background-color: transparent;
-    color: hsl(var(--accent));
-    border: 1px solid hsl(var(--accent));
-  }
-
-  .btn-accent-outline:hover {
-    background-color: hsl(var(--accent));
-    color: hsl(var(--accent-foreground));
+  @screen lg {
+    .container-brutal {
+      padding: 0 var(--space-12);
+    }
   }
 }

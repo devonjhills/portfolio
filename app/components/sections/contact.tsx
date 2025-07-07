@@ -112,10 +112,10 @@ export function Contact() {
             variants={itemVariants}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Primary Contact Card */}
-            <Card className="bg-card border-primary/30">
+            <Card className="bg-card border-2 border-primary/30 shadow-brutal">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <Badge className="bg-green-500/10 text-green-600 border-green-500/30">
+                  <Badge variant="secondary" className="bg-secondary text-secondary-foreground border border-secondary shadow-brutal-secondary">
                     Available Now
                   </Badge>
                 </div>
@@ -131,14 +131,14 @@ export function Contact() {
                 <div className="flex flex-col gap-3">
                   <a
                     href="mailto:devonjhills@gmail.com"
-                    className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:shadow-lg w-full inline-flex items-center justify-center">
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 font-semibold transition-all shadow-brutal w-full inline-flex items-center justify-center rounded-lg">
                     <Mail className="mr-2 h-4 w-4" />
                     Schedule Interview
                   </a>
                   <a
                     href="/Devon_Hills_Resume_2025_Newest.pdf"
                     download
-                    className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:bg-secondary/80 w-full inline-flex items-center justify-center">
+                    className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-3 font-semibold transition-all shadow-brutal-secondary w-full inline-flex items-center justify-center rounded-lg">
                     <Download className="mr-2 h-4 w-4" />
                     Download Resume
                   </a>
@@ -147,7 +147,7 @@ export function Contact() {
             </Card>
 
             {/* Contact Methods */}
-            <Card className="bg-card">
+            <Card className="bg-card border-2 border-accent/30 shadow-brutal-accent">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg">Connect With Me</CardTitle>
                 <CardDescription className="text-sm">

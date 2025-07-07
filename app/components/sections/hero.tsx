@@ -78,11 +78,11 @@ export function Hero() {
               variants={itemVariants}
               className="flex justify-center lg:justify-start">
               <Badge
-                variant="outline"
-                className="px-4 py-2 border-primary/50 text-primary font-semibold rounded-full shadow-sm">
+                variant="default"
+                className="px-4 py-2 bg-secondary text-secondary-foreground font-semibold shadow-brutal-secondary rounded-lg border-2 border-secondary">
                 <span className="relative flex h-2 w-2 mr-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                 </span>
                 Open to New Opportunities
               </Badge>
@@ -123,7 +123,7 @@ export function Hero() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
-                className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:shadow-lg w-full sm:w-auto inline-flex items-center justify-center"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 font-semibold transition-all shadow-brutal w-full sm:w-auto inline-flex items-center justify-center rounded-lg"
                 onClick={() => scrollToSection("experience")}>
                 <Eye className="mr-2 h-4 w-4" />
                 Explore My Work
@@ -131,7 +131,7 @@ export function Hero() {
               <a
                 href="/Devon_Hills_Resume_2025_Newest.pdf"
                 download
-                className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:bg-secondary/80 w-full sm:w-auto inline-flex items-center justify-center">
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-3 font-semibold transition-all shadow-brutal-secondary w-full sm:w-auto inline-flex items-center justify-center rounded-lg">
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </a>
@@ -142,7 +142,7 @@ export function Hero() {
           <div className="space-y-8">
             {/* Highlights Grid */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-semibold mb-4">
+              <h3 className="text-xl font-heading font-bold text-secondary mb-4">
                 Core Expertise
               </h3>
               <div className="grid gap-4">
@@ -150,8 +150,8 @@ export function Hero() {
                   <motion.div
                     key={highlight.text}
                     variants={itemVariants}
-                    className="bg-card rounded-lg p-4 transition-all flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    className="card-brutal-primary p-4 flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary/20 border-2 border-primary/30 rounded-lg flex items-center justify-center">
                       <highlight.icon className="h-5 w-5 text-primary" />
                     </div>
                     <div>
@@ -169,7 +169,7 @@ export function Hero() {
 
             {/* Contact Section */}
             <motion.div variants={itemVariants} className="space-y-4">
-              <h3 className="text-xl font-semibold">
+              <h3 className="text-xl font-heading font-bold text-accent">
                 Let&apos;s Connect
               </h3>
               <p className="text-muted-foreground leading-relaxed">

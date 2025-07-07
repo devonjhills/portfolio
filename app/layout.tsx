@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Fira_Code, Sora } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/layout/theme-provider";
 
@@ -10,18 +10,18 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const firaCode = Fira_Code({
+const jetBrainsMono = JetBrains_Mono({
   variable: "--font-code",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const sora = Sora({
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
-  weight: ["500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -95,7 +95,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${firaCode.variable} ${sora.variable} font-sans antialiased`}>
+        className={`${inter.variable} ${jetBrainsMono.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
