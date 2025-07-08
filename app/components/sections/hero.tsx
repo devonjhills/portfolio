@@ -79,7 +79,7 @@ export function Hero() {
               className="flex justify-center lg:justify-start">
               <Badge
                 variant="default"
-                className="px-4 py-2 bg-secondary text-secondary-foreground font-semibold shadow-brutal-secondary rounded-lg border-2 border-secondary">
+                className="px-4 py-2 bg-secondary text-secondary-foreground font-semibold shadow-lg hover:shadow-xl transition-shadow rounded-lg border-2 border-secondary">
                 <span className="relative flex h-2 w-2 mr-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
@@ -106,7 +106,7 @@ export function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="gradient-text">
+              className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground mb-6">
               Devon Hills
             </motion.h1>
 
@@ -123,7 +123,7 @@ export function Hero() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 font-semibold transition-all shadow-brutal w-full sm:w-auto inline-flex items-center justify-center rounded-lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow w-full sm:w-auto inline-flex items-center justify-center rounded-lg"
                 onClick={() => scrollToSection("experience")}>
                 <Eye className="mr-2 h-4 w-4" />
                 Explore My Work
@@ -131,7 +131,7 @@ export function Hero() {
               <a
                 href="/Devon_Hills_Resume_2025_Newest.pdf"
                 download
-                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-3 font-semibold transition-all shadow-brutal-secondary w-full sm:w-auto inline-flex items-center justify-center rounded-lg">
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-3 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow w-full sm:w-auto inline-flex items-center justify-center rounded-lg">
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </a>
@@ -150,7 +150,7 @@ export function Hero() {
                   <motion.div
                     key={highlight.text}
                     variants={itemVariants}
-                    className="card-brutal-primary p-4 flex items-start gap-4">
+                    className="bg-card border-2 border-primary/30 rounded-lg shadow-lg p-4 flex items-start gap-4">
                     <div className="flex-shrink-0 w-10 h-10 bg-primary/20 border-2 border-primary/30 rounded-lg flex items-center justify-center">
                       <highlight.icon className="h-5 w-5 text-primary" />
                     </div>

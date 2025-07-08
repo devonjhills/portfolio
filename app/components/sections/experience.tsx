@@ -146,7 +146,7 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
   <Card
     className={`bg-card w-full ${
       item.date === "Next"
-        ? "border-green-500/50 bg-green-50/50 dark:bg-green-950/20"
+        ? "border-accent/50 bg-accent/5 dark:bg-accent/10"
         : ""
     }`}>
     <CardHeader>
@@ -162,7 +162,7 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
         </div>
         {item.date === "Present" && <Badge>Current</Badge>}
         {item.date === "Next" && (
-          <Badge className="bg-secondary text-secondary-foreground border border-secondary shadow-brutal-secondary">
+          <Badge className="bg-secondary text-secondary-foreground border border-secondary shadow-lg">
             Available
           </Badge>
         )}
@@ -246,7 +246,7 @@ export function Experience() {
           className="space-y-12">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="gradient-text">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
               Professional Journey
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">

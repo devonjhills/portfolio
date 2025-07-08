@@ -193,7 +193,7 @@ const ProjectCard = React.memo(
     project: Project;
     onViewDetails: (project: Project) => void;
   }) => (
-    <Card className="bg-card border-2 border-primary/30 shadow-brutal group flex h-full flex-col overflow-hidden">
+    <Card className="bg-card border-2 border-primary/30 shadow-lg hover:shadow-xl transition-shadow group flex h-full flex-col overflow-hidden">
       <CardContent className="flex-1 p-5">
         <div className="flex items-start justify-between mb-4">
           <CardTitle className="text-lg font-semibold leading-tight text-foreground group-hover:text-accent transition-colors">
@@ -201,7 +201,7 @@ const ProjectCard = React.memo(
           </CardTitle>
           <div className="flex items-center gap-2 ml-2">
             {project.featured && (
-              <Badge className="bg-accent text-accent-foreground text-xs px-2 py-1 shadow-brutal-accent border border-accent">
+              <Badge className="bg-accent text-accent-foreground text-xs px-2 py-1 shadow-lg hover:shadow-xl transition-shadow border border-accent">
                 <Star className="mr-1 h-3 w-3" />
                 Featured
               </Badge>
@@ -250,11 +250,11 @@ const ProjectCard = React.memo(
           href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2.5 font-semibold transition-all shadow-brutal-secondary flex-1 inline-flex items-center justify-center rounded-lg">
+          className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2.5 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow flex-1 inline-flex items-center justify-center rounded-lg">
           <Github className="mr-2 h-4 w-4" /> Code
         </a>
         <button
-          className="bg-accent text-accent-foreground hover:bg-accent/90 px-4 py-2.5 font-semibold transition-all shadow-brutal-accent flex-1 inline-flex items-center justify-center rounded-lg"
+          className="bg-accent text-accent-foreground hover:bg-accent/90 px-4 py-2.5 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow flex-1 inline-flex items-center justify-center rounded-lg"
           onClick={() => onViewDetails(project)}>
           <Eye className="mr-2 h-4 w-4" /> Details
         </button>
@@ -296,7 +296,7 @@ export function Projects() {
           className="space-y-12">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="gradient-text">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
               Projects
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -320,7 +320,7 @@ export function Projects() {
 
               {/* More to Come Card */}
               <motion.div variants={itemVariants}>
-                <Card className="bg-card border-2 border-dashed border-border shadow-brutal-soft group flex h-full flex-col justify-center items-center text-center overflow-hidden">
+                <Card className="bg-card border-2 border-dashed border-border shadow-md group flex h-full flex-col justify-center items-center text-center overflow-hidden">
                   <CardContent className="flex-1 p-6 flex flex-col justify-center items-center">
                     <div className="mb-4 p-4 bg-primary/10 rounded-full">
                       <Github className="h-8 w-8 text-primary" />
@@ -337,7 +337,7 @@ export function Projects() {
                       href="https://github.com/devonjhills"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2 font-semibold transition-all shadow-brutal-secondary inline-flex items-center rounded-lg">
+                      className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow inline-flex items-center rounded-lg">
                       <Github className="mr-2 h-4 w-4" />
                       View All Projects
                       <ChevronRight className="ml-2 h-4 w-4" />
@@ -414,7 +414,7 @@ export function Projects() {
                     {/* Project status badges */}
                     <div className="flex gap-2">
                       {selectedProject.featured && (
-                        <Badge className="bg-accent text-accent-foreground border border-accent shadow-brutal-accent">
+                        <Badge className="bg-accent text-accent-foreground border border-accent shadow-lg hover:shadow-xl transition-shadow">
                           <Star className="mr-1 h-3 w-3" />
                           Featured
                         </Badge>

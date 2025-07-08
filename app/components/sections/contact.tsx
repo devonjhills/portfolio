@@ -97,7 +97,7 @@ export function Contact() {
           className="space-y-12">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="gradient-text">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
               Ready to Hire a Proven Engineer?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -112,10 +112,10 @@ export function Contact() {
             variants={itemVariants}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Primary Contact Card */}
-            <Card className="bg-card border-2 border-primary/30 shadow-brutal">
+            <Card className="bg-card border-2 border-primary/30 shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <Badge variant="secondary" className="bg-secondary text-secondary-foreground border border-secondary shadow-brutal-secondary">
+                  <Badge variant="secondary" className="bg-secondary text-secondary-foreground border border-secondary shadow-lg hover:shadow-xl transition-shadow">
                     Available Now
                   </Badge>
                 </div>
@@ -131,14 +131,14 @@ export function Contact() {
                 <div className="flex flex-col gap-3">
                   <a
                     href="mailto:devonjhills@gmail.com"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 font-semibold transition-all shadow-brutal w-full inline-flex items-center justify-center rounded-lg">
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow w-full inline-flex items-center justify-center rounded-lg">
                     <Mail className="mr-2 h-4 w-4" />
                     Schedule Interview
                   </a>
                   <a
                     href="/Devon_Hills_Resume_2025_Newest.pdf"
                     download
-                    className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-3 font-semibold transition-all shadow-brutal-secondary w-full inline-flex items-center justify-center rounded-lg">
+                    className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-3 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow w-full inline-flex items-center justify-center rounded-lg">
                     <Download className="mr-2 h-4 w-4" />
                     Download Resume
                   </a>
@@ -147,7 +147,7 @@ export function Contact() {
             </Card>
 
             {/* Contact Methods */}
-            <Card className="bg-card border-2 border-accent/30 shadow-brutal-accent">
+            <Card className="bg-card border-2 border-accent/30 shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg">Connect With Me</CardTitle>
                 <CardDescription className="text-sm">
@@ -195,7 +195,7 @@ export function Contact() {
             </Card>
 
             {/* What I Offer + Quick Details */}
-            <Card className="bg-card md:col-span-2 lg:col-span-1">
+            <Card className="bg-card md:col-span-2 lg:col-span-1 shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg">What I Offer</CardTitle>
               </CardHeader>

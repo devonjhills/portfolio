@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main className="animate-fade-in">
+      <main className="animate-in fade-in duration-700">
         <Hero />
         <About />
         <Experience />
