@@ -1,21 +1,27 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { ThemeToggle } from "./theme-toggle";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
-const navigation = [
+const sections = [
   { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
 ];
 
+const pages = [
+  { name: "Tools", href: "/md-to-pdf" },
+];
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,10 +32,22 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const handleNavigation = (href: string) => {
+    if (href.startsWith('#')) {
+      // Handle anchor links
+      if (pathname === '/') {
+        // On home page, just scroll to section
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // On other pages, navigate to home with anchor
+        window.location.href = `/${href}`;
+      }
+    } else {
+      // Handle page navigation
+      window.location.href = href;
     }
     setIsMobileMenuOpen(false);
   };
@@ -50,7 +68,15 @@ export function Header() {
           <motion.div
             className="flex items-center cursor-pointer"
             whileHover={{ scale: 1.05 }}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            onClick={() => {
+              if (pathname === '/') {
+                // On home page, scroll to top
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              } else {
+                // On other pages, navigate to home
+                window.location.href = '/';
+              }
+            }}>
             <Image
               src="/logo.png"
               alt="Devon Hills"
@@ -66,16 +92,45 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
+            {/* Page Sections */}
+            {sections.map((item) => (
               <motion.button
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary transition-colors text-sm font-medium"
+                onClick={() => handleNavigation(item.href)}
+                className={`text-foreground hover:text-primary transition-colors text-sm font-medium flex items-center gap-1 ${
+                  pathname === '/' ? 'text-primary' : 'text-muted-foreground'
+                }`}
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}>
                 {item.name}
+                {pathname !== '/' && (
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                  </svg>
+                )}
               </motion.button>
             ))}
+            
+            {/* Separator */}
+            <div className="h-6 w-px bg-border" />
+            
+            {/* External Pages */}
+            {pages.map((item) => (
+              <motion.button
+                key={item.name}
+                onClick={() => handleNavigation(item.href)}
+                className={`hover:text-primary transition-colors text-sm font-medium flex items-center gap-1 ${
+                  pathname === item.href ? 'text-primary' : 'text-foreground'
+                }`}
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}>
+                {item.name}
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </motion.button>
+            ))}
+            
             <ThemeToggle />
           </nav>
 
@@ -104,12 +159,44 @@ export function Header() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}>
             <div className="flex flex-col space-y-4">
-              {navigation.map((item) => (
+              {/* Page Sections */}
+              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                Portfolio Sections
+              </div>
+              {sections.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-foreground hover:text-primary transition-colors text-left py-2">
+                  onClick={() => handleNavigation(item.href)}
+                  className={`hover:text-primary transition-colors text-left py-2 pl-4 flex items-center gap-2 ${
+                    pathname === '/' ? 'text-primary' : 'text-muted-foreground'
+                  }`}>
                   {item.name}
+                  {pathname !== '/' && (
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                    </svg>
+                  )}
+                </button>
+              ))}
+              
+              {/* Separator */}
+              <div className="h-px bg-border my-2" />
+              
+              {/* External Pages */}
+              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                Tools & Pages
+              </div>
+              {pages.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavigation(item.href)}
+                  className={`hover:text-primary transition-colors text-left py-2 pl-4 flex items-center gap-2 ${
+                    pathname === item.href ? 'text-primary' : 'text-foreground'
+                  }`}>
+                  {item.name}
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
                 </button>
               ))}
             </div>
