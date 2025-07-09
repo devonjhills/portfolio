@@ -6,8 +6,15 @@ export const runtime = 'edge'
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const title = searchParams.get('title') || 'Devon Hills | Software Engineer'
+    const name = searchParams.get('name') || 'Devon Hills'
+    const role = searchParams.get('role') || 'Software Engineer'
     const description = searchParams.get('description') || 'Full-stack software engineer specializing in modern web technologies, AI/ML integration, and scalable applications.'
+    
+    // Fetch and encode the logo
+    const logoResponse = await fetch(new URL('/logo.png', request.url))
+    const logoArrayBuffer = await logoResponse.arrayBuffer()
+    const logoBase64 = Buffer.from(logoArrayBuffer).toString('base64')
+    const logoDataUrl = `data:image/png;base64,${logoBase64}`
 
     return new ImageResponse(
       (
@@ -53,12 +60,24 @@ export async function GET(request: NextRequest) {
                 fontSize: '64px',
                 fontWeight: '700',
                 color: '#ffffff',
-                marginBottom: '20px',
+                marginBottom: '8px',
                 lineHeight: '1.2',
               }}
             >
-              {title}
+              {name}
             </h1>
+            
+            <h2
+              style={{
+                fontSize: '36px',
+                fontWeight: '500',
+                color: '#7877c6',
+                marginBottom: '24px',
+                lineHeight: '1.2',
+              }}
+            >
+              {role}
+            </h2>
             
             <p
               style={{
@@ -110,22 +129,16 @@ export async function GET(request: NextRequest) {
               gap: '12px',
             }}
           >
-            <div
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={logoDataUrl}
+              alt="Devon Hills Logo"
               style={{
                 width: '40px',
                 height: '40px',
-                backgroundColor: '#7877c6',
                 borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#ffffff',
-                fontSize: '20px',
-                fontWeight: '700',
               }}
-            >
-              DH
-            </div>
+            />
             <span
               style={{
                 color: '#a1a1aa',

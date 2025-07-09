@@ -68,11 +68,11 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Devon Hills | Software Engineer",
     description:
       "Full-stack software engineer specializing in modern web technologies, AI/ML integration, and scalable applications.",
-    images: ["/api/og"],
+    images: ["/api/og/twitter"],
   },
   robots: {
     index: true,
