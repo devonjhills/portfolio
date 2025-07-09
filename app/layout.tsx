@@ -67,6 +67,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  other: {
+    "og:logo": "https://devonhills.dev/logo.png",
+  },
   twitter: {
     card: "summary",
     title: "Devon Hills | Software Engineer",
