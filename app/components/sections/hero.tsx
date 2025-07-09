@@ -16,6 +16,8 @@ import {
 import { FloatingDock } from "../ui/floating-dock";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
+import { DotBackground } from "../ui/grid-background";
+import { Spotlight } from "../ui/spotlight";
 
 export function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -66,7 +68,10 @@ export function Hero() {
     <section
       id="home"
       className="relative section-primary min-h-screen flex items-center py-12 lg:py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <DotBackground className="absolute inset-0 z-0">
+        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" />
+      </DotBackground>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"

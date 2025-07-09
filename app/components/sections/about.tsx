@@ -186,8 +186,8 @@ export function About() {
             </Card>
           </motion.div>
 
-          {/* Main Content - Optimized Layout */}
-          <motion.div variants={itemVariants} className="space-y-8">
+          {/* Main Content - Enhanced Modern Layout */}
+          <motion.div variants={itemVariants} className="space-y-16">
             {/* Professional Timeline & Core Strengths - Horizontal */}
             <div className="grid lg:grid-cols-2 gap-8">
               <Card className="bg-card border-2 border-secondary/30 shadow-lg hover:shadow-xl transition-shadow">

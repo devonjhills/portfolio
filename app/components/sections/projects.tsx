@@ -1,4 +1,4 @@
-// src/components/Projects.tsx
+// Modern Projects Component with 3D Cards & Interactive Effects
 "use client";
 
 import React, { useRef, useState, useMemo, useCallback } from "react";
