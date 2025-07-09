@@ -194,12 +194,13 @@ const ProjectCard = React.memo(
     onViewDetails: (project: Project) => void;
   }) => (
     <Card className="bg-card border-2 border-primary/30 shadow-lg hover:shadow-xl transition-shadow group flex h-full flex-col overflow-hidden">
-      <CardContent className="flex-1 p-5">
-        <div className="flex items-start justify-between mb-4">
-          <CardTitle className="text-lg font-semibold leading-tight text-foreground group-hover:text-accent transition-colors">
+      <CardContent className="flex-1 p-5 flex flex-col">
+        {/* Header - Fixed height for alignment */}
+        <div className="flex items-start justify-between mb-4 min-h-[3rem]">
+          <CardTitle className="text-lg font-semibold leading-tight text-foreground group-hover:text-accent transition-colors flex-1">
             {project.title}
           </CardTitle>
-          <div className="flex items-center gap-2 ml-2">
+          <div className="flex items-center gap-2 ml-2 flex-shrink-0">
             {project.featured && (
               <Badge className="bg-accent text-accent-foreground text-xs px-2 py-1 shadow-lg hover:shadow-xl transition-shadow border border-accent">
                 <Star className="mr-1 h-3 w-3" />
@@ -217,35 +218,44 @@ const ProjectCard = React.memo(
             )}
           </div>
         </div>
-        <CardDescription className="text-sm mb-4 leading-relaxed line-clamp-3 text-muted-foreground">
-          {project.description}
+        
+        {/* Description - Fixed height for alignment */}
+        <CardDescription className="text-sm mb-4 leading-relaxed text-muted-foreground min-h-[4.5rem] flex items-start">
+          <span className="line-clamp-3">
+            {project.description}
+          </span>
         </CardDescription>
         
-        {/* Tech Stack Learning Section */}
-        <div className="mb-4 p-3 bg-accent/5 rounded-lg border border-accent/10">
+        {/* Tech Stack Learning Section - Fixed height for alignment */}
+        <div className="mb-4 p-3 bg-accent/5 rounded-lg border border-accent/10 min-h-[4.5rem] flex flex-col">
           <div className="text-xs font-medium text-accent mb-1 flex items-center gap-1">
             <span className="w-2 h-2 bg-accent rounded-full"></span>
             Tech Stack Growth
           </div>
-          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 flex-1">
             {project.techStackLearning}
           </p>
         </div>
         
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.technologies.slice(0, 4).map((tech) => (
-            <Badge key={tech} variant="default" className="text-xs px-2.5 py-1 bg-primary/20 text-primary border border-primary/40 hover:bg-primary/30 transition-colors">
-              {tech}
-            </Badge>
-          ))}
-          {project.technologies.length > 4 && (
-            <Badge variant="outline" className="text-xs px-2.5 py-1 border-accent bg-accent/10 text-accent hover:bg-accent/20">
-              +{project.technologies.length - 4}
-            </Badge>
-          )}
+        {/* Technologies - Spacer to push footer to bottom */}
+        <div className="flex flex-wrap gap-1.5 mb-4 flex-1">
+          <div className="flex flex-wrap gap-1.5 w-full">
+            {project.technologies.slice(0, 4).map((tech) => (
+              <Badge key={tech} variant="default" className="text-xs px-2.5 py-1 bg-primary/20 text-primary border border-primary/40 hover:bg-primary/30 transition-colors">
+                {tech}
+              </Badge>
+            ))}
+            {project.technologies.length > 4 && (
+              <Badge variant="outline" className="text-xs px-2.5 py-1 border-accent bg-accent/10 text-accent hover:bg-accent/20">
+                +{project.technologies.length - 4}
+              </Badge>
+            )}
+          </div>
         </div>
       </CardContent>
-      <CardFooter className="flex gap-3 p-5 pt-0">
+      
+      {/* Footer - Always at bottom */}
+      <CardFooter className="flex gap-3 p-5 pt-0 mt-auto">
         <a
           href={project.githubUrl}
           target="_blank"
