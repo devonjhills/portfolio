@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://devonjhills.dev/sitemap.xml
+Sitemap: https://devonhills.dev/sitemap.xml

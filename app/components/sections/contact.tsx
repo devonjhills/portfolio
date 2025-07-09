@@ -115,7 +115,9 @@ export function Contact() {
             <Card className="bg-card border-2 border-primary/30 shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <Badge variant="secondary" className="bg-secondary text-secondary-foreground border border-secondary shadow-lg hover:shadow-xl transition-shadow">
+                  <Badge
+                    variant="secondary"
+                    className="bg-secondary text-secondary-foreground border border-secondary shadow-lg hover:shadow-xl transition-shadow">
                     Available Now
                   </Badge>
                 </div>
@@ -180,11 +182,6 @@ export function Contact() {
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
-                      {contact.primary && (
-                        <Badge variant="default" className="text-xs">
-                          Preferred
-                        </Badge>
-                      )}
                       {!contact.href.startsWith("mailto") && (
                         <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary transition-colors" />
                       )}

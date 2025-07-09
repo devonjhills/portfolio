@@ -46,21 +46,21 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://devonjhills.dev"),
+  metadataBase: new URL("https://devonhills.dev"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://devonjhills.dev",
+    url: "https://devonhills.dev",
     title: "Devon Hills | Software Engineer",
     description:
       "Full-stack software engineer specializing in modern web technologies, AI/ML integration, and scalable applications.",
     siteName: "Devon Hills Portfolio",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/api/og",
         width: 1200,
         height: 630,
         alt: "Devon Hills - Software Engineer",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     title: "Devon Hills | Software Engineer",
     description:
       "Full-stack software engineer specializing in modern web technologies, AI/ML integration, and scalable applications.",
-    images: ["/og-image.jpg"],
+    images: ["/api/og"],
   },
   robots: {
     index: true,
