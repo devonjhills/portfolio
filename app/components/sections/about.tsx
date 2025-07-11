@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 
 // Data can be kept outside the component for clarity
 const achievements = [
@@ -236,12 +237,14 @@ export function About() {
                     </div>
                   </div>
                   <div className="pt-4 border-t border-border/50">
-                    <button
+                    <Button
                       onClick={scrollToExperience}
-                      className="w-full bg-primary/10 hover:bg-primary/20 text-primary px-4 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2 group">
+                      variant="ghost"
+                      size="lg"
+                      className="w-full bg-primary/10 hover:bg-primary/20 text-primary">
                       <span>View Full Experience Timeline</span>
                       <ChevronDown className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
-                    </button>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

@@ -16,6 +16,7 @@ import {
 import { FloatingDock } from "../ui/floating-dock";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 import { DotBackground } from "../ui/grid-background";
 import { Spotlight } from "../ui/spotlight";
 
@@ -127,19 +128,19 @@ export function Hero() {
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow w-full sm:w-auto inline-flex items-center justify-center rounded-lg"
+              <Button
+                size="lg"
+                className="shadow-lg hover:shadow-xl transition-shadow w-full sm:w-auto"
                 onClick={() => scrollToSection("experience")}>
                 <Eye className="mr-2 h-4 w-4" />
                 Explore My Work
-              </button>
-              <a
-                href="/Devon_Hills_Resume_2025_Newest.pdf"
-                download
-                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-3 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow w-full sm:w-auto inline-flex items-center justify-center rounded-lg">
-                <Download className="mr-2 h-4 w-4" />
-                Download Resume
-              </a>
+              </Button>
+              <Button asChild variant="secondary" size="lg" className="shadow-lg hover:shadow-xl transition-shadow w-full sm:w-auto">
+                <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download Resume
+                </a>
+              </Button>
             </motion.div>
           </div>
 
@@ -147,9 +148,9 @@ export function Hero() {
           <div className="space-y-8">
             {/* Highlights Grid */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-heading font-bold text-secondary mb-4">
+              <h2 className="text-xl font-heading font-bold text-secondary mb-4">
                 Core Expertise
-              </h3>
+              </h2>
               <div className="grid gap-4">
                 {highlights.map((highlight) => (
                   <motion.div

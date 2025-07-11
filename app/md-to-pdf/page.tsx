@@ -2,6 +2,8 @@
 
 import React, { useState, useCallback } from "react";
 import { Button } from "../components/ui/button";
+import { Textarea } from "../components/ui/textarea";
+import { Label } from "../components/ui/label";
 import {
   Card,
   CardContent,
@@ -232,20 +234,18 @@ export default function MarkdownToPDFPage() {
 
                         {/* Textarea */}
                         <div className="flex-1 flex flex-col">
-                          <label
-                            htmlFor="markdown-content"
-                            className="block text-sm font-medium mb-2">
+                          <Label htmlFor="markdown-content" className="mb-2">
                             Markdown Content:
-                          </label>
-                          <textarea
+                          </Label>
+                          <Textarea
                             id="markdown-content"
                             value={markdownContent}
                             onChange={(e) => {
                               setMarkdownContent(e.target.value);
                               setUploadedFile(null); // Clear upload status when typing
                             }}
-                            placeholder="# Your Name&#10;**email@example.com** • **(555) 123-4567**&#10;**linkedin.com/in/yourname**&#10;&#10;Your professional summary here...&#10;&#10;## Experience&#10;**Software Engineer** at **Company Name** • *Jan 2023 - Present*&#10;- Developed and maintained web applications"
-                            className="w-full flex-1 min-h-[200px] p-3 border border-border rounded-lg bg-background text-foreground placeholder-muted-foreground focus:ring-2 focus:ring-primary focus:border-primary resize-none text-sm"
+                            placeholder="# Your Resume"
+                            className="border border-secondary"
                           />
                         </div>
 

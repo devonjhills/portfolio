@@ -21,6 +21,7 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 
 // Data can be kept outside for clarity
 const contactInfo = [
@@ -131,19 +132,18 @@ export function Contact() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex flex-col gap-3">
-                  <a
-                    href="mailto:devonjhills@gmail.com"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow w-full inline-flex items-center justify-center rounded-lg">
-                    <Mail className="mr-2 h-4 w-4" />
-                    Schedule Interview
-                  </a>
-                  <a
-                    href="/Devon_Hills_Resume_2025_Newest.pdf"
-                    download
-                    className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-3 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow w-full inline-flex items-center justify-center rounded-lg">
-                    <Download className="mr-2 h-4 w-4" />
-                    Download Resume
-                  </a>
+                  <Button asChild size="lg" className="shadow-lg hover:shadow-xl transition-shadow w-full">
+                    <a href="mailto:devonjhills@gmail.com">
+                      <Mail className="mr-2 h-4 w-4" />
+                      Schedule Interview
+                    </a>
+                  </Button>
+                  <Button asChild variant="secondary" size="lg" className="shadow-lg hover:shadow-xl transition-shadow w-full">
+                    <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
+                      <Download className="mr-2 h-4 w-4" />
+                      Download Resume
+                    </a>
+                  </Button>
                 </div>
               </CardContent>
             </Card>

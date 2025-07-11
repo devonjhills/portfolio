@@ -6,12 +6,20 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:a11y": "playwright test tests/accessibility.spec.ts",
+    "test:a11y:ui": "playwright test tests/accessibility.spec.ts --ui",
+    "test:a11y:headed": "playwright test tests/accessibility.spec.ts --headed",
+    "test:a11y:chrome": "playwright test tests/accessibility.spec.ts --project=chromium",
+    "test:a11y:report": "playwright show-report",
+    "playwright:install": "playwright install"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-collapsible": "^1.1.11",
     "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-scroll-area": "^1.2.9",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.7",
@@ -31,16 +39,28 @@
     "postcss": "^8.5.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.60.0",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^3.4.16"
+    "tailwindcss": "^3.4.16",
+    "zod": "^4.0.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.54.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "axe-core": "^4.10.3",
+    "concurrently": "^9.2.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
-    "typescript": "^5"
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
+    "playwright": "^1.54.1",
+    "typescript": "^5",
+    "wait-on": "^8.0.3"
   }
 }

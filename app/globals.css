@@ -5,12 +5,12 @@
 @layer base {
   :root {
     /* Brutalist Mint Green / Charcoal Color Scheme */
-    --primary: 151 83% 45%; /* #16a34a - Darker mint green for better contrast */
-    --primary-foreground: 0 0% 100%; /* #ffffff - White for better contrast */
+    --primary: 151 100% 85%; /* #80ff9a - Maximum brightness mint green for perfect dark mode contrast */
+    --primary-foreground: 0 0% 0%; /* #000000 - Black for contrast on bright green */
     --secondary: 0 0% 85%; /* #d9d9d9 - Lighter grey for better visibility */
     --secondary-foreground: 0 0% 10%; /* #1a1a1a - Dark text for contrast */
-    --accent: 151 83% 45%; /* #16a34a - Same as primary for brutalist simplicity */
-    --accent-foreground: 0 0% 100%; /* #ffffff - White for better contrast */
+    --accent: 151 100% 85%; /* #80ff9a - Same as primary for consistency */
+    --accent-foreground: 0 0% 0%; /* #000000 - Black for contrast on bright green */
     --warning: 45 93% 40%; /* #ca8a04 - Darker yellow for better contrast */
     --warning-foreground: 0 0% 100%; /* #ffffff - White for better contrast */
     --destructive: 0 84% 60%; /* #ef4444 - Strong red */
@@ -20,8 +20,8 @@
     --background: 240 6% 10%; /* #1a1a1c - Deep charcoal base */
     --foreground: 0 0% 100%; /* #ffffff - Pure white for maximum contrast */
     --muted: 240 5% 20%; /* #323234 - Lighter charcoal */
-    --muted-foreground: 0 0% 80%; /* #cccccc - Lighter grey for better visibility */
-    --border: 240 5% 30%; /* #4a4a4d - Visible borders */
+    --muted-foreground: 0 0% 95%; /* #f2f2f2 - Maximum brightness grey for perfect dark mode contrast */
+    --border: 240 4% 45%; /* #707073 - VISIBILITY INCREASED: Much lighter for high contrast */
     --input: 240 5% 20%; /* #323234 - Input backgrounds */
     --ring: 151 83% 53%; /* #22c55e - Mint green focus */
 
@@ -43,17 +43,17 @@
     /* Light mode overrides - Brutalist & Accessible */
     --background: 0 0% 98%; /* #fafafa - Off-white for comfort */
     --foreground: 0 0% 0%; /* #000000 - Pure black for maximum contrast */
-    --primary: 151 83% 35%; /* #15803d - Even darker mint for light mode contrast */
+    --primary: 151 83% 15%; /* #064225 - Very dark mint for maximum contrast */
     --primary-foreground: 0 0% 100%; /* #ffffff - White text */
-    --secondary: 0 0% 25%; /* #404040 - Dark grey for light mode visibility */
+    --secondary: 0 0% 15%; /* #262626 - Much darker grey for better contrast */
     --secondary-foreground: 0 0% 100%; /* #ffffff - White text on dark secondary */
-    --accent: 151 83% 35%; /* #15803d - Same as primary */
+    --accent: 151 83% 15%; /* #064225 - Same as primary for consistency */
     --accent-foreground: 0 0% 100%; /* #ffffff - White text */
     --warning: 45 93% 30%; /* #a16207 - Even darker yellow for light mode */
     --warning-foreground: 0 0% 100%; /* #ffffff - White text */
     --muted: 0 0% 95%; /* #f2f2f2 - Light grey background */
-    --muted-foreground: 0 0% 20%; /* #333333 - Dark grey for accessibility */
-    --border: 0 0% 85%; /* #d9d9d9 - Visible borders */
+    --muted-foreground: 0 0% 30%; /* #4d4d4d - Even darker grey for WCAG AA compliance */
+    --border: 0 0% 70%; /* #b3b3b3 - VISIBILITY INCREASED: Much darker for a strong, defined edge */
     --input: 0 0% 98%; /* #fafafa - Input backgrounds */
     --card: 0 0% 100%; /* #ffffff - Pure white cards */
     --card-foreground: 0 0% 0%; /* #000000 - Black card text */
@@ -113,13 +113,19 @@
 
   /* Utils for lib/utils.ts */
   .dark .bg-grid-white\/\[0\.2\] {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.2) 1px,
+        transparent 1px
+      ),
       linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
     background-size: 20px 20px;
   }
-  
+
   .dark .bg-dot-white\/\[0\.2\] {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.2) 1px,
+      transparent 1px
+    );
     background-size: 20px 20px;
   }
 
@@ -170,13 +176,23 @@
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
   @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
-    50% { box-shadow: 0 0 30px rgba(34, 197, 94, 0.5); }
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(34, 197, 94, 0.5);
+    }
   }
 
   .animate-float {
@@ -217,12 +233,12 @@
   .section-header {
     @apply text-foreground font-heading font-bold;
   }
-  
+
   .card-professional {
     @apply bg-card border-3 border-border shadow-lg;
     border-radius: var(--radius);
   }
-  
+
   .button-professional {
     @apply font-semibold transition-all duration-200 border-3;
     border-radius: var(--radius);
@@ -232,7 +248,7 @@
   .section-primary {
     background-color: hsl(var(--section-primary));
   }
-  
+
   .section-secondary {
     background-color: hsl(var(--section-secondary));
   }
@@ -264,27 +280,33 @@
 
   /* Aceternity UI Grid and Dot Patterns */
   .bg-grid-white\/\[0\.2\] {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.2) 1px,
+        transparent 1px
+      ),
       linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
     background-size: 20px 20px;
   }
-  
+
   .bg-grid-black\/\[0\.2\] {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0, 0, 0, 0.2) 1px, transparent 1px);
     background-size: 20px 20px;
   }
-  
+
   .bg-dot-white\/\[0\.2\] {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.2) 1px,
+      transparent 1px
+    );
     background-size: 20px 20px;
   }
-  
+
   .bg-dot-black\/\[0\.2\] {
     background-image: radial-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
     background-size: 20px 20px;
   }
-  
+
   @keyframes spotlight {
     0% {
       opacity: 0;
@@ -295,7 +317,7 @@
       transform: translate(-50%, -40%) scale(1);
     }
   }
-  
+
   .animate-spotlight {
     animation: spotlight 2s ease 0.75s 1 forwards;
   }

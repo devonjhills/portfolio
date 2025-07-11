@@ -67,6 +67,9 @@ const FloatingDockMobile = ({
                   href={item.href}
                   key={item.title}
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm shadow-lg hover:bg-primary/10 transition-colors"
+                  aria-label={item.title}
+                  target={item.href.startsWith('mailto:') ? undefined : "_blank"}
+                  rel={item.href.startsWith('mailto:') ? undefined : "noopener noreferrer"}
                 >
                   <div className="h-4 w-4 flex items-center justify-center">{item.icon}</div>
                 </a>
@@ -78,6 +81,8 @@ const FloatingDockMobile = ({
       <button
         onClick={() => setOpen(!open)}
         className="flex h-10 w-10 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm shadow-lg hover:bg-primary/10 transition-colors"
+        aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={open}
       >
         <MoreHorizontal className="h-5 w-5 text-muted-foreground" />
       </button>
@@ -167,6 +172,7 @@ function IconContainer({
       href={href}
       target={href.startsWith('mailto:') ? undefined : "_blank"}
       rel={href.startsWith('mailto:') ? undefined : "noopener noreferrer"}
+      aria-label={title}
     >
       <motion.div
         ref={ref}

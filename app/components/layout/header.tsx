@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ThemeToggle } from "./theme-toggle";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 const sections = [
   { name: "About", href: "#about" },
@@ -94,21 +95,25 @@ export function Header() {
           <nav className="hidden md:flex items-center space-x-8">
             {/* Page Sections */}
             {sections.map((item) => (
-              <motion.button
+              <motion.div
                 key={item.name}
-                onClick={() => handleNavigation(item.href)}
-                className={`text-foreground hover:text-primary transition-colors text-sm font-medium flex items-center gap-1 ${
-                  pathname === '/' ? 'text-primary' : 'text-muted-foreground'
-                }`}
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}>
-                {item.name}
-                {pathname !== '/' && (
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-                  </svg>
-                )}
-              </motion.button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleNavigation(item.href)}
+                  className={`text-sm font-medium ${
+                    pathname === '/' ? 'text-primary' : 'text-muted-foreground'
+                  }`}>
+                  {item.name}
+                  {pathname !== '/' && (
+                    <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                    </svg>
+                  )}
+                </Button>
+              </motion.div>
             ))}
             
             {/* Separator */}
@@ -116,19 +121,23 @@ export function Header() {
             
             {/* External Pages */}
             {pages.map((item) => (
-              <motion.button
+              <motion.div
                 key={item.name}
-                onClick={() => handleNavigation(item.href)}
-                className={`hover:text-primary transition-colors text-sm font-medium flex items-center gap-1 ${
-                  pathname === item.href ? 'text-primary' : 'text-foreground'
-                }`}
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}>
-                {item.name}
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </motion.button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleNavigation(item.href)}
+                  className={`text-sm font-medium ${
+                    pathname === item.href ? 'text-primary' : 'text-foreground'
+                  }`}>
+                  {item.name}
+                  <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </Button>
+              </motion.div>
             ))}
             
             <ThemeToggle />
@@ -137,16 +146,17 @@ export function Header() {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
             <ThemeToggle />
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-foreground hover:text-primary transition-colors"
               aria-label="Toggle mobile menu">
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
               ) : (
                 <Menu className="h-6 w-6" />
               )}
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -164,19 +174,20 @@ export function Header() {
                 Portfolio Sections
               </div>
               {sections.map((item) => (
-                <button
+                <Button
                   key={item.name}
+                  variant="ghost"
                   onClick={() => handleNavigation(item.href)}
-                  className={`hover:text-primary transition-colors text-left py-2 pl-4 flex items-center gap-2 ${
+                  className={`justify-start py-2 pl-4 h-auto ${
                     pathname === '/' ? 'text-primary' : 'text-muted-foreground'
                   }`}>
                   {item.name}
                   {pathname !== '/' && (
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
                     </svg>
                   )}
-                </button>
+                </Button>
               ))}
               
               {/* Separator */}
@@ -187,17 +198,18 @@ export function Header() {
                 Tools & Pages
               </div>
               {pages.map((item) => (
-                <button
+                <Button
                   key={item.name}
+                  variant="ghost"
                   onClick={() => handleNavigation(item.href)}
-                  className={`hover:text-primary transition-colors text-left py-2 pl-4 flex items-center gap-2 ${
+                  className={`justify-start py-2 pl-4 h-auto ${
                     pathname === item.href ? 'text-primary' : 'text-foreground'
                   }`}>
                   {item.name}
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
-                </button>
+                </Button>
               ))}
             </div>
           </motion.nav>

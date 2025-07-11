@@ -20,6 +20,7 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
@@ -212,7 +213,8 @@ const ProjectCard = React.memo(
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center h-8 w-8 p-0 opacity-70 hover:opacity-100 hover:text-accent transition-all">
+                className="inline-flex items-center justify-center h-8 w-8 p-0 opacity-70 hover:opacity-100 hover:text-accent transition-all"
+                aria-label={`View live demo of ${project.title}`}>
                 <ExternalLink className="h-4 w-4" />
               </a>
             )}
@@ -256,18 +258,17 @@ const ProjectCard = React.memo(
       
       {/* Footer - Always at bottom */}
       <CardFooter className="flex gap-3 p-5 pt-0 mt-auto">
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2.5 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow flex-1 inline-flex items-center justify-center rounded-lg">
-          <Github className="mr-2 h-4 w-4" /> Code
-        </a>
-        <button
-          className="bg-accent text-accent-foreground hover:bg-accent/90 px-4 py-2.5 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow flex-1 inline-flex items-center justify-center rounded-lg"
+        <Button asChild variant="secondary" className="shadow-lg hover:shadow-xl transition-shadow flex-1">
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+            <Github className="mr-2 h-4 w-4" /> Code
+          </a>
+        </Button>
+        <Button
+          variant="outline"
+          className="shadow-lg hover:shadow-xl transition-shadow flex-1"
           onClick={() => onViewDetails(project)}>
           <Eye className="mr-2 h-4 w-4" /> Details
-        </button>
+        </Button>
       </CardFooter>
     </Card>
   )
@@ -478,21 +479,17 @@ export function Projects() {
               {/* Footer with action buttons */}
               <DialogFooter className="p-4 sm:p-6 pt-3 sm:pt-4 bg-muted/30 border-t flex-shrink-0">
                 <div className="flex gap-3 w-full sm:w-auto">
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:bg-secondary/80 flex-1 sm:flex-none inline-flex items-center justify-center">
-                    <Github className="mr-2 h-4 w-4" /> View Code
-                  </a>
-                  {selectedProject.liveUrl && (
-                    <a
-                      href={selectedProject.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold transition-all hover:bg-accent/90 flex-1 sm:flex-none inline-flex items-center justify-center">
-                      <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                  <Button asChild variant="secondary" size="lg" className="flex-1 sm:flex-none">
+                    <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <Github className="mr-2 h-4 w-4" /> View Code
                     </a>
+                  </Button>
+                  {selectedProject.liveUrl && (
+                    <Button asChild size="lg" className="flex-1 sm:flex-none">
+                      <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                      </a>
+                    </Button>
                   )}
                 </div>
               </DialogFooter>
