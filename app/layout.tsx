@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/layout/theme-provider";
+import { Header } from "./components/layout/header";
+import { Footer } from "./components/layout/footer";
+import { ScrollToTop } from "./components/ui/scroll-to-top";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -99,7 +102,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${jetBrainsMono.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <div className="min-h-screen bg-background text-foreground">
+            <Header />
+            <main>
+              {children}
+            </main>
+            <Footer />
+            <ScrollToTop />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

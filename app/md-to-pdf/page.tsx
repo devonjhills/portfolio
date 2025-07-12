@@ -21,9 +21,6 @@ import {
   File,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { Header } from "../components/layout/header";
-import { Footer } from "../components/layout/footer";
-import { ScrollToTop } from "../components/ui/scroll-to-top";
 
 export default function MarkdownToPDFPage() {
   const [markdownContent, setMarkdownContent] = useState("");
@@ -134,245 +131,238 @@ export default function MarkdownToPDFPage() {
   }, [markdownContent]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Header />
-      <main className="animate-in fade-in duration-700">
-        <section className="section-primary min-h-screen flex items-center py-12 lg:py-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl z-10">
+    <section className="section-primary min-h-screen flex items-center py-12 lg:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-6xl mx-auto">
+          {/* Page Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+              Markdown to PDF Converter
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Convert your markdown resume to an ATS-compliant PDF with
+              professional formatting
+            </p>
+          </div>
+
+          {/* Success Message */}
+          {downloadSuccess && (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-6xl mx-auto">
-              {/* Page Header */}
-              <div className="text-center mb-12">
-                <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-                  Markdown to PDF Converter
-                </h1>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  Convert your markdown resume to an ATS-compliant PDF with
-                  professional formatting
-                </p>
-              </div>
-
-              {/* Success Message */}
-              {downloadSuccess && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="mb-6 mx-auto max-w-md">
-                  <div className="flex items-center gap-2 p-4 bg-primary/10 border border-primary/20 rounded-lg">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span className="text-foreground font-medium">
-                      PDF downloaded successfully!
-                    </span>
-                  </div>
-                </motion.div>
-              )}
-
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Input Section */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="lg:col-span-2">
-                  <Card className="bg-card border-2 border-primary/30 shadow-lg h-full">
-                    <CardHeader className="pb-4">
-                      <CardTitle className="flex items-center gap-2 text-lg font-heading font-bold text-foreground">
-                        <FileText className="h-5 w-5 text-primary" />
-                        Input
-                      </CardTitle>
-                      <CardDescription className="text-muted-foreground">
-                        Upload a .md file or paste your markdown content
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-1 flex flex-col">
-                      <div className="space-y-4 flex-1 flex flex-col">
-                        {/* File Upload Area */}
-                        <div
-                          className={`border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
-                            isDragOver
-                              ? "border-primary bg-primary/10"
-                              : "border-border hover:border-primary/50"
-                          }`}
-                          onDragOver={handleDragOver}
-                          onDragLeave={handleDragLeave}
-                          onDrop={handleDrop}>
-                          {uploadedFile ? (
-                            <div className="flex items-center justify-center gap-2 text-primary">
-                              <File className="h-5 w-5" />
-                              <span className="text-sm font-medium">
-                                {uploadedFile} uploaded
-                              </span>
-                              <CheckCircle className="h-4 w-4" />
-                            </div>
-                          ) : (
-                            <>
-                              <Upload className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
-                              <p className="text-sm text-muted-foreground mb-2">
-                                Drag and drop your .md file here, or
-                              </p>
-                              <label
-                                htmlFor="file-upload"
-                                className="cursor-pointer">
-                                <Button variant="outline" size="sm" asChild>
-                                  <span>Choose File</span>
-                                </Button>
-                              </label>
-                            </>
-                          )}
-                          <input
-                            id="file-upload"
-                            type="file"
-                            accept=".md,.markdown"
-                            onChange={handleFileInputChange}
-                            className="hidden"
-                          />
-                        </div>
-
-                        {/* Textarea */}
-                        <div className="flex-1 flex flex-col">
-                          <Label htmlFor="markdown-content" className="mb-2">
-                            Markdown Content:
-                          </Label>
-                          <Textarea
-                            id="markdown-content"
-                            value={markdownContent}
-                            onChange={(e) => {
-                              setMarkdownContent(e.target.value);
-                              setUploadedFile(null); // Clear upload status when typing
-                            }}
-                            placeholder="# Your Resume"
-                            className="border border-secondary h-64"
-                          />
-                        </div>
-
-                        {/* Error Display */}
-                        {error && (
-                          <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="flex items-center gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
-                            <AlertCircle className="h-4 w-4 text-destructive" />
-                            <span className="text-sm text-destructive">
-                              {error}
-                            </span>
-                          </motion.div>
-                        )}
-
-                        {/* Convert Button */}
-                        <Button
-                          onClick={handleConvert}
-                          disabled={isLoading || !markdownContent.trim()}
-                          className="w-full"
-                          size="lg">
-                          {isLoading ? (
-                            <>
-                              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                              Converting...
-                            </>
-                          ) : (
-                            <>
-                              <Download className="h-4 w-4 mr-2" />
-                              Convert to PDF
-                            </>
-                          )}
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-
-                {/* Features Section */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}>
-                  <Card className="h-full bg-card border-2 border-primary/30 shadow-lg">
-                    <CardHeader className="pb-4">
-                      <CardTitle className="text-lg font-heading font-bold text-foreground">
-                        ATS-Compliant Features
-                      </CardTitle>
-                      <CardDescription className="text-muted-foreground">
-                        Optimized for Applicant Tracking Systems
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <div className="space-y-3">
-                        <div className="flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 rounded-lg">
-                          <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                          <div>
-                            <h4 className="font-medium text-foreground text-sm">
-                              Standard Fonts
-                            </h4>
-                            <p className="text-xs text-muted-foreground">
-                              Helvetica and Times Roman
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 rounded-lg">
-                          <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                          <div>
-                            <h4 className="font-medium text-foreground text-sm">
-                              Clean Structure
-                            </h4>
-                            <p className="text-xs text-muted-foreground">
-                              Proper heading hierarchy
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 rounded-lg">
-                          <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                          <div>
-                            <h4 className="font-medium text-foreground text-sm">
-                              Professional Layout
-                            </h4>
-                            <p className="text-xs text-muted-foreground">
-                              Optimized spacing & alignment
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 rounded-lg">
-                          <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                          <div>
-                            <h4 className="font-medium text-foreground text-sm">
-                              Smart Formatting
-                            </h4>
-                            <p className="text-xs text-muted-foreground">
-                              Auto job title & date alignment
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="mt-4 p-3 bg-secondary/10 border border-secondary/20 rounded-lg">
-                        <h4 className="font-medium text-foreground mb-2 text-sm">
-                          Supported Features:
-                        </h4>
-                        <ul className="text-xs text-muted-foreground space-y-1">
-                          <li>• Headings (H1, H2, H3)</li>
-                          <li>• Bold and italic text</li>
-                          <li>• Bullet point lists</li>
-                          <li>• Job title formatting</li>
-                          <li>• Contact info detection</li>
-                          <li>• Professional summaries</li>
-                        </ul>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+              exit={{ opacity: 0, y: -10 }}
+              className="mb-6 mx-auto max-w-md">
+              <div className="flex items-center gap-2 p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span className="text-foreground font-medium">
+                  PDF downloaded successfully!
+                </span>
               </div>
             </motion.div>
+          )}
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Input Section */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="lg:col-span-2">
+              <Card className="bg-card border-2 border-primary/30 shadow-lg h-full">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center gap-2 text-lg font-heading font-bold text-foreground">
+                    <FileText className="h-5 w-5 text-primary" />
+                    Input
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground">
+                    Upload a .md file or paste your markdown content
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1 flex flex-col">
+                  <div className="space-y-4 flex-1 flex flex-col">
+                    {/* File Upload Area */}
+                    <div
+                      className={`border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
+                        isDragOver
+                          ? "border-primary bg-primary/10"
+                          : "border-border hover:border-primary/50"
+                      }`}
+                      onDragOver={handleDragOver}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}>
+                      {uploadedFile ? (
+                        <div className="flex items-center justify-center gap-2 text-primary">
+                          <File className="h-5 w-5" />
+                          <span className="text-sm font-medium">
+                            {uploadedFile} uploaded
+                          </span>
+                          <CheckCircle className="h-4 w-4" />
+                        </div>
+                      ) : (
+                        <>
+                          <Upload className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                          <p className="text-sm text-muted-foreground mb-2">
+                            Drag and drop your .md file here, or
+                          </p>
+                          <label
+                            htmlFor="file-upload"
+                            className="cursor-pointer">
+                            <Button variant="outline" size="sm" asChild>
+                              <span>Choose File</span>
+                            </Button>
+                          </label>
+                        </>
+                      )}
+                      <input
+                        id="file-upload"
+                        type="file"
+                        accept=".md,.markdown"
+                        onChange={handleFileInputChange}
+                        className="hidden"
+                      />
+                    </div>
+
+                    {/* Textarea */}
+                    <div className="flex-1 flex flex-col">
+                      <Label htmlFor="markdown-content" className="mb-2">
+                        Markdown Content:
+                      </Label>
+                      <Textarea
+                        id="markdown-content"
+                        value={markdownContent}
+                        onChange={(e) => {
+                          setMarkdownContent(e.target.value);
+                          setUploadedFile(null); // Clear upload status when typing
+                        }}
+                        placeholder="# Your Resume"
+                        className="border border-secondary h-64"
+                      />
+                    </div>
+
+                    {/* Error Display */}
+                    {error && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
+                        <AlertCircle className="h-4 w-4 text-destructive" />
+                        <span className="text-sm text-destructive">
+                          {error}
+                        </span>
+                      </motion.div>
+                    )}
+
+                    {/* Convert Button */}
+                    <Button
+                      onClick={handleConvert}
+                      disabled={isLoading || !markdownContent.trim()}
+                      className="w-full"
+                      size="lg">
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          Converting...
+                        </>
+                      ) : (
+                        <>
+                          <Download className="h-4 w-4 mr-2" />
+                          Convert to PDF
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Features Section */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}>
+              <Card className="h-full bg-card border-2 border-primary/30 shadow-lg">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-lg font-heading font-bold text-foreground">
+                    ATS-Compliant Features
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground">
+                    Optimized for Applicant Tracking Systems
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 rounded-lg">
+                      <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-medium text-foreground text-sm">
+                          Standard Fonts
+                        </h4>
+                        <p className="text-xs text-muted-foreground">
+                          Helvetica and Times Roman
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 rounded-lg">
+                      <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-medium text-foreground text-sm">
+                          Clean Structure
+                        </h4>
+                        <p className="text-xs text-muted-foreground">
+                          Proper heading hierarchy
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 rounded-lg">
+                      <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-medium text-foreground text-sm">
+                          Professional Layout
+                        </h4>
+                        <p className="text-xs text-muted-foreground">
+                          Optimized spacing & alignment
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 rounded-lg">
+                      <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-medium text-foreground text-sm">
+                          Smart Formatting
+                        </h4>
+                        <p className="text-xs text-muted-foreground">
+                          Auto job title & date alignment
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 p-3 bg-secondary/10 border border-secondary/20 rounded-lg">
+                    <h4 className="font-medium text-foreground mb-2 text-sm">
+                      Supported Features:
+                    </h4>
+                    <ul className="text-xs text-muted-foreground space-y-1">
+                      <li>• Headings (H1, H2, H3)</li>
+                      <li>• Bold and italic text</li>
+                      <li>• Bullet point lists</li>
+                      <li>• Job title formatting</li>
+                      <li>• Contact info detection</li>
+                      <li>• Professional summaries</li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
-        </section>
-      </main>
-      <Footer />
-      <ScrollToTop />
-    </div>
+        </motion.div>
+      </div>
+    </section>
   );
 }
