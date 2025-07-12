@@ -245,7 +245,7 @@ export default function MarkdownToPDFPage() {
                               setUploadedFile(null); // Clear upload status when typing
                             }}
                             placeholder="# Your Resume"
-                            className="border border-secondary"
+                            className="border border-secondary h-64"
                           />
                         </div>
 
