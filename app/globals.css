@@ -4,7 +4,41 @@
 
 @layer base {
   :root {
-    /* Brutalist Mint Green / Charcoal Color Scheme */
+    /* Light mode - Standard default - Brutalist & Accessible */
+    --background: 0 0% 98%; /* #fafafa - Off-white for comfort */
+    --foreground: 0 0% 0%; /* #000000 - Pure black for maximum contrast */
+    --primary: 151 83% 25%; /* #0a5a37 - Dark mint for sufficient contrast */
+    --primary-foreground: 0 0% 100%; /* #ffffff - White text */
+    --secondary: 0 0% 25%; /* #404040 - Dark grey for sufficient contrast */
+    --secondary-foreground: 0 0% 100%; /* #ffffff - White text on dark secondary */
+    --accent: 151 83% 25%; /* #0a5a37 - Same as primary for consistency */
+    --accent-foreground: 0 0% 100%; /* #ffffff - White text */
+    --warning: 45 93% 30%; /* #a16207 - Even darker yellow for light mode */
+    --warning-foreground: 0 0% 100%; /* #ffffff - White text */
+    --destructive: 0 84% 60%; /* #ef4444 - Strong red */
+    --destructive-foreground: 0 0% 100%; /* #ffffff */
+    --muted: 0 0% 95%; /* #f2f2f2 - Light grey background */
+    --muted-foreground: 0 0% 35%; /* #595959 - Dark grey for WCAG AA compliance */
+    --border: 0 0% 70%; /* #b3b3b3 - VISIBILITY INCREASED: Much darker for a strong, defined edge */
+    --input: 0 0% 98%; /* #fafafa - Input backgrounds */
+    --ring: 151 83% 53%; /* #22c55e - Mint green focus */
+
+    /* Section Backgrounds for Visual Distinction - Light Mode */
+    --section-primary: 0 0% 98%; /* #fafafa - Primary section background */
+    --section-secondary: 151 20% 96%; /* #f0f9f4 - Subtle mint tint */
+
+    /* Card & Popover */
+    --card: 0 0% 100%; /* #ffffff - Pure white cards */
+    --card-foreground: 0 0% 0%; /* #000000 - Black card text */
+    --popover: 0 0% 100%; /* #ffffff - White popover */
+    --popover-foreground: 0 0% 0%; /* #000000 - Black popover text */
+
+    /* Border Radius */
+    --radius: 0.25rem; /* Sharp corners for brutalist aesthetic */
+  }
+
+  .dark {
+    /* Dark mode overrides - Brutalist Mint Green / Charcoal Color Scheme */
     --primary: 151 100% 85%; /* #80ff9a - Maximum brightness mint green for perfect dark mode contrast */
     --primary-foreground: 0 0% 0%; /* #000000 - Black for contrast on bright green */
     --secondary: 0 0% 85%; /* #d9d9d9 - Lighter grey for better visibility */
@@ -13,17 +47,14 @@
     --accent-foreground: 0 0% 0%; /* #000000 - Black for contrast on bright green */
     --warning: 45 93% 40%; /* #ca8a04 - Darker yellow for better contrast */
     --warning-foreground: 0 0% 100%; /* #ffffff - White for better contrast */
-    --destructive: 0 84% 60%; /* #ef4444 - Strong red */
-    --destructive-foreground: 0 0% 100%; /* #ffffff */
 
     /* Neutral Base - Brutalist Dark Mode */
     --background: 240 6% 10%; /* #1a1a1c - Deep charcoal base */
     --foreground: 0 0% 100%; /* #ffffff - Pure white for maximum contrast */
     --muted: 240 5% 20%; /* #323234 - Lighter charcoal */
-    --muted-foreground: 0 0% 95%; /* #f2f2f2 - Maximum brightness grey for perfect dark mode contrast */
+    --muted-foreground: 0 0% 85%; /* #d9d9d9 - Lighter grey for better dark mode contrast */
     --border: 240 4% 45%; /* #707073 - VISIBILITY INCREASED: Much lighter for high contrast */
     --input: 240 5% 20%; /* #323234 - Input backgrounds */
-    --ring: 151 83% 53%; /* #22c55e - Mint green focus */
 
     /* Section Backgrounds for Visual Distinction */
     --section-primary: 240 6% 10%; /* #1a1a1c - Primary section background */
@@ -34,35 +65,6 @@
     --card-foreground: 0 0% 100%; /* #ffffff - Card text */
     --popover: 240 6% 10%; /* #1a1a1c - Popover background */
     --popover-foreground: 0 0% 100%; /* #ffffff - Popover text */
-
-    /* Border Radius */
-    --radius: 0.25rem; /* Sharp corners for brutalist aesthetic */
-  }
-
-  .light {
-    /* Light mode overrides - Brutalist & Accessible */
-    --background: 0 0% 98%; /* #fafafa - Off-white for comfort */
-    --foreground: 0 0% 0%; /* #000000 - Pure black for maximum contrast */
-    --primary: 151 83% 15%; /* #064225 - Very dark mint for maximum contrast */
-    --primary-foreground: 0 0% 100%; /* #ffffff - White text */
-    --secondary: 0 0% 15%; /* #262626 - Much darker grey for better contrast */
-    --secondary-foreground: 0 0% 100%; /* #ffffff - White text on dark secondary */
-    --accent: 151 83% 15%; /* #064225 - Same as primary for consistency */
-    --accent-foreground: 0 0% 100%; /* #ffffff - White text */
-    --warning: 45 93% 30%; /* #a16207 - Even darker yellow for light mode */
-    --warning-foreground: 0 0% 100%; /* #ffffff - White text */
-    --muted: 0 0% 95%; /* #f2f2f2 - Light grey background */
-    --muted-foreground: 0 0% 30%; /* #4d4d4d - Even darker grey for WCAG AA compliance */
-    --border: 0 0% 70%; /* #b3b3b3 - VISIBILITY INCREASED: Much darker for a strong, defined edge */
-    --input: 0 0% 98%; /* #fafafa - Input backgrounds */
-    --card: 0 0% 100%; /* #ffffff - Pure white cards */
-    --card-foreground: 0 0% 0%; /* #000000 - Black card text */
-    --popover: 0 0% 100%; /* #ffffff - White popover */
-    --popover-foreground: 0 0% 0%; /* #000000 - Black popover text */
-
-    /* Section Backgrounds for Visual Distinction - Light Mode */
-    --section-primary: 0 0% 98%; /* #fafafa - Primary section background */
-    --section-secondary: 151 20% 96%; /* #f0f9f4 - Subtle mint tint */
   }
 
   * {
