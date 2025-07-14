@@ -184,12 +184,15 @@ const MarkdownElementComponent: React.FC<{ element: MarkdownElement }> = ({ elem
     
     case 'list':
       if (element.items) {
+        // Use the original list marker type, defaulting to bullet points
+        const marker = element.listMarker || '•';
+        
         return (
           <View>
             {element.items.map((item, index) => (
               <FormattedText 
                 key={index} 
-                text={`• ${item}`} 
+                text={`${marker} ${item}`} 
                 style={styles.bullet} 
               />
             ))}

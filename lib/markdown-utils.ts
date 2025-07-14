@@ -17,6 +17,7 @@ export interface MarkdownElement {
   content: string;
   level?: number;
   items?: string[];
+  listMarker?: '•' | '-';
   company?: string;
   position?: string;
   date?: string;
@@ -40,10 +41,64 @@ export function cleanMarkdownForATS(content: string): string {
   // Remove images
   content = content.replace(/!\[([^\]]*)\]\([^)]+\)/g, '');
 
+  // Fix bullet point formatting - ensure proper markdown list syntax
+  content = fixBulletPointFormatting(content);
+
   // Clean up multiple newlines
   content = content.replace(/\n\n+/g, '\n\n');
 
   return content.trim();
+}
+
+/**
+ * Fix bullet point formatting to ensure they're recognized as proper markdown lists
+ */
+function fixBulletPointFormatting(content: string): string {
+  const lines = content.split('\n');
+  const result: string[] = [];
+  let inListContext = false;
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+    
+    // Check if this line is a bullet point (but not bold/italic formatting)
+    const isBulletPoint = (trimmed.startsWith('•') || 
+                          trimmed.startsWith('- ') || 
+                          (trimmed.startsWith('* ') && !trimmed.startsWith('**')));
+    
+    if (isBulletPoint) {
+      // Ensure there's a blank line before the first list item if we're not already in a list
+      if (!inListContext && result.length > 0 && result[result.length - 1].trim() !== '') {
+        result.push('');
+      }
+      
+      // Convert bullet points to standard markdown format with proper spacing
+      if (trimmed.startsWith('•')) {
+        result.push(`- ${trimmed.substring(1).trim()}`);
+      } else if (trimmed.startsWith('- ')) {
+        result.push(`- ${trimmed.substring(2).trim()}`);
+      } else if (trimmed.startsWith('* ')) {
+        result.push(`- ${trimmed.substring(2).trim()}`);
+      }
+      
+      inListContext = true;
+    } else if (trimmed === '') {
+      // Empty line - preserve it and reset list context
+      result.push(line);
+      inListContext = false;
+    } else {
+      // Non-list line
+      if (inListContext) {
+        // Add a blank line after list if next line isn't empty
+        result.push('');
+        inListContext = false;
+      }
+      result.push(line);
+    }
+  }
+  
+  return result.join('\n');
 }
 
 /**
@@ -92,9 +147,34 @@ export function isContactInfo(text: string): boolean {
 }
 
 /**
+ * Detect the list marker type from original markdown content
+ */
+function detectListMarker(originalContent: string): '•' | '-' {
+  // Look for the original list marker in the source markdown (before cleaning)
+  const lines = originalContent.split('\n');
+  
+  // Find lines that contain list markers
+  for (const line of lines) {
+    const trimmed = line.trim();
+    // Check for lines that start with list markers
+    if (trimmed.startsWith('•')) {
+      return '•';
+    } else if (trimmed.startsWith('- ') || (trimmed.startsWith('* ') && !trimmed.startsWith('**'))) {
+      return '-';
+    }
+  }
+  
+  // Default to bullet point
+  return '•';
+}
+
+/**
  * Parse markdown content into structured format for PDF generation
  */
 export function parseMarkdownContent(markdownContent: string): ParsedMarkdownContent {
+  // Detect list marker from original content before cleaning
+  const originalListMarker = detectListMarker(markdownContent);
+  
   const cleaned = cleanMarkdownForATS(markdownContent);
   const md = new MarkdownIt();
   const tokens = md.parse(cleaned, {});
@@ -180,7 +260,8 @@ export function parseMarkdownContent(markdownContent: string): ParsedMarkdownCon
         currentSection.content.push({
           type: 'list',
           content: '',
-          items: listItems
+          items: listItems,
+          listMarker: originalListMarker
         });
       }
       
