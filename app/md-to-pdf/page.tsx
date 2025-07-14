@@ -19,6 +19,7 @@ import {
   AlertCircle,
   CheckCircle,
   File,
+  X,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -130,6 +131,14 @@ export default function MarkdownToPDFPage() {
     }
   }, [markdownContent]);
 
+  // Clear markdown content
+  const handleClear = useCallback(() => {
+    setMarkdownContent("");
+    setUploadedFile(null);
+    setError(null);
+    setDownloadSuccess(false);
+  }, []);
+
   return (
     <section className="section-primary min-h-screen flex items-center py-12 lg:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl z-10">
@@ -228,9 +237,21 @@ export default function MarkdownToPDFPage() {
 
                     {/* Textarea */}
                     <div className="flex-1 flex flex-col">
-                      <Label htmlFor="markdown-content" className="mb-2">
-                        Markdown Content:
-                      </Label>
+                      <div className="flex items-center justify-between mb-2">
+                        <Label htmlFor="markdown-content">
+                          Markdown Content:
+                        </Label>
+                        {markdownContent && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={handleClear}
+                            className="h-6 px-2">
+                            <X className="h-3 w-3 mr-1" />
+                            Clear
+                          </Button>
+                        )}
+                      </div>
                       <Textarea
                         id="markdown-content"
                         value={markdownContent}
