@@ -85,7 +85,7 @@ export function Hero() {
               className="flex justify-center lg:justify-start">
               <Badge
                 variant="default"
-                className="px-4 py-2 bg-secondary text-secondary-foreground font-semibold shadow-lg hover:shadow-xl transition-shadow rounded-lg border-2 border-secondary">
+                className="badge-available px-4 py-2 font-semibold rounded-lg">
                 <span className="relative flex h-2 w-2 mr-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
@@ -98,11 +98,11 @@ export function Hero() {
               variants={itemVariants}
               className="flex justify-center lg:justify-start">
               <div className="relative p-1 group inline-block">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-primary/70 opacity-60 group-hover:opacity-80 transition-opacity duration-500 animate-slow-spin"></div>
-                <div className="relative bg-background/60 rounded-full p-1">
-                  <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-transparent">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-primary/70 opacity-60 group-hover:opacity-90 transition-colors duration-500 animate-slow-spin group-hover:animate-pulse-soft"></div>
+                <div className="relative bg-background/60 rounded-full p-1 backdrop-blur-sm">
+                  <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-transparent transition-all duration-300 group-hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.2)]">
                     <AvatarImage src="/avatar.png" alt="Devon Hills" />
-                    <AvatarFallback className="text-4xl font-bold bg-primary/10 text-primary">
+                    <AvatarFallback className="text-4xl font-bold bg-gradient-to-br from-primary/20 to-accent/20 text-primary">
                       DH
                     </AvatarFallback>
                   </Avatar>
@@ -112,7 +112,7 @@ export function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground mb-6">
+              className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 gradient-text">
               Devon Hills
             </motion.h1>
 
@@ -130,12 +130,16 @@ export function Hero() {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button
                 size="lg"
-                className="shadow-lg hover:shadow-xl transition-shadow w-full sm:w-auto"
+                className="btn-gradient shadow-lg transition-colors duration-300 w-full sm:w-auto"
                 onClick={() => scrollToSection("experience")}>
                 <Eye className="mr-2 h-4 w-4" />
                 Explore My Work
               </Button>
-              <Button asChild variant="secondary" size="lg" className="shadow-lg hover:shadow-xl transition-shadow w-full sm:w-auto">
+              <Button 
+                asChild 
+                variant="secondary" 
+                size="lg" 
+                className="btn-secondary w-full sm:w-auto">
                 <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
                   <Download className="mr-2 h-4 w-4" />
                   Download Resume
@@ -148,7 +152,7 @@ export function Hero() {
           <div className="space-y-8">
             {/* Highlights Grid */}
             <motion.div variants={itemVariants}>
-              <h2 className="text-xl font-heading font-bold text-secondary mb-4">
+              <h2 className="text-xl font-heading font-bold gradient-text mb-4">
                 Core Expertise
               </h2>
               <div className="grid gap-4">
@@ -156,17 +160,19 @@ export function Hero() {
                   <motion.div
                     key={highlight.text}
                     variants={itemVariants}
-                    className="bg-card border-2 border-primary/30 rounded-lg shadow-lg p-4 flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary/20 border-2 border-primary/30 rounded-lg flex items-center justify-center">
-                      <highlight.icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-foreground text-base">
-                        {highlight.text}
-                      </p>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {highlight.subtext}
-                      </p>
+                    className="hero-highlight group">
+                    <div className="hero-highlight-content">
+                      <div className="hero-highlight-icon">
+                        <highlight.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="hero-highlight-title">
+                          {highlight.text}
+                        </p>
+                        <p className="hero-highlight-subtitle">
+                          {highlight.subtext}
+                        </p>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -174,8 +180,8 @@ export function Hero() {
             </motion.div>
 
             {/* Contact Section */}
-            <motion.div variants={itemVariants} className="space-y-4">
-              <h3 className="text-xl font-heading font-bold text-accent">
+            <motion.div variants={itemVariants} className="space-y-4 glass-card p-6 rounded-lg">
+              <h3 className="text-xl font-heading font-bold gradient-text">
                 Let&apos;s Connect
               </h3>
               <p className="text-muted-foreground leading-relaxed">

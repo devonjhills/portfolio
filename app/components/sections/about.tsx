@@ -135,7 +135,7 @@ export function About() {
           className="space-y-16">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-text mb-6">
               About Me
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -151,7 +151,7 @@ export function About() {
           <motion.div
             variants={itemVariants}
             className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="bg-card border-2 border-primary/30 text-center p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="card-professional text-center p-6">
               <CardContent className="p-4">
                 <div className="text-2xl font-bold text-primary mb-1">7+</div>
                 <div className="text-sm text-muted-foreground">
@@ -159,7 +159,7 @@ export function About() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-card border-2 border-primary/30 text-center p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="card-professional text-center p-6">
               <CardContent className="p-4">
                 <div className="text-2xl font-bold text-primary mb-1">
                   Millions
@@ -169,7 +169,7 @@ export function About() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-card border-2 border-primary/30 text-center p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="card-professional text-center p-6">
               <CardContent className="p-4">
                 <div className="text-2xl font-bold text-primary mb-1">
                   Full-Stack
@@ -177,7 +177,7 @@ export function About() {
                 <div className="text-sm text-muted-foreground">Expertise</div>
               </CardContent>
             </Card>
-            <Card className="bg-card border-2 border-primary/30 text-center p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="card-professional text-center p-6">
               <CardContent className="p-4">
                 <div className="text-2xl font-bold text-primary mb-1">
                   Always
@@ -191,7 +191,7 @@ export function About() {
           <motion.div variants={itemVariants} className="space-y-16">
             {/* Professional Timeline & Core Strengths - Horizontal */}
             <div className="grid lg:grid-cols-2 gap-8">
-              <Card className="bg-card border-2 border-secondary/30 shadow-lg hover:shadow-xl transition-shadow">
+              <Card className="glass-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <Target className="h-6 w-6 text-primary" />
@@ -241,7 +241,7 @@ export function About() {
                       onClick={scrollToExperience}
                       variant="ghost"
                       size="lg"
-                      className="w-full bg-primary/10 hover:bg-primary/20 text-primary">
+                      className="w-full btn-gradient text-primary-foreground">
                       <span>View Full Experience Timeline</span>
                       <ChevronDown className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
                     </Button>
@@ -249,7 +249,7 @@ export function About() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-card border-2 border-secondary/30 shadow-lg hover:shadow-xl transition-shadow">
+              <Card className="glass-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <Brain className="h-6 w-6 text-primary" />
@@ -280,12 +280,12 @@ export function About() {
 
             {/* Key Achievements - Horizontal Cards */}
             <div>
-              <h3 className="mb-6 text-2xl font-heading font-bold text-secondary">Key Impact & Achievements</h3>
+              <h3 className="mb-6 text-2xl font-heading font-bold gradient-text">Key Impact & Achievements</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {achievements.map((achievement) => (
                   <Card
                     key={achievement.title}
-                    className="bg-card border-2 border-accent/30 shadow-lg hover:shadow-xl transition-shadow h-full">
+                    className="card-professional h-full">
                     <CardContent className="p-6">
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className="p-3 bg-primary/20 border-2 border-primary/30 rounded-lg">
@@ -308,12 +308,12 @@ export function About() {
 
             {/* Technical Skills - Inline Badge Layout */}
             <div>
-              <h3 className="mb-6 text-2xl font-heading font-bold text-accent">Technical Expertise</h3>
+              <h3 className="mb-6 text-2xl font-heading font-bold gradient-text">Technical Expertise</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {skillCategories.map((category) => (
                   <Card
                     key={category.title}
-                    className="bg-card border-2 border-accent/30 shadow-lg hover:shadow-xl transition-shadow h-full">
+                    className="glass-card h-full">
                     <CardHeader className="pb-3">
                       <CardTitle className="flex items-center gap-3 text-lg">
                         <div className="p-2 bg-primary/10 rounded-lg text-primary">

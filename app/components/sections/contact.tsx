@@ -98,7 +98,7 @@ export function Contact() {
           className="space-y-12">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-text mb-6">
               Ready to Hire a Proven Engineer?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -113,16 +113,16 @@ export function Contact() {
             variants={itemVariants}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Primary Contact Card */}
-            <Card className="bg-card border-2 border-primary/30 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="glass-card border-primary/40">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
                   <Badge
                     variant="secondary"
-                    className="bg-secondary text-secondary-foreground border border-secondary shadow-lg hover:shadow-xl transition-shadow">
+                    className="badge-available">
                     Available Now
                   </Badge>
                 </div>
-                <CardTitle className="text-lg">
+                <CardTitle className="text-lg gradient-text">
                   Hire an Expert Engineer
                 </CardTitle>
                 <CardDescription className="text-sm">
@@ -132,13 +132,20 @@ export function Contact() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex flex-col gap-3">
-                  <Button asChild size="lg" className="shadow-lg hover:shadow-xl transition-shadow w-full">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="btn-gradient shadow-lg transition-colors w-full">
                     <a href="mailto:devonjhills@gmail.com">
                       <Mail className="mr-2 h-4 w-4" />
                       Schedule Interview
                     </a>
                   </Button>
-                  <Button asChild variant="secondary" size="lg" className="shadow-lg hover:shadow-xl transition-shadow w-full">
+                  <Button
+                    asChild
+                    variant="secondary"
+                    size="lg"
+                    className="btn-secondary">
                     <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
                       <Download className="mr-2 h-4 w-4" />
                       Download Resume
@@ -149,9 +156,11 @@ export function Contact() {
             </Card>
 
             {/* Contact Methods */}
-            <Card className="bg-card border-2 border-accent/30 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="card-professional border-accent/40">
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Connect With Me</CardTitle>
+                <CardTitle className="text-lg gradient-text">
+                  Connect With Me
+                </CardTitle>
                 <CardDescription className="text-sm">
                   Multiple ways to reach out - choose what works best.
                 </CardDescription>
@@ -169,8 +178,8 @@ export function Contact() {
                         ? undefined
                         : "noopener noreferrer"
                     }
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group cursor-pointer">
-                    <div className="p-2 bg-primary/10 rounded-lg text-primary group-hover:bg-primary/20 transition-colors">
+                    className="contact-link group">
+                    <div className="contact-icon">
                       {contact.icon}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -192,38 +201,40 @@ export function Contact() {
             </Card>
 
             {/* What I Offer + Quick Details */}
-            <Card className="bg-card md:col-span-2 lg:col-span-1 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="glass-card md:col-span-2 lg:col-span-1">
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg">What I Offer</CardTitle>
+                <CardTitle className="text-lg gradient-text">
+                  What I Offer
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid gap-2 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  <div className="skill-item group">
+                    <div className="skill-dot"></div>
                     Full-stack React/TypeScript
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  <div className="skill-item group">
+                    <div className="skill-dot"></div>
                     Healthcare & compliance
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  <div className="skill-item group">
+                    <div className="skill-dot"></div>
                     Ruby on Rails backends
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  <div className="skill-item group">
+                    <div className="skill-dot"></div>
                     Technical leadership
                   </div>
                 </div>
 
                 <div className="border-t border-border/50 pt-4">
-                  <h4 className="font-semibold text-foreground mb-3 text-sm">
+                  <h4 className="font-semibold gradient-text mb-3 text-sm">
                     Quick Details
                   </h4>
                   <div className="space-y-2">
                     {quickFacts.map((fact) => (
-                      <div key={fact.label} className="flex items-center gap-2">
-                        <div className="p-1 bg-muted rounded text-primary">
+                      <div key={fact.label} className="quick-fact">
+                        <div className="quick-fact-icon">
                           {fact.icon}
                         </div>
                         <div>
@@ -244,8 +255,8 @@ export function Contact() {
 
           {/* Footer Message */}
           <motion.div variants={itemVariants} className="text-center">
-            <div className="bg-card rounded-lg p-8 border border-primary/20">
-              <h3 className="text-xl font-semibold text-foreground mb-3">
+            <div className="glass-card rounded-lg p-8">
+              <h3 className="text-xl font-semibold gradient-text mb-3">
                 Why Choose Me for Your Team?
               </h3>
               <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">

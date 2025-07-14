@@ -144,25 +144,25 @@ const journeyData: JourneyItem[] = [
 // Sub-component for the content of each timeline item
 const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
   <Card
-    className={`bg-card w-full ${
+    className={`w-full transition-colors duration-300 ${
       item.date === "Next"
-        ? "border-accent/50 bg-accent/5 dark:bg-accent/10"
-        : ""
+        ? "glass-card border-accent/50 bg-gradient-to-br from-accent/10 to-accent/5"
+        : "card-professional"
     }`}>
     <CardHeader>
       <div className="flex items-start justify-between">
         <div>
-          <CardTitle className="text-xl">{item.title}</CardTitle>
-          <CardDescription className="mt-1">
+          <CardTitle className="text-xl gradient-text">{item.title}</CardTitle>
+          <CardDescription className="mt-1 font-medium">
             {item.company} • {item.location}
           </CardDescription>
-          <CardDescription className="mt-1 text-xs">
+          <CardDescription className="mt-1 text-xs opacity-80">
             {item.duration}
           </CardDescription>
         </div>
-        {item.date === "Present" && <Badge>Current</Badge>}
+        {item.date === "Present" && <Badge className="bg-gradient-to-r from-primary to-accent text-primary-foreground">Current</Badge>}
         {item.date === "Next" && (
-          <Badge className="bg-secondary text-secondary-foreground border border-secondary shadow-lg">
+          <Badge className="badge-available">
             Available
           </Badge>
         )}
@@ -173,14 +173,14 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
 
       {item.achievements.length > 0 && (
         <div className="space-y-4">
-          <h4 className="font-semibold flex items-center gap-2">
+          <h4 className="font-semibold flex items-center gap-2 gradient-text">
             {item.icon} Key Achievements
           </h4>
-          <ul className="space-y-3 pl-2">
+          <ul className="achievement-list">
             {item.achievements.map((achievement, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
-                <span className="text-muted-foreground">{achievement}</span>
+              <li key={i} className="achievement-item group">
+                <CheckCircle2 className="achievement-icon" />
+                <span className="achievement-text">{achievement}</span>
               </li>
             ))}
           </ul>
@@ -189,10 +189,14 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
 
       {item.technologies.length > 0 && (
         <div>
-          <h4 className="font-semibold mb-3">Technologies</h4>
+          <h4 className="font-semibold mb-3 gradient-text">Technologies</h4>
           <div className="flex flex-wrap gap-2">
             {item.technologies.map((tech) => (
-              <Badge key={tech} variant="default" className="bg-primary/20 text-primary border border-primary/40">
+              <Badge 
+                key={tech} 
+                variant="default" 
+                className="badge-tech cursor-default"
+              >
                 {tech}
               </Badge>
             ))}
@@ -246,7 +250,7 @@ export function Experience() {
           className="space-y-12">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-text mb-6">
               Professional Journey
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">

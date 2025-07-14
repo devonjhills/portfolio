@@ -194,16 +194,16 @@ const ProjectCard = React.memo(
     project: Project;
     onViewDetails: (project: Project) => void;
   }) => (
-    <Card className="bg-card border-2 border-primary/30 shadow-lg hover:shadow-xl transition-shadow group flex h-full flex-col overflow-hidden">
+    <Card className="project-card group">
       <CardContent className="flex-1 p-5 flex flex-col">
         {/* Header - Fixed height for alignment */}
         <div className="flex items-start justify-between mb-4 min-h-[3rem]">
-          <CardTitle className="text-lg font-semibold leading-tight text-foreground group-hover:text-accent transition-colors flex-1">
+          <CardTitle className="project-title">
             {project.title}
           </CardTitle>
           <div className="flex items-center gap-2 ml-2 flex-shrink-0">
             {project.featured && (
-              <Badge className="bg-accent text-accent-foreground text-xs px-2 py-1 shadow-lg hover:shadow-xl transition-shadow border border-accent">
+              <Badge className="badge-featured">
                 <Star className="mr-1 h-3 w-3" />
                 Featured
               </Badge>
@@ -213,7 +213,7 @@ const ProjectCard = React.memo(
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center h-8 w-8 p-0 opacity-70 hover:opacity-100 hover:text-accent transition-all"
+                className="inline-flex items-center justify-center h-8 w-8 p-0 opacity-70 hover:opacity-100 hover:text-accent transition-colors"
                 aria-label={`View live demo of ${project.title}`}>
                 <ExternalLink className="h-4 w-4" />
               </a>
@@ -222,16 +222,16 @@ const ProjectCard = React.memo(
         </div>
         
         {/* Description - Fixed height for alignment */}
-        <CardDescription className="text-sm mb-4 leading-relaxed text-muted-foreground min-h-[4.5rem] flex items-start">
+        <CardDescription className="project-description">
           <span className="line-clamp-3">
             {project.description}
           </span>
         </CardDescription>
         
         {/* Tech Stack Learning Section - Fixed height for alignment */}
-        <div className="mb-4 p-3 bg-accent/5 rounded-lg border border-accent/10 min-h-[4.5rem] flex flex-col">
-          <div className="text-xs font-medium text-accent mb-1 flex items-center gap-1">
-            <span className="w-2 h-2 bg-accent rounded-full"></span>
+        <div className="project-tech-section">
+          <div className="project-tech-label">
+            <span className="project-tech-dot"></span>
             Tech Stack Growth
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 flex-1">
@@ -243,12 +243,12 @@ const ProjectCard = React.memo(
         <div className="flex flex-wrap gap-1.5 mb-4 flex-1">
           <div className="flex flex-wrap gap-1.5 w-full">
             {project.technologies.slice(0, 4).map((tech) => (
-              <Badge key={tech} variant="default" className="text-xs px-2.5 py-1 bg-primary/20 text-primary border border-primary/40 hover:bg-primary/30 transition-colors">
+              <Badge key={tech} variant="default" className="badge-tech">
                 {tech}
               </Badge>
             ))}
             {project.technologies.length > 4 && (
-              <Badge variant="outline" className="text-xs px-2.5 py-1 border-accent bg-accent/10 text-accent hover:bg-accent/20">
+              <Badge variant="outline" className="badge-count">
                 +{project.technologies.length - 4}
               </Badge>
             )}
@@ -258,14 +258,14 @@ const ProjectCard = React.memo(
       
       {/* Footer - Always at bottom */}
       <CardFooter className="flex gap-3 p-5 pt-0 mt-auto">
-        <Button asChild variant="secondary" className="shadow-lg hover:shadow-xl transition-shadow flex-1">
+        <Button asChild variant="secondary" className="btn-gradient shadow-lg transition-colors flex-1">
           <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
             <Github className="mr-2 h-4 w-4" /> Code
           </a>
         </Button>
         <Button
           variant="outline"
-          className="shadow-lg hover:shadow-xl transition-shadow flex-1"
+          className="btn-outline flex-1"
           onClick={() => onViewDetails(project)}>
           <Eye className="mr-2 h-4 w-4" /> Details
         </Button>
@@ -307,7 +307,7 @@ export function Projects() {
           className="space-y-12">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-text mb-6">
               Projects
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -331,12 +331,12 @@ export function Projects() {
 
               {/* More to Come Card */}
               <motion.div variants={itemVariants}>
-                <Card className="bg-card border-2 border-dashed border-border shadow-md group flex h-full flex-col justify-center items-center text-center overflow-hidden">
+                <Card className="glass-card border-2 border-dashed border-border/50 shadow-md group flex h-full flex-col justify-center items-center text-center overflow-hidden transition-all hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.3)]">
                   <CardContent className="flex-1 p-6 flex flex-col justify-center items-center">
                     <div className="mb-4 p-4 bg-primary/10 rounded-full">
                       <Github className="h-8 w-8 text-primary" />
                     </div>
-                    <CardTitle className="text-lg font-semibold mb-3">
+                    <CardTitle className="text-lg font-semibold mb-3 gradient-text">
                       More Projects Coming Soon
                     </CardTitle>
                     <CardDescription className="text-sm mb-4 leading-relaxed">
@@ -348,7 +348,7 @@ export function Projects() {
                       href="https://github.com/devonjhills"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2 font-semibold transition-all shadow-lg hover:shadow-xl transition-shadow inline-flex items-center rounded-lg">
+                      className="btn-gradient text-primary-foreground px-4 py-2 font-semibold transition-colors shadow-lg inline-flex items-center rounded-lg">
                       <Github className="mr-2 h-4 w-4" />
                       View All Projects
                       <ChevronRight className="ml-2 h-4 w-4" />
@@ -361,14 +361,14 @@ export function Projects() {
 
           {/* Skills Highlight */}
           <motion.div variants={itemVariants} className="w-full">
-            <Card className="bg-card">
+            <Card className="glass-card">
               <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-semibold text-foreground mb-4">
+                <h3 className="text-xl font-semibold gradient-text mb-4">
                   Technologies used in my projects
                 </h3>
                 <div className="flex flex-wrap justify-center gap-3">
                   {uniqueTechnologies.map((tech) => (
-                    <Badge key={tech} variant="outline" className="px-3 py-1">
+                    <Badge key={tech} variant="outline" className="badge-tech px-3 py-1">
                       {tech}
                     </Badge>
                   ))}
@@ -425,7 +425,7 @@ export function Projects() {
                     {/* Project status badges */}
                     <div className="flex gap-2">
                       {selectedProject.featured && (
-                        <Badge className="bg-accent text-accent-foreground border border-accent shadow-lg hover:shadow-xl transition-shadow">
+                        <Badge className="bg-accent text-accent-foreground border border-accent shadow-lg transition-colors">
                           <Star className="mr-1 h-3 w-3" />
                           Featured
                         </Badge>

@@ -149,7 +149,7 @@ export default function MarkdownToPDFPage() {
           className="max-w-6xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold gradient-text mb-4">
               Markdown to PDF Converter
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -181,9 +181,9 @@ export default function MarkdownToPDFPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               className="lg:col-span-2">
-              <Card className="bg-card border-2 border-primary/30 shadow-lg h-full">
+              <Card className="card-professional h-full">
                 <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2 text-lg font-heading font-bold text-foreground">
+                  <CardTitle className="flex items-center gap-2 text-lg font-heading font-bold gradient-text">
                     <FileText className="h-5 w-5 text-primary" />
                     Input
                   </CardTitle>
@@ -195,10 +195,10 @@ export default function MarkdownToPDFPage() {
                   <div className="space-y-4 flex-1 flex flex-col">
                     {/* File Upload Area */}
                     <div
-                      className={`border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
+                      className={`border-2 border-dashed rounded-lg p-4 text-center transition-all ${
                         isDragOver
                           ? "border-primary bg-primary/10"
-                          : "border-border hover:border-primary/50"
+                          : "border-border hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.5)]"
                       }`}
                       onDragOver={handleDragOver}
                       onDragLeave={handleDragLeave}
@@ -281,7 +281,7 @@ export default function MarkdownToPDFPage() {
                     <Button
                       onClick={handleConvert}
                       disabled={isLoading || !markdownContent.trim()}
-                      className="w-full"
+                      className="btn-gradient w-full"
                       size="lg">
                       {isLoading ? (
                         <>
@@ -305,9 +305,9 @@ export default function MarkdownToPDFPage() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}>
-              <Card className="h-full bg-card border-2 border-primary/30 shadow-lg">
+              <Card className="glass-card h-full">
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-lg font-heading font-bold text-foreground">
+                  <CardTitle className="text-lg font-heading font-bold gradient-text">
                     ATS-Compliant Features
                   </CardTitle>
                   <CardDescription className="text-muted-foreground">
