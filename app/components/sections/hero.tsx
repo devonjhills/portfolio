@@ -1,4 +1,3 @@
-// src/components/Hero.tsx
 "use client";
 
 import { motion, Variants } from "framer-motion";

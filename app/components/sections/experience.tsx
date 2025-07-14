@@ -1,4 +1,3 @@
-// src/components/Experience.tsx
 "use client";
 
 import React, { useRef, useMemo } from "react";
@@ -12,9 +11,8 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { Timeline } from "../ui/timeline"; // Your custom timeline component
+import { Timeline } from "../ui/timeline";
 
-// Define a type for your journey items
 type JourneyItem = {
   date: string;
   title: string;

@@ -1,4 +1,3 @@
-// src/components/About.tsx
 "use client";
 
 import { useRef } from "react";
@@ -18,7 +17,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
-// Data can be kept outside the component for clarity
 const achievements = [
   {
     icon: <Target className="h-8 w-8 text-primary" />,

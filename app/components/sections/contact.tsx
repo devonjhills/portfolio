@@ -1,4 +1,3 @@
-// src/components/Contact.tsx
 "use client";
 
 import { useRef } from "react";
@@ -23,7 +22,6 @@ import {
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
-// Data can be kept outside for clarity
 const contactInfo = [
   {
     icon: <Mail className="h-6 w-6" />,
@@ -70,7 +68,6 @@ export function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
-  // Correctly typed animation variants
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.2 } },

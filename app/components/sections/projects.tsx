@@ -1,4 +1,3 @@
-// Modern Projects Component with 3D Cards & Interactive Effects
 "use client";
 
 import React, { useRef, useState, useMemo, useCallback } from "react";
@@ -30,7 +29,6 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 
-// Define a type for your project for better type safety
 type Project = {
   id: number;
   title: string;
@@ -42,10 +40,9 @@ type Project = {
   liveUrl?: string;
   githubUrl: string;
   featured: boolean;
-  image: string; // Added image property
+  image: string;
 };
 
-// Data array with updated image paths
 const projects: Project[] = [
   {
     id: 1,
