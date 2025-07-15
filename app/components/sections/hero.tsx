@@ -79,19 +79,23 @@ export function Hero() {
           className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
           {/* Left Column - Content */}
           <div className="text-center lg:text-left space-y-6">
-            <motion.div
-              variants={itemVariants}
-              className="flex justify-center lg:justify-start">
-              <Badge
-                variant="default"
-                className="badge-available px-4 py-2 font-semibold rounded-lg">
-                <span className="relative flex h-2 w-2 mr-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-                </span>
-                Open to New Opportunities
-              </Badge>
-            </motion.div>
+            <div className="text-center lg:text-left space-y-6">
+              <motion.div
+                variants={itemVariants}
+                className="flex justify-center lg:justify-start">
+                <Badge
+                  variant="default"
+                  className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
+                  <span className="relative flex h-2 w-2">
+                    <span
+                      className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"
+                      aria-hidden="true"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
+                  </span>
+                  Open to New Opportunities
+                </Badge>
+              </motion.div>
+            </div>
 
             <motion.div
               variants={itemVariants}
@@ -134,10 +138,10 @@ export function Hero() {
                 <Eye className="mr-2 h-4 w-4" />
                 Explore My Work
               </Button>
-              <Button 
-                asChild 
-                variant="secondary" 
-                size="lg" 
+              <Button
+                asChild
+                variant="secondary"
+                size="lg"
                 className="btn-secondary w-full sm:w-auto">
                 <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
                   <Download className="mr-2 h-4 w-4" />
@@ -165,9 +169,7 @@ export function Hero() {
                         <highlight.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" />
                       </div>
                       <div className="flex-1">
-                        <p className="hero-highlight-title">
-                          {highlight.text}
-                        </p>
+                        <p className="hero-highlight-title">{highlight.text}</p>
                         <p className="hero-highlight-subtitle">
                           {highlight.subtext}
                         </p>
@@ -179,7 +181,9 @@ export function Hero() {
             </motion.div>
 
             {/* Contact Section */}
-            <motion.div variants={itemVariants} className="space-y-4 glass-card p-6 rounded-lg">
+            <motion.div
+              variants={itemVariants}
+              className="space-y-4 glass-card p-6 rounded-lg">
               <h3 className="text-xl font-heading font-bold gradient-text">
                 Let&apos;s Connect
               </h3>
