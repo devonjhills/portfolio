@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    /* Matrix-inspired Light Mode */
+    /* Light palette (kept, but muted; Kolada is dark-first) */
     --background: 0 0% 98%;
-    --foreground: 0 0% 16%;
-    --primary: 134 100% 30%;
+    --foreground: 210 10% 18%;
+    --primary: 150 75% 36%; /* rich green */
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 42%;
+    --secondary: 210 8% 45%; /* slate gray */
     --secondary-foreground: 0 0% 100%;
-    --accent: 134 100% 50%;
-    --accent-foreground: 0 0% 16%;
-    --warning: 45 100% 50%;
-    --warning-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
+    --accent: 186 70% 42%; /* teal */
+    --accent-foreground: 0 0% 100%;
+    --warning: 40 95% 52%; /* pineapple yellow/orange */
+    --warning-foreground: 0 0% 10%;
+    --destructive: 2 78% 55%; /* warm red */
     --destructive-foreground: 0 0% 100%;
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 42%;
-    --border: 0 0% 88%;
+    --muted: 210 12% 94%;
+    --muted-foreground: 210 10% 40%;
+    --border: 210 14% 88%;
     --input: 0 0% 100%;
-    --ring: 134 100% 30%;
+    --ring: 150 90% 40%;
 
     --gradient-primary: linear-gradient(
       135deg,
-      hsl(134 100% 30%) 0%,
-      hsl(134 100% 50%) 100%
+      hsl(150 75% 36%) 0%,
+      hsl(186 70% 42%) 100%
     );
     --gradient-secondary: linear-gradient(
       135deg,
-      hsl(0 0% 42%) 0%,
-      hsl(0 0% 52%) 100%
+      hsl(210 8% 45%) 0%,
+      hsl(210 8% 55%) 100%
     );
     --gradient-background: linear-gradient(
       135deg,
@@ -40,69 +40,69 @@
     );
     --gradient-accent: linear-gradient(
       135deg,
-      hsl(134 100% 50%) 0%,
-      hsl(104 100% 54%) 100%
+      hsl(186 70% 42%) 0%,
+      hsl(150 75% 36%) 100%
     );
 
     --section-primary: 0 0% 98%;
     --section-secondary: 0 0% 96%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 16%;
+    --card-foreground: 210 10% 18%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 16%;
+    --popover-foreground: 210 10% 18%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Matrix-inspired Dark Mode - Sleek & Distraction-Free */
-    --background: 0 0% 10%;
-    --foreground: 0 0% 88%;
-    --primary: 134 100% 50%;
-    --primary-foreground: 0 0% 10%;
-    --secondary: 0 0% 42%;
-    --secondary-foreground: 0 0% 88%;
-    --accent: 104 100% 54%;
-    --accent-foreground: 0 0% 10%;
-    --warning: 45 100% 60%;
-    --warning-foreground: 0 0% 10%;
-    --destructive: 0 84% 60%;
+    /* Kolada-style tropical dark */
+    --background: 210 14% 8%; /* charcoal #121417-ish */
+    --foreground: 210 15% 86%; /* soft light text */
+    --primary: 150 100% 55%; /* neon lime #2EFF8E-ish */
+    --primary-foreground: 210 20% 10%;
+    --secondary: 210 9% 46%; /* desaturated slate for subtle UI */
+    --secondary-foreground: 210 15% 86%;
+    --accent: 185 70% 60%; /* aqua/teal #49E6E6-ish */
+    --accent-foreground: 210 20% 10%;
+    --warning: 40 100% 58%; /* pineapple */
+    --warning-foreground: 210 20% 10%;
+    --destructive: 2 82% 58%; /* warm red */
     --destructive-foreground: 0 0% 100%;
-    --muted: 0 0% 16%;
-    --muted-foreground: 0 0% 65%;
-    --border: 0 0% 23%;
-    --input: 0 0% 16%;
-    --ring: 134 100% 50%;
+    --muted: 210 10% 16%; /* panels */
+    --muted-foreground: 210 12% 66%;
+    --border: 210 10% 24%; /* separators */
+    --input: 210 10% 16%;
+    --ring: 150 100% 55%;
 
     --gradient-primary: linear-gradient(
       135deg,
-      hsl(134 100% 50%) 0%,
-      hsl(104 100% 54%) 100%
+      hsl(150 100% 55%) 0%,
+      hsl(185 70% 60%) 100%
     );
     --gradient-secondary: linear-gradient(
       135deg,
-      hsl(0 0% 42%) 0%,
-      hsl(0 0% 52%) 100%
+      hsl(210 9% 46%) 0%,
+      hsl(210 9% 56%) 100%
     );
     --gradient-background: linear-gradient(
       135deg,
-      hsl(0 0% 10%) 0%,
-      hsl(0 0% 13%) 100%
+      hsl(210 14% 8%) 0%,
+      hsl(210 14% 10%) 100%
     );
     --gradient-accent: linear-gradient(
       135deg,
-      hsl(104 100% 54%) 0%,
-      hsl(134 100% 50%) 100%
+      hsl(185 70% 60%) 0%,
+      hsl(150 100% 55%) 100%
     );
 
-    --section-primary: 0 0% 10%;
-    --section-secondary: 0 0% 13%;
+    --section-primary: 210 14% 8%;
+    --section-secondary: 210 14% 10%;
 
-    --card: 0 0% 16%;
-    --card-foreground: 0 0% 88%;
-    --popover: 0 0% 16%;
-    --popover-foreground: 0 0% 88%;
+    --card: 210 10% 14%;
+    --card-foreground: 210 15% 86%;
+    --popover: 210 10% 14%;
+    --popover-foreground: 210 15% 86%;
   }
 
   * {

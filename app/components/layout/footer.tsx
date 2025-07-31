@@ -2,9 +2,9 @@
 "use client";
 
 import { Github, Linkedin, Mail } from "lucide-react";
-import Image from "next/image";
 import { Button } from "../ui/button";
 import { FloatingDock } from "../ui/floating-dock";
+import { Logo } from "../ui/logo";
 
 const socialLinks = [
   {
@@ -32,13 +32,7 @@ export function Footer() {
       <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
         {/* Left Side: Copyright */}
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Image
-            src="/logo.png"
-            alt="Devon Hills Logo"
-            width={24}
-            height={24}
-            className="h-6 w-6"
-          />
+          <Logo size={24} variant="foreground" />
           <span>© {currentYear} Devon Hills</span>
         </div>
 

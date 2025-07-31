@@ -136,7 +136,7 @@ export function Contact() {
                       Schedule Interview
                     </a>
                   </Button>
-                  <Button asChild variant="secondary" size="lg">
+                  <Button asChild variant="outline" size="lg">
                     <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
                       <Download className="mr-2 h-4 w-4" />
                       Download Resume

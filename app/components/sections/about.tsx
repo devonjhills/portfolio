@@ -60,7 +60,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Backend & Full-Stack",
+    title: "Backend",
     icon: <Database className="h-6 w-6" />,
     skills: [
       "Ruby on Rails",

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Inter, JetBrains_Mono, Syne } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/layout/theme-provider";
 import { Header } from "./components/layout/header";
 import { Footer } from "./components/layout/footer";
 import { ScrollToTop } from "./components/ui/scroll-to-top";
+import { FaviconGenerator } from "./components/ui/favicon-generator";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,11 +21,11 @@ const jetBrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
-const spaceGrotesk = Space_Grotesk({
+const syne = Syne({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"], // Syne offers a bold 800 weight
 });
 
 export const metadata: Metadata = {
@@ -71,7 +72,21 @@ export const metadata: Metadata = {
     ],
   },
   other: {
-    "og:logo": "https://devonhills.dev/logo.png",
+    "og:logo": "https://devonhills.dev/logo2.svg",
+  },
+  icons: {
+    icon: [
+      {
+        url: "/logo2.svg",
+        type: "image/svg+xml",
+      },
+    ],
+    apple: [
+      {
+        url: "/logo2.svg",
+        type: "image/svg+xml",
+      },
+    ],
   },
   twitter: {
     card: "summary",
@@ -101,9 +116,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetBrainsMono.variable} ${spaceGrotesk.variable} font-sans antialiased`}
+        className={`${inter.variable} ${jetBrainsMono.variable} ${syne.variable} font-sans antialiased`}
       >
         <ThemeProvider>
+          <FaviconGenerator />
           <div className="min-h-screen bg-background text-foreground">
             <Header />
             <main>{children}</main>
