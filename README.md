@@ -2,7 +2,9 @@
 
 A sophisticated, modern portfolio website built with Next.js 15, showcasing my professional experience as a Software Engineer with expertise in React, TypeScript, and full-stack development.
 
-## 🚀 Live Demo
+![Screenshot 2025-07-31 at 12 31 12 AM](https://github.com/user-attachments/assets/cc4a2c0b-1504-42ec-a23d-61a7e4944e85)
+
+## 🚀 Live Site
 
 Visit the live portfolio at [devonhills.dev](devonhills.dev)
 
