@@ -240,7 +240,7 @@ export function Experience() {
       ref={ref}
       className="relative bg-background py-16 lg:py-24"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -260,7 +260,7 @@ export function Experience() {
           </motion.div>
 
           {/* Timeline */}
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="relative">
             <Timeline data={timelineItems} />
           </motion.div>
         </motion.div>

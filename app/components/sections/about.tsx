@@ -253,29 +253,48 @@ export function About() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-border/50">
-                <CardHeader>
+              <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-border/50 flex flex-col">
+                <CardHeader className="pb-3">
                   <CardTitle className="flex items-center gap-3">
                     <Brain className="h-6 w-6 text-primary" />
                     Core Strengths & Specializations
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 gap-3">
+                <CardContent className="flex-1 flex items-center justify-center py-8">
+                  <div className="flex flex-wrap gap-4 justify-center items-center max-w-lg mx-auto">
                     {[
-                      "HealthCare.gov Development",
-                      "React/TypeScript Expert",
-                      "WCAG/Section 508 Compliance",
-                      "Million+ User Applications",
-                      "24/7 Production Support",
-                      "Choice Architecture Design",
-                      "Government Technology",
-                      "Performance at Scale",
-                    ].map((strength) => (
-                      <div key={strength} className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-primary rounded-full"></div>
-                        <span className="text-sm font-medium">{strength}</span>
-                      </div>
+                      { text: "HealthCare.gov Development", size: "lg" },
+                      { text: "React/TypeScript Expert", size: "lg" },
+                      { text: "WCAG/Section 508", size: "md" },
+                      { text: "Million+ Users", size: "md" },
+                      { text: "24/7 Production Support", size: "lg" },
+                      { text: "Choice Architecture", size: "md" },
+                      { text: "Government Tech", size: "sm" },
+                      { text: "Performance at Scale", size: "md" },
+                    ].map((strength, index) => (
+                      <Badge
+                        key={strength.text}
+                        variant="outline"
+                        className={`
+                          font-medium transition-all duration-200 hover:scale-105 hover:bg-primary/10 hover:border-primary/50
+                          ${
+                            strength.size === "lg"
+                              ? "text-base px-5 py-2.5 xl:text-lg xl:px-6 xl:py-3"
+                              : strength.size === "md"
+                                ? "text-sm px-4 py-2 xl:text-base xl:px-5 xl:py-2.5"
+                                : "text-sm px-3 py-1.5 xl:text-sm xl:px-4 xl:py-2"
+                          }
+                          ${
+                            index % 3 === 0
+                              ? "order-1"
+                              : index % 3 === 1
+                                ? "order-3"
+                                : "order-2"
+                          }
+                        `}
+                      >
+                        {strength.text}
+                      </Badge>
                     ))}
                   </div>
                 </CardContent>

@@ -31,7 +31,10 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const timelineItems = useMemo(() => data, [data]);
 
   return (
-    <div className="w-full bg-background font-sans md:px-10" ref={containerRef}>
+    <div
+      className="w-full bg-background font-sans md:px-10 relative"
+      ref={containerRef}
+    >
       <div ref={ref} className="relative max-w-6xl mx-auto pb-20">
         {timelineItems.map((item, index) => (
           <div

@@ -80,7 +80,7 @@ export function Hero() {
           className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto"
         >
           {/* Left Column - Content */}
-          <div className="text-center lg:text-left space-y-6">
+          <div className="text-center lg:text-left space-y-8 lg:pr-8">
             <motion.div
               variants={itemVariants}
               className="flex justify-center lg:justify-start"
@@ -88,7 +88,7 @@ export function Hero() {
               <div className="relative p-1 group inline-block">
                 <div className="absolute inset-0 rounded-full bg-primary/60 group-hover:bg-primary/90 transition-colors duration-500 animate-slow-spin group-hover:animate-pulse-soft"></div>
                 <div className="relative bg-background/60 rounded-full p-1 backdrop-blur-sm">
-                  <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-transparent transition-all duration-300 group-hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.2)]">
+                  <Avatar className="w-32 h-32 md:w-40 md:h-40 lg:w-44 lg:h-44 border-4 border-transparent transition-all duration-300 group-hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.2)]">
                     <AvatarImage src="/avatar.png" alt="Devon Hills" />
                     <AvatarFallback className="text-4xl font-bold bg-primary/20 text-primary">
                       DH
@@ -100,14 +100,14 @@ export function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-primary"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold mb-6 text-primary"
             >
               Devon Hills
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
-              className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed"
+              className="text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed"
             >
               Senior Software Engineer with 7+ years building mission-critical
               applications serving millions of users. Expert in React/TypeScript
@@ -119,13 +119,22 @@ export function Hero() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Button size="lg" onClick={() => scrollToSection("experience")}>
-                <Eye className="mr-2 h-4 w-4" />
+              <Button
+                size="lg"
+                className="lg:px-8 lg:py-6 lg:text-lg"
+                onClick={() => scrollToSection("experience")}
+              >
+                <Eye className="mr-2 h-4 w-4 lg:h-5 lg:w-5" />
                 Explore My Work
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="lg:px-8 lg:py-6 lg:text-lg"
+              >
                 <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
-                  <Download className="mr-2 h-4 w-4" />
+                  <Download className="mr-2 h-4 w-4 lg:h-5 lg:w-5" />
                   Download Resume
                 </a>
               </Button>

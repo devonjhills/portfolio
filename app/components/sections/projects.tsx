@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 import { motion, useInView, Variants } from "framer-motion";
 import {
   ExternalLink,
-  Github,
   Star,
   Loader2,
   RefreshCw,
@@ -51,7 +50,7 @@ const LanguagesBar = ({
 
       {/* Language Legend */}
       <div
-        className="flex flex-wrap gap-x-4 gap-y-1 text-xs"
+        className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs"
         style={{
           minHeight: "2.5rem",
           maxHeight: "2.5rem",
@@ -59,13 +58,15 @@ const LanguagesBar = ({
         }}
       >
         {languageStats.map((lang) => (
-          <div key={lang.name} className="flex items-center gap-1">
+          <div key={lang.name} className="flex items-center gap-1.5">
             <div
-              className="w-3 h-3 rounded-full"
+              className="w-3 h-3 rounded-full flex-shrink-0 ring-1 ring-black/10"
               style={{ backgroundColor: lang.color }}
             />
             <span className="text-foreground font-medium">{lang.name}</span>
-            <span className="text-muted-foreground">{lang.percentage}%</span>
+            <span className="text-muted-foreground/80 font-mono text-[10px]">
+              {lang.percentage}%
+            </span>
           </div>
         ))}
       </div>
@@ -77,13 +78,41 @@ const getTimeAgo = (dateString: string): string => {
   const now = new Date();
   const past = new Date(dateString);
   const diffTime = Math.abs(now.getTime() - past.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const diffMinutes = Math.floor(diffTime / (1000 * 60));
+  const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  const diffWeeks = Math.floor(diffDays / 7);
+  const diffMonths = Math.floor(diffDays / 30);
+  const diffYears = Math.floor(diffDays / 365);
 
-  if (diffDays === 1) return "1 day ago";
-  if (diffDays < 7) return `${diffDays} days ago`;
-  if (diffDays < 30) return `${Math.ceil(diffDays / 7)} weeks ago`;
-  if (diffDays < 365) return `${Math.ceil(diffDays / 30)} months ago`;
-  return `${Math.ceil(diffDays / 365)} years ago`;
+  if (diffMinutes < 60) {
+    if (diffMinutes < 1) return "just now";
+    if (diffMinutes === 1) return "1 minute ago";
+    return `${diffMinutes} minutes ago`;
+  }
+
+  if (diffHours < 24) {
+    if (diffHours === 1) return "1 hour ago";
+    return `${diffHours} hours ago`;
+  }
+
+  if (diffDays < 7) {
+    if (diffDays === 1) return "1 day ago";
+    return `${diffDays} days ago`;
+  }
+
+  if (diffDays < 30) {
+    if (diffWeeks === 1) return "1 week ago";
+    return `${diffWeeks} weeks ago`;
+  }
+
+  if (diffDays < 365) {
+    if (diffMonths === 1) return "1 month ago";
+    return `${diffMonths} months ago`;
+  }
+
+  if (diffYears === 1) return "1 year ago";
+  return `${diffYears} years ago`;
 };
 
 // Animation Variants
@@ -102,7 +131,7 @@ const itemVariants: Variants = {
 
 // Project Card Component
 const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
-  <Card className="group flex flex-col h-full overflow-hidden">
+  <Card className="group flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-border/50 hover:border-border">
     <CardContent className="p-6 flex-1 flex flex-col">
       {/* Header - Fixed height */}
       <div className="flex items-start justify-between mb-3">
@@ -120,7 +149,7 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
             href={project.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-primary transition-colors duration-200 cursor-pointer"
+            className="hover:text-primary/80 transition-colors duration-200 cursor-pointer"
           >
             {project.title}
           </a>
@@ -143,7 +172,7 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
 
       {/* Description - Fixed height */}
       <CardDescription
-        className="text-sm leading-relaxed text-muted-foreground mb-4"
+        className="text-sm leading-relaxed text-muted-foreground mb-5"
         style={{
           display: "-webkit-box",
           WebkitLineClamp: 3,
@@ -158,36 +187,40 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
 
       {/* Metadata - Fixed height */}
       <div
-        className="flex items-center gap-4 text-xs text-muted-foreground mb-4"
+        className="flex items-center gap-4 text-xs text-muted-foreground mb-5"
         style={{ minHeight: "1.5rem", maxHeight: "1.5rem" }}
       >
-        <span className="flex items-center gap-1">
+        <span className="flex items-center gap-1.5">
           <Calendar className="w-3 h-3" />
           {getTimeAgo(project.pushed_at)}
         </span>
         {project.primaryLanguage && (
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 bg-primary rounded-full"></span>
             {project.primaryLanguage}
           </span>
         )}
       </div>
 
-      {/* Topics - Fixed height container */}
+      {/* Topics - Fixed height container for two rows */}
       <div
-        className="flex items-start mb-4"
+        className="flex items-start mb-6"
         style={{ minHeight: "2.5rem", maxHeight: "2.5rem" }}
       >
         {project.topics.length > 0 ? (
-          <div className="flex flex-wrap gap-1">
-            {project.topics.slice(0, 3).map((topic) => (
-              <Badge key={topic} variant="outline" className="text-xs">
+          <div className="flex flex-wrap gap-1 overflow-hidden">
+            {project.topics.slice(0, 6).map((topic) => (
+              <Badge
+                key={topic}
+                variant="outline"
+                className="text-xs whitespace-nowrap"
+              >
                 {topic}
               </Badge>
             ))}
-            {project.topics.length > 3 && (
-              <Badge variant="outline" className="text-xs">
-                +{project.topics.length - 3}
+            {project.topics.length > 6 && (
+              <Badge variant="outline" className="text-xs whitespace-nowrap">
+                +{project.topics.length - 6} more
               </Badge>
             )}
           </div>
@@ -222,15 +255,25 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
 
     {/* Footer with Action Buttons - Always at bottom */}
     <CardFooter className="flex gap-3 p-6 pt-0">
-      <Button asChild variant="outline" size="sm" className="flex-1">
+      <Button
+        asChild
+        variant="outline"
+        size="sm"
+        className="flex-1 transition-all duration-200"
+      >
         <a href={project.html_url} target="_blank" rel="noopener noreferrer">
-          <Github className="w-4 h-4 mr-2" />
+          <GitFork className="w-4 h-4 mr-2" />
           Code
         </a>
       </Button>
 
       {project.homepage && (
-        <Button asChild variant="default" size="sm" className="flex-1">
+        <Button
+          asChild
+          variant="default"
+          size="sm"
+          className="flex-1 transition-all duration-200 hover:opacity-90"
+        >
           <a href={project.homepage} target="_blank" rel="noopener noreferrer">
             <ExternalLink className="w-4 h-4 mr-2" />
             Live
