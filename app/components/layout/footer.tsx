@@ -49,7 +49,8 @@ export function Footer() {
             <a
               href="https://nextjs.org"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               Next.js
             </a>
           </Button>{" "}
@@ -58,7 +59,8 @@ export function Footer() {
             <a
               href="https://tailwindcss.com"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               Tailwind CSS
             </a>
           </Button>

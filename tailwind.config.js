@@ -48,9 +48,9 @@ module.exports = {
         ring: "hsl(var(--ring))",
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-        mono: ['var(--font-code)', 'monospace'],
-        heading: ['var(--font-heading)', 'sans-serif'],
+        sans: ["var(--font-inter)", "sans-serif"],
+        mono: ["var(--font-code)", "monospace"],
+        heading: ["var(--font-heading)", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -59,20 +59,21 @@ module.exports = {
       },
       boxShadow: {
         // Professional shadows - subtle but effective depth
-        'sm': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-        'DEFAULT': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
-        'md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-        'lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-        'xl': '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
-        '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
+        sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        DEFAULT:
+          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+        "2xl": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
         // Subtle focus effects
-        'inner': 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
-        'none': 'none',
+        inner: "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
+        none: "none",
       },
       animation: {
         "fade-in": "fade-in 0.6s ease-out",
         "slow-spin": "spin 3s linear infinite",
-        "float": "float 6s ease-in-out infinite",
+        float: "float 6s ease-in-out infinite",
       },
       keyframes: {
         "fade-in": {
@@ -85,15 +86,12 @@ module.exports = {
             transform: "translateY(0)",
           },
         },
-        "float": {
+        float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" },
         },
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
-  ],
+  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
 };

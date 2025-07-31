@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "npx prettier --write .",
     "test:a11y": "playwright test tests/accessibility.spec.ts",
     "test:a11y:ui": "playwright test tests/accessibility.spec.ts --ui",
     "test:a11y:headed": "playwright test tests/accessibility.spec.ts --headed",

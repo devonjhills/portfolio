@@ -86,16 +86,18 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative section-primary overflow-hidden py-16 lg:py-24">
+      className="relative bg-background overflow-hidden py-16 lg:py-24"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-12">
+          className="space-y-12"
+        >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-text mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-6">
               Ready to Hire a Proven Engineer?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -108,18 +110,17 @@ export function Contact() {
           {/* Main Content Grid */}
           <motion.div
             variants={itemVariants}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {/* Primary Contact Card */}
-            <Card className="glass-card border-primary/40">
+            <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-primary/40">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <Badge
-                    variant="secondary"
-                    className="badge-available">
+                  <Badge variant="default" className="animate-pulse-soft">
                     Available Now
                   </Badge>
                 </div>
-                <CardTitle className="text-lg gradient-text">
+                <CardTitle className="text-lg text-primary">
                   Hire an Expert Engineer
                 </CardTitle>
                 <CardDescription className="text-sm">
@@ -129,20 +130,13 @@ export function Contact() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex flex-col gap-3">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="btn-gradient shadow-lg transition-colors w-full">
+                  <Button asChild size="lg" className="shadow-lg w-full">
                     <a href="mailto:devonjhills@gmail.com">
                       <Mail className="mr-2 h-4 w-4" />
                       Schedule Interview
                     </a>
                   </Button>
-                  <Button
-                    asChild
-                    variant="secondary"
-                    size="lg"
-                    className="btn-secondary">
+                  <Button asChild variant="secondary" size="lg">
                     <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
                       <Download className="mr-2 h-4 w-4" />
                       Download Resume
@@ -153,9 +147,9 @@ export function Contact() {
             </Card>
 
             {/* Contact Methods */}
-            <Card className="card-professional border-accent/40">
+            <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg gradient-text">
+                <CardTitle className="text-lg text-primary">
                   Connect With Me
                 </CardTitle>
                 <CardDescription className="text-sm">
@@ -175,8 +169,9 @@ export function Contact() {
                         ? undefined
                         : "noopener noreferrer"
                     }
-                    className="contact-link group">
-                    <div className="contact-icon">
+                    className="flex items-center gap-3 p-4 rounded-lg border border-border/50 transition-all duration-300 cursor-pointer hover:bg-muted/30 hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.3)] group"
+                  >
+                    <div className="p-2 rounded-lg text-primary transition-colors duration-300 bg-primary/10 group-hover:bg-primary/20">
                       {contact.icon}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -198,40 +193,40 @@ export function Contact() {
             </Card>
 
             {/* What I Offer + Quick Details */}
-            <Card className="glass-card md:col-span-2 lg:col-span-1">
+            <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-border/50 md:col-span-2 lg:col-span-1">
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg gradient-text">
+                <CardTitle className="text-lg text-primary">
                   What I Offer
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid gap-2 text-sm text-muted-foreground">
-                  <div className="skill-item group">
-                    <div className="skill-dot"></div>
+                  <div className="flex items-center gap-2 group">
+                    <div className="w-1.5 h-1.5 rounded-full transition-colors duration-300 bg-primary group-hover:bg-accent"></div>
                     Full-stack React/TypeScript
                   </div>
-                  <div className="skill-item group">
-                    <div className="skill-dot"></div>
+                  <div className="flex items-center gap-2 group">
+                    <div className="w-1.5 h-1.5 rounded-full transition-colors duration-300 bg-primary group-hover:bg-accent"></div>
                     Healthcare & compliance
                   </div>
-                  <div className="skill-item group">
-                    <div className="skill-dot"></div>
+                  <div className="flex items-center gap-2 group">
+                    <div className="w-1.5 h-1.5 rounded-full transition-colors duration-300 bg-primary group-hover:bg-accent"></div>
                     Ruby on Rails backends
                   </div>
-                  <div className="skill-item group">
-                    <div className="skill-dot"></div>
+                  <div className="flex items-center gap-2 group">
+                    <div className="w-1.5 h-1.5 rounded-full transition-colors duration-300 bg-primary group-hover:bg-accent"></div>
                     Technical leadership
                   </div>
                 </div>
 
                 <div className="border-t border-border/50 pt-4">
-                  <h4 className="font-semibold gradient-text mb-3 text-sm">
+                  <h4 className="font-semibold text-primary mb-3 text-sm">
                     Quick Details
                   </h4>
                   <div className="space-y-2">
                     {quickFacts.map((fact) => (
-                      <div key={fact.label} className="quick-fact">
-                        <div className="quick-fact-icon">
+                      <div key={fact.label} className="flex items-center gap-2">
+                        <div className="p-1 rounded text-primary bg-primary/10">
                           {fact.icon}
                         </div>
                         <div>
@@ -252,8 +247,8 @@ export function Contact() {
 
           {/* Footer Message */}
           <motion.div variants={itemVariants} className="text-center">
-            <div className="glass-card rounded-lg p-8">
-              <h3 className="text-xl font-semibold gradient-text mb-3">
+            <div className="bg-card/40 backdrop-blur-md shadow-xl border border-border/50 rounded-lg p-8">
+              <h3 className="text-xl font-semibold text-primary mb-3">
                 Why Choose Me for Your Team?
               </h3>
               <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">

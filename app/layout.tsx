@@ -101,13 +101,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetBrainsMono.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
+        className={`${inter.variable} ${jetBrainsMono.variable} ${spaceGrotesk.variable} font-sans antialiased`}
+      >
         <ThemeProvider>
           <div className="min-h-screen bg-background text-foreground">
             <Header />
-            <main>
-              {children}
-            </main>
+            <main>{children}</main>
             <Footer />
             <ScrollToTop />
           </div>

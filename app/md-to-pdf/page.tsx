@@ -72,7 +72,7 @@ export default function MarkdownToPDFPage() {
         handleFileUpload(files[0]);
       }
     },
-    [handleFileUpload]
+    [handleFileUpload],
   );
 
   // Handle file input change
@@ -83,7 +83,7 @@ export default function MarkdownToPDFPage() {
         handleFileUpload(file);
       }
     },
-    [handleFileUpload]
+    [handleFileUpload],
   );
 
   // Convert markdown to PDF
@@ -140,16 +140,17 @@ export default function MarkdownToPDFPage() {
   }, []);
 
   return (
-    <section className="section-primary min-h-screen flex items-center py-12 lg:py-20">
+    <section className="bg-muted/50 min-h-screen flex items-center py-12 lg:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-6xl mx-auto">
+          className="max-w-6xl mx-auto"
+        >
           {/* Page Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold gradient-text mb-4">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-4">
               Markdown to PDF Converter
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -164,7 +165,8 @@ export default function MarkdownToPDFPage() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="mb-6 mx-auto max-w-md">
+              className="mb-6 mx-auto max-w-md"
+            >
               <div className="flex items-center gap-2 p-4 bg-primary/10 border border-primary/20 rounded-lg">
                 <CheckCircle className="h-5 w-5 text-primary" />
                 <span className="text-foreground font-medium">
@@ -180,10 +182,11 @@ export default function MarkdownToPDFPage() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="lg:col-span-2">
-              <Card className="card-professional h-full">
+              className="lg:col-span-2"
+            >
+              <Card className="h-full">
                 <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-2 text-lg font-heading font-bold gradient-text">
+                  <CardTitle className="flex items-center gap-2 text-lg font-heading font-bold text-primary">
                     <FileText className="h-5 w-5 text-primary" />
                     Input
                   </CardTitle>
@@ -202,7 +205,8 @@ export default function MarkdownToPDFPage() {
                       }`}
                       onDragOver={handleDragOver}
                       onDragLeave={handleDragLeave}
-                      onDrop={handleDrop}>
+                      onDrop={handleDrop}
+                    >
                       {uploadedFile ? (
                         <div className="flex items-center justify-center gap-2 text-primary">
                           <File className="h-5 w-5" />
@@ -219,7 +223,8 @@ export default function MarkdownToPDFPage() {
                           </p>
                           <label
                             htmlFor="file-upload"
-                            className="cursor-pointer">
+                            className="cursor-pointer"
+                          >
                             <Button variant="outline" size="sm" asChild>
                               <span>Choose File</span>
                             </Button>
@@ -246,7 +251,8 @@ export default function MarkdownToPDFPage() {
                             variant="ghost"
                             size="sm"
                             onClick={handleClear}
-                            className="h-6 px-2">
+                            className="h-6 px-2"
+                          >
                             <X className="h-3 w-3 mr-1" />
                             Clear
                           </Button>
@@ -269,7 +275,8 @@ export default function MarkdownToPDFPage() {
                       <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
+                        className="flex items-center gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg"
+                      >
                         <AlertCircle className="h-4 w-4 text-destructive" />
                         <span className="text-sm text-destructive">
                           {error}
@@ -281,8 +288,9 @@ export default function MarkdownToPDFPage() {
                     <Button
                       onClick={handleConvert}
                       disabled={isLoading || !markdownContent.trim()}
-                      className="btn-gradient w-full"
-                      size="lg">
+                      className="w-full"
+                      size="lg"
+                    >
                       {isLoading ? (
                         <>
                           <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -304,10 +312,11 @@ export default function MarkdownToPDFPage() {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}>
-              <Card className="glass-card h-full">
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-border/50 h-full">
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-lg font-heading font-bold gradient-text">
+                  <CardTitle className="text-lg font-heading font-bold text-primary">
                     ATS-Compliant Features
                   </CardTitle>
                   <CardDescription className="text-muted-foreground">

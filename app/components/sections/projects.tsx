@@ -24,7 +24,11 @@ import { Button } from "../ui/button";
 import { useGitHubRepos, GitHubProject } from "../../lib/use-github-repos";
 
 // GitHub-style Languages Component
-const LanguagesBar = ({ languageStats }: { languageStats: { name: string; percentage: number; color: string }[] }) => {
+const LanguagesBar = ({
+  languageStats,
+}: {
+  languageStats: { name: string; percentage: number; color: string }[];
+}) => {
   if (!languageStats || languageStats.length === 0) {
     return null;
   }
@@ -44,21 +48,24 @@ const LanguagesBar = ({ languageStats }: { languageStats: { name: string; percen
           />
         ))}
       </div>
-      
+
       {/* Language Legend */}
-      <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+      <div
+        className="flex flex-wrap gap-x-4 gap-y-1 text-xs"
+        style={{
+          minHeight: "2.5rem",
+          maxHeight: "2.5rem",
+          overflow: "hidden",
+        }}
+      >
         {languageStats.map((lang) => (
           <div key={lang.name} className="flex items-center gap-1">
             <div
               className="w-3 h-3 rounded-full"
               style={{ backgroundColor: lang.color }}
             />
-            <span className="text-foreground font-medium">
-              {lang.name}
-            </span>
-            <span className="text-muted-foreground">
-              {lang.percentage}%
-            </span>
+            <span className="text-foreground font-medium">{lang.name}</span>
+            <span className="text-muted-foreground">{lang.percentage}%</span>
           </div>
         ))}
       </div>
@@ -95,12 +102,28 @@ const itemVariants: Variants = {
 
 // Project Card Component
 const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
-  <Card className="project-card group flex flex-col h-full">
+  <Card className="group flex flex-col h-full overflow-hidden">
     <CardContent className="p-6 flex-1 flex flex-col">
       {/* Header - Fixed height */}
-      <div className="flex items-start justify-between mb-3 min-h-[3rem]">
-        <CardTitle className="project-title line-clamp-2 flex-1">
-          {project.title}
+      <div className="flex items-start justify-between mb-3">
+        <CardTitle
+          className="text-lg font-semibold leading-tight text-primary flex-1"
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            minHeight: "2.5rem",
+          }}
+        >
+          <a
+            href={project.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary transition-colors duration-200 cursor-pointer"
+          >
+            {project.title}
+          </a>
         </CardTitle>
         <div className="flex items-center gap-2 ml-4 flex-shrink-0">
           {project.stars > 0 && (
@@ -119,12 +142,25 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
       </div>
 
       {/* Description - Fixed height */}
-      <CardDescription className="project-description mb-4 min-h-[3rem] line-clamp-3">
+      <CardDescription
+        className="text-sm leading-relaxed text-muted-foreground mb-4"
+        style={{
+          display: "-webkit-box",
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+          minHeight: "4rem",
+          maxHeight: "4rem",
+        }}
+      >
         {project.description}
       </CardDescription>
 
       {/* Metadata - Fixed height */}
-      <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4 min-h-[1.25rem]">
+      <div
+        className="flex items-center gap-4 text-xs text-muted-foreground mb-4"
+        style={{ minHeight: "1.5rem", maxHeight: "1.5rem" }}
+      >
         <span className="flex items-center gap-1">
           <Calendar className="w-3 h-3" />
           {getTimeAgo(project.pushed_at)}
@@ -138,11 +174,14 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
       </div>
 
       {/* Topics - Fixed height container */}
-      <div className="mb-4 min-h-[2rem] flex items-start">
+      <div
+        className="flex items-start mb-4"
+        style={{ minHeight: "2.5rem", maxHeight: "2.5rem" }}
+      >
         {project.topics.length > 0 ? (
           <div className="flex flex-wrap gap-1">
             {project.topics.slice(0, 3).map((topic) => (
-              <Badge key={topic} variant="secondary" className="text-xs">
+              <Badge key={topic} variant="outline" className="text-xs">
                 {topic}
               </Badge>
             ))}
@@ -158,13 +197,16 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
       </div>
 
       {/* Languages - GitHub style with color bar */}
-      <div className="flex-1 flex flex-col justify-end">
+      <div
+        className="flex-1 flex flex-col justify-end"
+        style={{ minHeight: "4rem" }}
+      >
         {project.languageStats && project.languageStats.length > 0 ? (
           <LanguagesBar languageStats={project.languageStats} />
         ) : (
           <div className="flex flex-wrap gap-1">
             {project.languages.slice(0, 4).map((tech) => (
-              <Badge key={tech} variant="outline" className="badge-tech text-xs">
+              <Badge key={tech} variant="outline" className="">
                 {tech}
               </Badge>
             ))}
@@ -180,11 +222,7 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
 
     {/* Footer with Action Buttons - Always at bottom */}
     <CardFooter className="flex gap-3 p-6 pt-0">
-      <Button
-        asChild
-        variant="secondary"
-        size="sm"
-        className="flex-1 bg-background border border-border hover:bg-muted text-foreground">
+      <Button asChild variant="outline" size="sm" className="flex-1">
         <a href={project.html_url} target="_blank" rel="noopener noreferrer">
           <Github className="w-4 h-4 mr-2" />
           Code
@@ -192,7 +230,7 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
       </Button>
 
       {project.homepage && (
-        <Button asChild size="sm" className="flex-1">
+        <Button asChild variant="default" size="sm" className="flex-1">
           <a href={project.homepage} target="_blank" rel="noopener noreferrer">
             <ExternalLink className="w-4 h-4 mr-2" />
             Live
@@ -210,21 +248,22 @@ export const Projects = () => {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const { projects, loading, error, refetch } = useGitHubRepos();
 
-
   return (
     <section
       id="projects"
       ref={ref}
-      className="relative section-secondary py-16 lg:py-24">
+      className="relative bg-muted/50 py-16 lg:py-24"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-12">
+          className="space-y-12"
+        >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-text mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-6">
               Recent Projects
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -233,7 +272,8 @@ export const Projects = () => {
                 href="https://github.com/devonjhills"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:text-primary/80 underline underline-offset-4 transition-colors">
+                className="text-primary hover:text-primary/80 underline underline-offset-4 transition-colors"
+              >
                 GitHub
               </a>
               . These projects showcase my recent focus areas and technical
@@ -282,7 +322,6 @@ export const Projects = () => {
               </div>
             </motion.div>
           )}
-
         </motion.div>
       </div>
     </section>

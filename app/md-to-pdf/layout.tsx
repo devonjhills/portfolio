@@ -1,9 +1,10 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Markdown to PDF Converter | Devon Hills',
-  description: 'Convert your markdown resume to an ATS-compliant PDF with professional formatting, standard fonts, and clean structure optimized for Applicant Tracking Systems.',
-  keywords: ['markdown', 'PDF', 'resume', 'ATS', 'converter', 'Devon Hills'],
+  title: "Markdown to PDF Converter | Devon Hills",
+  description:
+    "Convert your markdown resume to an ATS-compliant PDF with professional formatting, standard fonts, and clean structure optimized for Applicant Tracking Systems.",
+  keywords: ["markdown", "PDF", "resume", "ATS", "converter", "Devon Hills"],
   metadataBase: new URL("https://devonhills.dev"),
   alternates: {
     canonical: "/md-to-pdf",
@@ -11,9 +12,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: 'https://devonhills.dev/md-to-pdf',
-    title: 'Markdown to PDF Converter | Devon Hills',
-    description: 'Convert your markdown resume to an ATS-compliant PDF with professional formatting.',
+    url: "https://devonhills.dev/md-to-pdf",
+    title: "Markdown to PDF Converter | Devon Hills",
+    description:
+      "Convert your markdown resume to an ATS-compliant PDF with professional formatting.",
     siteName: "Devon Hills Portfolio",
     images: [
       {
@@ -29,9 +31,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: 'Markdown to PDF Converter | Devon Hills',
-    description: 'Convert your markdown resume to an ATS-compliant PDF with professional formatting.',
-    images: ["/api/og/twitter?name=Devon%20Hills&role=Markdown%20to%20PDF%20Converter&description=Convert%20your%20markdown%20resume%20to%20an%20ATS-compliant%20PDF"],
+    title: "Markdown to PDF Converter | Devon Hills",
+    description:
+      "Convert your markdown resume to an ATS-compliant PDF with professional formatting.",
+    images: [
+      "/api/og/twitter?name=Devon%20Hills&role=Markdown%20to%20PDF%20Converter&description=Convert%20your%20markdown%20resume%20to%20an%20ATS-compliant%20PDF",
+    ],
   },
   robots: {
     index: true,

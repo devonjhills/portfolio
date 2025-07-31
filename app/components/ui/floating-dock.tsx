@@ -68,10 +68,18 @@ const FloatingDockMobile = ({
                   key={item.title}
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm shadow-lg hover:bg-primary/10 transition-colors"
                   aria-label={item.title}
-                  target={item.href.startsWith('mailto:') ? undefined : "_blank"}
-                  rel={item.href.startsWith('mailto:') ? undefined : "noopener noreferrer"}
+                  target={
+                    item.href.startsWith("mailto:") ? undefined : "_blank"
+                  }
+                  rel={
+                    item.href.startsWith("mailto:")
+                      ? undefined
+                      : "noopener noreferrer"
+                  }
                 >
-                  <div className="h-4 w-4 flex items-center justify-center">{item.icon}</div>
+                  <div className="h-4 w-4 flex items-center justify-center">
+                    {item.icon}
+                  </div>
                 </a>
               </motion.div>
             ))}
@@ -136,7 +144,11 @@ function IconContainer({
   const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
   const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
 
-  const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  const widthTransformIcon = useTransform(
+    distance,
+    [-150, 0, 150],
+    [20, 40, 20],
+  );
   const heightTransformIcon = useTransform(
     distance,
     [-150, 0, 150],
@@ -168,10 +180,10 @@ function IconContainer({
   const [hovered, setHovered] = useState(false);
 
   return (
-    <a 
+    <a
       href={href}
-      target={href.startsWith('mailto:') ? undefined : "_blank"}
-      rel={href.startsWith('mailto:') ? undefined : "noopener noreferrer"}
+      target={href.startsWith("mailto:") ? undefined : "_blank"}
+      rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
       aria-label={title}
     >
       <motion.div

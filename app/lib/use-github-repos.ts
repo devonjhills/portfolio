@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export interface GitHubProject {
   id: number;
@@ -43,18 +43,19 @@ export const useGitHubRepos = (): UseGitHubReposReturn => {
       setLoading(true);
       setError(null);
 
-      const response = await fetch('/api/github-repos');
+      const response = await fetch("/api/github-repos");
       const data: GitHubReposResponse = await response.json();
 
       if (!response.ok || !data.success) {
-        throw new Error(data.error || 'Failed to fetch repositories');
+        throw new Error(data.error || "Failed to fetch repositories");
       }
 
       setProjects(data.data);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch repositories';
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to fetch repositories";
       setError(errorMessage);
-      console.error('Error fetching repos:', err);
+      console.error("Error fetching repos:", err);
     } finally {
       setLoading(false);
     }

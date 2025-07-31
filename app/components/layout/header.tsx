@@ -15,9 +15,7 @@ const sections = [
   { name: "Contact", href: "#contact" },
 ];
 
-const pages = [
-  { name: "Tools", href: "/md-to-pdf" },
-];
+const pages = [{ name: "Tools", href: "/md-to-pdf" }];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,9 +32,9 @@ export function Header() {
   }, []);
 
   const handleNavigation = (href: string) => {
-    if (href.startsWith('#')) {
+    if (href.startsWith("#")) {
       // Handle anchor links
-      if (pathname === '/') {
+      if (pathname === "/") {
         // On home page, just scroll to section
         const element = document.querySelector(href);
         if (element) {
@@ -59,7 +57,8 @@ export function Header() {
         isScrolled
           ? "bg-background/80 backdrop-blur-md border-b border-border"
           : "bg-transparent"
-      }`}>
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
@@ -67,14 +66,15 @@ export function Header() {
             className="flex items-center cursor-pointer"
             whileHover={{ scale: 1.05 }}
             onClick={() => {
-              if (pathname === '/') {
+              if (pathname === "/") {
                 // On home page, scroll to top
                 window.scrollTo({ top: 0, behavior: "smooth" });
               } else {
                 // On other pages, navigate to home
-                window.location.href = '/';
+                window.location.href = "/";
               }
-            }}>
+            }}
+          >
             <Image
               src="/logo.png"
               alt="Devon Hills"
@@ -95,48 +95,72 @@ export function Header() {
               <motion.div
                 key={item.name}
                 whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}>
+                whileTap={{ y: 0 }}
+              >
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => handleNavigation(item.href)}
                   className={`text-sm font-medium ${
-                    pathname === '/' ? 'text-primary' : 'text-muted-foreground'
-                  }`}>
+                    pathname === "/" ? "text-primary" : "text-muted-foreground"
+                  }`}
+                >
                   {item.name}
-                  {pathname !== '/' && (
-                    <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                  {pathname !== "/" && (
+                    <svg
+                      className="w-3 h-3 ml-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+                      />
                     </svg>
                   )}
                 </Button>
               </motion.div>
             ))}
-            
+
             {/* Separator */}
             <div className="h-6 w-px bg-border" />
-            
+
             {/* External Pages */}
             {pages.map((item) => (
               <motion.div
                 key={item.name}
                 whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}>
+                whileTap={{ y: 0 }}
+              >
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => handleNavigation(item.href)}
                   className={`text-sm font-medium ${
-                    pathname === item.href ? 'text-primary' : 'text-foreground'
-                  }`}>
+                    pathname === item.href ? "text-primary" : "text-foreground"
+                  }`}
+                >
                   {item.name}
-                  <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <svg
+                    className="w-3 h-3 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
                   </svg>
                 </Button>
               </motion.div>
             ))}
-            
+
             <ThemeToggle />
           </nav>
 
@@ -147,7 +171,8 @@ export function Header() {
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle mobile menu">
+              aria-label="Toggle mobile menu"
+            >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
               ) : (
@@ -164,7 +189,8 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}>
+            transition={{ duration: 0.3 }}
+          >
             <div className="flex flex-col space-y-4">
               {/* Page Sections */}
               <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
@@ -176,20 +202,31 @@ export function Header() {
                   variant="ghost"
                   onClick={() => handleNavigation(item.href)}
                   className={`justify-start py-2 pl-4 h-auto ${
-                    pathname === '/' ? 'text-primary' : 'text-muted-foreground'
-                  }`}>
+                    pathname === "/" ? "text-primary" : "text-muted-foreground"
+                  }`}
+                >
                   {item.name}
-                  {pathname !== '/' && (
-                    <svg className="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                  {pathname !== "/" && (
+                    <svg
+                      className="w-3 h-3 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+                      />
                     </svg>
                   )}
                 </Button>
               ))}
-              
+
               {/* Separator */}
               <div className="h-px bg-border my-2" />
-              
+
               {/* External Pages */}
               <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
                 Tools & Pages
@@ -200,11 +237,22 @@ export function Header() {
                   variant="ghost"
                   onClick={() => handleNavigation(item.href)}
                   className={`justify-start py-2 pl-4 h-auto ${
-                    pathname === item.href ? 'text-primary' : 'text-foreground'
-                  }`}>
+                    pathname === item.href ? "text-primary" : "text-foreground"
+                  }`}
+                >
                   {item.name}
-                  <svg className="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <svg
+                    className="w-3 h-3 ml-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
                   </svg>
                 </Button>
               ))}

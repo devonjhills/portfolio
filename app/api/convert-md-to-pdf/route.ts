@@ -10,15 +10,17 @@ export async function POST(request: NextRequest) {
     if (!markdown || typeof markdown !== "string") {
       return NextResponse.json(
         { error: "Invalid markdown content" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     // Parse the markdown content
     const parsedContent = parseMarkdownContent(markdown);
 
-    // Generate PDF buffer  
-    const pdfBuffer = await renderToBuffer(PDFTemplate({ content: parsedContent }));
+    // Generate PDF buffer
+    const pdfBuffer = await renderToBuffer(
+      PDFTemplate({ content: parsedContent }),
+    );
 
     // Return PDF as response
     return new NextResponse(pdfBuffer, {
@@ -32,7 +34,7 @@ export async function POST(request: NextRequest) {
     console.error("PDF conversion error:", error);
     return NextResponse.json(
       { error: "Failed to convert markdown to PDF" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -43,6 +45,6 @@ export async function GET() {
       message:
         "Markdown to PDF conversion API. Use POST with markdown content.",
     },
-    { status: 200 }
+    { status: 200 },
   );
 }

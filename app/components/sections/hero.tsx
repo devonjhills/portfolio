@@ -14,8 +14,8 @@ import {
 } from "lucide-react";
 import { FloatingDock } from "../ui/floating-dock";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { Card, CardContent } from "../ui/card";
 import { DotBackground } from "../ui/grid-background";
 import { Spotlight } from "../ui/spotlight";
 
@@ -67,7 +67,8 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative section-primary min-h-screen flex items-center py-12 lg:py-20">
+      className="relative bg-background min-h-screen flex items-center py-12 lg:py-20"
+    >
       <DotBackground className="absolute inset-0 z-0">
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" />
       </DotBackground>
@@ -76,36 +77,20 @@ export function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
+          className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto"
+        >
           {/* Left Column - Content */}
           <div className="text-center lg:text-left space-y-6">
-            <div className="text-center lg:text-left space-y-6">
-              <motion.div
-                variants={itemVariants}
-                className="flex justify-center lg:justify-start">
-                <Badge
-                  variant="default"
-                  className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
-                  <span className="relative flex h-2 w-2">
-                    <span
-                      className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"
-                      aria-hidden="true"></span>
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
-                  </span>
-                  Open to New Opportunities
-                </Badge>
-              </motion.div>
-            </div>
-
             <motion.div
               variants={itemVariants}
-              className="flex justify-center lg:justify-start">
+              className="flex justify-center lg:justify-start"
+            >
               <div className="relative p-1 group inline-block">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-primary/70 opacity-60 group-hover:opacity-90 transition-colors duration-500 animate-slow-spin group-hover:animate-pulse-soft"></div>
+                <div className="absolute inset-0 rounded-full bg-primary/60 group-hover:bg-primary/90 transition-colors duration-500 animate-slow-spin group-hover:animate-pulse-soft"></div>
                 <div className="relative bg-background/60 rounded-full p-1 backdrop-blur-sm">
                   <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-transparent transition-all duration-300 group-hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.2)]">
                     <AvatarImage src="/avatar.png" alt="Devon Hills" />
-                    <AvatarFallback className="text-4xl font-bold bg-gradient-to-br from-primary/20 to-accent/20 text-primary">
+                    <AvatarFallback className="text-4xl font-bold bg-primary/20 text-primary">
                       DH
                     </AvatarFallback>
                   </Avatar>
@@ -115,13 +100,15 @@ export function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 gradient-text">
+              className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-primary"
+            >
               Devon Hills
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
-              className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed"
+            >
               Senior Software Engineer with 7+ years building mission-critical
               applications serving millions of users. Expert in React/TypeScript
               for HealthCare.gov and government systems with proven 24/7
@@ -130,19 +117,13 @@ export function Hero() {
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button
-                size="lg"
-                className="btn-gradient shadow-lg transition-colors duration-300 w-full sm:w-auto"
-                onClick={() => scrollToSection("experience")}>
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+              <Button size="lg" onClick={() => scrollToSection("experience")}>
                 <Eye className="mr-2 h-4 w-4" />
                 Explore My Work
               </Button>
-              <Button
-                asChild
-                variant="secondary"
-                size="lg"
-                className="btn-secondary w-full sm:w-auto">
+              <Button asChild variant="secondary" size="lg">
                 <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
                   <Download className="mr-2 h-4 w-4" />
                   Download Resume
@@ -155,26 +136,29 @@ export function Hero() {
           <div className="space-y-8">
             {/* Highlights Grid */}
             <motion.div variants={itemVariants}>
-              <h2 className="text-xl font-heading font-bold gradient-text mb-4">
+              <h2 className="text-xl font-heading font-bold text-primary mb-4">
                 Core Expertise
               </h2>
               <div className="grid gap-4">
                 {highlights.map((highlight) => (
-                  <motion.div
-                    key={highlight.text}
-                    variants={itemVariants}
-                    className="hero-highlight group">
-                    <div className="hero-highlight-content">
-                      <div className="hero-highlight-icon">
-                        <highlight.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="hero-highlight-title">{highlight.text}</p>
-                        <p className="hero-highlight-subtitle">
-                          {highlight.subtext}
-                        </p>
-                      </div>
-                    </div>
+                  <motion.div key={highlight.text} variants={itemVariants}>
+                    <Card className="group">
+                      <CardContent className="p-4">
+                        <div className="flex items-start gap-4">
+                          <div>
+                            <highlight.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-semibold text-foreground text-base transition-colors duration-300 group-hover:text-primary">
+                              {highlight.text}
+                            </p>
+                            <p className="text-sm text-muted-foreground mt-1">
+                              {highlight.subtext}
+                            </p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </motion.div>
                 ))}
               </div>
@@ -183,8 +167,9 @@ export function Hero() {
             {/* Contact Section */}
             <motion.div
               variants={itemVariants}
-              className="space-y-4 glass-card p-6 rounded-lg">
-              <h3 className="text-xl font-heading font-bold gradient-text">
+              className="space-y-4 bg-card/40 backdrop-blur-md shadow-xl border border-border/50 p-6 rounded-lg"
+            >
+              <h3 className="text-xl font-heading font-bold text-primary">
                 Let&apos;s Connect
               </h3>
               <p className="text-muted-foreground leading-relaxed">
