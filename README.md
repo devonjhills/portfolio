@@ -1,12 +1,18 @@
 # Devon Hills - Portfolio
 
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.11-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+
 A sophisticated, modern portfolio website built with Next.js 15, showcasing my professional experience as a Software Engineer with expertise in React, TypeScript, and full-stack development.
 
 ![Screenshot 2025-07-31 at 12 31 12 AM](https://github.com/user-attachments/assets/cc4a2c0b-1504-42ec-a23d-61a7e4944e85)
 
 ## 🚀 Live Site
 
-Visit the live portfolio at [devonhills.dev](devonhills.dev)
+[![Website](https://img.shields.io/badge/Website-devonhills.dev-0078D4?style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://devonhills.dev)
 
 ## ✨ Features
 
@@ -35,13 +41,22 @@ Visit the live portfolio at [devonhills.dev](devonhills.dev)
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 15.3.4
-- **Frontend**: React 19, TypeScript
-- **Styling**: Tailwind CSS v4
-- **Animations**: Framer Motion
-- **UI Components**: shadcn/ui, Aceternity UI
-- **Icons**: Lucide React
-- **Development**: Turbopack, ESLint
+### Core Technologies
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+
+### Animation & UI
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.11-0055FF?style=flat-square&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+[![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-Latest-000000?style=flat-square&logo=shadcnui&logoColor=white)](https://ui.shadcn.com/)
+[![Aceternity UI](https://img.shields.io/badge/Aceternity_UI-Latest-FF6B6B?style=flat-square&logoColor=white)](https://ui.aceternity.com/)
+[![Lucide React](https://img.shields.io/badge/Lucide_React-Latest-F56565?style=flat-square&logo=lucide&logoColor=white)](https://lucide.dev/)
+
+### Development Tools
+[![Turbopack](https://img.shields.io/badge/Turbopack-Latest-000000?style=flat-square&logo=turbopack&logoColor=white)](https://turbo.build/pack)
+[![ESLint](https://img.shields.io/badge/ESLint-8.0-4B32C3?style=flat-square&logo=eslint&logoColor=white)](https://eslint.org/)
+[![Prettier](https://img.shields.io/badge/Prettier-Latest-F7B93E?style=flat-square&logo=prettier&logoColor=black)](https://prettier.io/)
 
 ## 📱 Portfolio Sections
 
