@@ -15,7 +15,7 @@ export function FaviconGenerator() {
         document.head.appendChild(favicon);
       }
 
-      favicon.href = "/logo2.png";
+      favicon.href = "/logo2.png?v=2";
     };
 
     // Update favicon
@@ -31,7 +31,7 @@ export function FaviconGenerator() {
       appleTouchIcon.sizes = "180x180";
       document.head.appendChild(appleTouchIcon);
     }
-    appleTouchIcon.href = "/logo2.png";
+    appleTouchIcon.href = "/logo2.png?v=2";
   }, []);
 
   return null; // This component only manages favicon, no render

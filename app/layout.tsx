@@ -72,18 +72,18 @@ export const metadata: Metadata = {
     ],
   },
   other: {
-    "og:logo": "https://devonhills.dev/logo2.png",
+    "og:logo": "https://devonhills.dev/logo2.png?v=2",
   },
   icons: {
     icon: [
       {
-        url: "/logo2.png",
+        url: "/logo2.png?v=2",
         type: "image/png",
       },
     ],
     apple: [
       {
-        url: "/logo2.png",
+        url: "/logo2.png?v=2",
         type: "image/png",
       },
     ],

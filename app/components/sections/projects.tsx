@@ -196,7 +196,7 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
         </span>
         {project.primaryLanguage && (
           <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 bg-primary rounded-full"></span>
+            <span className="w-2 h-2 bg-accent rounded-full"></span>
             {project.primaryLanguage}
           </span>
         )}
@@ -315,7 +315,7 @@ export const Projects = () => {
                 href="https://github.com/devonjhills"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:text-primary/80 underline underline-offset-4 transition-colors"
+                className="text-accent hover:text-accent/80 underline underline-offset-4 transition-colors"
               >
                 GitHub
               </a>
@@ -327,7 +327,7 @@ export const Projects = () => {
           {/* Loading State */}
           {loading && (
             <motion.div variants={itemVariants} className="text-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
+              <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-secondary" />
               <p className="text-muted-foreground">
                 Loading recent projects...
               </p>

@@ -155,10 +155,10 @@ export function Hero() {
                       <CardContent className="p-4">
                         <div className="flex items-start gap-4">
                           <div>
-                            <highlight.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" />
+                            <highlight.icon className="h-6 w-6 text-secondary group-hover:text-accent transition-colors duration-300" />
                           </div>
                           <div className="flex-1">
-                            <p className="font-semibold text-foreground text-base transition-colors duration-300 group-hover:text-primary">
+                            <p className="font-semibold text-foreground text-base transition-colors duration-300 group-hover:text-secondary">
                               {highlight.text}
                             </p>
                             <p className="text-sm text-muted-foreground mt-1">
@@ -178,7 +178,7 @@ export function Hero() {
               variants={itemVariants}
               className="space-y-4 bg-card/40 backdrop-blur-md shadow-xl border border-border/50 p-6 rounded-lg"
             >
-              <h3 className="text-xl font-heading font-bold text-primary">
+              <h3 className="text-xl font-heading font-bold text-secondary">
                 Let&apos;s Connect
               </h3>
               <p className="text-muted-foreground leading-relaxed">

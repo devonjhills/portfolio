@@ -113,14 +113,14 @@ export function Contact() {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {/* Primary Contact Card */}
-            <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-primary/40">
+            <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-secondary/40">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
                   <Badge variant="default" className="animate-pulse-soft">
                     Available Now
                   </Badge>
                 </div>
-                <CardTitle className="text-lg text-primary">
+                <CardTitle className="text-lg text-secondary">
                   Hire an Expert Engineer
                 </CardTitle>
                 <CardDescription className="text-sm">
@@ -149,7 +149,7 @@ export function Contact() {
             {/* Contact Methods */}
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg text-primary">
+                <CardTitle className="text-lg text-secondary">
                   Connect With Me
                 </CardTitle>
                 <CardDescription className="text-sm">
@@ -171,11 +171,11 @@ export function Contact() {
                     }
                     className="flex items-center gap-3 p-4 rounded-lg border border-border/50 transition-all duration-300 cursor-pointer hover:bg-muted/30 hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.3)] group"
                   >
-                    <div className="p-2 rounded-lg text-primary transition-colors duration-300 bg-primary/10 group-hover:bg-primary/20">
+                    <div className="p-2 rounded-lg text-accent transition-colors duration-300 bg-accent/10 group-hover:bg-accent/20">
                       {contact.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">
+                      <p className="font-medium text-sm text-foreground group-hover:text-accent transition-colors">
                         {contact.label}
                       </p>
                       <p className="text-xs text-muted-foreground truncate">
@@ -184,7 +184,7 @@ export function Contact() {
                     </div>
                     <div className="flex items-center gap-2">
                       {!contact.href.startsWith("mailto") && (
-                        <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary transition-colors" />
+                        <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-accent transition-colors" />
                       )}
                     </div>
                   </a>
@@ -195,7 +195,7 @@ export function Contact() {
             {/* What I Offer + Quick Details */}
             <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-border/50 md:col-span-2 lg:col-span-1">
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg text-primary">
+                <CardTitle className="text-lg text-secondary">
                   What I Offer
                 </CardTitle>
               </CardHeader>
@@ -220,13 +220,13 @@ export function Contact() {
                 </div>
 
                 <div className="border-t border-border/50 pt-4">
-                  <h4 className="font-semibold text-primary mb-3 text-sm">
+                  <h4 className="font-semibold text-secondary mb-3 text-sm">
                     Quick Details
                   </h4>
                   <div className="space-y-2">
                     {quickFacts.map((fact) => (
                       <div key={fact.label} className="flex items-center gap-2">
-                        <div className="p-1 rounded text-primary bg-primary/10">
+                        <div className="p-1 rounded text-accent bg-accent/10">
                           {fact.icon}
                         </div>
                         <div>
@@ -248,7 +248,7 @@ export function Contact() {
           {/* Footer Message */}
           <motion.div variants={itemVariants} className="text-center">
             <div className="bg-card/40 backdrop-blur-md shadow-xl border border-border/50 rounded-lg p-8">
-              <h3 className="text-xl font-semibold text-primary mb-3">
+              <h3 className="text-xl font-semibold text-secondary mb-3">
                 Why Choose Me for Your Team?
               </h3>
               <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">

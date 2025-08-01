@@ -49,7 +49,7 @@ const journeyData: JourneyItem[] = [
       "AWS",
       "CI/CD",
     ],
-    icon: <Target className="h-5 w-5 text-primary" />,
+    icon: <Target className="h-5 w-5 text-secondary" />,
   },
   {
     date: "2021 - Present",
@@ -81,7 +81,7 @@ const journeyData: JourneyItem[] = [
       "React Testing Library",
       "axe-core",
     ],
-    icon: <Target className="h-5 w-5 text-primary" />,
+    icon: <Target className="h-5 w-5 text-secondary" />,
   },
   {
     date: "2018 - 2021",
@@ -108,7 +108,7 @@ const journeyData: JourneyItem[] = [
       "Debugging Tools",
       "Defense Systems",
     ],
-    icon: <Target className="h-5 w-5 text-primary" />,
+    icon: <Target className="h-5 w-5 text-secondary" />,
   },
   {
     date: "2014 - 2017",
@@ -135,7 +135,7 @@ const journeyData: JourneyItem[] = [
       "Software Design",
       "Database Systems",
     ],
-    icon: <GraduationCap className="h-5 w-5 text-primary" />,
+    icon: <GraduationCap className="h-5 w-5 text-secondary" />,
   },
 ];
 
@@ -144,7 +144,7 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
   <Card
     className={`w-full transition-colors duration-300 ${
       item.date === "Next"
-        ? "bg-accent/10 border border-accent/50"
+        ? "bg-secondary/10 border border-secondary/50"
         : "bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
     }`}
   >
@@ -178,7 +178,7 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
           <ul className="space-y-3 pl-2">
             {item.achievements.map((achievement, i) => (
               <li key={i} className="flex items-start gap-3 group">
-                <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-primary transition-colors duration-300 group-hover:text-accent" />
+                <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-secondary transition-colors duration-300 group-hover:text-accent" />
                 <span className="text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
                   {achievement}
                 </span>

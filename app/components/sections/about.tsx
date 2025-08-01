@@ -19,25 +19,25 @@ import { Button } from "../ui/button";
 
 const achievements = [
   {
-    icon: <Target className="h-8 w-8 text-primary" />,
+    icon: <Target className="h-8 w-8 text-secondary" />,
     title: "HealthCare.gov Impact",
     description:
       "Redesigned health plan comparison cards using choice architecture principles based on customer feedback, improving enrollment completion rates for millions of users during high-traffic enrollment periods.",
   },
   {
-    icon: <Zap className="h-8 w-8 text-primary" />,
+    icon: <Zap className="h-8 w-8 text-secondary" />,
     title: "Production Reliability",
     description:
       "Maintained 24/7 on-call rotation for critical HealthCare.gov systems, ensuring minimal downtime during peak enrollment periods while resolving frontend bugs affecting millions of users.",
   },
   {
-    icon: <Users className="h-8 w-8 text-primary" />,
+    icon: <Users className="h-8 w-8 text-secondary" />,
     title: "Accessibility Excellence",
     description:
       "Built comprehensive accessibility testing infrastructure using axe-core, maintaining WCAG/Section 508 compliance for government healthcare applications serving vulnerable populations.",
   },
   {
-    icon: <Brain className="h-8 w-8 text-primary" />,
+    icon: <Brain className="h-8 w-8 text-secondary" />,
     title: "Team Leadership",
     description:
       "Led technical documentation efforts and established coding standards that improved team velocity and reduced onboarding time, while mentoring junior developers across cross-functional teams.",
@@ -206,7 +206,7 @@ export function About() {
                     <div className="absolute -left-[5px] top-0 w-2 h-2 bg-primary rounded-full"></div>
                     <div>
                       <h4 className="font-semibold">Software Engineer III</h4>
-                      <p className="text-sm text-primary">
+                      <p className="text-sm text-accent">
                         Ad Hoc LLC • Nov 2021 - Present
                       </p>
                       <p className="text-sm text-muted-foreground mt-1">
@@ -218,7 +218,7 @@ export function About() {
                     <div className="absolute -left-[5px] top-0 w-2 h-2 bg-primary/60 rounded-full"></div>
                     <div>
                       <h4 className="font-semibold">Software Engineer</h4>
-                      <p className="text-sm text-primary">
+                      <p className="text-sm text-accent">
                         Raytheon Technologies • Jul 2018 - Nov 2021
                       </p>
                       <p className="text-sm text-muted-foreground mt-1">
@@ -231,9 +231,7 @@ export function About() {
                     <div className="absolute -left-[5px] top-0 w-2 h-2 bg-primary/40 rounded-full"></div>
                     <div>
                       <h4 className="font-semibold">BS Computer Science</h4>
-                      <p className="text-sm text-primary">
-                        UMass Lowell • 2017
-                      </p>
+                      <p className="text-sm text-accent">UMass Lowell • 2017</p>
                       <p className="text-sm text-muted-foreground mt-1">
                         Graduated cum laude • Dean&apos;s List
                       </p>
@@ -311,7 +309,7 @@ export function About() {
                   <Card key={achievement.title} className="h-full">
                     <CardContent className="p-6">
                       <div className="flex flex-col items-center text-center space-y-3">
-                        <div className="p-3 bg-primary/20 border-2 border-primary/30 rounded-lg">
+                        <div className="p-3 bg-secondary/20 border-2 border-secondary/30 rounded-lg">
                           {achievement.icon}
                         </div>
                         <div>
@@ -342,7 +340,7 @@ export function About() {
                   >
                     <CardHeader className="pb-3">
                       <CardTitle className="flex items-center gap-3 text-lg">
-                        <div className="p-2 bg-primary/10 rounded-lg text-primary">
+                        <div className="p-2 bg-accent/10 rounded-lg text-accent">
                           {category.icon}
                         </div>
                         {category.title}
