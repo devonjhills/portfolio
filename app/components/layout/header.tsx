@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { ThemeToggle } from "./theme-toggle";
 import { Menu, X } from "lucide-react";
 import { Button } from "../ui/button";
-import { Logo } from "../ui/logo";
+import Image from "next/image";
 
 const sections = [
   { name: "About", href: "#about" },
@@ -75,7 +75,14 @@ export function Header() {
               }
             }}
           >
-            <Logo size={40} variant="primary" className="rounded-lg" />
+            <Image
+              src="/logo2.png"
+              alt="Devon Hills Logo"
+              width={40}
+              height={40}
+              className="rounded-lg"
+              priority
+            />
             <span className="ml-3 text-xl font-bold text-primary hidden sm:block">
               portfolio
             </span>

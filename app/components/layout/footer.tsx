@@ -4,7 +4,7 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "../ui/button";
 import { FloatingDock } from "../ui/floating-dock";
-import { Logo } from "../ui/logo";
+import Image from "next/image";
 
 const socialLinks = [
   {
@@ -32,7 +32,12 @@ export function Footer() {
       <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
         {/* Left Side: Copyright */}
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Logo size={24} variant="foreground" />
+          <Image
+            src="/logo2.png"
+            alt="Devon Hills Logo"
+            width={24}
+            height={24}
+          />
           <span>© {currentYear} Devon Hills</span>
         </div>
 
