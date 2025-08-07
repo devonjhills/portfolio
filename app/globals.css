@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Aceternity InfiniteMovingCards Animation */
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
 @layer base {
   :root {
     /* Light mode - accessible cyberpunk synthwave */
@@ -296,5 +303,11 @@
 
   .horizontal-scroll::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary) / 0.8);
+  }
+}
+
+@layer utilities {
+  .animate-scroll {
+    animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
   }
 }
