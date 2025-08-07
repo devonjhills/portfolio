@@ -11,105 +11,85 @@
 
 @layer base {
   :root {
-    /* Light mode - accessible cyberpunk synthwave */
-    --background: 0 0% 98%;
-    --foreground: 260 8% 15%;
-    --primary: 285 70% 45%; /* softer magenta */
+    /* Light mode - enhanced cyberpunk synthwave */
+    --background: 0 0% 97%;
+    --foreground: 260 15% 8%;
+    --primary: 285 90% 52%; /* electric magenta */
     --primary-foreground: 0 0% 100%;
-    --secondary: 195 80% 40%; /* softer cyan */
+    --secondary: 195 100% 48%; /* electric cyan */
     --secondary-foreground: 0 0% 100%;
-    --accent: 340 70% 50%; /* softer hot pink */
+    --accent: 340 90% 58%; /* electric hot pink */
     --accent-foreground: 0 0% 100%;
-    --warning: 40 85% 50%;
+    --warning: 40 100% 58%; /* electric orange */
     --warning-foreground: 0 0% 10%;
-    --destructive: 2 70% 50%;
+    --destructive: 2 90% 58%; /* electric red */
     --destructive-foreground: 0 0% 100%;
-    --muted: 260 8% 94%;
-    --muted-foreground: 260 6% 45%;
-    --border: 260 10% 88%;
+    --muted: 260 20% 88%;
+    --muted-foreground: 260 15% 35%;
+    --border: 260 25% 80%;
     --input: 0 0% 100%;
-    --ring: 285 70% 45%;
+    --ring: 285 90% 52%;
 
-    --gradient-primary: linear-gradient(
-      135deg,
-      hsl(285 70% 45%) 0%,
-      hsl(195 80% 40%) 100%
-    );
-    --gradient-secondary: linear-gradient(
-      135deg,
-      hsl(195 80% 40%) 0%,
-      hsl(285 70% 45%) 100%
-    );
-    --gradient-background: linear-gradient(
-      135deg,
-      hsl(0 0% 98%) 0%,
-      hsl(260 8% 96%) 100%
-    );
-    --gradient-accent: linear-gradient(
-      135deg,
-      hsl(340 70% 50%) 0%,
-      hsl(285 70% 45%) 100%
-    );
-
-    --section-primary: 0 0% 98%;
-    --section-secondary: 260 8% 96%;
+    --section-primary: 0 0% 96%;
+    --section-secondary: 260 15% 92%;
 
     --card: 0 0% 100%;
-    --card-foreground: 260 8% 15%;
+    --card-foreground: 260 12% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 260 8% 15%;
+    --popover-foreground: 260 12% 10%;
+
+    /* Semantic colors for better theming */
+    --star: 48 100% 58%; /* electric gold for stars */
+    --fork: 195 100% 48%; /* electric cyan for forks */
+    --success: 142 90% 52%; /* electric green */
+    --info: 195 100% 48%; /* electric cyan for info */
+    --chart-1: 285 90% 52%; /* primary */
+    --chart-2: 195 100% 48%; /* secondary */
+    --chart-3: 340 90% 58%; /* accent */
+    --chart-4: 142 90% 52%; /* success */
+    --chart-5: 48 100% 58%; /* star/warning */
 
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Softer Cyberpunk Synthwave palette */
-    --background: 260 15% 8%; /* softer deep purple-black */
-    --foreground: 300 6% 85%; /* softer pink-white text */
-    --primary: 285 85% 60%; /* softer electric magenta */
-    --primary-foreground: 260 20% 10%;
-    --secondary: 195 85% 55%; /* softer neon cyan */
-    --secondary-foreground: 260 20% 10%;
-    --accent: 340 85% 60%; /* softer hot pink */
-    --accent-foreground: 260 20% 10%;
-    --warning: 40 85% 60%; /* softer neon orange */
-    --warning-foreground: 260 20% 10%;
-    --destructive: 0 85% 60%; /* softer electric red */
+    /* Enhanced Cyberpunk Synthwave palette */
+    --background: 260 25% 5%; /* deeper purple-black */
+    --foreground: 300 20% 92%; /* brighter pink-white text */
+    --primary: 285 100% 68%; /* electric magenta */
+    --primary-foreground: 260 30% 6%;
+    --secondary: 195 100% 62%; /* electric cyan */
+    --secondary-foreground: 260 30% 6%;
+    --accent: 340 100% 68%; /* electric hot pink */
+    --accent-foreground: 260 30% 6%;
+    --warning: 40 100% 68%; /* electric orange */
+    --warning-foreground: 260 30% 6%;
+    --destructive: 0 100% 68%; /* electric red */
     --destructive-foreground: 0 0% 100%;
-    --muted: 260 12% 14%; /* softer dark purple panels */
-    --muted-foreground: 280 6% 65%;
-    --border: 280 12% 22%; /* softer purple separators */
-    --input: 260 12% 14%;
-    --ring: 285 85% 60%;
+    --muted: 260 22% 11%; /* dark purple panels */
+    --muted-foreground: 280 15% 72%;
+    --border: 280 25% 28%; /* purple separators */
+    --input: 260 22% 11%;
+    --ring: 285 100% 68%;
 
-    --gradient-primary: linear-gradient(
-      135deg,
-      hsl(285 85% 60%) 0%,
-      hsl(195 85% 55%) 100%
-    );
-    --gradient-secondary: linear-gradient(
-      135deg,
-      hsl(195 85% 55%) 0%,
-      hsl(285 85% 60%) 100%
-    );
-    --gradient-background: linear-gradient(
-      135deg,
-      hsl(260 15% 8%) 0%,
-      hsl(280 12% 10%) 100%
-    );
-    --gradient-accent: linear-gradient(
-      135deg,
-      hsl(340 85% 60%) 0%,
-      hsl(285 85% 60%) 100%
-    );
+    --section-primary: 260 20% 6%;
+    --section-secondary: 280 18% 9%;
 
-    --section-primary: 260 15% 8%;
-    --section-secondary: 280 12% 10%;
+    --card: 260 18% 15%; /* lighter than background for contrast */
+    --card-foreground: 300 15% 90%;
+    --popover: 260 18% 15%;
+    --popover-foreground: 300 15% 90%;
 
-    --card: 260 12% 12%;
-    --card-foreground: 300 6% 85%;
-    --popover: 260 12% 12%;
-    --popover-foreground: 300 6% 85%;
+    /* Semantic colors for better theming */
+    --star: 48 100% 68%; /* electric gold for stars */
+    --fork: 195 100% 62%; /* electric cyan for forks */
+    --success: 142 90% 62%; /* electric green */
+    --info: 195 100% 62%; /* electric cyan for info */
+    --chart-1: 285 100% 68%; /* primary */
+    --chart-2: 195 100% 62%; /* secondary */
+    --chart-3: 340 100% 68%; /* accent */
+    --chart-4: 142 90% 62%; /* success */
+    --chart-5: 48 100% 68%; /* star/warning */
   }
 
   * {
@@ -308,6 +288,7 @@
 
 @layer utilities {
   .animate-scroll {
-    animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+    animation: scroll var(--animation-duration, 40s)
+      var(--animation-direction, forwards) linear infinite;
   }
 }

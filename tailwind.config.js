@@ -46,6 +46,18 @@ module.exports = {
           foreground: "hsl(var(--warning-foreground))",
         },
         ring: "hsl(var(--ring))",
+        // Semantic colors for better theming
+        star: "hsl(var(--star))",
+        fork: "hsl(var(--fork))",
+        success: "hsl(var(--success))",
+        info: "hsl(var(--info))",
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+        },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],

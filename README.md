@@ -42,18 +42,21 @@ A sophisticated, modern portfolio website built with Next.js 15, showcasing my p
 ## 🛠️ Tech Stack
 
 ### Core Technologies
+
 [![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
 ### Animation & UI
+
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.11-0055FF?style=flat-square&logo=framer&logoColor=white)](https://www.framer.com/motion/)
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-Latest-000000?style=flat-square&logo=shadcnui&logoColor=white)](https://ui.shadcn.com/)
 [![Aceternity UI](https://img.shields.io/badge/Aceternity_UI-Latest-FF6B6B?style=flat-square&logoColor=white)](https://ui.aceternity.com/)
 [![Lucide React](https://img.shields.io/badge/Lucide_React-Latest-F56565?style=flat-square&logo=lucide&logoColor=white)](https://lucide.dev/)
 
 ### Development Tools
+
 [![Turbopack](https://img.shields.io/badge/Turbopack-Latest-000000?style=flat-square&logo=turbopack&logoColor=white)](https://turbo.build/pack)
 [![ESLint](https://img.shields.io/badge/ESLint-8.0-4B32C3?style=flat-square&logo=eslint&logoColor=white)](https://eslint.org/)
 [![Prettier](https://img.shields.io/badge/Prettier-Latest-F7B93E?style=flat-square&logo=prettier&logoColor=black)](https://prettier.io/)

@@ -61,7 +61,7 @@ const LanguagesBar = ({
         {languageStats.map((lang) => (
           <div key={lang.name} className="flex items-center gap-1.5">
             <div
-              className="w-3 h-3 rounded-full flex-shrink-0 ring-1 ring-black/10"
+              className="w-3 h-3 rounded-full flex-shrink-0 ring-1 ring-border/20"
               style={{ backgroundColor: lang.color }}
             />
             <span className="text-foreground font-medium">{lang.name}</span>
@@ -131,157 +131,175 @@ const itemVariants: Variants = {
 };
 
 // Compact Project Card Component for Infinite Scroll
-const CompactProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
-  <div className="h-[24rem] w-full p-1">
-    <Card className="group h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-border/50 hover:border-border bg-card/80 backdrop-blur-md">
-      <CardContent className="p-4 flex flex-col h-full">
-        {/* Header - Fixed height */}
-        <div className="flex items-start justify-between mb-3">
-          <CardTitle
-            className="text-sm font-semibold leading-tight text-primary flex-1"
+const CompactProjectCard = React.memo(
+  ({ project }: { project: GitHubProject }) => (
+    <div className="h-[24rem] w-full p-1">
+      <Card className="group h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-2 border-border hover:border-primary/50 bg-card shadow-md">
+        <CardContent className="p-4 flex flex-col h-full">
+          {/* Header - Fixed height */}
+          <div className="flex items-start justify-between mb-3">
+            <CardTitle
+              className="text-sm font-semibold leading-tight text-primary flex-1"
+              style={{
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+                minHeight: "2.5rem",
+              }}
+            >
+              <a
+                href={project.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary/80 transition-colors duration-200 cursor-pointer"
+              >
+                {project.title}
+              </a>
+            </CardTitle>
+            <div className="flex items-center gap-1 ml-2 flex-shrink-0">
+              {project.stars > 0 && (
+                <Badge variant="outline" className="text-xs">
+                  <Star className="w-2.5 h-2.5 mr-0.5 text-star" />
+                  {project.stars}
+                </Badge>
+              )}
+              {project.forks > 0 && (
+                <Badge variant="outline" className="text-xs">
+                  <GitFork className="w-2.5 h-2.5 mr-0.5 text-fork" />
+                  {project.forks}
+                </Badge>
+              )}
+            </div>
+          </div>
+
+          {/* Description - Fixed height with ellipsis */}
+          <CardDescription
+            className="text-xs leading-relaxed text-muted-foreground mb-4"
             style={{
               display: "-webkit-box",
-              WebkitLineClamp: 2,
+              WebkitLineClamp: 3,
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
-              minHeight: "2.5rem",
+              minHeight: "3.6rem",
+              maxHeight: "3.6rem",
+              textOverflow: "ellipsis",
             }}
           >
-            <a
-              href={project.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-primary/80 transition-colors duration-200 cursor-pointer"
-            >
-              {project.title}
-            </a>
-          </CardTitle>
-          <div className="flex items-center gap-1 ml-2 flex-shrink-0">
-            {project.stars > 0 && (
-              <Badge variant="outline" className="text-xs">
-                <Star className="w-2.5 h-2.5 mr-0.5 text-yellow-500" />
-                {project.stars}
-              </Badge>
-            )}
-            {project.forks > 0 && (
-              <Badge variant="outline" className="text-xs">
-                <GitFork className="w-2.5 h-2.5 mr-0.5 text-blue-500" />
-                {project.forks}
-              </Badge>
+            {project.description}
+          </CardDescription>
+
+          {/* Metadata - Fixed height */}
+          <div
+            className="flex items-center gap-3 text-xs text-muted-foreground mb-3"
+            style={{ minHeight: "1.5rem", maxHeight: "1.5rem" }}
+          >
+            <span className="flex items-center gap-1">
+              <Calendar className="w-2.5 h-2.5" />
+              {getTimeAgo(project.pushed_at)}
+            </span>
+            {project.primaryLanguage && (
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 bg-accent rounded-full"></span>
+                {project.primaryLanguage}
+              </span>
             )}
           </div>
-        </div>
 
-        {/* Description - Fixed height with ellipsis */}
-        <CardDescription
-          className="text-xs leading-relaxed text-muted-foreground mb-4"
-          style={{
-            display: "-webkit-box",
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-            minHeight: "3.6rem",
-            maxHeight: "3.6rem",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {project.description}
-        </CardDescription>
+          {/* Topics - Single row with +number badge */}
+          <div className="flex items-center mb-4 min-h-6 max-h-6">
+            {project.topics.length > 0 ? (
+              <div className="flex items-center gap-1 w-full overflow-hidden">
+                {project.topics.slice(0, 3).map((topic) => (
+                  <Badge
+                    key={topic}
+                    variant="outline"
+                    className="text-xs whitespace-nowrap flex-shrink-0"
+                  >
+                    {topic}
+                  </Badge>
+                ))}
+                {project.topics.length > 3 && (
+                  <Badge
+                    variant="outline"
+                    className="text-xs whitespace-nowrap flex-shrink-0 ml-1"
+                  >
+                    +{project.topics.length - 3}
+                  </Badge>
+                )}
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </div>
 
-        {/* Metadata - Fixed height */}
-        <div
-          className="flex items-center gap-3 text-xs text-muted-foreground mb-3"
-          style={{ minHeight: "1.5rem", maxHeight: "1.5rem" }}
-        >
-          <span className="flex items-center gap-1">
-            <Calendar className="w-2.5 h-2.5" />
-            {getTimeAgo(project.pushed_at)}
-          </span>
-          {project.primaryLanguage && (
-            <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 bg-accent rounded-full"></span>
-              {project.primaryLanguage}
-            </span>
-          )}
-        </div>
+          {/* Languages - GitHub style with color bar */}
+          <div
+            className="flex-1 flex flex-col justify-end mb-4"
+            style={{ minHeight: "3.5rem" }}
+          >
+            {project.languageStats && project.languageStats.length > 0 ? (
+              <LanguagesBar languageStats={project.languageStats} />
+            ) : (
+              <div className="flex flex-wrap gap-1">
+                {project.languages.slice(0, 4).map((tech) => (
+                  <Badge key={tech} variant="outline" className="text-xs">
+                    {tech}
+                  </Badge>
+                ))}
+                {project.languages.length > 4 && (
+                  <Badge variant="outline" className="text-xs">
+                    +{project.languages.length - 4}
+                  </Badge>
+                )}
+              </div>
+            )}
+          </div>
 
-        {/* Topics - Single row with +number badge */}
-        <div
-          className="flex items-center mb-4 min-h-6 max-h-6"
-        >
-          {project.topics.length > 0 ? (
-            <div className="flex items-center gap-1 w-full overflow-hidden">
-              {project.topics.slice(0, 3).map((topic) => (
-                <Badge
-                  key={topic}
-                  variant="outline"
-                  className="text-xs whitespace-nowrap flex-shrink-0"
-                >
-                  {topic}
-                </Badge>
-              ))}
-              {project.topics.length > 3 && (
-                <Badge 
-                  variant="outline" 
-                  className="text-xs whitespace-nowrap flex-shrink-0 ml-1"
-                >
-                  +{project.topics.length - 3}
-                </Badge>
-              )}
-            </div>
-          ) : (
-            <div></div>
-          )}
-        </div>
-
-        {/* Languages - GitHub style with color bar */}
-        <div
-          className="flex-1 flex flex-col justify-end mb-4"
-          style={{ minHeight: "3.5rem" }}
-        >
-          {project.languageStats && project.languageStats.length > 0 ? (
-            <LanguagesBar languageStats={project.languageStats} />
-          ) : (
-            <div className="flex flex-wrap gap-1">
-              {project.languages.slice(0, 4).map((tech) => (
-                <Badge key={tech} variant="outline" className="text-xs">
-                  {tech}
-                </Badge>
-              ))}
-              {project.languages.length > 4 && (
-                <Badge variant="outline" className="text-xs">
-                  +{project.languages.length - 4}
-                </Badge>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-2 mt-auto">
-          <Button asChild variant="outline" size="sm" className="flex-1 text-xs">
-            <a href={project.html_url} target="_blank" rel="noopener noreferrer">
-              <GitFork className="w-3 h-3 mr-1" />
-              Code
-            </a>
-          </Button>
-          {project.homepage && (
-            <Button asChild variant="default" size="sm" className="flex-1 text-xs">
-              <a href={project.homepage} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-3 h-3 mr-1" />
-                Live
+          {/* Action Buttons */}
+          <div className="flex gap-2 mt-auto">
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="flex-1 text-xs"
+            >
+              <a
+                href={project.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GitFork className="w-3 h-3 mr-1" />
+                Code
               </a>
             </Button>
-          )}
-        </div>
-      </CardContent>
-    </Card>
-  </div>
-));
+            {project.homepage && (
+              <Button
+                asChild
+                variant="default"
+                size="sm"
+                className="flex-1 text-xs"
+              >
+                <a
+                  href={project.homepage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="w-3 h-3 mr-1" />
+                  Live
+                </a>
+              </Button>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  ),
+);
 
 // Project Card Component
 const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
-  <Card className="group flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-border/50 hover:border-border">
+  <Card className="group flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-2 border-border hover:border-primary/50 bg-card shadow-md">
     <CardContent className="p-6 flex-1 flex flex-col">
       {/* Header - Fixed height */}
       <div className="flex items-start justify-between mb-3">
@@ -307,13 +325,13 @@ const ProjectCard = React.memo(({ project }: { project: GitHubProject }) => (
         <div className="flex items-center gap-2 ml-4 flex-shrink-0">
           {project.stars > 0 && (
             <Badge variant="outline" className="text-xs">
-              <Star className="w-3 h-3 mr-1 text-yellow-500" />
+              <Star className="w-3 h-3 mr-1 text-star" />
               {project.stars}
             </Badge>
           )}
           {project.forks > 0 && (
             <Badge variant="outline" className="text-xs">
-              <GitFork className="w-3 h-3 mr-1 text-blue-500" />
+              <GitFork className="w-3 h-3 mr-1 text-fork" />
               {project.forks}
             </Badge>
           )}
@@ -522,17 +540,20 @@ export const Projects = () => {
           )}
 
           {/* Fallback Grid for when there are few projects */}
-          {!loading && !error && projects.length > 0 && projects.length <= 2 && (
-            <motion.div variants={itemVariants} className="w-full mt-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                {projects.map((project) => (
-                  <motion.div key={project.id} variants={itemVariants}>
-                    <ProjectCard project={project} />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
+          {!loading &&
+            !error &&
+            projects.length > 0 &&
+            projects.length <= 2 && (
+              <motion.div variants={itemVariants} className="w-full mt-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                  {projects.map((project) => (
+                    <motion.div key={project.id} variants={itemVariants}>
+                      <ProjectCard project={project} />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
         </motion.div>
       </div>
     </section>

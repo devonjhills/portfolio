@@ -86,13 +86,15 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative bg-background overflow-hidden py-16 lg:py-24">
+      className="relative bg-background overflow-hidden py-16 lg:py-24"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-12">
+          className="space-y-12"
+        >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-6">
@@ -108,7 +110,8 @@ export function Contact() {
           {/* Main Content Grid */}
           <motion.div
             variants={itemVariants}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {/* Primary Contact Card */}
             <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-secondary/40">
               <CardHeader className="pb-3">
@@ -167,7 +170,8 @@ export function Contact() {
                         ? undefined
                         : "noopener noreferrer"
                     }
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border/50 transition-all duration-300 cursor-pointer hover:bg-muted/30 hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.3)] group">
+                    className="flex items-center gap-3 p-4 rounded-lg border border-border/50 transition-all duration-300 cursor-pointer hover:bg-muted/30 hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.3)] group"
+                  >
                     <div className="p-2 rounded-lg text-accent transition-colors duration-300 bg-accent/10 group-hover:bg-accent/20">
                       {contact.icon}
                     </div>

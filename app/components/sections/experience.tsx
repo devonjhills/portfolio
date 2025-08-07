@@ -32,14 +32,9 @@ const journeyData: JourneyItem[] = [
     company: "Livefront",
     location: "Remote",
     duration: "Aug 2025 - Present",
-    description:
-      "Details TBD",
-    achievements: [
-      "Details TBD",
-    ],
-    technologies: [
-      "Details TBD",
-    ],
+    description: "Details TBD",
+    achievements: ["Details TBD"],
+    technologies: ["Details TBD"],
     icon: <Target className="h-5 w-5 text-secondary" />,
   },
   {
@@ -150,7 +145,9 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
             {item.duration}
           </CardDescription>
         </div>
-        {item.date === "2025 - Present" && <Badge variant="default">Current</Badge>}
+        {item.date === "2025 - Present" && (
+          <Badge variant="default">Current</Badge>
+        )}
       </div>
     </CardHeader>
     <CardContent className="space-y-6">
