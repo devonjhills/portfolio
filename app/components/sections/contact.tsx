@@ -59,8 +59,8 @@ const quickFacts = [
   },
   {
     icon: <Calendar className="h-5 w-5" />,
-    label: "Availability",
-    value: "Full-time & Contract",
+    label: "Status",
+    value: "Recently Accepted New Role",
   },
 ];
 
@@ -86,46 +86,44 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative bg-background overflow-hidden py-16 lg:py-24"
-    >
+      className="relative bg-background overflow-hidden py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-12"
-        >
+          className="space-y-12">
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-6">
-              Ready to Hire a Proven Engineer?
+              Let&apos;s Connect & Collaborate
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              7+ years building mission-critical applications for millions of
-              users. Available for your next role - let&apos;s build something
-              great together.
+              Always excited to connect with fellow developers, discuss
+              interesting projects, and share knowledge. Reach out to chat about
+              tech, collaboration opportunities, or just to say hello!
             </p>
           </motion.div>
 
           {/* Main Content Grid */}
           <motion.div
             variants={itemVariants}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Primary Contact Card */}
             <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-secondary/40">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <Badge variant="default" className="animate-pulse-soft">
-                    Available Now
+                  <Badge variant="secondary" className="animate-pulse-soft">
+                    Open to Connect
                   </Badge>
                 </div>
                 <CardTitle className="text-lg text-secondary">
-                  Hire an Expert Engineer
+                  Get in Touch
                 </CardTitle>
                 <CardDescription className="text-sm">
-                  HealthCare.gov engineer with proven track record serving
-                  millions of users. Ready to start immediately.
+                  HealthCare.gov engineer passionate about building great
+                  software. Recently started a new role but always happy to
+                  connect!
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -133,13 +131,13 @@ export function Contact() {
                   <Button asChild size="lg" className="shadow-lg w-full">
                     <a href="mailto:devonjhills@gmail.com">
                       <Mail className="mr-2 h-4 w-4" />
-                      Schedule Interview
+                      Say Hello
                     </a>
                   </Button>
                   <Button asChild variant="outline" size="lg">
                     <a href="/Devon_Hills_Resume_2025_Newest.pdf" download>
                       <Download className="mr-2 h-4 w-4" />
-                      Download Resume
+                      View Resume
                     </a>
                   </Button>
                 </div>
@@ -150,10 +148,10 @@ export function Contact() {
             <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg text-secondary">
-                  Connect With Me
+                  Find Me Online
                 </CardTitle>
                 <CardDescription className="text-sm">
-                  Multiple ways to reach out - choose what works best.
+                  Let&apos;s connect and stay in touch through these platforms.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -169,8 +167,7 @@ export function Contact() {
                         ? undefined
                         : "noopener noreferrer"
                     }
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border/50 transition-all duration-300 cursor-pointer hover:bg-muted/30 hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.3)] group"
-                  >
+                    className="flex items-center gap-3 p-4 rounded-lg border border-border/50 transition-all duration-300 cursor-pointer hover:bg-muted/30 hover:shadow-[0_0_0_2px_hsl(var(--primary)/0.3)] group">
                     <div className="p-2 rounded-lg text-accent transition-colors duration-300 bg-accent/10 group-hover:bg-accent/20">
                       {contact.icon}
                     </div>
@@ -192,11 +189,11 @@ export function Contact() {
               </CardContent>
             </Card>
 
-            {/* What I Offer + Quick Details */}
+            {/* What I Love + Quick Details */}
             <Card className="bg-card/40 backdrop-blur-md shadow-xl border border-border/50 md:col-span-2 lg:col-span-1">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg text-secondary">
-                  What I Offer
+                  What I&apos;m Passionate About
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -207,7 +204,7 @@ export function Contact() {
                   </div>
                   <div className="flex items-center gap-2 group">
                     <div className="w-1.5 h-1.5 rounded-full transition-colors duration-300 bg-primary group-hover:bg-accent"></div>
-                    Healthcare & compliance
+                    Healthcare & accessibility
                   </div>
                   <div className="flex items-center gap-2 group">
                     <div className="w-1.5 h-1.5 rounded-full transition-colors duration-300 bg-primary group-hover:bg-accent"></div>
@@ -215,7 +212,7 @@ export function Contact() {
                   </div>
                   <div className="flex items-center gap-2 group">
                     <div className="w-1.5 h-1.5 rounded-full transition-colors duration-300 bg-primary group-hover:bg-accent"></div>
-                    Technical leadership
+                    Open source projects
                   </div>
                 </div>
 
@@ -243,20 +240,6 @@ export function Contact() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
-
-          {/* Footer Message */}
-          <motion.div variants={itemVariants} className="text-center">
-            <div className="bg-card/40 backdrop-blur-md shadow-xl border border-border/50 rounded-lg p-8">
-              <h3 className="text-xl font-semibold text-secondary mb-3">
-                Why Choose Me for Your Team?
-              </h3>
-              <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                Proven experience with HealthCare.gov scale, accessibility
-                compliance, and 24/7 production support. Ready to deliver
-                results from day one.
-              </p>
-            </div>
           </motion.div>
         </motion.div>
       </div>

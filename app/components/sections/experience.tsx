@@ -27,36 +27,27 @@ type JourneyItem = {
 
 const journeyData: JourneyItem[] = [
   {
-    date: "Next",
-    title: "Your Next Team Member?",
-    company: "Ready for New Challenges",
-    location: "Remote / Hybrid / On-site",
-    duration: "",
+    date: "2025 - Present",
+    title: "Software Engineer",
+    company: "Livefront",
+    location: "Remote",
+    duration: "Aug 2025 - Present",
     description:
-      "Seeking a React/TypeScript engineer with 7+ years of experience and healthcare domain expertise? I bring proven skills in building mission-critical applications, leading technical initiatives, and driving impactful solutions.",
+      "Details TBD",
     achievements: [
-      "7+ years of full-stack development experience",
-      "Mission-critical application expertise serving millions of users",
-      "Government security clearance and compliance experience",
-      "Technical leadership and mentorship background",
-      "24/7 production support and incident response experience",
+      "Details TBD",
     ],
     technologies: [
-      "React",
-      "TypeScript",
-      "Ruby on Rails",
-      "PostgreSQL",
-      "AWS",
-      "CI/CD",
+      "Details TBD",
     ],
     icon: <Target className="h-5 w-5 text-secondary" />,
   },
   {
-    date: "2021 - Present",
+    date: "2021 - 2025",
     title: "Software Engineer III",
     company: "Ad Hoc LLC",
     location: "Remote",
-    duration: "Nov 2021 - Present (3+ years)",
+    duration: "Nov 2021 - April 2025 (3+ years)",
     description:
       "Built and maintained React/TypeScript applications for HealthCare.gov health plan enrollment workflows, serving millions of users during high-traffic enrollment periods with focus on accessibility and performance.",
     achievements: [
@@ -143,7 +134,7 @@ const journeyData: JourneyItem[] = [
 const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
   <Card
     className={`w-full transition-colors duration-300 ${
-      item.date === "Next"
+      item.date === "2025 - Present"
         ? "bg-secondary/10 border border-secondary/50"
         : "bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
     }`}
@@ -159,12 +150,7 @@ const JourneyCard = React.memo(({ item }: { item: JourneyItem }) => (
             {item.duration}
           </CardDescription>
         </div>
-        {item.date === "Present" && <Badge variant="default">Current</Badge>}
-        {item.date === "Next" && (
-          <Badge variant="default" className="animate-pulse-soft">
-            Available
-          </Badge>
-        )}
+        {item.date === "2025 - Present" && <Badge variant="default">Current</Badge>}
       </div>
     </CardHeader>
     <CardContent className="space-y-6">
