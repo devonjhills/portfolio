@@ -26,6 +26,7 @@ A sophisticated, modern portfolio website built with Next.js 15, showcasing my p
 
 ### Advanced UI Components
 
+- **Infinite Scrolling Project Cards** - Smooth horizontal scrolling with Aceternity UI
 - **Aceternity UI Timeline** - Professional experience showcase with detailed achievements
 - **Animated Backgrounds** - Shooting stars and twinkling stars effects
 - **Floating Dock** - Social media links with smooth animations
@@ -84,18 +85,18 @@ A sophisticated, modern portfolio website built with Next.js 15, showcasing my p
 
 ### Projects
 
-- **Etsy Digital Mockup Tools** (Featured) - Python automation suite with Flask web interface
-- **Government Grant Directory** - Next.js SEO-optimized directory with Grants.gov API
-- **Ruby Book Collection Manager** - Full-stack Rails/React app with real-time processing visualization
-- Interactive project showcase with detailed modals
-- Technology stacks and links to GitHub repositories
+- **Dynamic GitHub Integration** - Real-time project data fetched from GitHub API
+- **Infinite Scrolling Display** - Smooth horizontal scrolling project cards with pause on hover
+- **GitHub-style Language Statistics** - Visual language breakdown with color-coded bars
+- **Project Cards** - Compact and detailed views with live/code links
+- **Auto-updating Content** - Projects automatically sync with latest GitHub repositories
 
 ### Contact
 
 - Animated stars background
-- Real-time availability status
-- Contact form with validation
-- Social media links
+- Professional networking focus
+- Social media and professional links
+- Modern contact interface
 
 ## 🚀 Getting Started
 
@@ -148,23 +149,28 @@ npm run lint     # Run ESLint code quality checks
 
 ```
 app/
+├── api/
+│   ├── github-repos/      # GitHub API integration
+│   └── og/               # Open Graph image generation
 ├── components/
 │   ├── sections/          # Main portfolio sections
 │   │   ├── hero.tsx       # Landing hero with animations
 │   │   ├── about.tsx      # About section with skills
 │   │   ├── experience.tsx # Professional timeline
-│   │   ├── projects.tsx   # Project showcase
-│   │   └── contact.tsx    # Contact form
+│   │   ├── projects.tsx   # Dynamic GitHub project showcase
+│   │   └── contact.tsx    # Networking contact section
 │   └── ui/               # Reusable UI components
 │       ├── card.tsx      # shadcn/ui cards
 │       ├── timeline.tsx  # Aceternity timeline
+│       ├── infinite-moving-cards.tsx # Infinite scroll
 │       ├── stars-background.tsx
 │       └── floating-dock.tsx
-├── lib/                  # Utility functions
-├── globals.css          # Global styles
+├── lib/                  # Utility functions and GitHub hooks
+├── globals.css          # Global styles with CSS custom properties
 ├── layout.tsx           # Root layout
 └── page.tsx            # Main page
 
+components/ui/           # Shared Aceternity UI components
 public/
 └── Devon_Hills_Resume_2025_Newest.pdf
 ```
@@ -200,9 +206,11 @@ public/
 
 ### Styling
 
-- **Colors**: Modify CSS custom properties in `app/globals.css`
+- **Colors**: Modify CSS custom properties in `app/globals.css` for easy theming
+- **Cyberpunk Synthwave Theme**: Electric magenta, neon cyan, and hot pink color scheme
 - **Components**: Customize shadcn/ui components in `app/components/ui/`
 - **Animations**: Adjust Framer Motion variants in component files
+- **Infinite Scroll Speed**: Configurable animation duration in `infinite-moving-cards.tsx`
 
 ## 📈 Performance
 
@@ -230,11 +238,12 @@ The application can be deployed to any platform that supports Next.js:
 
 ## 👨‍💻 About the Developer
 
-**Devon Hills** - Software Engineer III at Ad Hoc LLC
+**Devon Hills** - Software Engineer at Livefront
 
 - 7+ years building mission-critical React/TypeScript applications
-- Specialized in HealthCare.gov serving millions of users
+- Previously specialized in HealthCare.gov serving millions of users at Ad Hoc
 - Expert in accessibility, performance optimization, and modern web development
+- Currently focused on cutting-edge frontend development at Livefront
 
 ### Contact
 
