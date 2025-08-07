@@ -11,85 +11,85 @@
 
 @layer base {
   :root {
-    /* Light mode - enhanced cyberpunk synthwave */
-    --background: 0 0% 97%;
-    --foreground: 260 15% 8%;
-    --primary: 285 90% 52%; /* electric magenta */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 195 100% 48%; /* electric cyan */
-    --secondary-foreground: 0 0% 100%;
-    --accent: 340 90% 58%; /* electric hot pink */
-    --accent-foreground: 0 0% 100%;
-    --warning: 40 100% 58%; /* electric orange */
-    --warning-foreground: 0 0% 10%;
-    --destructive: 2 90% 58%; /* electric red */
-    --destructive-foreground: 0 0% 100%;
-    --muted: 260 20% 88%;
-    --muted-foreground: 260 15% 35%;
-    --border: 260 25% 80%;
-    --input: 0 0% 100%;
-    --ring: 285 90% 52%;
+    /* Refined Light Mode */
+    --background: 0 0% 100%; /* Clean white */
+    --foreground: 240 10% 3.9%; /* Near-black for text */
+    --primary: 262 88% 57%; /* Deeper, richer purple */
+    --primary-foreground: 0 0% 100%; /* White */
+    --secondary: 220 85% 60%; /* Calmer, professional blue */
+    --secondary-foreground: 0 0% 100%; /* White */
+    --accent: 330 90% 65%; /* Softer, more controlled pink */
+    --accent-foreground: 0 0% 100%; /* White */
+    --warning: 38 92% 50%; /* Amber for warnings */
+    --warning-foreground: 240 10% 3.9%; /* Dark text on warning */
+    --destructive: 0 84% 60%; /* Clear, standard red */
+    --destructive-foreground: 0 0% 100%; /* White */
+    --muted: 240 5% 96%; /* Softer gray for backgrounds */
+    --muted-foreground: 240 4% 46%; /* More readable muted text */
+    --border: 240 6% 90%; /* Subtle borders */
+    --input: 240 6% 90%; /* Input background */
+    --ring: 262 88% 57%; /* Ring color to match primary */
 
-    --section-primary: 0 0% 96%;
-    --section-secondary: 260 15% 92%;
+    --section-primary: 0 0% 98%; /* Slightly off-white for sections */
+    --section-secondary: 240 5% 96%; /* Muted gray for alternate sections */
 
-    --card: 0 0% 100%;
-    --card-foreground: 260 12% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 260 12% 10%;
+    --card: 0 0% 100%; /* White cards */
+    --card-foreground: 240 10% 3.9%; /* Dark text on cards */
+    --popover: 0 0% 100%; /* White popovers */
+    --popover-foreground: 240 10% 3.9%; /* Dark text on popovers */
 
     /* Semantic colors for better theming */
-    --star: 48 100% 58%; /* electric gold for stars */
-    --fork: 195 100% 48%; /* electric cyan for forks */
-    --success: 142 90% 52%; /* electric green */
-    --info: 195 100% 48%; /* electric cyan for info */
-    --chart-1: 285 90% 52%; /* primary */
-    --chart-2: 195 100% 48%; /* secondary */
-    --chart-3: 340 90% 58%; /* accent */
-    --chart-4: 142 90% 52%; /* success */
-    --chart-5: 48 100% 58%; /* star/warning */
+    --star: 48 95% 58%; /* Gold for stars */
+    --fork: 220 85% 60%; /* Blue for forks */
+    --success: 140 80% 45%; /* Deep green for success */
+    --info: 220 85% 60%; /* Blue for info */
+    --chart-1: 262 88% 57%; /* primary */
+    --chart-2: 220 85% 60%; /* secondary */
+    --chart-3: 330 90% 65%; /* accent */
+    --chart-4: 140 80% 45%; /* success */
+    --chart-5: 48 95% 58%; /* star/warning */
 
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Enhanced Cyberpunk Synthwave palette */
-    --background: 260 25% 5%; /* deeper purple-black */
-    --foreground: 300 20% 92%; /* brighter pink-white text */
-    --primary: 285 100% 68%; /* electric magenta */
-    --primary-foreground: 260 30% 6%;
-    --secondary: 195 100% 62%; /* electric cyan */
-    --secondary-foreground: 260 30% 6%;
-    --accent: 340 100% 68%; /* electric hot pink */
-    --accent-foreground: 260 30% 6%;
-    --warning: 40 100% 68%; /* electric orange */
-    --warning-foreground: 260 30% 6%;
-    --destructive: 0 100% 68%; /* electric red */
-    --destructive-foreground: 0 0% 100%;
-    --muted: 260 22% 11%; /* dark purple panels */
-    --muted-foreground: 280 15% 72%;
-    --border: 280 25% 28%; /* purple separators */
-    --input: 260 22% 11%;
-    --ring: 285 100% 68%;
+    /* Sophisticated Dark Mode */
+    --background: 240 10% 3.9%; /* Very dark blue, almost black */
+    --foreground: 0 0% 98%; /* Off-white for high contrast text */
+    --primary: 262 88% 67%; /* Brighter purple for dark mode */
+    --primary-foreground: 240 10% 3.9%; /* Dark text on primary */
+    --secondary: 220 85% 70%; /* Brighter blue for dark mode */
+    --secondary-foreground: 240 10% 3.9%; /* Dark text on secondary */
+    --accent: 330 90% 75%; /* Brighter pink for dark mode */
+    --accent-foreground: 240 10% 3.9%; /* Dark text on accent */
+    --warning: 38 92% 60%; /* Brighter amber for dark mode */
+    --warning-foreground: 240 10% 3.9%; /* Dark text on warning */
+    --destructive: 0 84% 70%; /* Brighter red for dark mode */
+    --destructive-foreground: 0 0% 98%; /* Light text on destructive */
+    --muted: 240 4% 12%; /* Dark gray for backgrounds */
+    --muted-foreground: 240 4% 65%; /* Lighter muted text */
+    --border: 240 4% 18%; /* Subtle dark borders */
+    --input: 240 4% 18%; /* Input background */
+    --ring: 262 88% 67%; /* Ring color to match primary */
 
-    --section-primary: 260 20% 6%;
-    --section-secondary: 280 18% 9%;
+    --section-primary: 240 5% 8%; /* Slightly lighter section background */
+    --section-secondary: 240 5% 10%; /* Alternate section background */
 
-    --card: 260 18% 15%; /* lighter than background for contrast */
-    --card-foreground: 300 15% 90%;
-    --popover: 260 18% 15%;
-    --popover-foreground: 300 15% 90%;
+    --card: 240 4% 12%; /* Dark gray cards */
+    --card-foreground: 0 0% 98%; /* Light text on cards */
+    --popover: 240 4% 12%; /* Dark popovers */
+    --popover-foreground: 0 0% 98%; /* Light text on popovers */
 
     /* Semantic colors for better theming */
-    --star: 48 100% 68%; /* electric gold for stars */
-    --fork: 195 100% 62%; /* electric cyan for forks */
-    --success: 142 90% 62%; /* electric green */
-    --info: 195 100% 62%; /* electric cyan for info */
-    --chart-1: 285 100% 68%; /* primary */
-    --chart-2: 195 100% 62%; /* secondary */
-    --chart-3: 340 100% 68%; /* accent */
-    --chart-4: 142 90% 62%; /* success */
-    --chart-5: 48 100% 68%; /* star/warning */
+    --star: 48 95% 68%; /* Brighter gold for stars */
+    --fork: 220 85% 70%; /* Brighter blue for forks */
+    --success: 140 80% 55%; /* Brighter green for success */
+    --info: 220 85% 70%; /* Brighter blue for info */
+    --chart-1: 262 88% 67%; /* primary */
+    --chart-2: 220 85% 70%; /* secondary */
+    --chart-3: 330 90% 75%; /* accent */
+    --chart-4: 140 80% 55%; /* success */
+    --chart-5: 48 95% 68%; /* star/warning */
   }
 
   * {
