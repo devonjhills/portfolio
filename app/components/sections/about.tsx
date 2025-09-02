@@ -16,6 +16,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { getCompactJourneyData } from "../../lib/experience-data";
 
 const achievements = [
   {
@@ -92,6 +93,7 @@ export function About() {
   const ref = useRef(null);
   // Trigger animation when the section is 20% in view, but only once.
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const compactJourney = getCompactJourneyData();
 
   const scrollToExperience = () => {
     document
@@ -202,41 +204,35 @@ export function About() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="relative pl-6 border-l-2 border-primary/20">
-                    <div className="absolute -left-[5px] top-0 w-2 h-2 bg-primary rounded-full"></div>
-                    <div>
-                      <h4 className="font-semibold">Software Engineer III</h4>
-                      <p className="text-sm text-accent">
-                        Ad Hoc LLC • Nov 2021 - Present
-                      </p>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        HealthCare.gov development & optimization
-                      </p>
+                  {compactJourney.map((item, index) => (
+                    <div
+                      key={`${item.company}-${item.title}`}
+                      className={`relative pl-6 ${
+                        index < compactJourney.length - 1
+                          ? "border-l-2 border-primary/20"
+                          : ""
+                      }`}
+                    >
+                      <div
+                        className={`absolute -left-[5px] top-0 w-2 h-2 rounded-full ${
+                          index === 0
+                            ? "bg-primary"
+                            : index === 1
+                              ? "bg-primary/60"
+                              : "bg-primary/40"
+                        }`}
+                      ></div>
+                      <div>
+                        <h4 className="font-semibold">{item.title}</h4>
+                        <p className="text-sm text-accent">
+                          {item.company} • {item.duration}
+                        </p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="relative pl-6 border-l-2 border-primary/20">
-                    <div className="absolute -left-[5px] top-0 w-2 h-2 bg-primary/60 rounded-full"></div>
-                    <div>
-                      <h4 className="font-semibold">Software Engineer</h4>
-                      <p className="text-sm text-accent">
-                        Raytheon Technologies • Jul 2018 - Nov 2021
-                      </p>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        Defense systems & secure applications • DoD Secret
-                        clearance
-                      </p>
-                    </div>
-                  </div>
-                  <div className="relative pl-6">
-                    <div className="absolute -left-[5px] top-0 w-2 h-2 bg-primary/40 rounded-full"></div>
-                    <div>
-                      <h4 className="font-semibold">BS Computer Science</h4>
-                      <p className="text-sm text-accent">UMass Lowell • 2017</p>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        Graduated cum laude • Dean&apos;s List
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                   <div className="pt-4 border-t border-border/50">
                     <Button
                       onClick={scrollToExperience}
