@@ -1,0 +1,44 @@
+---
+// Clean diagonal separator that transitions between section background colors
+export interface Props {
+  direction?: 'left' | 'right';
+  fromColor?: string;
+  toColor?: string;
+  height?: string;
+}
+
+const {
+  direction = 'right',
+  fromColor = 'white',
+  toColor = 'gray-50',
+  height = 'h-12',
+} = Astro.props;
+
+// Map color names to actual Tailwind classes for proper purging
+const colorMap = {
+  white: 'bg-white',
+  'gray-50': 'bg-gray-50',
+  'neutral-100': 'bg-neutral-100',
+};
+
+const fromBg = colorMap[fromColor] || `bg-${fromColor}`;
+const toBg = colorMap[toColor] || `bg-${toColor}`;
+---
+
+<div class={`w-full ${height} overflow-hidden relative ${fromBg} dark:bg-gray-950`}>
+  <div
+    class={`absolute inset-0 ${toBg} dark:bg-gray-900 transform ${direction === 'right' ? 'skew-y-1' : '-skew-y-1'} origin-top-left shadow-subtle`}
+  >
+  </div>
+  <div
+    class={`absolute inset-0 bg-gradient-to-r from-transparent via-primary-500/5 to-transparent transform ${direction === 'right' ? 'skew-y-1' : '-skew-y-1'} origin-top-left`}
+  >
+  </div>
+</div>
+
+<style>
+  /* Ensure the diagonal effect works properly */
+  .transform {
+    transform-origin: top left;
+  }
+</style>
