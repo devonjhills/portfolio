@@ -76,7 +76,7 @@
       // Show top 4 projects
       const featuredProjects = projects.slice(0, 4);
 
-      featuredProjects.forEach((project, index) => {
+      featuredProjects.forEach((project: any, index: number) => {
         const projectCard = createProjectCard(project, index);
         grid.appendChild(projectCard);
       });
@@ -86,7 +86,7 @@
     }
   }
 
-  function createProjectCard(project, index) {
+  function createProjectCard(project: any, index: number): HTMLDivElement {
     const card = document.createElement('div');
     card.className =
       'bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group';
@@ -94,7 +94,7 @@
     card.style.animation = 'fade-in-up 0.6s ease-out both';
 
     // Get primary language color
-    const languageColors = {
+    const languageColors: Record<string, string> = {
       JavaScript: '#f1e05a',
       TypeScript: '#3178c6',
       Python: '#3572A5',
@@ -108,7 +108,7 @@
     };
 
     const primaryLanguage = Object.keys(project.languages || {})[0];
-    const languageColor = languageColors[primaryLanguage] || '#6b7280';
+    const languageColor = languageColors[primaryLanguage as string] || '#6b7280';
 
     card.innerHTML = `
       <div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">

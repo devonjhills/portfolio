@@ -17,12 +17,13 @@ const {
 } = Astro.props;
 
 // Enhanced color mapping for new palette
-const colorMap = {
-  // Section colors
+const colorMap: Record<string, string> = {
+  // Modern section colors
   'section-light-1': 'bg-section-light-1',
   'section-light-2': 'bg-section-light-2',
   'section-light-3': 'bg-section-light-3',
   'section-light-4': 'bg-section-light-4',
+  'section-light-5': 'bg-section-light-5',
   // Standard colors
   white: 'bg-white',
   'primary-25': 'bg-primary-25',
@@ -35,11 +36,12 @@ const colorMap = {
   'neutral-100': 'bg-neutral-100',
 };
 
-const darkColorMap = {
+const darkColorMap: Record<string, string> = {
   'section-light-1': 'dark:bg-section-dark-1',
   'section-light-2': 'dark:bg-section-dark-2',
   'section-light-3': 'dark:bg-section-dark-3',
   'section-light-4': 'dark:bg-section-dark-4',
+  'section-light-5': 'dark:bg-section-dark-5',
   white: 'dark:bg-neutral-950',
   'primary-25': 'dark:bg-primary-950',
   'primary-50': 'dark:bg-primary-925',
@@ -56,11 +58,11 @@ const toBg = colorMap[toColor] || `bg-${toColor}`;
 const darkFromBg = darkColorMap[fromColor] || `dark:bg-${fromColor}`;
 const darkToBg = darkColorMap[toColor] || `dark:bg-${toColor}`;
 
-// Variant-based skew angles
+// Enhanced variant-based skew angles for sophisticated flow
 const skewMap = {
-  subtle: direction === 'right' ? 'skew-y-0.5' : '-skew-y-0.5',
-  medium: direction === 'right' ? 'skew-y-1' : '-skew-y-1',
-  pronounced: direction === 'right' ? 'skew-y-2' : '-skew-y-2',
+  subtle: direction === 'right' ? 'skew-y-1' : '-skew-y-1',
+  medium: direction === 'right' ? 'skew-y-2' : '-skew-y-2',
+  pronounced: direction === 'right' ? 'skew-y-3' : '-skew-y-3',
 };
 
 const skewClass = skewMap[variant];
@@ -73,19 +75,25 @@ const skewClass = skewMap[variant];
   >
   </div>
 
-  <!-- Subtle gradient overlay for depth -->
+  <!-- Enhanced gradient overlay for sophisticated depth -->
   <div
-    class={`absolute inset-0 bg-gradient-to-r from-transparent via-primary-500/3 to-transparent transform ${skewClass} origin-top-left`}
+    class={`absolute inset-0 bg-gradient-to-r from-transparent via-primary-400/5 to-transparent transform ${skewClass} origin-top-left`}
   >
   </div>
 
-  <!-- Enhanced shadow for more depth -->
-  <div class={`absolute inset-0 transform ${skewClass} origin-top-left shadow-soft`}></div>
+  <!-- Matrix-inspired shadow with green accent -->
+  <div class={`absolute inset-0 transform ${skewClass} origin-top-left shadow-soft`} style="box-shadow: 0 4px 12px -2px rgba(34, 197, 94, 0.04), 0 4px 8px -2px rgba(0, 0, 0, 0.05);"></div>
 
-  <!-- Optional noise texture for premium feel -->
+  <!-- Matrix texture overlay -->
   <div
-    class={`absolute inset-0 opacity-[0.015] mix-blend-overlay transform ${skewClass} origin-top-left`}
-    style="background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0); background-size: 20px 20px;"
+    class={`absolute inset-0 opacity-[0.015] mix-blend-overlay transform ${skewClass} origin-top-left dark:opacity-[0.025]`}
+    style="background-image: radial-gradient(circle at 1px 1px, rgba(0, 255, 65, 0.1) 1px, transparent 0); background-size: 24px 24px;"
+  >
+  </div>
+
+  <!-- Matrix-inspired accent -->
+  <div
+    class={`absolute inset-0 bg-gradient-to-br from-primary-50/10 via-transparent to-primary-100/8 dark:from-green-500/5 dark:via-transparent dark:to-green-400/3 transform ${skewClass} origin-top-left`}
   >
   </div>
 </div>

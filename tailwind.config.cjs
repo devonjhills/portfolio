@@ -5,11 +5,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Enhanced sophisticated monochromatic palette for alternating sections
+        // Modern sophisticated monochromatic green palette
         primary: {
-          25: '#fafefb',
-          50: '#f0fdf4',
-          75: '#ecfdf5',
+          25: '#fafffe',
+          50: '#f0fdf8',
+          75: '#ecfdf6',
           100: '#dcfce7',
           150: '#d1fae5',
           200: '#bbf7d0',
@@ -20,9 +20,9 @@ module.exports = {
           700: '#15803d',
           800: '#166534',
           850: '#14532d',
-          900: '#052e16',
-          925: '#022c22',
-          950: '#021b14',
+          900: '#14532d',
+          925: '#0f2a1a',
+          950: '#0a1f10',
         },
         secondary: {
           25: '#fafefb',
@@ -71,23 +71,25 @@ module.exports = {
           400: '#cccccc',
           500: '#999999',
           600: '#666666',
-          700: '#4d4d4d',
-          800: '#333333',
-          850: '#2a2a2a',
-          900: '#1a1a1a',
-          925: '#151515',
-          950: '#0d0d0d',
+          700: '#333333',
+          800: '#1a1a1a',
+          850: '#111111',
+          900: '#0a0a0a',
+          925: '#050505',
+          950: '#000000',
         },
-        // Section-specific alternating colors for beautiful flow
+        // Modern alternating section colors with matrix-inspired dark mode
         section: {
           'light-1': '#ffffff',
-          'light-2': '#fdfdfd',
-          'light-3': '#fafafa',
-          'light-4': '#f7f7f8',
-          'dark-1': '#0f0f0f',
-          'dark-2': '#151517',
-          'dark-3': '#18181b',
-          'dark-4': '#1c1c20',
+          'light-2': '#fdfdfe',
+          'light-3': '#fafbfa', 
+          'light-4': '#f5f7f5',
+          'light-5': '#f0f3f0',
+          'dark-1': '#000000',
+          'dark-2': '#050505',
+          'dark-3': '#0a0a0a',
+          'dark-4': '#0f0f0f',
+          'dark-5': '#111111',
         },
       },
       boxShadow: {

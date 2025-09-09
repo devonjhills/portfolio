@@ -68,10 +68,10 @@
 
 <script>
   // Helper function to format repository names
-  function formatRepoName(name) {
+  function formatRepoName(name: string): string {
     return name
       .split(/[-_]/)
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ')
       .replace(/([a-z])([A-Z])/g, '$1 $2') // Handle camelCase
       .trim();
@@ -93,7 +93,7 @@
       // Show top 4 projects
       const featuredProjects = projects.slice(0, 4);
 
-      featuredProjects.forEach((project, index) => {
+      featuredProjects.forEach((project: any, index: number) => {
         const projectCard = createProjectCard(project, index);
         grid.appendChild(projectCard);
       });
@@ -103,7 +103,7 @@
     }
   }
 
-  function createProjectCard(project, index) {
+  function createProjectCard(project: any, index: number): HTMLDivElement {
     const card = document.createElement('div');
     card.className =
       'bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-200 dark:border-gray-700';
@@ -111,7 +111,7 @@
     card.style.animation = 'fade-in-up 0.6s ease-out both';
 
     // Enhanced language colors
-    const languageColors = {
+    const languageColors: Record<string, string> = {
       JavaScript: '#f1e05a',
       TypeScript: '#3178c6',
       Python: '#3572A5',
@@ -134,9 +134,9 @@
 
     const languages = project.languages || {};
     const languageEntries = Object.entries(languages);
-    const totalBytes = languageEntries.reduce((sum, [, bytes]) => sum + bytes, 0);
+    const totalBytes = languageEntries.reduce((sum, [, bytes]) => sum + (bytes as number), 0);
     const primaryLanguage = languageEntries[0]?.[0];
-    const languageColor = languageColors[primaryLanguage] || '#6b7280';
+    const languageColor = languageColors[primaryLanguage as string] || '#6b7280';
 
     // Format project name
     const displayName = formatRepoName(project.name);
@@ -145,8 +145,8 @@
     const languageBar = languageEntries
       .slice(0, 5)
       .map(([lang, bytes]) => {
-        const percentage = ((bytes / totalBytes) * 100).toFixed(1);
-        const color = languageColors[lang] || '#6b7280';
+        const percentage = (((bytes as number) / totalBytes) * 100).toFixed(1);
+        const color = languageColors[lang as string] || '#6b7280';
         return `<div class="h-full transition-all duration-300" style="width: ${percentage}%; background-color: ${color};" title="${lang}: ${percentage}%"></div>`;
       })
       .join('');
@@ -155,7 +155,7 @@
     const topicTags = (project.topics || [])
       .slice(0, 4)
       .map(
-        topic =>
+        (topic: string) =>
           `<span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full font-medium">${topic}</span>`
       )
       .join('');
@@ -252,8 +252,8 @@
               ${languageEntries
                 .slice(0, 3)
                 .map(([lang, bytes]) => {
-                  const percentage = ((bytes / totalBytes) * 100).toFixed(1);
-                  const color = languageColors[lang] || '#6b7280';
+                  const percentage = (((bytes as number) / totalBytes) * 100).toFixed(1);
+                  const color = languageColors[lang as string] || '#6b7280';
                   return `<div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
                   <div class="w-3 h-3 rounded-full shadow-sm" style="background-color: ${color};"></div>
                   <span class="font-medium">${lang}</span>

@@ -167,14 +167,14 @@
 
       // Close menu when clicking on links
       menu.addEventListener('click', e => {
-        if (e.target.tagName === 'A') {
+        if ((e.target as HTMLElement)?.tagName === 'A') {
           menu.classList.add('hidden');
         }
       });
 
       // Close menu on outside click
       document.addEventListener('click', e => {
-        if (!button.contains(e.target) && !menu.contains(e.target)) {
+        if (!button.contains(e.target as Node) && !menu.contains(e.target as Node)) {
           menu.classList.add('hidden');
         }
       });
