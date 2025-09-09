@@ -7,12 +7,11 @@
     <!-- Section Header -->
     <div class="text-center mb-20 animate-section-enter">
       <div
-        class="inline-block mb-4 px-4 py-2 bg-secondary-100/50 dark:bg-secondary-900/30 rounded-full border border-secondary-200 dark:border-secondary-800"
+        class="inline-block mb-4 px-4 py-2 bg-neutral-100 dark:bg-neutral-900 border border-primary-500 dark:border-primary-400 font-terminal text-primary-700 dark:text-primary-300 relative shadow-sm"
+        style="border-radius: 0;"
       >
-        <span
-          class="text-sm font-medium text-secondary-700 dark:text-secondary-300 uppercase tracking-wide"
-          >Journey</span
-        >
+        <span class="text-sm font-medium uppercase tracking-wide glitch-effect" data-text="$ git log --oneline">$ git log --oneline</span>
+        <div class="absolute -top-2 -right-2 w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
       </div>
       <h2
         class="text-3xl sm:text-4xl lg:text-5xl font-heading font-semibold text-neutral-900 dark:text-neutral-50 mb-6 leading-tight tracking-tight"
@@ -27,401 +26,156 @@
       </p>
     </div>
 
-    <!-- Experience Cards -->
-    <div class="space-y-20">
-      <!-- Livefront -->
-      <div class="grid lg:grid-cols-2 gap-16 items-center animate-on-scroll">
-        <div class="space-y-8">
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-14 h-14 bg-primary-100 dark:bg-primary-900 rounded-xl flex items-center justify-center shadow-soft"
-            >
-              <svg
-                class="w-6 h-6 text-primary-600 dark:text-primary-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 9.74s9-4.19 9-9.74V7L12 2z"></path>
-              </svg>
+    <!-- Git Commit History Timeline -->
+    <div class="max-w-4xl mx-auto">
+      <div class="space-y-6">
+        <!-- Livefront Commit -->
+        <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-soft hover:shadow-medium transition-all duration-300 animate-on-scroll">
+          <div class="flex space-x-4 p-6">
+            <div class="flex flex-col items-center">
+              <div class="w-3 h-3 bg-primary-500 rounded-full flex-shrink-0"></div>
+              <div class="w-0.5 bg-primary-200 dark:bg-primary-700 h-full mt-2"></div>
             </div>
-            <div>
-              <h3 class="text-2xl font-heading font-semibold text-gray-900 dark:text-white">
-                Livefront
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="font-terminal text-primary-600 dark:text-primary-400 text-sm">8a3f9b2</span>
+                <span class="text-neutral-600 dark:text-neutral-400 text-sm font-terminal">•</span>
+                <span class="text-sm text-neutral-600 dark:text-neutral-400 font-terminal">August 2025</span>
+                <span class="text-neutral-600 dark:text-neutral-400 text-sm font-terminal">•</span>
+                <span class="text-sm text-neutral-600 dark:text-neutral-400 font-terminal">HEAD -> main</span>
+              </div>
+              <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
+                feat: join Livefront as Software Engineer
               </h3>
-              <p class="text-primary-600 dark:text-primary-400 font-medium">
-                Software Engineer • August 2025 - Present
+              <p class="text-neutral-600 dark:text-neutral-300 text-sm mb-3">
+                Building next-generation digital products and experiences for Fortune 500 companies.
+                Leading frontend architecture decisions and driving technical excellence across client projects.
               </p>
-            </div>
-          </div>
-
-          <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-            Building next-generation digital products and experiences for Fortune 500 companies.
-            Leading frontend architecture decisions and driving technical excellence across client
-            projects.
-          </p>
-
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Leading technical architecture for client engagements</span
-              >
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Driving modern React and TypeScript implementations</span
-              >
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Treating software development as a craft</span
-              >
-            </div>
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <span
-              class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full border border-primary-200 dark:border-primary-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >React</span
-            >
-            <span
-              class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full border border-primary-200 dark:border-primary-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >TypeScript</span
-            >
-            <span
-              class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full border border-primary-200 dark:border-primary-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >Next.js</span
-            >
-            <span
-              class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full border border-primary-200 dark:border-primary-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >Node.js</span
-            >
-          </div>
-        </div>
-
-        <div
-          class="bg-white dark:bg-neutral-900 rounded-2xl p-8 h-64 flex items-center justify-center border border-neutral-100 dark:border-neutral-800 shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden"
-        >
-          <div class="text-center">
-            <div class="text-4xl font-bold text-neutral-700 dark:text-neutral-300 mb-2">
-              Current
-            </div>
-            <div class="text-gray-600 dark:text-gray-300">
-              Building the future of digital products
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="inline-block px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-xs font-terminal rounded">React</span>
+                <span class="inline-block px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-xs font-terminal rounded">TypeScript</span>
+                <span class="inline-block px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-xs font-terminal rounded">Next.js</span>
+                <span class="inline-block px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-xs font-terminal rounded">Node.js</span>
+              </div>
+              <div class="text-xs text-neutral-500 dark:text-neutral-400 font-terminal">
+                + Leading technical architecture for client engagements<br>
+                + Driving modern React and TypeScript implementations<br>
+                + Treating software development as a craft
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Ad Hoc LLC -->
-      <div class="grid lg:grid-cols-2 gap-12 items-center animate-on-scroll">
-        <div class="lg:order-2 space-y-6">
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-14 h-14 bg-secondary-100 dark:bg-secondary-900 rounded-xl flex items-center justify-center shadow-soft"
-            >
-              <svg
-                class="w-6 h-6 text-secondary-600 dark:text-secondary-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                ></path>
-              </svg>
+        <!-- Ad Hoc LLC Commit -->
+        <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-soft hover:shadow-medium transition-all duration-300 animate-on-scroll">
+          <div class="flex space-x-4 p-6">
+            <div class="flex flex-col items-center">
+              <div class="w-3 h-3 bg-primary-500 rounded-full flex-shrink-0"></div>
+              <div class="w-0.5 bg-primary-200 dark:bg-primary-700 h-full mt-2"></div>
             </div>
-            <div>
-              <h3 class="text-2xl font-heading font-semibold text-gray-900 dark:text-white">
-                Ad Hoc LLC
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="font-terminal text-primary-600 dark:text-primary-400 text-sm">c7e2f84</span>
+                <span class="text-neutral-600 dark:text-neutral-400 text-sm font-terminal">•</span>
+                <span class="text-sm text-neutral-600 dark:text-neutral-400 font-terminal">November 2021 - April 2025</span>
+                <span class="text-neutral-600 dark:text-neutral-400 text-sm font-terminal">•</span>
+                <span class="text-sm text-neutral-600 dark:text-neutral-400 font-terminal">3y 5m</span>
+              </div>
+              <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
+                feat: scale HealthCare.gov to serve 10M+ users as Software Engineer III
               </h3>
-              <p class="text-secondary-600 dark:text-secondary-400 font-medium">
-                Software Engineer III • November 2021 - April 2025
+              <p class="text-neutral-600 dark:text-neutral-300 text-sm mb-3">
+                Built and maintained React/TypeScript applications for HealthCare.gov health plan enrollment workflows,
+                serving millions of users during high-traffic enrollment periods. Led production support and implemented 
+                critical accessibility features.
               </p>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">React</span>
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">TypeScript</span>
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">Ruby on Rails</span>
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">AWS</span>
+              </div>
+              <div class="text-xs text-neutral-500 dark:text-neutral-400 font-terminal">
+                + Redesigned health plan comparison cards improving user enrollment completion rates<br>
+                + Maintained WCAG/Section 508 compliance and participated in 24/7 production support<br>
+                + Built comprehensive testing suites and executed Ruby backend logic for Medicare eligibility
+              </div>
             </div>
-          </div>
-
-          <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-            Built and maintained React/TypeScript applications for HealthCare.gov health plan
-            enrollment workflows, serving millions of users during high-traffic enrollment periods.
-            Led production support and implemented critical accessibility features.
-          </p>
-
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Redesigned health plan comparison cards improving user enrollment completion rates</span
-              >
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Maintained WCAG/Section 508 compliance and participated in 24/7 production support</span
-              >
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Built comprehensive testing suites and executed Ruby backend logic for Medicare
-                eligibility</span
-              >
-            </div>
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <span
-              class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full border border-secondary-200 dark:border-secondary-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >React</span
-            >
-            <span
-              class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full border border-secondary-200 dark:border-secondary-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >TypeScript</span
-            >
-            <span
-              class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full border border-secondary-200 dark:border-secondary-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >Ruby on Rails</span
-            >
-            <span
-              class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full border border-secondary-200 dark:border-secondary-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >AWS</span
-            >
           </div>
         </div>
 
-        <div
-          class="lg:order-1 bg-white dark:bg-neutral-900 rounded-2xl p-8 h-64 flex items-center justify-center border border-neutral-100 dark:border-neutral-800 shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden"
-        >
-          <div class="text-center">
-            <div class="text-4xl font-bold text-neutral-700 dark:text-neutral-300 mb-2">10M+</div>
-            <div class="text-gray-600 dark:text-gray-300">Users served during enrollment</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Raytheon Technologies -->
-      <div class="grid lg:grid-cols-2 gap-16 items-center animate-on-scroll">
-        <div class="space-y-8">
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-14 h-14 bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center shadow-soft"
-            >
-              <svg
-                class="w-6 h-6 text-accent-600 dark:text-accent-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                ></path>
-              </svg>
+        <!-- Raytheon Technologies Commit -->
+        <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-soft hover:shadow-medium transition-all duration-300 animate-on-scroll">
+          <div class="flex space-x-4 p-6">
+            <div class="flex flex-col items-center">
+              <div class="w-3 h-3 bg-neutral-500 rounded-full flex-shrink-0"></div>
+              <div class="w-0.5 bg-neutral-200 dark:bg-neutral-700 h-full mt-2"></div>
             </div>
-            <div>
-              <h3 class="text-2xl font-heading font-semibold text-gray-900 dark:text-white">
-                Raytheon Technologies
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="font-terminal text-neutral-600 dark:text-neutral-400 text-sm">b4f1a7c</span>
+                <span class="text-neutral-600 dark:text-neutral-400 text-sm font-terminal">•</span>
+                <span class="text-sm text-neutral-600 dark:text-neutral-400 font-terminal">July 2018 - November 2021</span>
+                <span class="text-neutral-600 dark:text-neutral-400 text-sm font-terminal">•</span>
+                <span class="text-sm text-neutral-600 dark:text-neutral-400 font-terminal">3y 4m</span>
+              </div>
+              <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
+                feat: architect mission-critical defense systems in C++
               </h3>
-              <p class="text-gray-600 dark:text-gray-400 font-medium">
-                Software Engineer • July 2018 - November 2021
+              <p class="text-neutral-600 dark:text-neutral-300 text-sm mb-3">
+                Architected and maintained mission-critical software components using C++. Led technical
+                documentation initiatives and mentored junior developers while working on high-performance 
+                applications for defense systems.
               </p>
-            </div>
-          </div>
-
-          <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-            Architected and maintained mission-critical software components using C++. Led technical
-            documentation initiatives and mentored junior developers while working on
-            high-performance applications for defense systems.
-          </p>
-
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Architected mission-critical software components and conducted systematic debugging</span
-              >
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Led technical documentation initiatives and established coding standards</span
-              >
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Collaborated in cross-functional Agile/SCRUM teams with DoD Secret clearance</span
-              >
-            </div>
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <span
-              class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full border border-gray-300 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200"
-              >C++</span
-            >
-            <span
-              class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full border border-gray-300 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200"
-              >Agile/SCRUM</span
-            >
-            <span
-              class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full border border-gray-300 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200"
-              >Technical Documentation</span
-            >
-            <span
-              class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full border border-gray-300 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200"
-              >Defense Systems</span
-            >
-          </div>
-        </div>
-
-        <div
-          class="lg:order-2 bg-white dark:bg-neutral-900 rounded-2xl p-8 h-64 flex items-center justify-center border border-neutral-100 dark:border-neutral-800 shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden"
-        >
-          <div class="text-center">
-            <div class="text-4xl font-bold text-neutral-700 dark:text-neutral-300 mb-2">
-              3+ years
-            </div>
-            <div class="text-gray-600 dark:text-gray-300">
-              Mission-critical software development
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">C++</span>
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">Agile/SCRUM</span>
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">Technical Documentation</span>
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">Defense Systems</span>
+              </div>
+              <div class="text-xs text-neutral-500 dark:text-neutral-400 font-terminal">
+                + Architected mission-critical software components and conducted systematic debugging<br>
+                + Led technical documentation initiatives and established coding standards<br>
+                + Collaborated in cross-functional Agile/SCRUM teams with DoD Secret clearance
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Education -->
-      <div class="grid lg:grid-cols-2 gap-12 items-center animate-on-scroll">
-        <div class="lg:order-2 space-y-6">
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-14 h-14 bg-accent-100 dark:bg-accent-900 rounded-xl flex items-center justify-center shadow-soft"
-            >
-              <svg
-                class="w-6 h-6 text-accent-600 dark:text-accent-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"
-                ></path>
-              </svg>
+        <!-- Education Commit -->
+        <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-soft hover:shadow-medium transition-all duration-300 animate-on-scroll">
+          <div class="flex space-x-4 p-6">
+            <div class="flex flex-col items-center">
+              <div class="w-3 h-3 bg-neutral-500 rounded-full flex-shrink-0"></div>
+              <div class="w-0.5 bg-neutral-200 dark:bg-neutral-700 h-8 mt-2"></div>
             </div>
-            <div>
-              <h3 class="text-2xl font-heading font-semibold text-gray-900 dark:text-white">
-                University of Massachusetts Lowell
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="font-terminal text-neutral-600 dark:text-neutral-400 text-sm">a9d3e12</span>
+                <span class="text-neutral-600 dark:text-neutral-400 text-sm font-terminal">•</span>
+                <span class="text-sm text-neutral-600 dark:text-neutral-400 font-terminal">December 2017</span>
+                <span class="text-neutral-600 dark:text-neutral-400 text-sm font-terminal">•</span>
+                <span class="text-sm text-neutral-600 dark:text-neutral-400 font-terminal">origin</span>
+              </div>
+              <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
+                feat: graduate cum laude with BS in Computer Science
               </h3>
-              <p class="text-accent-600 dark:text-accent-400 font-medium">
-                BS Computer Science • December 2017
+              <p class="text-neutral-600 dark:text-neutral-300 text-sm mb-3">
+                Built a strong foundation in computer science fundamentals, software engineering principles, 
+                and data structures. Focused on web development and human-computer interaction at 
+                University of Massachusetts Lowell.
               </p>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">Computer Science</span>
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">Software Engineering</span>
+                <span class="inline-block px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-terminal rounded">Web Development</span>
+              </div>
+              <div class="text-xs text-neutral-500 dark:text-neutral-400 font-terminal">
+                + Graduated cum laude<br>
+                + Achieved Dean's List recognition multiple years<br>
+                + Strong foundation in algorithms and data structures
+              </div>
             </div>
-          </div>
-
-          <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-            Built a strong foundation in computer science fundamentals, software engineering
-            principles, and data structures. Focused on web development and human-computer
-            interaction.
-          </p>
-
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300">Graduated cum laude</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Achieved Dean's List recognition multiple years</span
-              >
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-600 dark:text-gray-300"
-                >Strong foundation in algorithms and data structures</span
-              >
-            </div>
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <span
-              class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full border border-accent-200 dark:border-accent-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >Computer Science</span
-            >
-            <span
-              class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full border border-accent-200 dark:border-accent-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >Software Engineering</span
-            >
-            <span
-              class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full border border-accent-200 dark:border-accent-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >Web Development</span
-            >
-          </div>
-        </div>
-
-        <div
-          class="lg:order-1 bg-white dark:bg-neutral-900 rounded-2xl p-8 h-64 flex items-center justify-center border border-neutral-100 dark:border-neutral-800 shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden"
-        >
-          <div class="text-center">
-            <div class="text-4xl font-bold text-neutral-700 dark:text-neutral-300 mb-2">2017</div>
-            <div class="text-gray-600 dark:text-gray-300">Cum Laude Graduate</div>
           </div>
         </div>
       </div>
@@ -459,36 +213,33 @@
 </script>
 
 <style>
-  /* Staggered animations for experience cards */
-  .space-y-16 > div:nth-child(1) {
-    animation: slide-in-left 0.8s ease-out 0.2s both;
+  /* Git timeline animations */
+  .space-y-6 > div:nth-child(1) {
+    animation: fade-in-up 0.6s ease-out 0.1s both;
   }
-  .space-y-16 > div:nth-child(2) {
-    animation: slide-in-right 0.8s ease-out 0.4s both;
+  .space-y-6 > div:nth-child(2) {
+    animation: fade-in-up 0.6s ease-out 0.2s both;
   }
-  .space-y-16 > div:nth-child(3) {
-    animation: slide-in-left 0.8s ease-out 0.6s both;
+  .space-y-6 > div:nth-child(3) {
+    animation: fade-in-up 0.6s ease-out 0.3s both;
+  }
+  .space-y-6 > div:nth-child(4) {
+    animation: fade-in-up 0.6s ease-out 0.4s both;
   }
 
-  @keyframes slide-in-left {
+  @keyframes fade-in-up {
     from {
       opacity: 0;
-      transform: translateX(-30px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
   }
 
-  @keyframes slide-in-right {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  /* Timeline line styling */
+  .space-y-6 > div:last-child .w-0.5 {
+    display: none;
   }
 </style>

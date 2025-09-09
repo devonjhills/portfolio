@@ -5,13 +5,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Modern sophisticated monochromatic green palette
+        // Minty green accent with monochrome design
         primary: {
           25: '#fafffe',
           50: '#f0fdf8',
-          75: '#ecfdf6',
           100: '#dcfce7',
-          150: '#d1fae5',
           200: '#bbf7d0',
           300: '#86efac',
           400: '#4ade80',
@@ -19,46 +17,8 @@ module.exports = {
           600: '#16a34a',
           700: '#15803d',
           800: '#166534',
-          850: '#14532d',
           900: '#14532d',
-          925: '#0f2a1a',
-          950: '#0a1f10',
-        },
-        secondary: {
-          25: '#fafefb',
-          50: '#f8fdf9',
-          75: '#f3faf4',
-          100: '#f0f9f0',
-          150: '#e8f6e8',
-          200: '#e0f2e0',
-          300: '#c7e2c7',
-          400: '#9cb89c',
-          500: '#6b8f6b',
-          600: '#4a6e4a',
-          700: '#3a5a3a',
-          800: '#2d4a2d',
-          850: '#243f24',
-          900: '#1a2e1a',
-          925: '#162716',
-          950: '#0f1e0f',
-        },
-        accent: {
-          25: '#fbfefb',
-          50: '#f7fcf7',
-          75: '#f1f8f1',
-          100: '#ecf5ec',
-          150: '#e3f0e3',
-          200: '#d6e9d6',
-          300: '#c1dac1',
-          400: '#9bb99b',
-          500: '#789878',
-          600: '#5d7d5d',
-          700: '#4d6b4d',
-          800: '#3e5a3e',
-          850: '#344a34',
-          900: '#2a3a2a',
-          925: '#212921',
-          950: '#181e18',
+          950: '#0f2a1a',
         },
         neutral: {
           25: '#fdfdfd',
@@ -111,6 +71,26 @@ module.exports = {
           'sans-serif',
         ],
         heading: ['Lora', 'Georgia', 'Times New Roman', 'serif'],
+        mono: [
+          'Fira Code',
+          'SF Mono',
+          'Monaco',
+          'Inconsolata',
+          'Roboto Mono',
+          'Source Code Pro',
+          'Menlo',
+          'Consolas',
+          'monospace',
+        ],
+        terminal: [
+          'Fira Code',
+          'SF Mono',
+          'Monaco',
+          'Consolas',
+          'Liberation Mono',
+          'Courier New',
+          'monospace',
+        ],
       },
       animation: {
         'fade-in-up': 'fadeInUp 0.6s ease-out',
@@ -121,6 +101,8 @@ module.exports = {
         'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
         'diagonal-flow': 'diagonalFlow 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
         'section-enter': 'sectionEnter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        'terminal-cursor': 'terminalCursor 1s infinite',
+        'scan-line': 'scanLine 2s linear infinite',
       },
       keyframes: {
         fadeInUp: {
@@ -171,6 +153,23 @@ module.exports = {
             opacity: '1',
             transform: 'translateY(0)',
             filter: 'blur(0px)',
+          },
+        },
+        terminalCursor: {
+          '0%, 50%': { opacity: '1' },
+          '51%, 100%': { opacity: '0' },
+        },
+        scanLine: {
+          '0%': {
+            transform: 'translateY(-100%)',
+            opacity: '0',
+          },
+          '50%': {
+            opacity: '0.3',
+          },
+          '100%': {
+            transform: 'translateY(100%)',
+            opacity: '0',
           },
         },
       },

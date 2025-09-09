@@ -4,7 +4,10 @@
 
 <section class="relative overflow-hidden bg-section-light-1 dark:bg-section-dark-1 pt-16">
   <!-- Matrix-Inspired Enhanced Background Pattern -->
-  <div class="absolute inset-0 bg-gradient-to-br from-primary-50/10 via-transparent to-primary-100/8 dark:from-transparent dark:via-transparent dark:to-transparent"></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-primary-50/10 via-transparent to-primary-100/8 dark:from-transparent dark:via-transparent dark:to-transparent"
+  >
+  </div>
   <div class="absolute inset-0 opacity-40 dark:opacity-30">
     <div
       class="absolute top-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-primary-400/15 to-primary-500/8 dark:from-green-400/20 dark:to-green-500/15 rounded-full blur-3xl animate-float"
@@ -28,7 +31,7 @@
   </div>
 
   <div class="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-36">
+    <div class="pt-16 pb-16 sm:pt-20 sm:pb-20 lg:pt-24 lg:pb-24">
       <!-- Main Content -->
       <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         <!-- Text Content -->
@@ -48,17 +51,20 @@
               class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-semibold tracking-tight leading-[1.1]"
             >
               <span class="text-gray-900 dark:text-white">Building scalable web applications</span>
-              <span class="text-primary-600 dark:text-primary-400"
-                >that millions depend on.</span
+              <span
+                class="text-primary-600 dark:text-primary-400 glitch-effect typewriter"
+                data-text="that millions depend on."
+                ><span id="typewriter-text"></span><span class="typewriter-cursor">|</span></span
               >
             </h1>
 
             <p
               class="max-w-2xl mx-auto lg:mx-0 text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-200 leading-relaxed font-medium"
             >
-              Full-stack engineer with 7+ years crafting mission-critical software. From healthcare 
-              platforms serving 10M+ users to defense systems requiring bulletproof reliability, 
-              I deliver production-grade solutions with modern React, TypeScript, and cloud architecture.
+              Full-stack engineer with 7+ years crafting mission-critical software. From healthcare
+              platforms serving 10M+ users to defense systems requiring bulletproof reliability, I
+              deliver production-grade solutions with modern React, TypeScript, and cloud
+              architecture.
             </p>
           </div>
 
@@ -66,7 +72,7 @@
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
             <a
               href="#projects"
-              class="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-medium hover:shadow-elevated hover:scale-105"
+              class="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-colors duration-200"
             >
               View My Work
               <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,7 +87,7 @@
             <a
               href="/Devon_Hills_Resume_2025_Newest.pdf"
               target="_blank"
-              class="inline-flex items-center px-8 py-4 border-2 border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-400 bg-white dark:bg-gray-900 text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-subtle hover:shadow-soft"
+              class="inline-flex items-center px-8 py-4 border-2 border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-400 bg-white dark:bg-gray-900 text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 font-semibold rounded-xl transition-colors duration-200"
             >
               Download Resume
               <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -161,10 +167,6 @@
           Architecting client solutions at
           <span class="text-primary-600 dark:text-primary-400">Livefront</span>
         </h2>
-        <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Previously built React applications for HealthCare.gov at Ad Hoc and 
-          developed mission-critical C++ systems at Raytheon Technologies.
-        </p>
       </div>
     </div>
   </div>
@@ -207,4 +209,56 @@
       opacity: 1;
     }
   }
+
+  /* Typewriter cursor animation */
+  .typewriter-cursor {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
 </style>
+
+<script>
+  function initTypewriter() {
+    const text = 'that millions depend on.';
+    const typewriterElement = document.getElementById('typewriter-text');
+    const cursor = document.querySelector('.typewriter-cursor');
+
+    if (!typewriterElement) return;
+
+    let index = 0;
+
+    function typeWriter() {
+      if (index < text.length) {
+        typewriterElement.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 100); // Adjust speed here (milliseconds)
+      } else {
+        // Hide cursor after typing is complete
+        setTimeout(() => {
+          if (cursor) cursor.style.display = 'none';
+        }, 1000);
+      }
+    }
+
+    // Start typewriter effect after a small delay
+    setTimeout(() => {
+      typeWriter();
+    }, 2000);
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener('DOMContentLoaded', initTypewriter);
+
+  // Handle Astro page transitions
+  document.addEventListener('astro:page-load', initTypewriter);
+</script>
