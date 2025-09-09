@@ -2,16 +2,19 @@
 // Services section inspired by Livefront's service offerings
 ---
 
-<section id="services" class="py-24 bg-gray-50 dark:bg-gray-900">
+<section id="services" class="py-24 bg-section-light-2 dark:bg-section-dark-2">
   <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="text-center mb-20">
+    <div class="text-center mb-20 animate-section-enter">
+      <div class="inline-block mb-4 px-4 py-2 bg-primary-100/50 dark:bg-primary-900/30 rounded-full border border-primary-200 dark:border-primary-800">
+        <span class="text-sm font-medium text-primary-700 dark:text-primary-300 uppercase tracking-wide">Expertise</span>
+      </div>
       <h2
-        class="text-3xl sm:text-4xl lg:text-5xl font-heading font-semibold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight"
+        class="text-3xl sm:text-4xl lg:text-5xl font-heading font-semibold text-neutral-900 dark:text-neutral-50 mb-6 leading-tight tracking-tight"
       >
         What I bring to your team
       </h2>
       <p
-        class="text-lg sm:text-xl text-gray-700 dark:text-gray-200 max-w-3xl mx-auto leading-relaxed"
+        class="text-lg sm:text-xl text-neutral-700 dark:text-neutral-300 max-w-3xl mx-auto leading-relaxed"
       >
         Full-stack expertise across modern technologies, with a focus on scalable architecture, user
         experience, and delivering products that make a real impact.
@@ -22,12 +25,12 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 mb-20">
       <!-- Frontend Development -->
       <div
-        class="bg-white dark:bg-gray-800 rounded-xl p-10 shadow-soft hover:shadow-elevated border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1"
+        class="bg-neutral-25 dark:bg-neutral-900 rounded-xl p-8 shadow-soft hover:shadow-elevated border border-neutral-200 dark:border-neutral-700 transition-all duration-300 hover:-translate-y-1 group"
       >
         <div class="flex items-start space-x-6">
           <div class="flex-shrink-0">
             <div
-              class="w-14 h-14 bg-primary-100 dark:bg-primary-900 rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all duration-300"
+              class="w-14 h-14 bg-primary-100 dark:bg-primary-900 rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all duration-300 group-hover:scale-105"
             >
               <svg
                 class="w-7 h-7 text-primary-600 dark:text-primary-400"
@@ -53,19 +56,19 @@
             </p>
             <div class="flex flex-wrap gap-2">
               <span
-                class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full"
+                class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full border border-primary-200 dark:border-primary-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >React</span
               >
               <span
-                class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full"
+                class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full border border-primary-200 dark:border-primary-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >TypeScript</span
               >
               <span
-                class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full"
+                class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full border border-primary-200 dark:border-primary-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >Next.js</span
               >
               <span
-                class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full"
+                class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full border border-primary-200 dark:border-primary-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >Tailwind CSS</span
               >
             </div>
@@ -75,12 +78,12 @@
 
       <!-- Backend Development -->
       <div
-        class="bg-white dark:bg-gray-800 rounded-xl p-10 shadow-soft hover:shadow-elevated border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1"
+        class="bg-neutral-25 dark:bg-neutral-900 rounded-xl p-8 shadow-soft hover:shadow-elevated border border-neutral-200 dark:border-neutral-700 transition-all duration-300 hover:-translate-y-1 group"
       >
         <div class="flex items-start space-x-6">
           <div class="flex-shrink-0">
             <div
-              class="w-14 h-14 bg-secondary-100 dark:bg-secondary-900 rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all duration-300"
+              class="w-14 h-14 bg-secondary-100 dark:bg-secondary-900 rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all duration-300 group-hover:scale-105"
             >
               <svg
                 class="w-7 h-7 text-secondary-600 dark:text-secondary-400"
@@ -107,23 +110,23 @@
             </p>
             <div class="flex flex-wrap gap-2">
               <span
-                class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full"
+                class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full border border-secondary-200 dark:border-secondary-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >Ruby on Rails</span
               >
               <span
-                class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full"
+                class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full border border-secondary-200 dark:border-secondary-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >Node.js</span
               >
               <span
-                class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full"
+                class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full border border-secondary-200 dark:border-secondary-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >Python</span
               >
               <span
-                class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full"
+                class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full border border-secondary-200 dark:border-secondary-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >PostgreSQL</span
               >
               <span
-                class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full"
+                class="px-3 py-1 bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 text-sm rounded-full border border-secondary-200 dark:border-secondary-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >AWS</span
               >
             </div>
@@ -133,12 +136,12 @@
 
       <!-- System Architecture -->
       <div
-        class="bg-white dark:bg-gray-800 rounded-xl p-10 shadow-soft hover:shadow-elevated border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1"
+        class="bg-neutral-25 dark:bg-neutral-900 rounded-xl p-8 shadow-soft hover:shadow-elevated border border-neutral-200 dark:border-neutral-700 transition-all duration-300 hover:-translate-y-1 group"
       >
         <div class="flex items-start space-x-6">
           <div class="flex-shrink-0">
             <div
-              class="w-14 h-14 bg-accent-100 dark:bg-accent-900 rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all duration-300"
+              class="w-14 h-14 bg-accent-100 dark:bg-accent-900 rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all duration-300 group-hover:scale-105"
             >
               <svg
                 class="w-7 h-7 text-accent-600 dark:text-accent-400"
@@ -165,19 +168,19 @@
             </p>
             <div class="flex flex-wrap gap-2">
               <span
-                class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full"
+                class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full border border-accent-200 dark:border-accent-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >Jenkins</span
               >
               <span
-                class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full"
+                class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full border border-accent-200 dark:border-accent-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >Playwright</span
               >
               <span
-                class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full"
+                class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full border border-accent-200 dark:border-accent-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >CI/CD</span
               >
               <span
-                class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full"
+                class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-sm rounded-full border border-accent-200 dark:border-accent-800 shadow-sm hover:shadow-md transition-all duration-200"
                 >AWS</span
               >
             </div>
@@ -187,15 +190,15 @@
 
       <!-- Product Strategy -->
       <div
-        class="bg-white dark:bg-gray-800 rounded-xl p-10 shadow-soft hover:shadow-elevated border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1"
+        class="bg-neutral-25 dark:bg-neutral-900 rounded-xl p-8 shadow-soft hover:shadow-elevated border border-neutral-200 dark:border-neutral-700 transition-all duration-300 hover:-translate-y-1 group"
       >
         <div class="flex items-start space-x-6">
           <div class="flex-shrink-0">
             <div
-              class="w-14 h-14 bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all duration-300"
+              class="w-14 h-14 bg-neutral-100 dark:bg-neutral-700 rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all duration-300 group-hover:scale-105"
             >
               <svg
-                class="w-7 h-7 text-gray-600 dark:text-gray-400"
+                class="w-7 h-7 text-accent-600 dark:text-accent-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -219,19 +222,19 @@
             </p>
             <div class="flex flex-wrap gap-2">
               <span
-                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full"
+                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full border border-gray-300 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200"
                 >Agile</span
               >
               <span
-                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full"
+                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full border border-gray-300 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200"
                 >WCAG Compliance</span
               >
               <span
-                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full"
+                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full border border-gray-300 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200"
                 >Production Support</span
               >
               <span
-                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full"
+                class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full border border-gray-300 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200"
                 >Healthcare Technology</span
               >
             </div>

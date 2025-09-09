@@ -1,44 +1,111 @@
 ---
-// Clean diagonal separator that transitions between section background colors
+// Enhanced diagonal separator with sophisticated monochromatic transitions
 export interface Props {
   direction?: 'left' | 'right';
   fromColor?: string;
   toColor?: string;
   height?: string;
+  variant?: 'subtle' | 'medium' | 'pronounced';
 }
 
 const {
   direction = 'right',
-  fromColor = 'white',
-  toColor = 'gray-50',
-  height = 'h-12',
+  fromColor = 'section-light-1',
+  toColor = 'section-light-2',
+  height = 'h-16',
+  variant = 'medium',
 } = Astro.props;
 
-// Map color names to actual Tailwind classes for proper purging
+// Enhanced color mapping for new palette
 const colorMap = {
+  // Section colors
+  'section-light-1': 'bg-section-light-1',
+  'section-light-2': 'bg-section-light-2',
+  'section-light-3': 'bg-section-light-3',
+  'section-light-4': 'bg-section-light-4',
+  // Standard colors
   white: 'bg-white',
-  'gray-50': 'bg-gray-50',
+  'primary-25': 'bg-primary-25',
+  'primary-50': 'bg-primary-50',
+  'primary-75': 'bg-primary-75',
+  'primary-100': 'bg-primary-100',
+  'neutral-25': 'bg-neutral-25',
+  'neutral-50': 'bg-neutral-50',
+  'neutral-75': 'bg-neutral-75',
   'neutral-100': 'bg-neutral-100',
+};
+
+const darkColorMap = {
+  'section-light-1': 'dark:bg-section-dark-1',
+  'section-light-2': 'dark:bg-section-dark-2',
+  'section-light-3': 'dark:bg-section-dark-3',
+  'section-light-4': 'dark:bg-section-dark-4',
+  white: 'dark:bg-neutral-950',
+  'primary-25': 'dark:bg-primary-950',
+  'primary-50': 'dark:bg-primary-925',
+  'primary-75': 'dark:bg-primary-900',
+  'primary-100': 'dark:bg-primary-850',
+  'neutral-25': 'dark:bg-neutral-950',
+  'neutral-50': 'dark:bg-neutral-925',
+  'neutral-75': 'dark:bg-neutral-900',
+  'neutral-100': 'dark:bg-neutral-850',
 };
 
 const fromBg = colorMap[fromColor] || `bg-${fromColor}`;
 const toBg = colorMap[toColor] || `bg-${toColor}`;
+const darkFromBg = darkColorMap[fromColor] || `dark:bg-${fromColor}`;
+const darkToBg = darkColorMap[toColor] || `dark:bg-${toColor}`;
+
+// Variant-based skew angles
+const skewMap = {
+  subtle: direction === 'right' ? 'skew-y-0.5' : '-skew-y-0.5',
+  medium: direction === 'right' ? 'skew-y-1' : '-skew-y-1',
+  pronounced: direction === 'right' ? 'skew-y-2' : '-skew-y-2',
+};
+
+const skewClass = skewMap[variant];
 ---
 
-<div class={`w-full ${height} overflow-hidden relative ${fromBg} dark:bg-gray-950`}>
+<div class={`w-full ${height} overflow-hidden relative ${fromBg} ${darkFromBg}`}>
+  <!-- Main diagonal transition -->
   <div
-    class={`absolute inset-0 ${toBg} dark:bg-gray-900 transform ${direction === 'right' ? 'skew-y-1' : '-skew-y-1'} origin-top-left shadow-subtle`}
+    class={`absolute inset-0 ${toBg} ${darkToBg} transform ${skewClass} origin-top-left transition-transform duration-700 ease-out`}
   >
   </div>
+
+  <!-- Subtle gradient overlay for depth -->
   <div
-    class={`absolute inset-0 bg-gradient-to-r from-transparent via-primary-500/5 to-transparent transform ${direction === 'right' ? 'skew-y-1' : '-skew-y-1'} origin-top-left`}
+    class={`absolute inset-0 bg-gradient-to-r from-transparent via-primary-500/3 to-transparent transform ${skewClass} origin-top-left`}
+  >
+  </div>
+
+  <!-- Enhanced shadow for more depth -->
+  <div class={`absolute inset-0 transform ${skewClass} origin-top-left shadow-soft`}></div>
+
+  <!-- Optional noise texture for premium feel -->
+  <div
+    class={`absolute inset-0 opacity-[0.015] mix-blend-overlay transform ${skewClass} origin-top-left`}
+    style="background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0); background-size: 20px 20px;"
   >
   </div>
 </div>
 
 <style>
-  /* Ensure the diagonal effect works properly */
+  /* Enhanced diagonal effects with smooth transitions */
   .transform {
     transform-origin: top left;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Hover effects for interactive feel */
+  div:hover .transform {
+    transform-style: preserve-3d;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .transform {
+      transition: none;
+    }
   }
 </style>
