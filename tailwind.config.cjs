@@ -42,7 +42,7 @@ module.exports = {
         section: {
           'light-1': '#ffffff',
           'light-2': '#fdfdfe',
-          'light-3': '#fafbfa', 
+          'light-3': '#fafbfa',
           'light-4': '#f5f7f5',
           'light-5': '#f0f3f0',
           'dark-1': '#000000',

@@ -66,8 +66,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     class="font-sans antialiased bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100"
   >
     <!-- Code Rain Canvas -->
-    <canvas id="code-rain" class="fixed inset-0 pointer-events-none z-0 opacity-15 dark:opacity-20"></canvas>
-    
+    <canvas id="code-rain" class="fixed inset-0 pointer-events-none z-0 opacity-15 dark:opacity-20"
+    ></canvas>
+
     <Header />
     <slot />
 
@@ -92,16 +93,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <!-- Code Rain Animation Script -->
     <script>
-      let codeRainCanvas, ctx, drops = [];
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ";
-      
+      let codeRainCanvas: HTMLCanvasElement | null,
+        ctx: CanvasRenderingContext2D | null,
+        drops: Array<{ y: number; speed: number; chars: string[] }> = [];
+      const chars =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ';
+
       function initCodeRain() {
-        codeRainCanvas = document.getElementById('code-rain');
+        codeRainCanvas = document.getElementById('code-rain') as HTMLCanvasElement;
         if (!codeRainCanvas) return;
-        
+
         ctx = codeRainCanvas.getContext('2d');
         resizeCanvas();
-        
+
         // Create fewer, more spaced out drops for subtlety
         const columns = Math.floor(codeRainCanvas.width / 40);
         drops.length = 0;
@@ -109,66 +113,66 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           drops[i] = {
             y: Math.random() * -800,
             speed: Math.random() * 1 + 0.3,
-            chars: []
+            chars: [],
           };
-          
+
           // Generate random characters for this drop (shorter chains)
           const length = Math.floor(Math.random() * 8) + 3;
           for (let j = 0; j < length; j++) {
             drops[i].chars.push(chars[Math.floor(Math.random() * chars.length)]);
           }
         }
-        
+
         animate();
       }
-      
+
       function resizeCanvas() {
         if (!codeRainCanvas) return;
         codeRainCanvas.width = window.innerWidth;
         codeRainCanvas.height = window.innerHeight;
       }
-      
+
       function animate() {
         if (!ctx || !codeRainCanvas) return;
-        
+
         // Less transparent background for sharper characters
         ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
         ctx.fillRect(0, 0, codeRainCanvas.width, codeRainCanvas.height);
-        
+
         // Check dark mode
         const isDark = document.documentElement.classList.contains('dark');
-        
+
         for (let i = 0; i < drops.length; i++) {
           const drop = drops[i];
           const x = i * 40;
-          
+
           // Draw characters
           for (let j = 0; j < drop.chars.length; j++) {
-            const y = drop.y + (j * 18);
-            
+            const y = drop.y + j * 18;
+
             if (y > 0 && y < codeRainCanvas.height) {
               // Clearer gradient effect for better visibility
-              const alpha = Math.max(0, (1 - (j / drop.chars.length)) * 0.8);
-              
+              const alpha = Math.max(0, (1 - j / drop.chars.length) * 0.8);
+
               if (isDark) {
                 ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.6})`;
               } else {
                 ctx.fillStyle = `rgba(34, 197, 94, ${alpha * 0.5})`;
               }
-              
+
               ctx.font = '12px "Fira Code", monospace';
               ctx.fillText(drop.chars[j], x, y);
             }
           }
-          
+
           // Move drop slower
           drop.y += drop.speed;
-          
+
           // Reset drop when it goes off screen
           if (drop.y > codeRainCanvas.height + 150) {
             drop.y = Math.random() * -800 - 300;
             drop.speed = Math.random() * 1 + 0.3;
-            
+
             // Regenerate characters
             const length = Math.floor(Math.random() * 8) + 3;
             drop.chars.length = 0;
@@ -177,24 +181,26 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             }
           }
         }
-        
+
         requestAnimationFrame(animate);
       }
-      
+
       // Handle window resize
       window.addEventListener('resize', () => {
         resizeCanvas();
         // Recreate drops for new width
-        const columns = Math.floor(codeRainCanvas.width / 40);
-        if (columns !== drops.length) {
-          initCodeRain();
+        if (codeRainCanvas) {
+          const columns = Math.floor(codeRainCanvas.width / 40);
+          if (columns !== drops.length) {
+            initCodeRain();
+          }
         }
       });
-      
+
       // Initialize
       document.addEventListener('DOMContentLoaded', initCodeRain);
       document.addEventListener('astro:page-load', initCodeRain);
-      
+
       // Pause animation when page is not visible (performance optimization)
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
@@ -288,11 +294,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   /* Terminal Aesthetics */
   .terminal-card {
     position: relative;
-    background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(250,250,250,1) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(250, 250, 250, 1) 100%);
   }
 
   .dark .terminal-card {
-    background: linear-gradient(135deg, rgba(10,10,10,1) 0%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(135deg, rgba(10, 10, 10, 1) 0%, rgba(0, 0, 0, 1) 100%);
   }
 
   .terminal-card::before {
@@ -312,8 +318,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   }
 
   .font-terminal {
-    font-family: 'Fira Code', 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
-    font-feature-settings: 'liga' 1, 'calt' 1;
+    font-family:
+      'Fira Code', 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+    font-feature-settings:
+      'liga' 1,
+      'calt' 1;
     font-weight: 400;
   }
 
@@ -355,10 +364,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   }
 
   @keyframes glitch {
-    2%, 64% {
+    2%,
+    64% {
       transform: translate(2px, 0) skew(0deg);
     }
-    4%, 60% {
+    4%,
+    60% {
       transform: translate(-2px, 0) skew(0deg);
     }
     62% {
@@ -367,11 +378,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   }
 
   @keyframes glitch-shadow-1 {
-    2%, 64% {
+    2%,
+    64% {
       transform: translate(2px, 0) skew(0deg);
       clip: rect(0, 900px, 0, 0);
     }
-    4%, 60% {
+    4%,
+    60% {
       transform: translate(-2px, 0) skew(0deg);
       clip: rect(0, 900px, 0, 0);
     }
@@ -382,11 +395,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   }
 
   @keyframes glitch-shadow-2 {
-    2%, 64% {
+    2%,
+    64% {
       transform: translate(-2px, 0) skew(0deg);
       clip: rect(0, 900px, 0, 0);
     }
-    4%, 60% {
+    4%,
+    60% {
       transform: translate(2px, 0) skew(0deg);
       clip: rect(0, 900px, 0, 0);
     }

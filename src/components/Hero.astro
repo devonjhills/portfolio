@@ -238,14 +238,14 @@
     let index = 0;
 
     function typeWriter() {
-      if (index < text.length) {
+      if (index < text.length && typewriterElement) {
         typewriterElement.textContent += text.charAt(index);
         index++;
         setTimeout(typeWriter, 100); // Adjust speed here (milliseconds)
       } else {
         // Hide cursor after typing is complete
         setTimeout(() => {
-          if (cursor) cursor.style.display = 'none';
+          if (cursor && cursor instanceof HTMLElement) cursor.style.display = 'none';
         }, 1000);
       }
     }
