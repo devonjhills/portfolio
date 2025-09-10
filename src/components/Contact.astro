@@ -1,17 +1,19 @@
 ---
+import { Icon } from 'astro-icon/components';
 // Contact section inspired by Livefront's partnership approach
 ---
 
 <section id="contact" class="py-24 bg-section-light-5 dark:bg-section-dark-5">
   <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
     <!-- Section Header -->
-    <div class="text-center mb-20 animate-section-enter">
+    <div class="text-center mb-16 animate-section-enter">
       <div
-        class="inline-block mb-4 px-4 py-2 bg-neutral-100 dark:bg-neutral-900 border border-primary-500 dark:border-primary-400 font-terminal text-primary-700 dark:text-primary-300 relative shadow-sm glitch-effect"
+        class="inline-block mb-3 px-3 py-1 bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 font-terminal relative shadow-sm"
         style="border-radius: 0;"
-        data-text="$ ssh devon@portfolio.dev"
       >
-        <span class="text-sm font-medium uppercase tracking-wide">$ ssh devon@portfolio.dev</span>
+        <span class="text-xs font-terminal tracking-normal text-neutral-600 dark:text-neutral-400"
+          >$ ssh devon@portfolio.dev</span
+        >
         <div class="absolute -top-2 -right-2 w-2 h-2 bg-primary-500 rounded-full animate-pulse">
         </div>
       </div>
@@ -20,12 +22,6 @@
       >
         Let's build something remarkable.
       </h2>
-      <p
-        class="text-lg sm:text-xl text-neutral-700 dark:text-neutral-300 max-w-3xl mx-auto leading-relaxed"
-      >
-        I'm always interested in connecting with fellow developers, exploring new opportunities, and
-        collaborating on projects that make a difference.
-      </p>
     </div>
 
     <!-- Terminal-style Contact Grid -->
@@ -77,14 +73,7 @@
                 </div>
               </div>
               <div class="text-neutral-400 group-hover:text-primary-500 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  ></path>
-                </svg>
+                <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
               </div>
             </a>
 
@@ -109,14 +98,7 @@
                 <div class="text-neutral-600 dark:text-neutral-400 text-xs">/in/devonjhills</div>
               </div>
               <div class="text-neutral-400 group-hover:text-primary-500 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  ></path>
-                </svg>
+                <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
               </div>
             </a>
 
@@ -141,14 +123,7 @@
                 <div class="text-neutral-600 dark:text-neutral-400 text-xs">@devonjhills</div>
               </div>
               <div class="text-neutral-400 group-hover:text-primary-500 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  ></path>
-                </svg>
+                <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
               </div>
             </a>
 
@@ -162,14 +137,7 @@
               <div
                 class="w-8 h-8 bg-primary-100 dark:bg-primary-900 flex items-center justify-center text-primary-600 dark:text-primary-400 group-hover:bg-primary-200 dark:group-hover:bg-primary-800 transition-colors"
               >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                  ></path>
-                </svg>
+                <Icon name="heroicons:document-text" class="w-4 h-4" />
               </div>
               <div class="flex-1">
                 <div
@@ -180,13 +148,7 @@
                 <div class="text-neutral-600 dark:text-neutral-400 text-xs">Download PDF</div>
               </div>
               <div class="text-neutral-400 group-hover:text-primary-500 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 10v6m0 0l-3-3m3 3l3-3"></path>
-                </svg>
+                <Icon name="heroicons:arrow-down-tray" class="w-4 h-4" />
               </div>
             </a>
           </div>
