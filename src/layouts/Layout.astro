@@ -112,12 +112,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         for (let i = 0; i < columns; i++) {
           drops[i] = {
             y: Math.random() * -800,
-            speed: Math.random() * 1 + 0.3,
+            speed: Math.random() * 0.6 + 0.2,
             chars: [],
           };
 
-          // Generate random characters for this drop (shorter chains)
-          const length = Math.floor(Math.random() * 8) + 3;
+          // Generate random characters for this drop (longer chains)
+          const length = Math.floor(Math.random() * 15) + 8;
           for (let j = 0; j < length; j++) {
             drops[i].chars.push(chars[Math.floor(Math.random() * chars.length)]);
           }
@@ -135,9 +135,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       function animate() {
         if (!ctx || !codeRainCanvas) return;
 
-        // Less transparent background for sharper characters
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, codeRainCanvas.width, codeRainCanvas.height);
+        // Clear background completely for sharp characters only
+        ctx.clearRect(0, 0, codeRainCanvas.width, codeRainCanvas.height);
 
         // Check dark mode
         const isDark = document.documentElement.classList.contains('dark');
@@ -151,16 +150,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             const y = drop.y + j * 18;
 
             if (y > 0 && y < codeRainCanvas.height) {
-              // Clearer gradient effect for better visibility
+              // Sharp gradient effect with full opacity at head
               const alpha = Math.max(0, (1 - j / drop.chars.length) * 1.0);
 
               if (isDark) {
-                ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.8})`;
+                ctx.fillStyle = `rgba(0, 255, 65, ${alpha})`;
               } else {
-                ctx.fillStyle = `rgba(34, 197, 94, ${alpha * 0.7})`;
+                ctx.fillStyle = `rgba(34, 197, 94, ${alpha})`;
               }
 
-              ctx.font = '12px "Fira Code", monospace';
+              ctx.font = 'bold 14px "Fira Code", monospace';
               ctx.fillText(drop.chars[j], x, y);
             }
           }
@@ -171,10 +170,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           // Reset drop when it goes off screen
           if (drop.y > codeRainCanvas.height + 150) {
             drop.y = Math.random() * -800 - 300;
-            drop.speed = Math.random() * 1 + 0.3;
+            drop.speed = Math.random() * 0.3 + 0.1;
 
             // Regenerate characters
-            const length = Math.floor(Math.random() * 8) + 3;
+            const length = Math.floor(Math.random() * 15) + 8;
             drop.chars.length = 0;
             for (let j = 0; j < length; j++) {
               drop.chars.push(chars[Math.floor(Math.random() * chars.length)]);
@@ -188,11 +187,33 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       // Handle window resize
       window.addEventListener('resize', () => {
         resizeCanvas();
-        // Recreate drops for new width
+        // Adjust drops for new width without reinitializing
         if (codeRainCanvas) {
           const columns = Math.floor(codeRainCanvas.width / 40);
           if (columns !== drops.length) {
-            initCodeRain();
+            // Preserve existing drops when possible
+            const oldDrops = [...drops];
+            drops.length = 0;
+
+            for (let i = 0; i < columns; i++) {
+              if (i < oldDrops.length) {
+                // Keep existing drop but ensure it's within bounds
+                drops[i] = oldDrops[i];
+              } else {
+                // Create new drop only if needed
+                drops[i] = {
+                  y: Math.random() * -800,
+                  speed: Math.random() * 0.6 + 0.2,
+                  chars: [],
+                };
+
+                // Generate random characters for new drop
+                const length = Math.floor(Math.random() * 15) + 8;
+                for (let j = 0; j < length; j++) {
+                  drops[i].chars.push(chars[Math.floor(Math.random() * chars.length)]);
+                }
+              }
+            }
           }
         }
       });
