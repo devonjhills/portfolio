@@ -11,85 +11,85 @@
 
 @layer base {
   :root {
-    /* Refined Light Mode */
+    /* Ubuntu Light Mode with Mint Green */
     --background: 0 0% 100%; /* Clean white */
-    --foreground: 240 10% 3.9%; /* Near-black for text */
-    --primary: 262 88% 57%; /* Deeper, richer purple */
+    --foreground: 0 0% 13%; /* Ubuntu dark gray text */
+    --primary: 156 100% 50%; /* Mint green */
     --primary-foreground: 0 0% 100%; /* White */
-    --secondary: 220 85% 60%; /* Calmer, professional blue */
+    --secondary: 270 8% 49%; /* Ubuntu purple/gray */
     --secondary-foreground: 0 0% 100%; /* White */
-    --accent: 330 90% 65%; /* Softer, more controlled pink */
+    --accent: 156 100% 50%; /* Mint green accent */
     --accent-foreground: 0 0% 100%; /* White */
     --warning: 38 92% 50%; /* Amber for warnings */
-    --warning-foreground: 240 10% 3.9%; /* Dark text on warning */
-    --destructive: 0 84% 60%; /* Clear, standard red */
+    --warning-foreground: 0 0% 13%; /* Dark text on warning */
+    --destructive: 0 84% 60%; /* Red */
     --destructive-foreground: 0 0% 100%; /* White */
-    --muted: 240 5% 96%; /* Softer gray for backgrounds */
-    --muted-foreground: 240 4% 46%; /* More readable muted text */
-    --border: 240 6% 90%; /* Subtle borders */
-    --input: 240 6% 90%; /* Input background */
-    --ring: 262 88% 57%; /* Ring color to match primary */
+    --muted: 210 13% 96%; /* Light gray backgrounds */
+    --muted-foreground: 215 16% 47%; /* Muted text */
+    --border: 214 13% 90%; /* Subtle borders */
+    --input: 214 13% 90%; /* Input background */
+    --ring: 156 100% 50%; /* Ring color to match mint green */
 
     --section-primary: 0 0% 98%; /* Slightly off-white for sections */
-    --section-secondary: 240 5% 96%; /* Muted gray for alternate sections */
+    --section-secondary: 210 13% 96%; /* Muted gray for alternate sections */
 
     --card: 0 0% 100%; /* White cards */
-    --card-foreground: 240 10% 3.9%; /* Dark text on cards */
+    --card-foreground: 0 0% 13%; /* Dark text on cards */
     --popover: 0 0% 100%; /* White popovers */
-    --popover-foreground: 240 10% 3.9%; /* Dark text on popovers */
+    --popover-foreground: 0 0% 13%; /* Dark text on popovers */
 
-    /* Semantic colors for better theming */
+    /* Ubuntu semantic colors with mint green */
     --star: 48 95% 58%; /* Gold for stars */
     --fork: 220 85% 60%; /* Blue for forks */
-    --success: 140 80% 45%; /* Deep green for success */
+    --success: 156 100% 50%; /* Mint green */
     --info: 220 85% 60%; /* Blue for info */
-    --chart-1: 262 88% 57%; /* primary */
-    --chart-2: 220 85% 60%; /* secondary */
-    --chart-3: 330 90% 65%; /* accent */
-    --chart-4: 140 80% 45%; /* success */
-    --chart-5: 48 95% 58%; /* star/warning */
+    --chart-1: 156 100% 50%; /* Mint green */
+    --chart-2: 270 8% 49%; /* Ubuntu purple */
+    --chart-3: 120 60% 40%; /* Ubuntu green */
+    --chart-4: 220 85% 60%; /* Blue */
+    --chart-5: 48 95% 58%; /* Gold */
 
-    --radius: 0.5rem;
+    --radius: 0.375rem;
   }
 
   .dark {
-    /* Sophisticated Dark Mode */
-    --background: 240 10% 3.9%; /* Very dark blue, almost black */
-    --foreground: 0 0% 98%; /* Off-white for high contrast text */
-    --primary: 262 88% 67%; /* Brighter purple for dark mode */
-    --primary-foreground: 240 10% 3.9%; /* Dark text on primary */
-    --secondary: 220 85% 70%; /* Brighter blue for dark mode */
-    --secondary-foreground: 240 10% 3.9%; /* Dark text on secondary */
-    --accent: 330 90% 75%; /* Brighter pink for dark mode */
-    --accent-foreground: 240 10% 3.9%; /* Dark text on accent */
+    /* Ubuntu Dark Mode with Mint Green */
+    --background: 220 13% 9%; /* Ubuntu dark background */
+    --foreground: 0 0% 95%; /* Light text */
+    --primary: 156 100% 60%; /* Brighter mint green for dark mode */
+    --primary-foreground: 220 13% 9%; /* Dark text on primary */
+    --secondary: 270 8% 59%; /* Lighter Ubuntu purple for dark mode */
+    --secondary-foreground: 0 0% 95%; /* Light text on secondary */
+    --accent: 156 100% 60%; /* Mint green accent */
+    --accent-foreground: 220 13% 9%; /* Dark text on accent */
     --warning: 38 92% 60%; /* Brighter amber for dark mode */
-    --warning-foreground: 240 10% 3.9%; /* Dark text on warning */
+    --warning-foreground: 220 13% 9%; /* Dark text on warning */
     --destructive: 0 84% 70%; /* Brighter red for dark mode */
-    --destructive-foreground: 0 0% 98%; /* Light text on destructive */
-    --muted: 240 4% 12%; /* Dark gray for backgrounds */
-    --muted-foreground: 240 4% 65%; /* Lighter muted text */
-    --border: 240 4% 18%; /* Subtle dark borders */
-    --input: 240 4% 18%; /* Input background */
-    --ring: 262 88% 67%; /* Ring color to match primary */
+    --destructive-foreground: 0 0% 95%; /* Light text on destructive */
+    --muted: 220 13% 16%; /* Ubuntu dark gray for backgrounds */
+    --muted-foreground: 215 16% 57%; /* Muted text */
+    --border: 220 13% 22%; /* Subtle dark borders */
+    --input: 220 13% 16%; /* Input background */
+    --ring: 156 100% 60%; /* Ring color to match mint green */
 
-    --section-primary: 240 5% 8%; /* Slightly lighter section background */
-    --section-secondary: 240 5% 10%; /* Alternate section background */
+    --section-primary: 220 13% 11%; /* Slightly lighter section background */
+    --section-secondary: 220 13% 13%; /* Alternate section background */
 
-    --card: 240 4% 12%; /* Dark gray cards */
-    --card-foreground: 0 0% 98%; /* Light text on cards */
-    --popover: 240 4% 12%; /* Dark popovers */
-    --popover-foreground: 0 0% 98%; /* Light text on popovers */
+    --card: 220 13% 16%; /* Dark gray cards */
+    --card-foreground: 0 0% 95%; /* Light text on cards */
+    --popover: 220 13% 16%; /* Dark popovers */
+    --popover-foreground: 0 0% 95%; /* Light text on popovers */
 
-    /* Semantic colors for better theming */
+    /* Ubuntu dark semantic colors with mint green */
     --star: 48 95% 68%; /* Brighter gold for stars */
     --fork: 220 85% 70%; /* Brighter blue for forks */
-    --success: 140 80% 55%; /* Brighter green for success */
+    --success: 156 100% 60%; /* Mint green for dark mode */
     --info: 220 85% 70%; /* Brighter blue for info */
-    --chart-1: 262 88% 67%; /* primary */
-    --chart-2: 220 85% 70%; /* secondary */
-    --chart-3: 330 90% 75%; /* accent */
-    --chart-4: 140 80% 55%; /* success */
-    --chart-5: 48 95% 68%; /* star/warning */
+    --chart-1: 156 100% 60%; /* Mint green */
+    --chart-2: 270 8% 59%; /* Ubuntu purple */
+    --chart-3: 120 60% 50%; /* Ubuntu green */
+    --chart-4: 220 85% 70%; /* Blue */
+    --chart-5: 48 95% 68%; /* Gold */
   }
 
   * {
@@ -101,6 +101,13 @@
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  html {
+    overflow: hidden;
+    height: 100vh;
   }
 
   h1 {
@@ -158,6 +165,7 @@
     background-size: 20px 20px;
   }
 
+  /* Default scrollbars */
   ::-webkit-scrollbar {
     width: 16px;
     height: 16px;
@@ -179,8 +187,80 @@
     box-shadow: 0 0 0 2px hsl(var(--primary));
   }
 
-  html {
-    scroll-behavior: smooth;
+  /* Minimal scrollbars for window content - white minimal theme */
+  .window-content ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .window-content ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .window-content ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border-radius: 3px;
+    border: none !important;
+  }
+
+  .window-content ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .window-content ::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Apply to all nested scrollable content */
+  .ubuntu-window ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .ubuntu-window ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .ubuntu-window ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border-radius: 3px;
+    border: none !important;
+  }
+
+  .ubuntu-window ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .ubuntu-window ::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Ensure nested scroll areas in complex components also get styled */
+  .overflow-y-auto ::-webkit-scrollbar,
+  .overflow-auto ::-webkit-scrollbar,
+  .max-h-full ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .overflow-y-auto ::-webkit-scrollbar-track,
+  .overflow-auto ::-webkit-scrollbar-track,
+  .max-h-full ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .overflow-y-auto ::-webkit-scrollbar-thumb,
+  .overflow-auto ::-webkit-scrollbar-thumb,
+  .max-h-full ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border-radius: 3px;
+    border: none !important;
+  }
+
+  .overflow-y-auto ::-webkit-scrollbar-thumb:hover,
+  .overflow-auto ::-webkit-scrollbar-thumb:hover,
+  .max-h-full ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.8) !important;
   }
 
   :focus-visible {
@@ -290,5 +370,96 @@
   .animate-scroll {
     animation: scroll var(--animation-duration, 40s)
       var(--animation-direction, forwards) linear infinite;
+  }
+}
+
+/* Optimized OS Effects */
+@layer base {
+  /* Smooth transitions for better performance */
+  .mint-window {
+    will-change: transform;
+  }
+
+  .dock-app {
+    will-change: transform;
+  }
+
+  /* Window performance optimizations */
+  .ubuntu-window {
+    will-change: transform, width, height;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    /* Enable hardware acceleration */
+    transform: translateZ(0);
+  }
+
+  .window-title-bar {
+    /* Optimize dragging performance */
+    will-change: transform;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: move;
+  }
+
+  .window-content {
+    /* Optimize content rendering during resize/move */
+    will-change: auto;
+    contain: layout style paint;
+  }
+
+  .resize-handle {
+    /* Optimize resize handle performance */
+    will-change: background-color;
+    transition: background-color 0.15s ease;
+  }
+
+  /* Window open animation */
+  @keyframes window-open {
+    0% {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .animate-window-open {
+    animation: window-open 0.2s ease-out;
+  }
+
+  /* Tiling animations */
+  @keyframes tile-snap {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.98);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-tile-snap {
+    animation: tile-snap 0.3s ease-out;
+  }
+
+  /* Remove heavy animations on reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .ubuntu-window {
+      will-change: auto;
+    }
+
+    .window-title-bar {
+      will-change: auto;
+    }
   }
 }

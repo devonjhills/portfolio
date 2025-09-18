@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Syne } from "next/font/google";
+import { Ubuntu, JetBrains_Mono, Ubuntu_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/layout/theme-provider";
 import { Header } from "./components/layout/header";
@@ -7,11 +7,18 @@ import { Footer } from "./components/layout/footer";
 import { ScrollToTop } from "./components/ui/scroll-to-top";
 import { FaviconGenerator } from "./components/ui/favicon-generator";
 
-const inter = Inter({
-  variable: "--font-inter",
+const ubuntu = Ubuntu({
+  variable: "--font-ubuntu",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "700"],
+});
+
+const ubuntuMono = Ubuntu_Mono({
+  variable: "--font-ubuntu-mono",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "700"],
 });
 
 const jetBrainsMono = JetBrains_Mono({
@@ -19,13 +26,6 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
-});
-
-const syne = Syne({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"], // Syne offers a bold 800 weight
 });
 
 export const metadata: Metadata = {
@@ -116,14 +116,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetBrainsMono.variable} ${syne.variable} font-sans antialiased`}
+        className={`${ubuntu.variable} ${ubuntuMono.variable} ${jetBrainsMono.variable} font-sans antialiased`}
       >
         <ThemeProvider>
           <FaviconGenerator />
           <div className="min-h-screen bg-background text-foreground">
-            <Header />
-            <main>{children}</main>
-            <Footer />
+            <main className="w-full h-screen overflow-hidden">{children}</main>
             <ScrollToTop />
           </div>
         </ThemeProvider>
