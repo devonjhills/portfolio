@@ -322,13 +322,13 @@ export function WindowManager({
 
   const getWindowIcon = (appName: string) => {
     const iconPaths: { [key: string]: string } = {
-      terminal: "/icons/terminal.png",
-      files: "/icons/folder.png",
-      editor: "/icons/document.png",
-      browser: "/icons/contact.png",
-      resume: "/icons/file_download.png",
+      terminal: "/icons/Terminal.png",
+      files: "/icons/Folder.png",
+      editor: "/icons/Document.png",
+      browser: "/icons/Contact.png",
+      resume: "/icons/File_Download.png",
     };
-    const iconPath = iconPaths[appName] || "/icons/terminal.png";
+    const iconPath = iconPaths[appName] || "/icons/Terminal.png";
     return (
       <img src={iconPath} alt={appName} className="w-4 h-4 object-contain" />
     );

@@ -12,11 +12,11 @@ export function SideDock({
   openWindows,
 }: SideDockProps) {
   const dockApps = [
-    { app: "terminal", iconPath: "/icons/terminal.png", label: "Terminal" },
-    { app: "files", iconPath: "/icons/folder.png", label: "Projects" },
-    { app: "editor", iconPath: "/icons/document.png", label: "Experience" },
-    { app: "browser", iconPath: "/icons/contact.png", label: "Contact" },
-    { app: "resume", iconPath: "/icons/file_download.png", label: "Resume" },
+    { app: "terminal", iconPath: "/icons/Terminal.png", label: "Terminal" },
+    { app: "files", iconPath: "/icons/Folder.png", label: "Projects" },
+    { app: "editor", iconPath: "/icons/Document.png", label: "Experience" },
+    { app: "browser", iconPath: "/icons/Contact.png", label: "Contact" },
+    { app: "resume", iconPath: "/icons/File_Download.png", label: "Resume" },
   ];
 
   return (
