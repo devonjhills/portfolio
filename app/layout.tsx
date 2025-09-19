@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { Ubuntu, JetBrains_Mono, Ubuntu_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/layout/theme-provider";
-import { Header } from "./components/layout/header";
-import { Footer } from "./components/layout/footer";
-import { ScrollToTop } from "./components/ui/scroll-to-top";
 import { FaviconGenerator } from "./components/ui/favicon-generator";
 
 const ubuntu = Ubuntu({
@@ -122,7 +119,6 @@ export default function RootLayout({
           <FaviconGenerator />
           <div className="min-h-screen bg-background text-foreground">
             <main className="w-full h-screen overflow-hidden">{children}</main>
-            <ScrollToTop />
           </div>
         </ThemeProvider>
       </body>

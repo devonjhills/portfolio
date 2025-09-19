@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Aceternity InfiniteMovingCards Animation */
-@keyframes scroll {
-  to {
-    transform: translate(calc(-50% - 0.5rem));
-  }
-}
-
 @layer base {
   :root {
     /* Ubuntu Light Mode with Mint Green */
@@ -150,21 +143,6 @@
     color: hsl(var(--primary-foreground));
   }
 
-  .dark .bg-grid-white\/\[0\.2\] {
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  .dark .bg-dot-white\/\[0\.2\] {
-    background-image: radial-gradient(
-      rgba(255, 255, 255, 0.2) 1px,
-      transparent 1px
-    );
-    background-size: 20px 20px;
-  }
-
   /* Default scrollbars */
   ::-webkit-scrollbar {
     width: 16px;
@@ -187,28 +165,29 @@
     box-shadow: 0 0 0 2px hsl(var(--primary));
   }
 
-  /* Minimal scrollbars for window content - white minimal theme */
+  /* Minimal scrollbars for window content */
   .window-content ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
 
   .window-content ::-webkit-scrollbar-track {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: none !important;
   }
 
   .window-content ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.6) !important;
-    border-radius: 3px;
+    background: hsl(var(--primary)) !important;
+    border-radius: 3px !important;
     border: none !important;
   }
 
   .window-content ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.8) !important;
+    background: hsl(var(--primary) / 0.8);
   }
 
   .window-content ::-webkit-scrollbar-corner {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.3);
   }
 
   /* Apply to all nested scrollable content */
@@ -218,21 +197,22 @@
   }
 
   .ubuntu-window ::-webkit-scrollbar-track {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: none !important;
   }
 
   .ubuntu-window ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.6) !important;
-    border-radius: 3px;
+    background: hsl(var(--primary)) !important;
+    border-radius: 3px !important;
     border: none !important;
   }
 
   .ubuntu-window ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.8) !important;
+    background: hsl(var(--primary) / 0.8);
   }
 
   .ubuntu-window ::-webkit-scrollbar-corner {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.3);
   }
 
   /* Ensure nested scroll areas in complex components also get styled */
@@ -246,21 +226,22 @@
   .overflow-y-auto ::-webkit-scrollbar-track,
   .overflow-auto ::-webkit-scrollbar-track,
   .max-h-full ::-webkit-scrollbar-track {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: none !important;
   }
 
   .overflow-y-auto ::-webkit-scrollbar-thumb,
   .overflow-auto ::-webkit-scrollbar-thumb,
   .max-h-full ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.6) !important;
-    border-radius: 3px;
+    background: hsl(var(--primary)) !important;
+    border-radius: 3px !important;
     border: none !important;
   }
 
   .overflow-y-auto ::-webkit-scrollbar-thumb:hover,
   .overflow-auto ::-webkit-scrollbar-thumb:hover,
   .max-h-full ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.8) !important;
+    background: hsl(var(--primary) / 0.8);
   }
 
   :focus-visible {
@@ -268,122 +249,10 @@
     outline-offset: 3px;
     box-shadow: 0 0 0 6px hsl(var(--primary) / 0.3);
   }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes pulse-soft {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.7;
-    }
-  }
-
-  @keyframes scale-in {
-    0% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes spotlight {
-    0% {
-      opacity: 0;
-      transform: translate(-72%, -62%) scale(0.5);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(-50%, -40%) scale(1);
-    }
-  }
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .animate-pulse-soft {
-    animation: pulse-soft 2s ease-in-out infinite;
-  }
-
-  .animate-scale-in {
-    animation: scale-in 0.3s ease-out;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .animate-float,
-    .animate-pulse-soft,
-    .animate-scale-in {
-      animation: none;
-    }
-  }
-
-  .horizontal-scroll {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--primary)) hsl(var(--muted));
-  }
-
-  .horizontal-scroll::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  .horizontal-scroll::-webkit-scrollbar-track {
-    background: hsl(var(--muted));
-    border-radius: 4px;
-  }
-
-  .horizontal-scroll::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary));
-    border-radius: 4px;
-  }
-
-  .horizontal-scroll::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 0.8);
-  }
-}
-
-@layer utilities {
-  .animate-scroll {
-    animation: scroll var(--animation-duration, 40s)
-      var(--animation-direction, forwards) linear infinite;
-  }
 }
 
 /* Optimized OS Effects */
 @layer base {
-  /* Smooth transitions for better performance */
-  .mint-window {
-    will-change: transform;
-  }
-
-  .dock-app {
-    will-change: transform;
-  }
-
   /* Window performance optimizations */
   .ubuntu-window {
     will-change: transform, width, height;

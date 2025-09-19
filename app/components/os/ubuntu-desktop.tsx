@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { TopBar } from "./top-bar";
 import { WindowManager } from "./window-manager";
 import { SideDock } from "./side-dock";
 
+// --- TYPE DEFINITION --- //
 interface WindowState {
   appName: string;
   x: number;
@@ -15,316 +16,343 @@ interface WindowState {
   zIndex?: number;
 }
 
+// --- LAYOUT CONSTANTS --- //
+const SIDE_DOCK_WIDTH = 80;
+const TOP_BAR_HEIGHT = 50;
+const PADDING = 20;
+const MIN_WINDOW_WIDTH = 400;
+const MIN_WINDOW_HEIGHT = 300;
+
+/**
+ * A robust, pure function to calculate grid positions for a given number of windows.
+ * It intelligently determines rows/columns and distributes windows evenly.
+ */
+const calculateGridLayout = (
+  windowCount: number,
+  containerWidth: number,
+  containerHeight: number,
+): Array<Pick<WindowState, "x" | "y" | "width" | "height">> => {
+  if (windowCount === 0) return [];
+
+  const availableWidth = containerWidth - SIDE_DOCK_WIDTH - PADDING;
+  const availableHeight = containerHeight - TOP_BAR_HEIGHT - PADDING;
+
+  if (windowCount === 1) {
+    return [
+      {
+        x: SIDE_DOCK_WIDTH + PADDING,
+        y: TOP_BAR_HEIGHT + PADDING,
+        width: Math.min(1000, availableWidth - PADDING),
+        height: Math.min(750, availableHeight - PADDING),
+      },
+    ];
+  }
+
+  // Intelligently determine the number of columns and rows
+  const cols = Math.ceil(
+    Math.sqrt(windowCount * (availableWidth / availableHeight)),
+  );
+  const rows = Math.ceil(windowCount / cols);
+
+  const windowWidth = Math.max(
+    MIN_WINDOW_WIDTH,
+    (availableWidth - (cols - 1) * PADDING) / cols,
+  );
+  const windowHeight = Math.max(
+    MIN_WINDOW_HEIGHT,
+    (availableHeight - (rows - 1) * PADDING) / rows,
+  );
+
+  return Array.from({ length: windowCount }, (_, i) => {
+    const row = Math.floor(i / cols);
+    const col = i % cols;
+    return {
+      x: SIDE_DOCK_WIDTH + col * (windowWidth + PADDING),
+      y: TOP_BAR_HEIGHT + row * (windowHeight + PADDING),
+      width: windowWidth,
+      height: windowHeight,
+    };
+  });
+};
+
 export function UbuntuDesktop() {
   const [openWindows, setOpenWindows] = useState<WindowState[]>([]);
   const [activeWindow, setActiveWindow] = useState<string | null>(null);
 
-  const getWindowSize = (appName: string) => {
-    if (typeof window === "undefined") {
-      return { width: 800, height: 600 }; // Fallback for SSR
-    }
+  // --- MEMOIZED HELPER FUNCTIONS (ORDER MATTERS) --- //
+
+  const rearrangeWindows = useCallback((windowsToArrange: WindowState[]) => {
+    if (typeof window === "undefined") return windowsToArrange;
+    const gridPositions = calculateGridLayout(
+      windowsToArrange.length,
+      window.innerWidth,
+      window.innerHeight,
+    );
+    // Sort by appName to maintain a consistent order during rearrangements
+    const sortedWindows = [...windowsToArrange].sort((a, b) =>
+      a.appName.localeCompare(b.appName),
+    );
+    return sortedWindows.map((win, index) => ({
+      ...win,
+      ...gridPositions[index],
+    }));
+  }, []);
+
+  const getWindowDefaultSize = useCallback((appName: string) => {
+    if (typeof window === "undefined") return { width: 800, height: 600 };
+    const maxWidth = window.innerWidth - SIDE_DOCK_WIDTH - PADDING * 2;
+    const maxHeight = window.innerHeight - TOP_BAR_HEIGHT - PADDING * 2;
 
     switch (appName) {
       case "resume":
-        return {
-          width: 450,
-          height: 350,
-        };
+        return { width: 450, height: 350 };
       case "browser":
         return {
-          width: Math.min(600, window.innerWidth - 200),
-          height: Math.min(700, window.innerHeight - 150),
+          width: Math.max(MIN_WINDOW_WIDTH, Math.min(600, maxWidth)),
+          height: Math.max(MIN_WINDOW_HEIGHT, Math.min(700, maxHeight)),
         };
       case "terminal":
         return {
-          width: Math.min(800, window.innerWidth - 150),
-          height: Math.min(750, window.innerHeight - 100),
-        };
-      case "files":
-        return {
-          width: window.innerWidth - 100, // Maximum width minus side dock (64px) + margins
-          height: window.innerHeight - 80, // Maximum height minus top bar (36px) + margins
+          width: Math.max(MIN_WINDOW_WIDTH, Math.min(800, maxWidth)),
+          height: Math.max(MIN_WINDOW_HEIGHT, Math.min(750, maxHeight)),
         };
       case "editor":
         return {
-          width: Math.min(1000, window.innerWidth - 100),
-          height: Math.min(window.innerHeight - 80, 900),
+          width: Math.max(MIN_WINDOW_WIDTH, Math.min(1000, maxWidth)),
+          height: Math.max(MIN_WINDOW_HEIGHT, Math.min(900, maxHeight)),
+        };
+      case "files":
+        return {
+          width: Math.max(MIN_WINDOW_WIDTH, Math.min(1200, maxWidth)),
+          height: Math.max(MIN_WINDOW_HEIGHT, Math.min(800, maxHeight)),
         };
       default:
         return {
-          width: Math.min(800, window.innerWidth - 150),
-          height: Math.min(600, window.innerHeight - 150),
+          width: Math.max(MIN_WINDOW_WIDTH, Math.min(800, maxWidth)),
+          height: Math.max(MIN_WINDOW_HEIGHT, Math.min(600, maxHeight)),
         };
-    }
-  };
-
-  // Load window state from URL on mount
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const params = new URLSearchParams(window.location.search);
-    const openAppsParam = params.get("apps");
-    if (openAppsParam) {
-      try {
-        const appNames = JSON.parse(atob(openAppsParam));
-        // Open windows in default positions (offset for side dock)
-        const defaultWindows = appNames.map(
-          (appName: string, index: number) => {
-            const windowSize = getWindowSize(appName);
-            return {
-              appName,
-              x: 80 + index * 30, // Offset for side dock (64px + 16px margin)
-              y: 50 + index * 30,
-              width: windowSize.width,
-              height: windowSize.height,
-              zIndex: 1000 + index,
-            };
-          },
-        );
-        setOpenWindows(defaultWindows);
-        if (appNames.length > 0) {
-          setActiveWindow(appNames[appNames.length - 1]);
-        }
-      } catch {
-        console.warn("Failed to parse apps from URL");
-      }
-    } else {
-      // Auto-open terminal if no apps in URL (offset for side dock)
-      const windowSize = getWindowSize("terminal");
-      const terminalWindow: WindowState = {
-        appName: "terminal",
-        x: 80, // Offset for side dock
-        y: 50,
-        width: windowSize.width,
-        height: windowSize.height,
-        zIndex: 1000, // Start with base z-index since it's the only window
-      };
-      setOpenWindows([terminalWindow]);
-      setActiveWindow("terminal");
     }
   }, []);
 
-  // Update URL only when windows open/close, not when moved
+  // --- MEMOIZED HANDLERS (ORDER MATTERS) --- //
+
+  // Level 1 Callbacks (no dependencies on other handlers)
+  const handleUpdateWindow = useCallback(
+    (appName: string, updates: Partial<WindowState>) => {
+      setOpenWindows((prev) =>
+        prev.map((w) => (w.appName === appName ? { ...w, ...updates } : w)),
+      );
+    },
+    [],
+  );
+
+  const handleActivateWindow = useCallback((appName: string) => {
+    setOpenWindows((prev) => {
+      const maxZIndex = Math.max(...prev.map((w) => w.zIndex || 1000));
+      return prev.map((w) =>
+        w.appName === appName
+          ? { ...w, zIndex: maxZIndex + 1, isMinimized: false }
+          : w,
+      );
+    });
+    setActiveWindow(appName);
+  }, []);
+
+  const handleDesktopClick = useCallback(() => {
+    setActiveWindow(null);
+  }, []);
+
+  // Level 2 Callbacks (depend on Level 1 handlers)
+  const handleLaunchApp = useCallback(
+    (appName: string) => {
+      const windowToActivate = appName;
+      setOpenWindows((prev) => {
+        const existingWindow = prev.find((w) => w.appName === appName);
+        if (existingWindow) {
+          // If window exists, we just need to activate it. No state change here.
+          return prev;
+        }
+
+        const newWindow: WindowState = {
+          ...getWindowDefaultSize(appName),
+          appName,
+          x: 0,
+          y: 0, // Will be set by rearrange
+          zIndex: Math.max(...prev.map((w) => w.zIndex || 1000), 999) + 1,
+        };
+        const updatedWindows = [...prev, newWindow];
+        return rearrangeWindows(updatedWindows);
+      });
+
+      // Activation logic always runs
+      handleActivateWindow(windowToActivate);
+    },
+    [getWindowDefaultSize, rearrangeWindows, handleActivateWindow],
+  );
+
+  const handleCloseWindow = useCallback(
+    (appName: string) => {
+      setOpenWindows((prev) => {
+        const remainingWindows = prev.filter((w) => w.appName !== appName);
+        if (activeWindow === appName) {
+          const nextActive =
+            remainingWindows.length > 0
+              ? remainingWindows.reduce((a, b) =>
+                  (a.zIndex || 0) > (b.zIndex || 0) ? a : b,
+                ).appName
+              : null;
+          setActiveWindow(nextActive);
+        }
+        return rearrangeWindows(remainingWindows);
+      });
+    },
+    [activeWindow, rearrangeWindows],
+  );
+
+  const handleTileWindows = useCallback(
+    (mode: "grid" | "cascade") => {
+      if (typeof window === "undefined") return;
+
+      setOpenWindows((prev) => {
+        if (prev.length === 0) return prev;
+        if (mode === "grid") {
+          return rearrangeWindows(prev);
+        } else {
+          // cascade
+          const baseWidth = Math.min(
+            800,
+            window.innerWidth - SIDE_DOCK_WIDTH - PADDING * 2,
+          );
+          const baseHeight = Math.min(
+            600,
+            window.innerHeight - TOP_BAR_HEIGHT - PADDING * 2,
+          );
+          return prev.map((win, index) => ({
+            ...win,
+            x: SIDE_DOCK_WIDTH + index * 40,
+            y: TOP_BAR_HEIGHT + index * 40,
+            width: Math.max(MIN_WINDOW_WIDTH, baseWidth - index * 40),
+            height: Math.max(MIN_WINDOW_HEIGHT, baseHeight - index * 40),
+            isMinimized: false,
+          }));
+        }
+      });
+    },
+    [rearrangeWindows],
+  );
+
+  // --- EFFECTS --- //
+
+  // Effect for initial load from URL or default state
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
     const params = new URLSearchParams(window.location.search);
-    const openAppNames = openWindows.map((w) => w.appName);
+    const openAppsParam = params.get("apps");
+    let initialWindows: WindowState[] = [];
 
+    if (openAppsParam) {
+      try {
+        const appNames: string[] = JSON.parse(atob(openAppsParam));
+        initialWindows = appNames.map((appName, index) => ({
+          ...getWindowDefaultSize(appName),
+          appName,
+          x: 0,
+          y: 0,
+          zIndex: 1000 + index,
+        }));
+      } catch (e) {
+        console.warn(
+          "Failed to parse apps from URL, falling back to default.",
+          e,
+        );
+      }
+    }
+
+    if (initialWindows.length === 0) {
+      initialWindows.push({
+        ...getWindowDefaultSize("terminal"),
+        appName: "terminal",
+        x: 0,
+        y: 0,
+        zIndex: 1000,
+      });
+    }
+
+    setOpenWindows(rearrangeWindows(initialWindows));
+    setActiveWindow(
+      initialWindows.length > 0
+        ? initialWindows[initialWindows.length - 1].appName
+        : null,
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run only once on mount
+
+  // Optimized effect to update URL only when app list changes
+  const openAppNamesString = useMemo(
+    () =>
+      openWindows
+        .map((w) => w.appName)
+        .sort()
+        .join(","),
+    [openWindows],
+  );
+  useEffect(() => {
+    const openAppNames = openAppNamesString
+      ? openAppNamesString.split(",")
+      : [];
+    const params = new URLSearchParams(window.location.search);
     if (openAppNames.length > 0) {
       params.set("apps", btoa(JSON.stringify(openAppNames)));
     } else {
       params.delete("apps");
     }
 
-    const newUrl = `${window.location.pathname}${params.toString() ? "?" + params.toString() : ""}`;
-    window.history.replaceState({}, "", newUrl);
-  }, [openWindows]); // Only trigger on window count change
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    // Use replaceState to avoid cluttering browser history
+    window.history.replaceState({ path: newUrl }, "", newUrl);
+  }, [openAppNamesString]);
 
-  const handleLaunchApp = (appName: string) => {
-    // Check if app is already open
-    const existingWindow = openWindows.find((w) => w.appName === appName);
-    if (existingWindow) {
-      // Bring to front
-      setActiveWindow(appName);
-      return;
-    }
+  // Debounced effect for rearranging windows on browser resize
+  useEffect(() => {
+    if (openWindows.length <= 1) return;
 
-    // Create new window (offset for side dock)
-    // Find the highest current z-index and add 1 to ensure new window is on top
-    const maxZIndex = Math.max(...openWindows.map((w) => w.zIndex || 0), 999);
-    const windowSize = getWindowSize(appName);
-
-    const newWindow: WindowState = {
-      appName,
-      x: 80 + openWindows.length * 30, // Offset for side dock
-      y: 50 + openWindows.length * 30,
-      width: windowSize.width,
-      height: windowSize.height,
-      zIndex: maxZIndex + 1,
+    let timeoutId: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setOpenWindows((prev) => rearrangeWindows(prev));
+      }, 300); // 300ms debounce delay
     };
 
-    setOpenWindows((prev) => [...prev, newWindow]);
-    setActiveWindow(appName);
-  };
-
-  const handleCloseWindow = (appName: string) => {
-    setOpenWindows((prev) => prev.filter((w) => w.appName !== appName));
-    if (activeWindow === appName) {
-      setActiveWindow(null);
-    }
-  };
-
-  const handleUpdateWindow = (
-    appName: string,
-    updates: Partial<WindowState>,
-  ) => {
-    setOpenWindows((prev) =>
-      prev.map((w) => (w.appName === appName ? { ...w, ...updates } : w)),
-    );
-  };
-
-  const handleActivateWindow = (appName: string) => {
-    // Find the highest current z-index
-    const maxZIndex = Math.max(...openWindows.map((w) => w.zIndex || 0));
-
-    // Update the clicked window to have the highest z-index and restore if minimized
-    setOpenWindows((prev) =>
-      prev.map((w) =>
-        w.appName === appName
-          ? { ...w, zIndex: maxZIndex + 1, isMinimized: false }
-          : w,
-      ),
-    );
-
-    setActiveWindow(appName);
-  };
-
-  const handleDesktopClick = () => {
-    setActiveWindow(null);
-  };
-
-  const handleTileWindows = (mode: "grid" | "cascade") => {
-    if (typeof window === "undefined" || openWindows.length === 0) return;
-
-    const screenWidth = window.innerWidth - 80; // Account for side dock
-    const screenHeight = window.innerHeight - 50; // Account for top bar
-    const startX = 80; // Side dock offset
-    const startY = 50; // Top bar offset
-
-    let newWindows: WindowState[] = [];
-
-    switch (mode) {
-      case "grid": {
-        const windowCount = openWindows.length;
-
-        // Better grid algorithm that maximizes space usage
-        let cols, rows;
-        if (windowCount <= 1) {
-          cols = 1;
-          rows = 1;
-        } else if (windowCount <= 2) {
-          cols = 2;
-          rows = 1;
-        } else if (windowCount <= 4) {
-          cols = 2;
-          rows = 2;
-        } else if (windowCount <= 6) {
-          cols = 3;
-          rows = 2;
-        } else if (windowCount <= 9) {
-          cols = 3;
-          rows = 3;
-        } else if (windowCount <= 12) {
-          cols = 4;
-          rows = 3;
-        } else {
-          // For larger numbers, use optimal arrangement
-          cols = Math.ceil(Math.sqrt(windowCount));
-          rows = Math.ceil(windowCount / cols);
-        }
-
-        const windowWidth = Math.floor(screenWidth / cols);
-        const windowHeight = Math.floor(screenHeight / rows);
-
-        newWindows = openWindows.map((window, index) => {
-          const row = Math.floor(index / cols);
-          const col = index % cols;
-
-          // For the last row, spread windows evenly if there are fewer than cols
-          const windowsInThisRow = Math.min(cols, windowCount - row * cols);
-          const isLastRow = row === rows - 1 && windowsInThisRow < cols;
-
-          let actualX, actualWidth;
-          if (isLastRow) {
-            // Distribute remaining windows evenly across the full width
-            const totalWidthForRow = screenWidth;
-            const widthPerWindow = Math.floor(
-              totalWidthForRow / windowsInThisRow,
-            );
-            actualX = startX + col * widthPerWindow;
-            actualWidth = widthPerWindow - 8;
-          } else {
-            actualX = startX + col * windowWidth;
-            actualWidth = windowWidth - 8;
-          }
-
-          return {
-            ...window,
-            x: actualX,
-            y: startY + row * windowHeight,
-            width: actualWidth,
-            height: windowHeight - 8,
-            isMinimized: false,
-          };
-        });
-        break;
-      }
-      case "cascade": {
-        newWindows = openWindows.map((window, index) => ({
-          ...window,
-          x: startX + index * 40,
-          y: startY + index * 40,
-          width: Math.min(800, screenWidth - index * 40 - 50),
-          height: Math.min(600, screenHeight - index * 40 - 50),
-          isMinimized: false,
-        }));
-        break;
-      }
-    }
-
-    // Apply tiling with smooth animation
-    setOpenWindows(newWindows);
-
-    // Brief visual feedback
-    const windowElements = document.querySelectorAll(".ubuntu-window");
-    windowElements.forEach((el) => {
-      el.classList.add("animate-tile-snap");
-      setTimeout(() => {
-        el.classList.remove("animate-tile-snap");
-      }, 300);
-    });
-  };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [openWindows.length, rearrangeWindows]);
 
   return (
     <div
-      className="ubuntu-desktop fixed inset-0 w-full h-full overflow-hidden"
+      className="ubuntu-desktop fixed inset-0 w-full h-full overflow-hidden bg-gray-900"
       style={{
         backgroundImage: "url(/wallpaper.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        backgroundColor: "#1a1a1a",
-        fontFamily: "'Inter', system-ui, sans-serif",
       }}
       onClick={handleDesktopClick}
     >
-      {/* Side Dock */}
       <div onClick={(e) => e.stopPropagation()}>
         <SideDock
           onLaunchApp={handleLaunchApp}
           onActivateWindow={handleActivateWindow}
           openWindows={openWindows.map((w) => w.appName)}
         />
-      </div>
-
-      {/* Top Bar */}
-      <div onClick={handleDesktopClick}>
         <TopBar
           openWindows={openWindows}
           activeWindow={activeWindow}
           onActivateWindow={handleActivateWindow}
           onCloseWindow={handleCloseWindow}
-          onMinimizeWindow={(appName) => {
-            handleUpdateWindow(appName, { isMinimized: true });
-          }}
+          onMinimizeWindow={(appName) =>
+            handleUpdateWindow(appName, { isMinimized: true })
+          }
           onTileWindows={handleTileWindows}
         />
-      </div>
-
-      {/* Window Manager */}
-      <div onClick={(e) => e.stopPropagation()}>
         <WindowManager
           openWindows={openWindows}
           activeWindow={activeWindow}
