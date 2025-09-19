@@ -3,6 +3,7 @@
 import { WindowManagerProps } from "@/app/types/window";
 import { useWindowDrag } from "@/app/hooks/use-window-drag";
 import { getWindowIcon, getWindowContent, getWindowTitle } from "@/app/utils/window-content";
+import { X } from "lucide-react";
 
 export function WindowManager({
   openWindows,
@@ -77,21 +78,7 @@ export function WindowManager({
                 }}
                 title="Close"
               >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L11 11M11 1L1 11"
-                    stroke="#E5E7EB"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <X className="w-3 h-3 text-gray-300" />
               </button>
             </div>
           </div>
