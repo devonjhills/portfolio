@@ -9,42 +9,29 @@ import {
 } from "@/app/constants/layout";
 
 export const getContentComplexity = (appName: string): number => {
-  return CONTENT_COMPLEXITY_SCORES[appName as keyof typeof CONTENT_COMPLEXITY_SCORES] || 60;
+  return (
+    CONTENT_COMPLEXITY_SCORES[
+      appName as keyof typeof CONTENT_COMPLEXITY_SCORES
+    ] || 60
+  );
 };
 
 export const getWindowDefaultSize = (appName: string) => {
   if (typeof window === "undefined") return { width: 800, height: 600 };
-  const maxWidth = window.innerWidth - SIDE_DOCK_WIDTH - PADDING * 2;
-  const maxHeight = window.innerHeight - TOP_BAR_HEIGHT - PADDING * 2;
 
   switch (appName) {
     case "resume":
       return { width: 450, height: 350 };
     case "browser":
-      return {
-        width: Math.max(MIN_WINDOW_WIDTH, Math.min(600, maxWidth)),
-        height: Math.max(MIN_WINDOW_HEIGHT, Math.min(700, maxHeight)),
-      };
+      return { width: 600, height: 700 };
     case "terminal":
-      return {
-        width: Math.max(MIN_WINDOW_WIDTH, Math.min(800, maxWidth)),
-        height: Math.max(MIN_WINDOW_HEIGHT, Math.min(750, maxHeight)),
-      };
+      return { width: 800, height: 750 };
     case "editor":
-      return {
-        width: Math.max(MIN_WINDOW_WIDTH, Math.min(1000, maxWidth)),
-        height: Math.max(MIN_WINDOW_HEIGHT, Math.min(900, maxHeight)),
-      };
+      return { width: 1000, height: 900 };
     case "files":
-      return {
-        width: Math.max(MIN_WINDOW_WIDTH, Math.min(1200, maxWidth)),
-        height: Math.max(MIN_WINDOW_HEIGHT, Math.min(800, maxHeight)),
-      };
+      return { width: 900, height: 800 };
     default:
-      return {
-        width: Math.max(MIN_WINDOW_WIDTH, Math.min(800, maxWidth)),
-        height: Math.max(MIN_WINDOW_HEIGHT, Math.min(600, maxHeight)),
-      };
+      return { width: 800, height: 600 };
   }
 };
 
@@ -56,10 +43,10 @@ export const calculateGridLayout = (
 ): Array<Pick<WindowState, "x" | "y" | "width" | "height">> => {
   if (windowCount === 0) return [];
 
-  const availableWidth = containerWidth - SIDE_DOCK_WIDTH - (PADDING * 1.5);
-  const availableHeight = containerHeight - TOP_BAR_HEIGHT - (PADDING * 1.5);
-  const startX = SIDE_DOCK_WIDTH + (PADDING * 0.75);
-  const startY = TOP_BAR_HEIGHT + (PADDING * 0.75);
+  const availableWidth = containerWidth - SIDE_DOCK_WIDTH - PADDING * 1.5;
+  const availableHeight = containerHeight - TOP_BAR_HEIGHT - PADDING * 1.5;
+  const startX = SIDE_DOCK_WIDTH + PADDING * 0.75;
+  const startY = TOP_BAR_HEIGHT + PADDING * 0.75;
 
   if (windowCount === 1) {
     return [

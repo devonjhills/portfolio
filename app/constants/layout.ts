@@ -21,9 +21,9 @@ export const WINDOW_TITLES: { [key: string]: string } = {
 };
 
 export const CONTENT_COMPLEXITY_SCORES = {
-  files: 100,     // File manager - lots of content
-  editor: 90,     // Code editor - detailed content
-  terminal: 80,   // Terminal - medium content
-  browser: 70,    // Contact form - moderate content
-  resume: 40,     // Simple document - less content
+  files: 100, // File manager - lots of content
+  editor: 90, // Code editor - detailed content
+  terminal: 80, // Terminal - medium content
+  browser: 70, // Contact form - moderate content
+  resume: 40, // Simple document - less content
 } as const;

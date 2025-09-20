@@ -1,7 +1,15 @@
 "use client";
 
 import { memo } from "react";
-import { Globe, ExternalLink, ChevronLeft, ChevronRight, Mail, Linkedin, Github } from "lucide-react";
+import {
+  Globe,
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight,
+  Mail,
+  Linkedin,
+  Github,
+} from "lucide-react";
 
 export const BrowserWindow = memo(function BrowserWindow() {
   return (
@@ -73,9 +81,15 @@ export const BrowserWindow = memo(function BrowserWindow() {
                   <div
                     className={`w-12 h-12 ${contact.color} rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform`}
                   >
-                    {contact.icon === "email" && <Mail className="w-6 h-6 text-white" />}
-                    {contact.icon === "linkedin" && <Linkedin className="w-6 h-6 text-white" />}
-                    {contact.icon === "github" && <Github className="w-6 h-6 text-white" />}
+                    {contact.icon === "email" && (
+                      <Mail className="w-6 h-6 text-white" />
+                    )}
+                    {contact.icon === "linkedin" && (
+                      <Linkedin className="w-6 h-6 text-white" />
+                    )}
+                    {contact.icon === "github" && (
+                      <Github className="w-6 h-6 text-white" />
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="font-semibold text-white group-hover:text-primary transition-colors">

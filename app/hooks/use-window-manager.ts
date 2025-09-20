@@ -1,34 +1,85 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { WindowState } from "@/app/types/window";
-import { calculateGridLayout, getWindowDefaultSize, getContentComplexity } from "@/app/utils/window-layout";
-import { SIDE_DOCK_WIDTH, TOP_BAR_HEIGHT, PADDING, MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT } from "@/app/constants/layout";
+import {
+  calculateGridLayout,
+  getWindowDefaultSize,
+  getContentComplexity,
+} from "@/app/utils/window-layout";
+import {
+  SIDE_DOCK_WIDTH,
+  TOP_BAR_HEIGHT,
+  PADDING,
+  MIN_WINDOW_WIDTH,
+  MIN_WINDOW_HEIGHT,
+} from "@/app/constants/layout";
 
 export function useWindowManager() {
   const [openWindows, setOpenWindows] = useState<WindowState[]>([]);
   const [activeWindow, setActiveWindow] = useState<string | null>(null);
+  const [hasManuallyPositioned, setHasManuallyPositioned] =
+    useState<boolean>(false);
 
-  const rearrangeWindows = useCallback((windowsToArrange: WindowState[]) => {
-    if (typeof window === "undefined") return windowsToArrange;
-    const gridPositions = calculateGridLayout(
-      windowsToArrange.length,
-      window.innerWidth,
-      window.innerHeight,
-      windowsToArrange,
-    );
-    const sortedWindows = [...windowsToArrange].sort((a, b) =>
-      getContentComplexity(b.appName) - getContentComplexity(a.appName),
-    );
-    return sortedWindows.map((win, index) => ({
-      ...win,
-      ...gridPositions[index],
-    }));
-  }, []);
+  const rearrangeWindows = useCallback(
+    (windowsToArrange: WindowState[], forceRearrange = false) => {
+      if (typeof window === "undefined") return windowsToArrange;
+
+      // If windows have been manually positioned, don't override unless forced (like tile command)
+      if (hasManuallyPositioned && !forceRearrange) {
+        console.log("✅ Skipping rearrange - manually positioned");
+        return windowsToArrange;
+      }
+
+      console.log(
+        "🎯 Applying grid layout for",
+        windowsToArrange.length,
+        "windows",
+      );
+      const gridPositions = calculateGridLayout(
+        windowsToArrange.length,
+        window.innerWidth,
+        window.innerHeight,
+        windowsToArrange,
+      );
+      const sortedWindows = [...windowsToArrange].sort(
+        (a, b) =>
+          getContentComplexity(b.appName) - getContentComplexity(a.appName),
+      );
+      return sortedWindows.map((win, index) => ({
+        ...win,
+        ...gridPositions[index],
+      }));
+    },
+    [hasManuallyPositioned],
+  );
 
   const handleUpdateWindow = useCallback(
     (appName: string, updates: Partial<WindowState>) => {
-      setOpenWindows((prev) =>
-        prev.map((w) => (w.appName === appName ? { ...w, ...updates } : w)),
-      );
+      console.log("🔄 handleUpdateWindow:", appName, JSON.stringify(updates));
+
+      // If updating position, mark as manually positioned to prevent auto-rearrangement
+      if (updates.x !== undefined || updates.y !== undefined) {
+        setHasManuallyPositioned(true);
+      }
+      setOpenWindows((prev) => {
+        const newWindows = prev.map((w) => {
+          if (w.appName === appName) {
+            const updated = { ...w, ...updates };
+            console.log(
+              "📦 Window updated:",
+              appName,
+              "width from:",
+              w.width,
+              "to:",
+              updated.width,
+              "full update:",
+              JSON.stringify(updated),
+            );
+            return updated;
+          }
+          return w;
+        });
+        return newWindows;
+      });
     },
     [],
   );
@@ -61,17 +112,16 @@ export function useWindowManager() {
         const newWindow: WindowState = {
           ...getWindowDefaultSize(appName),
           appName,
-          x: 0,
-          y: 0,
+          x: SIDE_DOCK_WIDTH + PADDING + prev.length * 30,
+          y: TOP_BAR_HEIGHT + PADDING + prev.length * 30,
           zIndex: Math.max(...prev.map((w) => w.zIndex || 1000), 999) + 1,
         };
-        const updatedWindows = [...prev, newWindow];
-        return rearrangeWindows(updatedWindows);
+        return [...prev, newWindow];
       });
 
       handleActivateWindow(windowToActivate);
     },
-    [rearrangeWindows, handleActivateWindow],
+    [handleActivateWindow],
   );
 
   const handleCloseWindow = useCallback(
@@ -87,10 +137,10 @@ export function useWindowManager() {
               : null;
           setActiveWindow(nextActive);
         }
-        return rearrangeWindows(remainingWindows);
+        return remainingWindows;
       });
     },
-    [activeWindow, rearrangeWindows],
+    [activeWindow],
   );
 
   const handleTileWindows = useCallback(
@@ -100,7 +150,7 @@ export function useWindowManager() {
       setOpenWindows((prev) => {
         if (prev.length === 0) return prev;
         if (mode === "grid") {
-          return rearrangeWindows(prev);
+          return rearrangeWindows(prev, true); // Force rearrange for explicit tile command
         } else {
           const baseWidth = Math.min(
             800,
@@ -136,8 +186,8 @@ export function useWindowManager() {
         initialWindows = appNames.map((appName, index) => ({
           ...getWindowDefaultSize(appName),
           appName,
-          x: 0,
-          y: 0,
+          x: SIDE_DOCK_WIDTH + PADDING + index * 30,
+          y: TOP_BAR_HEIGHT + PADDING + index * 30,
           zIndex: 1000 + index,
         }));
       } catch (e) {
@@ -152,19 +202,19 @@ export function useWindowManager() {
       initialWindows.push({
         ...getWindowDefaultSize("terminal"),
         appName: "terminal",
-        x: 0,
-        y: 0,
+        x: SIDE_DOCK_WIDTH + PADDING,
+        y: TOP_BAR_HEIGHT + PADDING,
         zIndex: 1000,
       });
     }
 
-    setOpenWindows(rearrangeWindows(initialWindows));
+    setOpenWindows(initialWindows);
     setActiveWindow(
       initialWindows.length > 0
         ? initialWindows[initialWindows.length - 1].appName
         : null,
     );
-  }, [rearrangeWindows]);
+  }, []);
 
   // Optimized effect to update URL only when app list changes
   const openAppNamesString = useMemo(
@@ -191,9 +241,9 @@ export function useWindowManager() {
     window.history.replaceState({ path: newUrl }, "", newUrl);
   }, [openAppNamesString]);
 
-  // Debounced effect for rearranging windows on browser resize
+  // Debounced effect for rearranging windows on browser resize - only if not manually positioned
   useEffect(() => {
-    if (openWindows.length <= 1) return;
+    if (openWindows.length <= 1 || hasManuallyPositioned) return;
 
     let timeoutId: NodeJS.Timeout;
     const handleResize = () => {
@@ -205,7 +255,7 @@ export function useWindowManager() {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [openWindows.length, rearrangeWindows]);
+  }, [openWindows.length, rearrangeWindows, hasManuallyPositioned]);
 
   return {
     openWindows,
