@@ -1,5 +1,7 @@
 "use client";
 
+import { Tooltip } from "@/app/components/ui/tooltip";
+
 interface SideDockProps {
   onLaunchApp: (appName: string) => void;
   onActivateWindow: (appName: string) => void;
@@ -30,23 +32,24 @@ export function SideDock({
               key={app}
               className="group relative flex flex-col items-center"
             >
-              <button
-                onClick={() => {
-                  if (isOpen) {
-                    onActivateWindow(app);
-                  } else {
-                    onLaunchApp(app);
-                  }
-                }}
-                className="w-12 h-12 rounded-lg transition-all duration-200 hover:scale-110 hover:bg-white/10 flex items-center justify-center relative"
-                title={label}
-              >
-                <img
-                  src={iconPath}
-                  alt={label}
-                  className="w-8 h-8 object-contain filter drop-shadow-sm"
-                />
-              </button>
+              <Tooltip content={label} position="right" delay={0}>
+                <button
+                  onClick={() => {
+                    if (isOpen) {
+                      onActivateWindow(app);
+                    } else {
+                      onLaunchApp(app);
+                    }
+                  }}
+                  className="w-12 h-12 rounded-lg transition-all duration-200 hover:scale-110 hover:bg-white/10 flex items-center justify-center relative"
+                >
+                  <img
+                    src={iconPath}
+                    alt={label}
+                    className="w-8 h-8 object-contain filter drop-shadow-sm"
+                  />
+                </button>
+              </Tooltip>
 
               {/* Ubuntu-style dot indicator */}
               {isOpen && (

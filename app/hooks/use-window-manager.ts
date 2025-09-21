@@ -163,6 +163,12 @@ export function useWindowManager() {
     });
   }, [rearrangeWindows]);
 
+  const handleCloseAll = useCallback(() => {
+    setOpenWindows([]);
+    setActiveWindow(null);
+    setHasManuallyPositioned(false);
+  }, []);
+
 
   // Effect for initial load from URL or default state
   useEffect(() => {
@@ -256,5 +262,6 @@ export function useWindowManager() {
     handleLaunchApp,
     handleCloseWindow,
     handleGridSnap,
+    handleCloseAll,
   };
 }

@@ -9,7 +9,12 @@ import {
   Minimize2,
   X,
   Grid3X3,
+  XCircle,
+  Wifi,
+  Volume2,
+  BatteryFull,
 } from "lucide-react";
+import { Tooltip } from "@/app/components/ui/tooltip";
 
 interface WindowState {
   appName: string;
@@ -28,6 +33,7 @@ interface TopBarProps {
   onCloseWindow?: (appName: string) => void;
   onMinimizeWindow?: (appName: string) => void;
   onGridSnap?: () => void;
+  onCloseAll?: () => void;
 }
 
 export function TopBar({
@@ -37,6 +43,7 @@ export function TopBar({
   onCloseWindow,
   onMinimizeWindow,
   onGridSnap,
+  onCloseAll,
 }: TopBarProps) {
   const [currentTime, setCurrentTime] = useState("");
   const [currentDate, setCurrentDate] = useState("");
@@ -160,24 +167,55 @@ export function TopBar({
 
       {/* Right - System Tray */}
       <div className="topbar-right flex items-center space-x-1 flex-1 justify-end">
-        {/* Grid Snap Button */}
+        {/* Window Management Buttons */}
         <div className="flex items-center space-x-1">
-          <button
-            className="system-indicator p-1.5 hover:bg-gray-700 rounded transition-all duration-200"
-            title="Snap windows to grid layout"
-            onClick={() => {
-              if (onGridSnap) {
-                onGridSnap();
-              }
-            }}
-          >
-            <LayoutPanelLeft className="w-4 h-4 text-primary" />
-          </button>
+          {/* Grid Snap Button */}
+          <Tooltip content="Auto grid" delay={0} position="bottom">
+            <button
+              className="system-indicator p-1.5 hover:bg-gray-700 rounded transition-all duration-200"
+              onClick={() => {
+                if (onGridSnap) {
+                  onGridSnap();
+                }
+              }}
+            >
+              <LayoutPanelLeft className="w-4 h-4 text-white" />
+            </button>
+          </Tooltip>
+
+          {/* Close All Button */}
+          {openWindows.length > 0 && (
+            <Tooltip content="Close all" delay={0} position="bottom">
+              <button
+                className="system-indicator p-1.5 hover:bg-gray-700 rounded transition-all duration-200"
+                onClick={() => {
+                  if (onCloseAll) {
+                    onCloseAll();
+                  }
+                }}
+              >
+                <XCircle className="w-4 h-4 text-white" />
+              </button>
+            </Tooltip>
+          )}
         </div>
 
-        {/* Simple Name Display */}
-        <div className="px-2 py-1.5 text-sm font-medium text-primary">
-          Devon Hills
+        {/* Divider */}
+        <div className="h-4 w-px bg-gray-600 mx-4"></div>
+
+        {/* OS Flavor Icons */}
+        <div className="flex items-center space-x-1">
+          <div className="p-1.5">
+            <Wifi className="w-4 h-4 text-white" />
+          </div>
+
+          <div className="p-1.5">
+            <Volume2 className="w-4 h-4 text-white" />
+          </div>
+
+          <div className="p-1.5">
+            <BatteryFull className="w-4 h-4 text-white" />
+          </div>
         </div>
       </div>
 

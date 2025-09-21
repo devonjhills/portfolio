@@ -9,6 +9,7 @@ import {
   getWindowTitle,
 } from "@/app/utils/window-content";
 import { X } from "lucide-react";
+import { Tooltip } from "@/app/components/ui/tooltip";
 
 interface WindowComponentProps {
   window: WindowState;
@@ -71,35 +72,38 @@ const WindowComponent = memo(
           </div>
         </div>
         <div className="window-controls flex items-center space-x-2">
-          <button
-            className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-700"
-            onMouseDown={(e) => e.stopPropagation()}
-            onClick={(e) => {
-              e.stopPropagation();
-              onUpdateWindow(window.appName, { isMinimized: true });
-            }}
-            title="Minimize"
-          >
-            <div className="w-3 h-0.5 bg-gray-300"></div>
-          </button>
-          <button
-            className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-700"
-            onMouseDown={(e) => e.stopPropagation()}
-            title="Maximize"
-          >
-            <div className="w-3 h-3 border border-gray-300"></div>
-          </button>
-          <button
-            className="w-6 h-6 flex items-center justify-center hover:bg-red-500 rounded transition-colors group"
-            onMouseDown={(e) => e.stopPropagation()}
-            onClick={(e) => {
-              e.stopPropagation();
-              onCloseWindow(window.appName);
-            }}
-            title="Close"
-          >
-            <X className="w-3 h-3 text-gray-300" />
-          </button>
+          <Tooltip content="Minimize" delay={0}>
+            <button
+              className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-700"
+              onMouseDown={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                onUpdateWindow(window.appName, { isMinimized: true });
+              }}
+            >
+              <div className="w-3 h-0.5 bg-gray-300"></div>
+            </button>
+          </Tooltip>
+          <Tooltip content="Maximize" delay={0}>
+            <button
+              className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-700"
+              onMouseDown={(e) => e.stopPropagation()}
+            >
+              <div className="w-3 h-3 border border-gray-300"></div>
+            </button>
+          </Tooltip>
+          <Tooltip content="Close" delay={0}>
+            <button
+              className="w-6 h-6 flex items-center justify-center hover:bg-red-500 rounded transition-colors group"
+              onMouseDown={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                onCloseWindow(window.appName);
+              }}
+            >
+              <X className="w-3 h-3 text-gray-300" />
+            </button>
+          </Tooltip>
         </div>
       </div>
 
