@@ -29,18 +29,9 @@ export const CodeEditorWindow = memo(function CodeEditorWindow() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Line Numbers */}
-        <div
-          className={`hidden sm:block bg-gray-800 p-4 text-right text-gray-500 border-r border-gray-700 select-none`}
-        >
-          {Array.from({ length: 100 }, (_, i) => (
-            <div key={i}>{i + 1}</div>
-          ))}
-        </div>
-
+      <div className="flex-1 overflow-y-auto">
         {/* Editor */}
-        <div className="flex-1 p-4 sm:p-6 overflow-y-auto">
+        <div className="h-full p-4 sm:p-6">
           <div className="space-y-8 text-sm">
             {/* Summary */}
             <div>
@@ -76,7 +67,7 @@ export const CodeEditorWindow = memo(function CodeEditorWindow() {
                           {job.company} - {job.location}
                         </h3>
                       </div>
-                      <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded mt-2 sm:mt-0">
+                      <span className="text-sm font-semibold text-blue-300 bg-gray-700 px-3 py-1 rounded mt-2 sm:mt-0">
                         {job.date}
                       </span>
                     </div>
@@ -108,7 +99,7 @@ export const CodeEditorWindow = memo(function CodeEditorWindow() {
                       {resumeData.education.location}
                     </h3>
                   </div>
-                  <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded mt-2 sm:mt-0">
+                  <span className="text-sm font-semibold text-blue-300 bg-gray-700 px-3 py-1 rounded mt-2 sm:mt-0">
                     {resumeData.education.date}
                   </span>
                 </div>

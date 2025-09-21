@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, memo } from "react";
-import { FolderOpen, Star, GitFork, Code, ExternalLink } from "lucide-react";
+import { FolderOpen, Star, GitFork, ExternalLink } from "lucide-react";
 import { useWindowResponsive } from "@/app/hooks/use-window-responsive";
 
 interface GitHubRepo {
@@ -54,6 +54,13 @@ export const ProjectsWindow = memo(function ProjectsWindow() {
     return colors[language || ""] || "#6b7280";
   };
 
+  const formatTitle = (name: string) => {
+    return name
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
   return React.createElement(
     "div",
     { className: "h-full flex flex-col bg-gray-900 text-gray-100" },
@@ -67,17 +74,7 @@ export const ProjectsWindow = memo(function ProjectsWindow() {
         React.createElement(
           "span",
           { className: "text-gray-400" },
-          "/home/devon/",
-        ),
-        React.createElement(
-          "span",
-          { className: "text-primary font-medium" },
-          "GitHub",
-        ),
-        React.createElement(
-          "span",
-          { className: "text-gray-400" },
-          "/repositories",
+          "/home/devon/github/repositories",
         ),
       ),
     ),
@@ -136,24 +133,21 @@ export const ProjectsWindow = memo(function ProjectsWindow() {
               {},
               React.createElement(
                 "div",
-                { className: "flex items-center space-x-3 mb-2" },
-                React.createElement(Code, {
-                  className: "w-5 h-5 text-primary",
-                }),
+                { className: "mb-2" },
                 React.createElement(
                   "h3",
                   {
                     className:
                       "font-semibold text-gray-100 group-hover:text-primary transition-colors truncate",
                   },
-                  repo.name,
+                  formatTitle(repo.name),
                 ),
               ),
               React.createElement(
                 "p",
                 {
                   className:
-                    "text-sm text-gray-300 mb-4 leading-relaxed line-clamp-2 h-10",
+                    "text-sm text-gray-300 mb-4 leading-relaxed line-clamp-3 h-15",
                 },
                 repo.description || "No description available.",
               ),

@@ -36,8 +36,8 @@ const WindowComponent = memo(
     handleMouseDown,
   }: WindowComponentProps) => (
     <div
-      className={`ubuntu-window absolute bg-gray-900 border border-gray-700 rounded-lg shadow-2xl pointer-events-auto ${
-        isActive ? "ring-2 ring-primary shadow-primary/20" : ""
+      className={`ubuntu-window absolute bg-gray-900 border rounded-lg shadow-2xl pointer-events-auto ${
+        isActive ? "border-gray-500" : "border-gray-700"
       }`}
       style={{
         left: window.x,
