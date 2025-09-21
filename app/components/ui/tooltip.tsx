@@ -10,7 +10,12 @@ interface TooltipProps {
   position?: "top" | "right" | "bottom";
 }
 
-export function Tooltip({ content, children, delay = 750, position: tooltipPosition = "top" }: TooltipProps) {
+export function Tooltip({
+  content,
+  children,
+  delay = 750,
+  position: tooltipPosition = "top",
+}: TooltipProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -80,11 +85,12 @@ export function Tooltip({ content, children, delay = 750, position: tooltipPosit
             style={{
               top: position.top,
               left: position.left,
-              transform: tooltipPosition === "right"
-                ? "translate(0, -50%)"
-                : tooltipPosition === "bottom"
-                ? "translate(-50%, 0)"
-                : "translate(-50%, -100%)",
+              transform:
+                tooltipPosition === "right"
+                  ? "translate(0, -50%)"
+                  : tooltipPosition === "bottom"
+                    ? "translate(-50%, 0)"
+                    : "translate(-50%, -100%)",
             }}
           >
             <div className="text-gray-200">{content}</div>

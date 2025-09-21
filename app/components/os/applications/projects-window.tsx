@@ -56,9 +56,9 @@ export const ProjectsWindow = memo(function ProjectsWindow() {
 
   const formatTitle = (name: string) => {
     return name
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   };
 
   return React.createElement(

@@ -30,24 +30,24 @@ export function useWindowManager() {
       console.log(
         "🎯 Applying grid layout for",
         windowsToArrange.length,
-        "windows"
+        "windows",
       );
       const gridPositions = calculateGridLayout(
         windowsToArrange.length,
         window.innerWidth,
         window.innerHeight,
-        windowsToArrange
+        windowsToArrange,
       );
       const sortedWindows = [...windowsToArrange].sort(
         (a, b) =>
-          getContentComplexity(b.appName) - getContentComplexity(a.appName)
+          getContentComplexity(b.appName) - getContentComplexity(a.appName),
       );
       return sortedWindows.map((win, index) => ({
         ...win,
         ...gridPositions[index],
       }));
     },
-    [hasManuallyPositioned]
+    [hasManuallyPositioned],
   );
 
   const handleUpdateWindow = useCallback(
@@ -70,7 +70,7 @@ export function useWindowManager() {
               "to:",
               updated.width,
               "full update:",
-              JSON.stringify(updated)
+              JSON.stringify(updated),
             );
             return updated;
           }
@@ -79,7 +79,7 @@ export function useWindowManager() {
         return newWindows;
       });
     },
-    []
+    [],
   );
 
   const handleActivateWindow = useCallback((appName: string) => {
@@ -88,7 +88,7 @@ export function useWindowManager() {
       return prev.map((w) =>
         w.appName === appName
           ? { ...w, zIndex: maxZIndex + 1, isMinimized: false }
-          : w
+          : w,
       );
     });
     setActiveWindow(appName);
@@ -122,7 +122,7 @@ export function useWindowManager() {
 
       handleActivateWindow(windowToActivate);
     },
-    [handleActivateWindow, rearrangeWindows]
+    [handleActivateWindow, rearrangeWindows],
   );
 
   const handleCloseWindow = useCallback(
@@ -133,7 +133,7 @@ export function useWindowManager() {
           const nextActive =
             remainingWindows.length > 0
               ? remainingWindows.reduce((a, b) =>
-                  (a.zIndex || 0) > (b.zIndex || 0) ? a : b
+                  (a.zIndex || 0) > (b.zIndex || 0) ? a : b,
                 ).appName
               : null;
           setActiveWindow(nextActive);
@@ -147,7 +147,7 @@ export function useWindowManager() {
         return remainingWindows;
       });
     },
-    [activeWindow, rearrangeWindows]
+    [activeWindow, rearrangeWindows],
   );
 
   const handleGridSnap = useCallback(() => {
@@ -186,7 +186,7 @@ export function useWindowManager() {
       } catch (e) {
         console.warn(
           "Failed to parse apps from URL, falling back to default.",
-          e
+          e,
         );
       }
     }
@@ -205,7 +205,7 @@ export function useWindowManager() {
     setActiveWindow(
       initialWindows.length > 0
         ? initialWindows[initialWindows.length - 1].appName
-        : null
+        : null,
     );
   }, []);
 
@@ -216,7 +216,7 @@ export function useWindowManager() {
         .map((w) => w.appName)
         .sort()
         .join(","),
-    [openWindows]
+    [openWindows],
   );
 
   useEffect(() => {

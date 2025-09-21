@@ -28,12 +28,8 @@ export const BrowserWindow = memo(function BrowserWindow() {
           <div className="flex-1 mx-4">
             <div className="flex items-center px-3 py-1 bg-gray-700 border border-gray-600 rounded-lg">
               <Globe className="w-4 h-4 text-primary mr-2" />
-              <span className="text-gray-400">
-                /home/devon/
-              </span>
-              <span className="text-primary font-medium">
-                contact
-              </span>
+              <span className="text-gray-400">/home/devon/</span>
+              <span className="text-primary font-medium">contact</span>
             </div>
           </div>
         </div>
@@ -84,9 +80,7 @@ export const BrowserWindow = memo(function BrowserWindow() {
                   <div className="font-semibold text-gray-100 group-hover:text-primary transition-colors">
                     {contact.title}
                   </div>
-                  <div className="text-sm text-gray-300">
-                    {contact.value}
-                  </div>
+                  <div className="text-sm text-gray-300">{contact.value}</div>
                 </div>
               </div>
               <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
