@@ -14,7 +14,7 @@ export function UbuntuDesktop() {
     handleDesktopClick,
     handleLaunchApp,
     handleCloseWindow,
-    handleTileWindows,
+    handleGridSnap,
   } = useWindowManager();
 
   return (
@@ -41,7 +41,7 @@ export function UbuntuDesktop() {
           onMinimizeWindow={(appName) =>
             handleUpdateWindow(appName, { isMinimized: true })
           }
-          onTileWindows={handleTileWindows}
+          onGridSnap={handleGridSnap}
         />
         <WindowManager
           openWindows={openWindows}

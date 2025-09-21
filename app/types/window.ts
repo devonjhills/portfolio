@@ -1,3 +1,5 @@
+export type ViewMode = "snap" | "floating";
+
 export interface WindowState {
   appName: string;
   x: number;

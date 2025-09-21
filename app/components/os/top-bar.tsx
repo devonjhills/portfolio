@@ -9,7 +9,6 @@ import {
   Minimize2,
   X,
   Grid3X3,
-  Layers,
 } from "lucide-react";
 
 interface WindowState {
@@ -28,7 +27,7 @@ interface TopBarProps {
   onActivateWindow?: (appName: string) => void;
   onCloseWindow?: (appName: string) => void;
   onMinimizeWindow?: (appName: string) => void;
-  onTileWindows?: (mode: "grid" | "cascade") => void;
+  onGridSnap?: () => void;
 }
 
 export function TopBar({
@@ -37,15 +36,13 @@ export function TopBar({
   onActivateWindow,
   onCloseWindow,
   onMinimizeWindow,
-  onTileWindows,
+  onGridSnap,
 }: TopBarProps) {
   const [currentTime, setCurrentTime] = useState("");
   const [currentDate, setCurrentDate] = useState("");
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
-  const [showTilingMenu, setShowTilingMenu] = useState(false);
   const appButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
-  const tilingButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const updateTime = () => {
@@ -163,28 +160,14 @@ export function TopBar({
 
       {/* Right - System Tray */}
       <div className="topbar-right flex items-center space-x-1 flex-1 justify-end">
-        {/* Window Tiling Management */}
-        <div className="flex items-center space-x-1 relative">
+        {/* Grid Snap Button */}
+        <div className="flex items-center space-x-1">
           <button
-            ref={tilingButtonRef}
-            className={`system-indicator p-1.5 hover:bg-gray-700 rounded transition-all duration-200 ${
-              showTilingMenu ? "bg-gray-700" : ""
-            }`}
-            title="Window Tiling"
-            onClick={(e) => {
-              e.stopPropagation();
-              if (showTilingMenu) {
-                setShowTilingMenu(false);
-              } else {
-                const rect = tilingButtonRef.current?.getBoundingClientRect();
-                if (rect) {
-                  setDropdownPosition({
-                    top: rect.bottom + 4,
-                    left: rect.left,
-                  });
-                }
-                setShowTilingMenu(true);
-                setOpenDropdown(null); // Close any app dropdowns
+            className="system-indicator p-1.5 hover:bg-gray-700 rounded transition-all duration-200"
+            title="Snap windows to grid layout"
+            onClick={() => {
+              if (onGridSnap) {
+                onGridSnap();
               }
             }}
           >
@@ -239,80 +222,12 @@ export function TopBar({
           document.body,
         )}
 
-      {/* Tiling Menu Portal */}
-      {showTilingMenu &&
-        typeof document !== "undefined" &&
-        createPortal(
-          <div
-            className="fixed bg-slate-800 text-white rounded-lg shadow-xl border border-slate-600 py-2 min-w-[200px] z-[9999] backdrop-blur-sm"
-            style={{
-              top: dropdownPosition.top,
-              left: dropdownPosition.left - 120, // Offset to center under button
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="px-3 py-2 text-xs text-gray-400 font-medium border-b border-slate-600">
-              WINDOW TILING
-            </div>
-
-            {/* Auto Grid */}
-            <button
-              className="w-full text-left px-4 py-2.5 text-sm hover:bg-slate-700 transition-colors flex items-center space-x-3"
-              onClick={() => {
-                if (onTileWindows) {
-                  onTileWindows("grid");
-                }
-                setShowTilingMenu(false);
-              }}
-              disabled={openWindows.length === 0}
-            >
-              <Grid3X3 className="w-4 h-4 text-blue-400" />
-              <div>
-                <div className="text-gray-200">Auto Grid</div>
-                <div className="text-xs text-gray-400">
-                  Arrange in optimal grid pattern
-                </div>
-              </div>
-            </button>
-
-            <div className="h-px bg-slate-600 mx-2 my-1"></div>
-
-            {/* Cascade */}
-            <button
-              className="w-full text-left px-4 py-2.5 text-sm hover:bg-slate-700 transition-colors flex items-center space-x-3"
-              onClick={() => {
-                if (onTileWindows) {
-                  onTileWindows("cascade");
-                }
-                setShowTilingMenu(false);
-              }}
-              disabled={openWindows.length === 0}
-            >
-              <Layers className="w-4 h-4 text-yellow-400" />
-              <div>
-                <div className="text-gray-200">Cascade</div>
-                <div className="text-xs text-gray-400">
-                  Stagger window positions
-                </div>
-              </div>
-            </button>
-
-            {openWindows.length === 0 && (
-              <div className="px-4 py-2 text-xs text-gray-500 italic">
-                No windows to tile
-              </div>
-            )}
-          </div>,
-          document.body,
-        )}
-
       {/* Click outside handler */}
-      {(openDropdown || showTilingMenu) && (
+      {openDropdown && (
         <div
           className="fixed inset-0 z-[9998]"
           onClick={() => {
             setOpenDropdown(null);
-            setShowTilingMenu(false);
           }}
         />
       )}

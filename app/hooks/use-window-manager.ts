@@ -23,7 +23,7 @@ export function useWindowManager() {
     (windowsToArrange: WindowState[], forceRearrange = false) => {
       if (typeof window === "undefined") return windowsToArrange;
 
-      // If windows have been manually positioned, don't override unless forced (like tile command)
+      // If windows have been manually positioned, don't override unless forced (like grid snap button)
       if (hasManuallyPositioned && !forceRearrange) {
         console.log("✅ Skipping rearrange - manually positioned");
         return windowsToArrange;
@@ -116,12 +116,15 @@ export function useWindowManager() {
           y: TOP_BAR_HEIGHT + PADDING + prev.length * 30,
           zIndex: Math.max(...prev.map((w) => w.zIndex || 1000), 999) + 1,
         };
-        return [...prev, newWindow];
+        const newWindows = [...prev, newWindow];
+
+        // Always auto-arrange new windows into grid layout
+        return rearrangeWindows(newWindows, true);
       });
 
       handleActivateWindow(windowToActivate);
     },
-    [handleActivateWindow],
+    [handleActivateWindow, rearrangeWindows],
   );
 
   const handleCloseWindow = useCallback(
@@ -137,42 +140,29 @@ export function useWindowManager() {
               : null;
           setActiveWindow(nextActive);
         }
+
+        // Always auto-arrange remaining windows to grid layout
+        if (remainingWindows.length > 0) {
+          return rearrangeWindows(remainingWindows, true);
+        }
+
         return remainingWindows;
       });
     },
-    [activeWindow],
+    [activeWindow, rearrangeWindows],
   );
 
-  const handleTileWindows = useCallback(
-    (mode: "grid" | "cascade") => {
-      if (typeof window === "undefined") return;
+  const handleGridSnap = useCallback(() => {
+    if (typeof window === "undefined") return;
 
-      setOpenWindows((prev) => {
-        if (prev.length === 0) return prev;
-        if (mode === "grid") {
-          return rearrangeWindows(prev, true); // Force rearrange for explicit tile command
-        } else {
-          const baseWidth = Math.min(
-            800,
-            window.innerWidth - SIDE_DOCK_WIDTH - PADDING * 2,
-          );
-          const baseHeight = Math.min(
-            600,
-            window.innerHeight - TOP_BAR_HEIGHT - PADDING * 2,
-          );
-          return prev.map((win, index) => ({
-            ...win,
-            x: SIDE_DOCK_WIDTH + index * 40,
-            y: TOP_BAR_HEIGHT + index * 40,
-            width: Math.max(MIN_WINDOW_WIDTH, baseWidth - index * 40),
-            height: Math.max(MIN_WINDOW_HEIGHT, baseHeight - index * 40),
-            isMinimized: false,
-          }));
-        }
-      });
-    },
-    [rearrangeWindows],
-  );
+    setOpenWindows((prev) => {
+      if (prev.length === 0) return prev;
+      // Reset manual positioning flag and force grid arrangement
+      setHasManuallyPositioned(false);
+      return rearrangeWindows(prev, true);
+    });
+  }, [rearrangeWindows]);
+
 
   // Effect for initial load from URL or default state
   useEffect(() => {
@@ -265,6 +255,6 @@ export function useWindowManager() {
     handleDesktopClick,
     handleLaunchApp,
     handleCloseWindow,
-    handleTileWindows,
+    handleGridSnap,
   };
 }

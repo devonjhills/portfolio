@@ -120,8 +120,9 @@ export function useWindowDrag(
         // Use RAF for smooth 60fps updates
         state.rafId = requestAnimationFrame(() => {
           if (state.isDragging) {
-            const newX = Math.max(0, state.startWindowX + deltaX);
-            const newY = Math.max(32, state.startWindowY + deltaY); // Account for top bar
+            // Simple boundary constraints - allow some movement beyond edges to prevent sticking
+            const newX = Math.max(-50, state.startWindowX + deltaX); // Allow 50px past left edge
+            const newY = Math.max(32, state.startWindowY + deltaY); // Keep title bar accessible
 
             // Direct DOM manipulation for immediate visual feedback - ONLY position
             state.windowElement!.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
@@ -132,15 +133,16 @@ export function useWindowDrag(
             let newHeight = state.startHeight;
             let newX = state.startWindowX;
 
+            // Simple resize constraints - just enforce minimums
             if (state.resizeDirection.includes("e")) {
-              newWidth = Math.max(400, state.startWidth + deltaX);
+              newWidth = Math.max(300, state.startWidth + deltaX);
             }
             if (state.resizeDirection.includes("w")) {
-              newWidth = Math.max(400, state.startWidth - deltaX);
+              newWidth = Math.max(300, state.startWidth - deltaX);
               newX = state.startWindowX + (state.startWidth - newWidth);
             }
             if (state.resizeDirection.includes("s")) {
-              newHeight = Math.max(300, state.startHeight + deltaY);
+              newHeight = Math.max(200, state.startHeight + deltaY);
             }
 
             // Direct DOM manipulation for resizing
@@ -199,10 +201,9 @@ export function useWindowDrag(
               "🚫 Skipping position update - user just clicked, didn't drag",
             );
           } else if (state.isResizing && state.currentWindow) {
-            // For resizing, use the exact dimensions from our calculations
+            // For resizing, get the actual dimensions from DOM
             const updates: Partial<WindowState> = {};
 
-            // Get the actual computed dimensions from our direct style manipulation
             const computedWidth = parseFloat(state.windowElement.style.width);
             const computedHeight = parseFloat(state.windowElement.style.height);
 
