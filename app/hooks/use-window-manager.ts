@@ -155,11 +155,70 @@ export function useWindowManager() {
 
     setOpenWindows((prev) => {
       if (prev.length === 0) return prev;
-      // Reset manual positioning flag and force grid arrangement
+
+      // Reset manual positioning flag and clear all maximized states
       setHasManuallyPositioned(false);
-      return rearrangeWindows(prev, true);
+
+      // Clear maximized state from all windows before rearranging
+      const unmaximizedWindows = prev.map((w) => ({
+        ...w,
+        isMaximized: false,
+        previousPosition: undefined,
+      }));
+
+      return rearrangeWindows(unmaximizedWindows, true);
     });
   }, [rearrangeWindows]);
+
+  const handleMaximizeWindow = useCallback((appName: string) => {
+    if (typeof window === "undefined") return;
+
+    // Focus the window when maximizing
+    handleActivateWindow(appName);
+
+    setOpenWindows((prev) => {
+      return prev.map((w) => {
+        if (w.appName === appName) {
+          if (w.isMaximized) {
+            // Restore to grid layout instead of previous position
+            setHasManuallyPositioned(false);
+            const restored = {
+              ...w,
+              isMaximized: false,
+              previousPosition: undefined,
+            };
+            return restored;
+          } else {
+            // Maximize window with padding
+            const maximized = {
+              ...w,
+              isMaximized: true,
+              previousPosition: { x: w.x, y: w.y, width: w.width, height: w.height },
+              x: SIDE_DOCK_WIDTH + PADDING,
+              y: TOP_BAR_HEIGHT + PADDING,
+              width: window.innerWidth - SIDE_DOCK_WIDTH - (PADDING * 2),
+              height: window.innerHeight - TOP_BAR_HEIGHT - (PADDING * 2),
+            };
+            // Mark as manually positioned to prevent auto-rearrangement
+            setHasManuallyPositioned(true);
+            return maximized;
+          }
+        }
+        return w;
+      });
+    });
+
+    // After restoring from maximize, trigger grid layout rearrangement
+    setTimeout(() => {
+      setOpenWindows((prev) => {
+        const targetWindow = prev.find(w => w.appName === appName);
+        if (targetWindow && !targetWindow.isMaximized) {
+          return rearrangeWindows(prev, true);
+        }
+        return prev;
+      });
+    }, 0);
+  }, [rearrangeWindows, handleActivateWindow]);
 
   const handleCloseAll = useCallback(() => {
     setOpenWindows([]);
@@ -258,6 +317,7 @@ export function useWindowManager() {
     handleDesktopClick,
     handleLaunchApp,
     handleCloseWindow,
+    handleMaximizeWindow,
     handleGridSnap,
     handleCloseAll,
   };

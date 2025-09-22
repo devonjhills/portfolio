@@ -7,6 +7,8 @@ export interface WindowState {
   width: number;
   height: number;
   isMinimized?: boolean;
+  isMaximized?: boolean;
+  previousPosition?: { x: number; y: number; width: number; height: number };
   zIndex?: number;
 }
 
@@ -16,4 +18,5 @@ export interface WindowManagerProps {
   onUpdateWindow: (appName: string, updates: Partial<WindowState>) => void;
   onCloseWindow: (appName: string) => void;
   onActivateWindow: (appName: string) => void;
+  onMaximizeWindow: (appName: string) => void;
 }

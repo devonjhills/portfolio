@@ -8,7 +8,7 @@ import {
   getWindowContent,
   getWindowTitle,
 } from "@/app/utils/window-content";
-import { X } from "lucide-react";
+import { X, Minus, Square, Copy } from "lucide-react";
 import { Tooltip } from "@/app/components/ui/tooltip";
 
 interface WindowComponentProps {
@@ -17,6 +17,7 @@ interface WindowComponentProps {
   onUpdateWindow: (appName: string, updates: Partial<WindowState>) => void;
   onCloseWindow: (appName: string) => void;
   onActivateWindow: (appName: string) => void;
+  onMaximizeWindow: (appName: string) => void;
   handleMouseDown: (
     e: React.MouseEvent,
     appName: string,
@@ -33,6 +34,7 @@ const WindowComponent = memo(
     onUpdateWindow,
     onCloseWindow,
     onActivateWindow,
+    onMaximizeWindow,
     handleMouseDown,
   }: WindowComponentProps) => (
     <div
@@ -63,8 +65,14 @@ const WindowComponent = memo(
         }`}
       >
         <div
-          className="flex items-center space-x-3 cursor-move flex-1"
-          onMouseDown={(e) => handleMouseDown(e, window.appName, "drag")}
+          className={`flex items-center space-x-3 flex-1 ${
+            window.isMaximized ? "cursor-default" : "cursor-move"
+          }`}
+          onMouseDown={(e) => {
+            if (!window.isMaximized) {
+              handleMouseDown(e, window.appName, "drag");
+            }
+          }}
         >
           {getWindowIcon(window.appName)}
           <div className="font-medium text-sm">
@@ -81,15 +89,23 @@ const WindowComponent = memo(
                 onUpdateWindow(window.appName, { isMinimized: true });
               }}
             >
-              <div className="w-3 h-0.5 bg-gray-300"></div>
+              <Minus className="w-3 h-3 text-gray-300" />
             </button>
           </Tooltip>
-          <Tooltip content="Maximize" delay={0}>
+          <Tooltip content={window.isMaximized ? "Restore" : "Maximize"} delay={0}>
             <button
               className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-700"
               onMouseDown={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                onMaximizeWindow(window.appName);
+              }}
             >
-              <div className="w-3 h-3 border border-gray-300"></div>
+              {window.isMaximized ? (
+                <Copy className="w-3 h-3 text-gray-300" />
+              ) : (
+                <Square className="w-3 h-3 text-gray-300" />
+              )}
             </button>
           </Tooltip>
           <Tooltip content="Close" delay={0}>
@@ -115,27 +131,31 @@ const WindowComponent = memo(
         {getWindowContent(window.appName)}
       </div>
 
-      {/* Resize Handles */}
-      <div
-        className="absolute bottom-3 left-2 right-10 h-2 cursor-s-resize"
-        onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "s")}
-      />
-      <div
-        className="absolute top-12 bottom-10 left-0 w-2 cursor-w-resize"
-        onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "w")}
-      />
-      <div
-        className="absolute top-12 bottom-10 right-3 w-2 cursor-e-resize"
-        onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "e")}
-      />
-      <div
-        className="resize-handle absolute bottom-0 left-0 w-4 h-6 cursor-sw-resize"
-        onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "sw")}
-      />
-      <div
-        className="resize-handle absolute bottom-0 right-0 w-6 h-6 cursor-se-resize hover:bg-primary/30 transition-colors rounded-tl-lg"
-        onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "se")}
-      />
+      {/* Resize Handles - Only show when not maximized */}
+      {!window.isMaximized && (
+        <>
+          <div
+            className="absolute bottom-3 left-2 right-10 h-2 cursor-s-resize"
+            onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "s")}
+          />
+          <div
+            className="absolute top-12 bottom-10 left-0 w-2 cursor-w-resize"
+            onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "w")}
+          />
+          <div
+            className="absolute top-12 bottom-10 right-3 w-2 cursor-e-resize"
+            onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "e")}
+          />
+          <div
+            className="resize-handle absolute bottom-0 left-0 w-4 h-6 cursor-sw-resize"
+            onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "sw")}
+          />
+          <div
+            className="resize-handle absolute bottom-0 right-0 w-6 h-6 cursor-se-resize hover:bg-primary/30 transition-colors rounded-tl-lg"
+            onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "se")}
+          />
+        </>
+      )}
     </div>
   ),
 );
@@ -148,6 +168,7 @@ export function WindowManager({
   onUpdateWindow,
   onCloseWindow,
   onActivateWindow,
+  onMaximizeWindow,
 }: WindowManagerProps) {
   const { handleMouseDown } = useWindowDrag(
     openWindows,
@@ -165,6 +186,7 @@ export function WindowManager({
           onUpdateWindow={onUpdateWindow}
           onCloseWindow={onCloseWindow}
           onActivateWindow={onActivateWindow}
+          onMaximizeWindow={onMaximizeWindow}
           handleMouseDown={handleMouseDown}
         />
       ))}

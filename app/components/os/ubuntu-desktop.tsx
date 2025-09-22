@@ -14,6 +14,7 @@ export function UbuntuDesktop() {
     handleDesktopClick,
     handleLaunchApp,
     handleCloseWindow,
+    handleMaximizeWindow,
     handleGridSnap,
     handleCloseAll,
   } = useWindowManager();
@@ -51,6 +52,7 @@ export function UbuntuDesktop() {
           onUpdateWindow={handleUpdateWindow}
           onCloseWindow={handleCloseWindow}
           onActivateWindow={handleActivateWindow}
+          onMaximizeWindow={handleMaximizeWindow}
         />
       </div>
     </div>
