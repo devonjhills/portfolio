@@ -92,7 +92,10 @@ const WindowComponent = memo(
               <Minus className="w-3 h-3 text-gray-300" />
             </button>
           </Tooltip>
-          <Tooltip content={window.isMaximized ? "Restore" : "Maximize"} delay={0}>
+          <Tooltip
+            content={window.isMaximized ? "Restore" : "Maximize"}
+            delay={0}
+          >
             <button
               className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-700"
               onMouseDown={(e) => e.stopPropagation()}
@@ -136,23 +139,33 @@ const WindowComponent = memo(
         <>
           <div
             className="absolute bottom-3 left-2 right-10 h-2 cursor-s-resize"
-            onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "s")}
+            onMouseDown={(e) =>
+              handleMouseDown(e, window.appName, "resize", "s")
+            }
           />
           <div
             className="absolute top-12 bottom-10 left-0 w-2 cursor-w-resize"
-            onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "w")}
+            onMouseDown={(e) =>
+              handleMouseDown(e, window.appName, "resize", "w")
+            }
           />
           <div
             className="absolute top-12 bottom-10 right-3 w-2 cursor-e-resize"
-            onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "e")}
+            onMouseDown={(e) =>
+              handleMouseDown(e, window.appName, "resize", "e")
+            }
           />
           <div
             className="resize-handle absolute bottom-0 left-0 w-4 h-6 cursor-sw-resize"
-            onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "sw")}
+            onMouseDown={(e) =>
+              handleMouseDown(e, window.appName, "resize", "sw")
+            }
           />
           <div
             className="resize-handle absolute bottom-0 right-0 w-6 h-6 cursor-se-resize hover:bg-primary/30 transition-colors rounded-tl-lg"
-            onMouseDown={(e) => handleMouseDown(e, window.appName, "resize", "se")}
+            onMouseDown={(e) =>
+              handleMouseDown(e, window.appName, "resize", "se")
+            }
           />
         </>
       )}

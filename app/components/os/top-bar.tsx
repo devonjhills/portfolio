@@ -106,8 +106,8 @@ export function TopBar({
                     activeWindow === window.appName && !window.isMinimized
                       ? "text-primary font-medium"
                       : window.isMinimized
-                      ? "text-gray-400"
-                      : "text-gray-200"
+                        ? "text-gray-400"
+                        : "text-gray-200"
                   }`}
                   onClick={() => {
                     // Focus/activate the app
@@ -129,7 +129,8 @@ export function TopBar({
                       }
                       setOpenDropdown(window.appName);
                     }
-                  }}>
+                  }}
+                >
                   <span>{getWindowTitle(window.appName)}</span>
                   {openDropdown === window.appName ? (
                     <ChevronUpSquare
@@ -175,7 +176,8 @@ export function TopBar({
                 if (onGridSnap) {
                   onGridSnap();
                 }
-              }}>
+              }}
+            >
               <LayoutPanelLeft className="w-4 h-4 text-white" />
             </button>
           </Tooltip>
@@ -189,7 +191,8 @@ export function TopBar({
                   if (onCloseAll) {
                     onCloseAll();
                   }
-                }}>
+                }}
+              >
                 <XCircle className="w-4 h-4 text-white" />
               </button>
             </Tooltip>
@@ -225,7 +228,8 @@ export function TopBar({
               top: dropdownPosition.top,
               left: dropdownPosition.left,
             }}
-            onClick={(e) => e.stopPropagation()}>
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               className="w-full text-left px-4 py-2.5 text-sm hover:bg-slate-700 transition-colors flex items-center space-x-3"
               onClick={() => {
@@ -233,7 +237,8 @@ export function TopBar({
                   onMinimizeWindow(openDropdown);
                 }
                 setOpenDropdown(null);
-              }}>
+              }}
+            >
               <Minimize2 className="w-4 h-4 text-gray-400" />
               <span className="text-gray-200">Minimize</span>
             </button>
@@ -245,12 +250,13 @@ export function TopBar({
                   onCloseWindow(openDropdown);
                 }
                 setOpenDropdown(null);
-              }}>
+              }}
+            >
               <X className="w-4 h-4 text-gray-400" />
               <span className="text-gray-200">Close</span>
             </button>
           </div>,
-          document.body
+          document.body,
         )}
 
       {/* Click outside handler */}
