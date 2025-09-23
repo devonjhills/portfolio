@@ -45,40 +45,78 @@ export const TerminalWindow = memo(function TerminalWindow() {
               <span className="text-amber-300 font-semibold">neofetch</span>
             </div>
             {/* Neofetch output */}
-            <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 font-mono text-sm">
-              <img
-                src="/avatar.png"
-                alt="Devon Hills"
-                className="w-28 h-28 sm:w-36 sm:h-36 rounded-lg"
-              />
-              <div className="flex-1 space-y-2">
-                <div className="text-xl sm:text-2xl">
-                  <span className="text-primary font-bold">devon</span>
-                  <span className="text-gray-400">@</span>
-                  <span className="text-blue-400 font-bold">portfolio</span>
+            <div className="space-y-4">
+              <div className="flex items-start gap-4 font-mono text-sm">
+                <div className="mt-2">
+                  <img
+                    src="/avatar.png"
+                    alt="Devon Hills"
+                    className="w-auto h-auto max-h-56 object-contain rounded-lg"
+                  />
                 </div>
-                <div className="w-full h-px bg-gradient-to-r from-primary to-transparent mb-3"></div>
-                <div className="space-y-1.5 text-sm">
-                  {[
-                    { label: "OS", value: "Ubuntu 22.04 LTS" },
-                    { label: "Host", value: "Livefront" },
-                    { label: "Uptime", value: "7 years, 2 months" },
-                    { label: "WM", value: "React + TypeScript" },
-                    { label: "CPU", value: "Full-Stack Engineer" },
-                    { label: "Memory", value: "HealthCare.gov + Defense" },
-                  ].map((item, i) => (
-                    <div key={i}>
-                      <span className="text-primary font-bold w-20 inline-block text-right mr-2">
-                        {item.label}
-                      </span>
-                      <span className="text-gray-400 mr-2">:</span>
-                      <span className="text-gray-300">{item.value}</span>
+                <div className="flex flex-col justify-start space-y-1">
+                  <div className="text-lg mb-1">
+                    <span className="text-primary font-bold">devon</span>
+                    <span className="text-gray-400">@</span>
+                    <span className="text-blue-400 font-bold">portfolio</span>
+                  </div>
+                  <div
+                    className="w-fit border-t-2 border-dashed border-gray-500 mb-1"
+                    style={{ width: "9.5em" }}
+                  ></div>
+                  <div className="space-y-0.5 text-sm">
+                    {[
+                      { label: "OS", value: "Portfolio OS 1.0" },
+                      { label: "Host", value: "Livefront" },
+                      { label: "Kernel", value: "React 19.0.0" },
+                      { label: "Uptime", value: "7 years, 2 months" },
+                      { label: "Shell", value: "TypeScript" },
+                      { label: "WM", value: "Next.js" },
+                      { label: "Theme", value: "Follow the white rabbit" },
+                      { label: "CPU", value: "Full-Stack Engineer" },
+                      {
+                        label: "Memory",
+                        value: "HealthCare.gov + Client Solutions",
+                      },
+                    ].map((item, i) => (
+                      <div key={i} className="flex">
+                        <span className="text-primary font-bold mr-1">
+                          {item.label}
+                        </span>
+                        <span className="text-gray-400 mr-2">:</span>
+                        <span className="text-gray-200">{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Neofetch color palette */}
+                  <div className="mt-4 space-y-0">
+                    <div className="flex">
+                      <div className="w-4 h-2 bg-gray-800"></div>
+                      <div className="w-4 h-2 bg-red-500"></div>
+                      <div className="w-4 h-2 bg-green-400"></div>
+                      <div className="w-4 h-2 bg-yellow-400"></div>
+                      <div className="w-4 h-2 bg-blue-400"></div>
+                      <div className="w-4 h-2 bg-purple-400"></div>
+                      <div className="w-4 h-2 bg-cyan-400"></div>
+                      <div className="w-4 h-2 bg-gray-200"></div>
                     </div>
-                  ))}
+                    <div className="flex">
+                      <div className="w-4 h-2 bg-gray-600"></div>
+                      <div className="w-4 h-2 bg-red-400"></div>
+                      <div className="w-4 h-2 bg-ubuntu-mint"></div>
+                      <div className="w-4 h-2 bg-yellow-300"></div>
+                      <div className="w-4 h-2 bg-blue-300"></div>
+                      <div className="w-4 h-2 bg-purple-300"></div>
+                      <div className="w-4 h-2 bg-cyan-300"></div>
+                      <div className="w-4 h-2 bg-white"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="mt-8">
+
+            <div className="mt-12">
               <div className="flex items-center space-x-1 mb-3 text-sm">
                 <span className="text-primary font-semibold">
                   devon@portfolio

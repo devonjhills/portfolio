@@ -83,31 +83,38 @@ export function TopBar({
   };
 
   return (
-    <div className="ubuntu-panel fixed top-0 left-0 right-0 h-9 bg-ubuntu-black text-white flex items-center px-3 z-50 text-sm shadow-lg">
+    <div className="ubuntu-panel fixed top-0 left-0 right-0 h-9 z-50 text-sm flex items-center px-3">
+      {/* Enhanced background with gradient and blur */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/98 via-slate-800/95 to-slate-900/98 backdrop-blur-xl shadow-2xl border-b border-ubuntu-mint/15"></div>
+
+      {/* Subtle accent gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-ubuntu-mint/3 to-transparent"></div>
       {/* Left - Logo + Portfolio OS + Taskbar */}
-      <div className="topbar-left flex items-center space-x-4 flex-1">
+      <div className="topbar-left relative flex items-center space-x-4 flex-1 text-white">
         <div className="flex items-center space-x-2">
           <img
             src="/logo2.png"
             alt="Portfolio Logo"
-            className="w-6 h-6 object-contain"
+            className="w-6 h-6 object-contain filter drop-shadow-sm"
           />
-          <div className="text-primary font-medium">Portfolio OS</div>
+          <div className="text-white font-medium tracking-wide">
+            Portfolio OS
+          </div>
         </div>
 
         {/* Taskbar - Open Windows */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
           {openWindows.map((window) => (
             <div key={window.appName} className="relative">
               <div className="flex items-center">
                 <button
                   ref={(el) => (appButtonRefs.current[window.appName] = el)}
-                  className={`flex items-center space-x-2 px-2 py-1 text-sm transition-all duration-200 hover:bg-gray-700 rounded ${
+                  className={`flex items-center space-x-2 px-3 py-1.5 text-sm transition-colors duration-300 ${
                     activeWindow === window.appName && !window.isMinimized
-                      ? "text-primary font-medium"
+                      ? "text-ubuntu-mint"
                       : window.isMinimized
-                        ? "text-gray-400"
-                        : "text-gray-200"
+                        ? "text-gray-400 hover:text-gray-300"
+                        : "text-gray-200 hover:text-white"
                   }`}
                   onClick={() => {
                     // Focus/activate the app
@@ -134,17 +141,17 @@ export function TopBar({
                   <span>{getWindowTitle(window.appName)}</span>
                   {openDropdown === window.appName ? (
                     <ChevronUpSquare
-                      className={`w-4 h-4 transition-colors ${
+                      className={`w-4 h-4 transition-colors duration-300 ${
                         activeWindow === window.appName && !window.isMinimized
-                          ? "text-primary"
+                          ? "text-ubuntu-mint"
                           : "text-gray-400 hover:text-gray-200"
                       }`}
                     />
                   ) : (
                     <ChevronDownSquare
-                      className={`w-4 h-4 transition-colors ${
+                      className={`w-4 h-4 transition-colors duration-300 ${
                         activeWindow === window.appName && !window.isMinimized
-                          ? "text-primary"
+                          ? "text-ubuntu-mint"
                           : "text-gray-400 hover:text-gray-200"
                       }`}
                     />
@@ -157,28 +164,28 @@ export function TopBar({
       </div>
 
       {/* Center - Clock and Date (absolutely positioned) */}
-      <div className="topbar-center absolute left-1/2 transform -translate-x-1/2">
-        <div className="clock font-medium px-3 py-1.5 hover:bg-gray-700 rounded transition-all duration-200 cursor-pointer text-primary flex items-center space-x-3">
+      <div className="topbar-center absolute left-1/2 transform -translate-x-1/2 z-10">
+        <div className="clock font-medium px-3 py-1 text-white flex items-center space-x-2">
           <span>{currentDate}</span>
           <span>{currentTime}</span>
         </div>
       </div>
 
       {/* Right - System Tray */}
-      <div className="topbar-right flex items-center space-x-1 flex-1 justify-end">
+      <div className="topbar-right relative flex items-center space-x-2 flex-1 justify-end text-white">
         {/* Window Management Buttons */}
         <div className="flex items-center space-x-1">
           {/* Grid Snap Button */}
           <Tooltip content="Auto grid" delay={0} position="bottom">
             <button
-              className="system-indicator p-1.5 hover:bg-gray-700 rounded transition-all duration-200"
+              className="system-indicator p-2 hover:bg-gradient-to-r hover:from-white/15 hover:to-white/5 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-white/10 group"
               onClick={() => {
                 if (onGridSnap) {
                   onGridSnap();
                 }
               }}
             >
-              <LayoutPanelLeft className="w-4 h-4 text-white" />
+              <LayoutPanelLeft className="w-4 h-4 text-gray-300 group-hover:text-white transition-colors duration-300" />
             </button>
           </Tooltip>
 
@@ -186,34 +193,34 @@ export function TopBar({
           {openWindows.length > 0 && (
             <Tooltip content="Close all" delay={0} position="bottom">
               <button
-                className="system-indicator p-1.5 hover:bg-gray-700 rounded transition-all duration-200"
+                className="system-indicator p-2 hover:bg-gradient-to-r hover:from-red-500/20 hover:to-red-400/10 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20 group"
                 onClick={() => {
                   if (onCloseAll) {
                     onCloseAll();
                   }
                 }}
               >
-                <XCircle className="w-4 h-4 text-white" />
+                <XCircle className="w-4 h-4 text-gray-300 group-hover:text-red-400 transition-colors duration-300" />
               </button>
             </Tooltip>
           )}
         </div>
 
         {/* Divider */}
-        <div className="h-4 w-px bg-gray-600 mx-4"></div>
+        <div className="h-5 w-px bg-gradient-to-b from-transparent via-gray-500/50 to-transparent mx-3"></div>
 
         {/* OS Flavor Icons */}
         <div className="flex items-center space-x-1">
-          <div className="p-1.5">
-            <Wifi className="w-4 h-4 text-white" />
+          <div className="p-2 hover:bg-gradient-to-r hover:from-ubuntu-mint/15 hover:to-ubuntu-mint/5 rounded-lg transition-all duration-300 group">
+            <Wifi className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-300" />
           </div>
 
-          <div className="p-1.5">
-            <Volume2 className="w-4 h-4 text-white" />
+          <div className="p-2 hover:bg-gradient-to-r hover:from-ubuntu-mint/15 hover:to-ubuntu-mint/5 rounded-lg transition-all duration-300 group">
+            <Volume2 className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-300" />
           </div>
 
-          <div className="p-1.5">
-            <BatteryFull className="w-4 h-4 text-white" />
+          <div className="p-2 hover:bg-gradient-to-r hover:from-ubuntu-mint/15 hover:to-ubuntu-mint/5 rounded-lg transition-all duration-300 group">
+            <BatteryFull className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-300" />
           </div>
         </div>
       </div>
@@ -223,7 +230,7 @@ export function TopBar({
         typeof document !== "undefined" &&
         createPortal(
           <div
-            className="fixed bg-slate-800 text-white rounded-lg shadow-xl border border-slate-600 py-2 min-w-[140px] z-[9999] backdrop-blur-sm"
+            className="fixed bg-gradient-to-br from-slate-800/95 to-slate-900/95 text-white rounded-lg shadow-2xl shadow-black/50 border border-ubuntu-mint/20 py-2 min-w-[140px] z-[9999] backdrop-blur-xl"
             style={{
               top: dropdownPosition.top,
               left: dropdownPosition.left,
@@ -231,7 +238,7 @@ export function TopBar({
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="w-full text-left px-4 py-2.5 text-sm hover:bg-slate-700 transition-colors flex items-center space-x-3"
+              className="w-full text-left px-4 py-2.5 text-sm hover:bg-gradient-to-r hover:from-ubuntu-mint/20 hover:to-ubuntu-mint/10 transition-all duration-300 flex items-center space-x-3 rounded-md group"
               onClick={() => {
                 if (onMinimizeWindow) {
                   onMinimizeWindow(openDropdown);
@@ -239,12 +246,14 @@ export function TopBar({
                 setOpenDropdown(null);
               }}
             >
-              <Minimize2 className="w-4 h-4 text-gray-400" />
-              <span className="text-gray-200">Minimize</span>
+              <Minimize2 className="w-4 h-4 text-gray-400 group-hover:text-ubuntu-mint transition-colors duration-300" />
+              <span className="text-gray-200 group-hover:text-white transition-colors duration-300">
+                Minimize
+              </span>
             </button>
-            <div className="h-px bg-slate-600 mx-2 my-1"></div>
+            <div className="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent mx-2 my-1"></div>
             <button
-              className="w-full text-left px-4 py-2.5 text-sm hover:bg-slate-700 transition-colors flex items-center space-x-3"
+              className="w-full text-left px-4 py-2.5 text-sm hover:bg-gradient-to-r hover:from-red-500/20 hover:to-red-400/10 transition-all duration-300 flex items-center space-x-3 rounded-md group"
               onClick={() => {
                 if (onCloseWindow) {
                   onCloseWindow(openDropdown);
@@ -252,8 +261,10 @@ export function TopBar({
                 setOpenDropdown(null);
               }}
             >
-              <X className="w-4 h-4 text-gray-400" />
-              <span className="text-gray-200">Close</span>
+              <X className="w-4 h-4 text-gray-400 group-hover:text-red-400 transition-colors duration-300" />
+              <span className="text-gray-200 group-hover:text-white transition-colors duration-300">
+                Close
+              </span>
             </button>
           </div>,
           document.body,

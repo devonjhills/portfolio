@@ -1,11 +1,14 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { TopBar } from "./top-bar";
 import { WindowManager } from "./window-manager";
 import { SideDock } from "./side-dock";
 import { useWindowManager } from "@/app/hooks/use-window-manager";
 
 export function UbuntuDesktop() {
+  const [wallpaperUrl, setWallpaperUrl] = useState<string>("/wallpaper.jpg");
+
   const {
     openWindows,
     activeWindow,
@@ -19,11 +22,37 @@ export function UbuntuDesktop() {
     handleCloseAll,
   } = useWindowManager();
 
+  useEffect(() => {
+    // Check which wallpaper format exists
+    const checkWallpaper = async () => {
+      try {
+        // Try PNG first
+        const pngResponse = await fetch("/wallpaper.png", { method: "HEAD" });
+        if (pngResponse.ok) {
+          setWallpaperUrl("/wallpaper.png");
+          return;
+        }
+
+        // Fall back to JPG
+        const jpgResponse = await fetch("/wallpaper.jpg", { method: "HEAD" });
+        if (jpgResponse.ok) {
+          setWallpaperUrl("/wallpaper.jpg");
+          return;
+        }
+      } catch {
+        // If both fail, default to JPG
+        setWallpaperUrl("/wallpaper.jpg");
+      }
+    };
+
+    checkWallpaper();
+  }, []);
+
   return (
     <div
       className="ubuntu-desktop fixed inset-0 w-full h-full overflow-hidden bg-gray-900"
       style={{
-        backgroundImage: "url(/wallpaper.jpg)",
+        backgroundImage: `url(${wallpaperUrl})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

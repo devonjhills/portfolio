@@ -22,8 +22,14 @@ export function SideDock({
   ];
 
   return (
-    <div className="fixed left-0 top-0 h-full w-16 bg-ubuntu-black border-r border-white/10 z-30 flex flex-col items-center py-4">
-      <div className="flex flex-col gap-3 mt-12">
+    <div className="fixed left-0 top-0 h-full w-16 z-30 flex flex-col items-center py-4">
+      {/* Enhanced dock background with gradient and blur */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-800/90 to-slate-900/95 backdrop-blur-lg border-r border-ubuntu-mint/20 shadow-2xl"></div>
+
+      {/* Subtle inner glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-ubuntu-mint/5 to-transparent"></div>
+
+      <div className="relative flex flex-col gap-3 mt-12">
         {dockApps.map(({ app, iconPath, label }) => {
           const isOpen = openWindows.includes(app);
 
@@ -41,19 +47,21 @@ export function SideDock({
                       onLaunchApp(app);
                     }
                   }}
-                  className="w-12 h-12 rounded-lg transition-all duration-200 hover:scale-110 hover:bg-white/10 flex items-center justify-center relative"
+                  className={`w-12 h-12 rounded-lg transition-all duration-200 flex items-center justify-center relative ${
+                    isOpen ? "bg-white/15" : "hover:bg-white/10 hover:scale-105"
+                  }`}
                 >
                   <img
                     src={iconPath}
                     alt={label}
-                    className="w-8 h-8 object-contain filter drop-shadow-sm"
+                    className="w-8 h-8 object-contain"
                   />
                 </button>
               </Tooltip>
 
-              {/* Ubuntu-style dot indicator */}
+              {/* Simple indicator */}
               {isOpen && (
-                <div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-1.5 h-1.5 bg-primary rounded-full"></div>
+                <div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-1 h-1 bg-ubuntu-mint rounded-full"></div>
               )}
             </div>
           );
