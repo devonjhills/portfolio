@@ -39,7 +39,6 @@ export const calculateGridLayout = (
   windowCount: number,
   containerWidth: number,
   containerHeight: number,
-  windows: WindowState[] = [],
 ): Array<Pick<WindowState, "x" | "y" | "width" | "height">> => {
   if (windowCount === 0) return [];
 

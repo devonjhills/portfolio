@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Tooltip } from "@/app/components/ui/tooltip";
 
 interface SideDockProps {
@@ -51,10 +52,12 @@ export function SideDock({
                     isOpen ? "bg-white/15" : "hover:bg-white/10 hover:scale-105"
                   }`}
                 >
-                  <img
+                  <Image
                     src={iconPath}
                     alt={label}
-                    className="w-8 h-8 object-contain"
+                    width={32}
+                    height={32}
+                    className="object-contain"
                   />
                 </button>
               </Tooltip>

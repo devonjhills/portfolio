@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { WINDOW_ICONS, WINDOW_TITLES } from "@/app/constants/layout";
 import { TerminalWindow } from "@/app/components/os/applications/terminal-window";
 import { ProjectsWindow } from "@/app/components/os/applications/projects-window";
@@ -8,7 +9,13 @@ import { ResumeWindow } from "@/app/components/os/applications/resume-window";
 export const getWindowIcon = (appName: string) => {
   const iconPath = WINDOW_ICONS[appName] || WINDOW_ICONS.terminal;
   return (
-    <img src={iconPath} alt={appName} className="w-4 h-4 object-contain" />
+    <Image
+      src={iconPath}
+      alt={appName}
+      width={16}
+      height={16}
+      className="object-contain"
+    />
   );
 };
 

@@ -36,7 +36,6 @@ export function useWindowManager() {
         windowsToArrange.length,
         window.innerWidth,
         window.innerHeight,
-        windowsToArrange,
       );
       const sortedWindows = [...windowsToArrange].sort(
         (a, b) =>

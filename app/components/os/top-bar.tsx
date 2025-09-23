@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import {
   LayoutPanelLeft,
   ChevronUpSquare,
@@ -92,10 +93,12 @@ export function TopBar({
       {/* Left - Logo + Portfolio OS + Taskbar */}
       <div className="topbar-left relative flex items-center space-x-4 flex-1 text-white">
         <div className="flex items-center space-x-2">
-          <img
+          <Image
             src="/logo2.png"
             alt="Portfolio Logo"
-            className="w-6 h-6 object-contain filter drop-shadow-sm"
+            width={24}
+            height={24}
+            className="object-contain filter drop-shadow-sm"
           />
           <div className="text-white font-medium tracking-wide">
             Portfolio OS
@@ -108,7 +111,9 @@ export function TopBar({
             <div key={window.appName} className="relative">
               <div className="flex items-center">
                 <button
-                  ref={(el) => (appButtonRefs.current[window.appName] = el)}
+                  ref={(el) => {
+                    appButtonRefs.current[window.appName] = el;
+                  }}
                   className={`flex items-center space-x-2 px-3 py-1.5 text-sm transition-colors duration-300 ${
                     activeWindow === window.appName && !window.isMinimized
                       ? "text-ubuntu-mint"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, memo } from "react";
+import Image from "next/image";
 
 export const TerminalWindow = memo(function TerminalWindow() {
   const [terminalTab, setTerminalTab] = useState("hero");
@@ -48,10 +49,12 @@ export const TerminalWindow = memo(function TerminalWindow() {
             <div className="space-y-4">
               <div className="flex items-start gap-4 font-mono text-sm">
                 <div className="mt-2">
-                  <img
+                  <Image
                     src="/avatar.png"
                     alt="Devon Hills"
-                    className="w-auto h-auto max-h-56 object-contain rounded-lg"
+                    width={224}
+                    height={224}
+                    className="max-h-56 object-contain rounded-lg"
                   />
                 </div>
                 <div className="flex flex-col justify-start space-y-1">
