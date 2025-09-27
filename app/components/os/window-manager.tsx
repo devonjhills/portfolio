@@ -24,6 +24,19 @@ interface WindowComponentProps {
     action: "drag" | "resize",
     direction?: string,
   ) => void;
+  wallpaperProps?: {
+    onWallpaperChange: (wallpaper: string) => void;
+    currentWallpaper: string;
+  };
+  activitiesProps?: {
+    openWindows: WindowState[];
+    activeWindow: string | null;
+    onActivateWindow: (appName: string) => void;
+    onCloseWindow: (appName: string) => void;
+    onMinimizeWindow: (appName: string) => void;
+    onGridSnap: () => void;
+    onCloseAll: () => void;
+  };
 }
 
 // Memoized window component to prevent unnecessary re-renders
@@ -36,9 +49,13 @@ const WindowComponent = memo(
     onActivateWindow,
     onMaximizeWindow,
     handleMouseDown,
-  }: WindowComponentProps) => (
+    wallpaperProps,
+    activitiesProps,
+  }: WindowComponentProps) => {
+    console.log(`Window ${window.appName} - isActive: ${isActive}, zIndex: ${window.zIndex}`);
+    return (
     <div
-      className={`ubuntu-window absolute bg-gray-900 border rounded-lg shadow-2xl pointer-events-auto ${
+      className={`ubuntu-window absolute bg-gray-900 border rounded-lg shadow-2xl pointer-events-auto transition-opacity duration-200 ${
         isActive ? "border-gray-500" : "border-gray-700"
       }`}
       style={{
@@ -48,11 +65,12 @@ const WindowComponent = memo(
         height: window.height,
         zIndex: window.zIndex,
         display: window.isMinimized ? "none" : "block",
+        opacity: isActive ? 1 : 0.85,
         // Hardware acceleration optimizations
         transform: "translate3d(0, 0, 0)",
         backfaceVisibility: "hidden",
         perspective: "1000px",
-        willChange: "transform",
+        willChange: "transform, opacity",
       }}
       onClick={() => onActivateWindow(window.appName)}
     >
@@ -131,7 +149,12 @@ const WindowComponent = memo(
         className="window-content overflow-auto rounded-b-lg bg-gray-900"
         style={{ height: `calc(100% - 3rem)` }}
       >
-        {getWindowContent(window.appName)}
+        {getWindowContent(
+          window.appName,
+          window.appName === "wallpaper" ? wallpaperProps :
+          window.appName === "activities" ? activitiesProps :
+          undefined
+        )}
       </div>
 
       {/* Resize Handles - Only show when not maximized */}
@@ -170,7 +193,8 @@ const WindowComponent = memo(
         </>
       )}
     </div>
-  ),
+    );
+  },
 );
 
 WindowComponent.displayName = "WindowComponent";
@@ -182,7 +206,10 @@ export function WindowManager({
   onCloseWindow,
   onActivateWindow,
   onMaximizeWindow,
+  wallpaperProps,
+  activitiesProps,
 }: WindowManagerProps) {
+  console.log('WindowManager render - activeWindow:', activeWindow, 'openWindows:', openWindows.map(w => `${w.appName}(${w.zIndex})`));
   const { handleMouseDown } = useWindowDrag(
     openWindows,
     onUpdateWindow,
@@ -201,6 +228,8 @@ export function WindowManager({
           onActivateWindow={onActivateWindow}
           onMaximizeWindow={onMaximizeWindow}
           handleMouseDown={handleMouseDown}
+          wallpaperProps={wallpaperProps}
+          activitiesProps={activitiesProps}
         />
       ))}
     </div>

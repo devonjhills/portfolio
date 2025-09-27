@@ -19,4 +19,17 @@ export interface WindowManagerProps {
   onCloseWindow: (appName: string) => void;
   onActivateWindow: (appName: string) => void;
   onMaximizeWindow: (appName: string) => void;
+  wallpaperProps?: {
+    onWallpaperChange: (wallpaper: string) => void;
+    currentWallpaper: string;
+  };
+  activitiesProps?: {
+    openWindows: WindowState[];
+    activeWindow: string | null;
+    onActivateWindow: (appName: string) => void;
+    onCloseWindow: (appName: string) => void;
+    onMinimizeWindow: (appName: string) => void;
+    onGridSnap: () => void;
+    onCloseAll: () => void;
+  };
 }

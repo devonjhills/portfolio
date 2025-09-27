@@ -22,7 +22,7 @@ export function useWindowResponsive() {
   }, []);
 
   const getBreakpoint = useCallback(() => {
-    if (containerWidth >= 800) return "xl";
+    if (containerWidth >= 1000) return "xl";
     if (containerWidth >= 600) return "lg";
     if (containerWidth >= 400) return "md";
     return "sm";
@@ -47,7 +47,7 @@ export function useWindowResponsive() {
 
   const isAtLeast = useCallback(
     (breakpoint: "sm" | "md" | "lg" | "xl") => {
-      const sizes = { sm: 0, md: 400, lg: 600, xl: 800 };
+      const sizes = { sm: 0, md: 400, lg: 600, xl: 1000 };
       return containerWidth >= sizes[breakpoint];
     },
     [containerWidth],

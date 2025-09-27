@@ -1,6 +1,6 @@
 export const SIDE_DOCK_WIDTH = 80;
-export const TOP_BAR_HEIGHT = 50;
-export const PADDING = 20;
+export const TOP_BAR_HEIGHT = 32;
+export const PADDING = 10;
 export const MIN_WINDOW_WIDTH = 400;
 export const MIN_WINDOW_HEIGHT = 300;
 
@@ -10,6 +10,8 @@ export const WINDOW_ICONS: { [key: string]: string } = {
   editor: "/icons/Document.png",
   browser: "/icons/Contact.png",
   resume: "/icons/File_Download.png",
+  wallpaper: "lucide:Image",
+  activities: "lucide:Grid3X3",
 };
 
 export const WINDOW_TITLES: { [key: string]: string } = {
@@ -18,6 +20,8 @@ export const WINDOW_TITLES: { [key: string]: string } = {
   editor: "Resume - Text Editor",
   browser: "Contact - Browser",
   resume: "Download - Document Viewer",
+  wallpaper: "Wallpaper Settings",
+  activities: "Activities Overview",
 };
 
 export const CONTENT_COMPLEXITY_SCORES = {

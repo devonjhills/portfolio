@@ -82,8 +82,10 @@ export function useWindowManager() {
   );
 
   const handleActivateWindow = useCallback((appName: string) => {
+    console.log('handleActivateWindow called for:', appName);
     setOpenWindows((prev) => {
       const maxZIndex = Math.max(...prev.map((w) => w.zIndex || 1000));
+      console.log('Setting zIndex to:', maxZIndex + 1, 'for window:', appName);
       return prev.map((w) =>
         w.appName === appName
           ? { ...w, zIndex: maxZIndex + 1, isMinimized: false }
@@ -91,6 +93,7 @@ export function useWindowManager() {
       );
     });
     setActiveWindow(appName);
+    console.log('Active window set to:', appName);
   }, []);
 
   const handleDesktopClick = useCallback(() => {
@@ -267,13 +270,15 @@ export function useWindowManager() {
       });
     }
 
-    setOpenWindows(initialWindows);
+    // Apply grid layout to initial windows
+    const arrangedWindows = rearrangeWindows(initialWindows, true);
+    setOpenWindows(arrangedWindows);
     setActiveWindow(
-      initialWindows.length > 0
-        ? initialWindows[initialWindows.length - 1].appName
+      arrangedWindows.length > 0
+        ? arrangedWindows[arrangedWindows.length - 1].appName
         : null,
     );
-  }, []);
+  }, [rearrangeWindows]);
 
   // Optimized effect to update URL only when app list changes
   const openAppNamesString = useMemo(

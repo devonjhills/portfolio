@@ -78,28 +78,32 @@ export const calculateGridLayout = (
   }
 
   if (windowCount === 3) {
-    // One column of two stacked, one full height column
-    const leftColWidth = (availableWidth - PADDING) * 0.6; // Larger column
-    const rightColWidth = (availableWidth - PADDING) * 0.4; // Smaller column
+    // Two smaller windows on the left (stacked), one larger window on the right for projects
+    // Windows are sorted by complexity: [0]=highest (files/projects), [1]=medium, [2]=lowest
+    const leftColWidth = (availableWidth - PADDING) * 0.4; // Two smaller columns
+    const rightColWidth = (availableWidth - PADDING) * 0.6; // One larger column for projects
     const halfHeight = (availableHeight - PADDING) / 2;
 
     return [
+      // Position 0: Projects (highest complexity) gets the large right column
+      {
+        x: startX + leftColWidth + PADDING,
+        y: startY,
+        width: rightColWidth,
+        height: availableHeight,
+      },
+      // Position 1: Second highest complexity gets top left
       {
         x: startX,
         y: startY,
         width: leftColWidth,
-        height: availableHeight,
-      },
-      {
-        x: startX + leftColWidth + PADDING,
-        y: startY,
-        width: rightColWidth,
         height: halfHeight,
       },
+      // Position 2: Lowest complexity gets bottom left
       {
-        x: startX + leftColWidth + PADDING,
+        x: startX,
         y: startY + halfHeight + PADDING,
-        width: rightColWidth,
+        width: leftColWidth,
         height: halfHeight,
       },
     ];
@@ -139,44 +143,47 @@ export const calculateGridLayout = (
   }
 
   if (windowCount === 5) {
-    // One row of 3 windows, one row of 2 windows - bottom row taller for more content
-    const topRowHeight = (availableHeight - PADDING) * 0.45;
-    const bottomRowHeight = (availableHeight - PADDING) * 0.55;
-    const topWindowWidth = (availableWidth - 2 * PADDING) / 3;
-    const bottomWindowWidth = (availableWidth - PADDING) / 2;
+    // Two columns on left (2 stacked in each), one larger column on right
+    // Windows sorted by complexity: [0]=files, [1]=editor, [2]=terminal, [3]=browser, [4]=resume
+    const leftColWidth = (availableWidth - PADDING) * 0.25; // Each left column
+    const rightColWidth = (availableWidth - PADDING) * 0.5; // Right column for projects
+    const halfHeight = (availableHeight - PADDING) / 2;
 
     const positions = [
-      // Bottom row - 2 windows (wider, for complex content like projects/experience)
+      // Position 0: Projects (files) gets the large right column
       {
-        x: startX,
-        y: startY + topRowHeight + PADDING,
-        width: bottomWindowWidth,
-        height: bottomRowHeight,
+        x: startX + 2 * (leftColWidth + PADDING),
+        y: startY,
+        width: rightColWidth,
+        height: availableHeight,
       },
-      {
-        x: startX + bottomWindowWidth + PADDING,
-        y: startY + topRowHeight + PADDING,
-        width: bottomWindowWidth,
-        height: bottomRowHeight,
-      },
-      // Top row - 3 windows (smaller width, for simpler content)
+      // Position 1: Editor (second highest) gets top left
       {
         x: startX,
         y: startY,
-        width: topWindowWidth,
-        height: topRowHeight,
+        width: leftColWidth,
+        height: halfHeight,
       },
+      // Position 2: Terminal gets bottom left
       {
-        x: startX + topWindowWidth + PADDING,
-        y: startY,
-        width: topWindowWidth,
-        height: topRowHeight,
+        x: startX,
+        y: startY + halfHeight + PADDING,
+        width: leftColWidth,
+        height: halfHeight,
       },
+      // Position 3: Browser gets top right of left columns
       {
-        x: startX + 2 * (topWindowWidth + PADDING),
+        x: startX + leftColWidth + PADDING,
         y: startY,
-        width: topWindowWidth,
-        height: topRowHeight,
+        width: leftColWidth,
+        height: halfHeight,
+      },
+      // Position 4: Resume (lowest complexity) gets bottom right of left columns
+      {
+        x: startX + leftColWidth + PADDING,
+        y: startY + halfHeight + PADDING,
+        width: leftColWidth,
+        height: halfHeight,
       },
     ];
 
