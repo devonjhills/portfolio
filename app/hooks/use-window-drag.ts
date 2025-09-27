@@ -47,14 +47,7 @@ export function useWindowDrag(
     ) => {
       // Don't start drag if clicking on window control buttons
       const target = e.target as HTMLElement;
-      console.log(
-        "🔍 Click target:",
-        target.className,
-        "closest button:",
-        target.closest("button"),
-      );
       if (target.closest(".window-controls") || target.closest("button")) {
-        console.log("🚫 Ignoring drag - clicked on window controls");
         return;
       }
 
@@ -94,7 +87,6 @@ export function useWindowDrag(
       };
 
       onActivateWindow(appName);
-      console.log("🎯 Drag started for", appName, "action:", action);
 
       const handleMouseMove = (e: MouseEvent) => {
         const state = dragStateRef.current;
@@ -114,7 +106,6 @@ export function useWindowDrag(
           (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)
         ) {
           state.hasActuallyMoved = true;
-          console.log("✅ User started actual drag movement");
         }
 
         // Use RAF for smooth 60fps updates
@@ -179,27 +170,20 @@ export function useWindowDrag(
             state.hasActuallyMoved
           ) {
             const transform = state.windowElement.style.transform;
-            console.log("🎯 Transform at drag end:", transform);
             const translateMatch = transform.match(
               /translate3d\(([^,]+)px,\s*([^,]+)px,/,
             );
             if (translateMatch) {
               const finalX = parseFloat(translateMatch[1]);
               const finalY = parseFloat(translateMatch[2]);
-              console.log("🎯 Parsed position:", { finalX, finalY });
               // Only update position during drag - don't change dimensions
               onUpdateWindow(state.currentWindow, { x: finalX, y: finalY });
-            } else {
-              console.log("❌ NO TRANSFORM MATCH - this is the bug!");
             }
           } else if (
             state.isDragging &&
             state.currentWindow &&
             !state.hasActuallyMoved
           ) {
-            console.log(
-              "🚫 Skipping position update - user just clicked, didn't drag",
-            );
           } else if (state.isResizing && state.currentWindow) {
             // For resizing, get the actual dimensions from DOM
             const updates: Partial<WindowState> = {};
@@ -231,12 +215,9 @@ export function useWindowDrag(
 
           // Only reset DOM styles if user actually moved the window
           if (state.hasActuallyMoved) {
-            console.log("🧹 Cleaning up DOM styles after actual drag");
             state.windowElement.style.transform = "";
             state.windowElement.style.left = "";
             state.windowElement.style.top = "";
-          } else {
-            console.log("🚫 Not cleaning up styles - user just clicked");
           }
           // DON'T reset width/height to avoid full width bug
           // state.windowElement.style.width = '';

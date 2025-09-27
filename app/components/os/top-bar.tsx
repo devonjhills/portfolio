@@ -20,14 +20,14 @@ export function TopBar({ onActivitiesOpen }: TopBarProps) {
           hour: "2-digit",
           minute: "2-digit",
           hour12: true,
-        })
+        }),
       );
       setCurrentDate(
         now.toLocaleDateString("en-US", {
           weekday: "short",
           month: "short",
           day: "numeric",
-        })
+        }),
       );
     };
 
@@ -61,12 +61,8 @@ export function TopBar({ onActivitiesOpen }: TopBarProps) {
       {/* Center Section - Time/Date */}
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="flex items-center space-x-2">
-          <div className="text-gray-300 text-sm">
-            {currentDate}
-          </div>
-          <div className="text-white font-medium text-sm">
-            {currentTime}
-          </div>
+          <div className="text-gray-300 text-sm">{currentDate}</div>
+          <div className="text-white font-medium text-sm">{currentTime}</div>
         </div>
       </div>
 

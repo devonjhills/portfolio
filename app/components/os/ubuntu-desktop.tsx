@@ -129,7 +129,9 @@ export function UbuntuDesktop() {
         activeWindow={activeWindow}
         onActivateWindow={handleActivateWindow}
         onCloseWindow={handleCloseWindow}
-        onMinimizeWindow={(appName) => handleUpdateWindow(appName, { isMinimized: true })}
+        onMinimizeWindow={(appName) =>
+          handleUpdateWindow(appName, { isMinimized: true })
+        }
         onGridSnap={handleGridSnap}
         onCloseAll={handleCloseAll}
       />

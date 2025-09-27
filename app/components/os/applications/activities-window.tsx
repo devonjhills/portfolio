@@ -36,15 +36,21 @@ export function ActivitiesWindow({
     <div className="h-full bg-gray-900 flex flex-col">
       {/* Header */}
       <div className="bg-gray-800 border-b border-gray-700 p-4">
-        <h2 className="text-lg font-semibold text-white">Activities Overview</h2>
-        <p className="text-sm text-gray-300 mt-1">Manage your open windows and desktop</p>
+        <h2 className="text-lg font-semibold text-white">
+          Activities Overview
+        </h2>
+        <p className="text-sm text-gray-300 mt-1">
+          Manage your open windows and desktop
+        </p>
       </div>
 
       {/* Content */}
       <div className="flex-1 overflow-auto p-6">
         {/* Window Management Actions */}
         <div className="mb-6">
-          <h3 className="text-md font-medium text-white mb-3">Window Management</h3>
+          <h3 className="text-md font-medium text-white mb-3">
+            Window Management
+          </h3>
           <div className="grid grid-cols-2 gap-3">
             <button
               onClick={onGridSnap}
@@ -99,13 +105,17 @@ export function ActivitiesWindow({
                         {getWindowIcon(window.appName)}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className={`font-medium truncate ${
-                          isActive ? "text-green-400" : "text-white"
-                        }`}>
+                        <div
+                          className={`font-medium truncate ${
+                            isActive ? "text-green-400" : "text-white"
+                          }`}
+                        >
                           {getWindowTitle(window.appName)}
                         </div>
                         <div className="text-sm text-gray-400 truncate">
-                          {window.isMinimized ? "Minimized" : `${window.width}×${window.height}`}
+                          {window.isMinimized
+                            ? "Minimized"
+                            : `${window.width}×${window.height}`}
                         </div>
                       </div>
                       {isActive && (

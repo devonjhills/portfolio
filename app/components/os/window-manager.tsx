@@ -51,9 +51,7 @@ const WindowComponent = memo(
     handleMouseDown,
     wallpaperProps,
     activitiesProps,
-  }: WindowComponentProps) => {
-    console.log(`Window ${window.appName} - isActive: ${isActive}, zIndex: ${window.zIndex}`);
-    return (
+  }: WindowComponentProps) => (
     <div
       className={`ubuntu-window absolute bg-gray-900 border rounded-lg shadow-2xl pointer-events-auto transition-opacity duration-200 ${
         isActive ? "border-gray-500" : "border-gray-700"
@@ -151,9 +149,11 @@ const WindowComponent = memo(
       >
         {getWindowContent(
           window.appName,
-          window.appName === "wallpaper" ? wallpaperProps :
-          window.appName === "activities" ? activitiesProps :
-          undefined
+          window.appName === "wallpaper"
+            ? wallpaperProps
+            : window.appName === "activities"
+              ? activitiesProps
+              : undefined,
         )}
       </div>
 
@@ -193,8 +193,7 @@ const WindowComponent = memo(
         </>
       )}
     </div>
-    );
-  },
+  ),
 );
 
 WindowComponent.displayName = "WindowComponent";
@@ -209,7 +208,6 @@ export function WindowManager({
   wallpaperProps,
   activitiesProps,
 }: WindowManagerProps) {
-  console.log('WindowManager render - activeWindow:', activeWindow, 'openWindows:', openWindows.map(w => `${w.appName}(${w.zIndex})`));
   const { handleMouseDown } = useWindowDrag(
     openWindows,
     onUpdateWindow,

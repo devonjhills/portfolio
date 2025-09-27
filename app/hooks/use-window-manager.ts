@@ -23,15 +23,8 @@ export function useWindowManager() {
 
       // If windows have been manually positioned, don't override unless forced (like grid snap button)
       if (hasManuallyPositioned && !forceRearrange) {
-        console.log("✅ Skipping rearrange - manually positioned");
         return windowsToArrange;
       }
-
-      console.log(
-        "🎯 Applying grid layout for",
-        windowsToArrange.length,
-        "windows",
-      );
       const gridPositions = calculateGridLayout(
         windowsToArrange.length,
         window.innerWidth,
@@ -51,8 +44,6 @@ export function useWindowManager() {
 
   const handleUpdateWindow = useCallback(
     (appName: string, updates: Partial<WindowState>) => {
-      console.log("🔄 handleUpdateWindow:", appName, JSON.stringify(updates));
-
       // If updating position, mark as manually positioned to prevent auto-rearrangement
       if (updates.x !== undefined || updates.y !== undefined) {
         setHasManuallyPositioned(true);
@@ -61,16 +52,6 @@ export function useWindowManager() {
         const newWindows = prev.map((w) => {
           if (w.appName === appName) {
             const updated = { ...w, ...updates };
-            console.log(
-              "📦 Window updated:",
-              appName,
-              "width from:",
-              w.width,
-              "to:",
-              updated.width,
-              "full update:",
-              JSON.stringify(updated),
-            );
             return updated;
           }
           return w;
@@ -82,10 +63,8 @@ export function useWindowManager() {
   );
 
   const handleActivateWindow = useCallback((appName: string) => {
-    console.log('handleActivateWindow called for:', appName);
     setOpenWindows((prev) => {
       const maxZIndex = Math.max(...prev.map((w) => w.zIndex || 1000));
-      console.log('Setting zIndex to:', maxZIndex + 1, 'for window:', appName);
       return prev.map((w) =>
         w.appName === appName
           ? { ...w, zIndex: maxZIndex + 1, isMinimized: false }
@@ -93,7 +72,6 @@ export function useWindowManager() {
       );
     });
     setActiveWindow(appName);
-    console.log('Active window set to:', appName);
   }, []);
 
   const handleDesktopClick = useCallback(() => {

@@ -8,6 +8,7 @@ import { BrowserWindow } from "@/app/components/os/applications/browser-window";
 import { ResumeWindow } from "@/app/components/os/applications/resume-window";
 import { WallpaperWindow } from "@/app/components/os/applications/wallpaper-window";
 import { ActivitiesWindow } from "@/app/components/os/applications/activities-window";
+import { WindowState } from "@/app/types/window";
 
 export const getWindowIcon = (appName: string) => {
   const iconPath = WINDOW_ICONS[appName] || WINDOW_ICONS.terminal;
@@ -35,7 +36,23 @@ export const getWindowIcon = (appName: string) => {
   );
 };
 
-export const getWindowContent = (appName: string, props?: any) => {
+type WindowProps =
+  | {
+      onWallpaperChange: (wallpaper: string) => void;
+      currentWallpaper: string;
+    }
+  | {
+      openWindows: WindowState[];
+      activeWindow: string | null;
+      onActivateWindow: (appName: string) => void;
+      onCloseWindow: (appName: string) => void;
+      onMinimizeWindow: (appName: string) => void;
+      onGridSnap: () => void;
+      onCloseAll: () => void;
+    }
+  | undefined;
+
+export const getWindowContent = (appName: string, props?: WindowProps) => {
   switch (appName) {
     case "terminal":
       return <TerminalWindow />;

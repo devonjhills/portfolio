@@ -14,9 +14,13 @@ interface WallpaperWindowProps {
   currentWallpaper: string;
 }
 
-export function WallpaperWindow({ onWallpaperChange, currentWallpaper }: WallpaperWindowProps) {
+export function WallpaperWindow({
+  onWallpaperChange,
+  currentWallpaper,
+}: WallpaperWindowProps) {
   const [wallpapers, setWallpapers] = useState<WallpaperInfo[]>([]);
-  const [selectedWallpaper, setSelectedWallpaper] = useState<string>(currentWallpaper);
+  const [selectedWallpaper, setSelectedWallpaper] =
+    useState<string>(currentWallpaper);
 
   useEffect(() => {
     // Get wallpapers from the public/wallpapers folder
@@ -30,7 +34,9 @@ export function WallpaperWindow({ onWallpaperChange, currentWallpaper }: Wallpap
       const existingWallpapers: WallpaperInfo[] = [];
       for (const wallpaper of wallpaperList) {
         try {
-          const response = await fetch(`/wallpapers/${wallpaper.filename}`, { method: "HEAD" });
+          const response = await fetch(`/wallpapers/${wallpaper.filename}`, {
+            method: "HEAD",
+          });
           if (response.ok) {
             existingWallpapers.push(wallpaper);
           }
@@ -58,8 +64,12 @@ export function WallpaperWindow({ onWallpaperChange, currentWallpaper }: Wallpap
     <div className="h-full bg-gray-900 flex flex-col">
       {/* Header */}
       <div className="bg-gray-800 border-b border-gray-700 p-4">
-        <h2 className="text-lg font-semibold text-white">Change Desktop Background</h2>
-        <p className="text-sm text-gray-300 mt-1">Select a wallpaper from the available options</p>
+        <h2 className="text-lg font-semibold text-white">
+          Change Desktop Background
+        </h2>
+        <p className="text-sm text-gray-300 mt-1">
+          Select a wallpaper from the available options
+        </p>
       </div>
 
       {/* Content */}
@@ -107,7 +117,9 @@ export function WallpaperWindow({ onWallpaperChange, currentWallpaper }: Wallpap
 
                 {/* Info */}
                 <div className="p-3 bg-gray-800">
-                  <h3 className="font-medium text-white text-sm">{wallpaper.displayName}</h3>
+                  <h3 className="font-medium text-white text-sm">
+                    {wallpaper.displayName}
+                  </h3>
                 </div>
               </div>
             );
@@ -118,7 +130,8 @@ export function WallpaperWindow({ onWallpaperChange, currentWallpaper }: Wallpap
       {/* Footer */}
       <div className="bg-gray-800 border-t border-gray-700 p-4 flex justify-between items-center">
         <div className="text-sm text-gray-300">
-          {wallpapers.length} wallpaper{wallpapers.length !== 1 ? 's' : ''} available
+          {wallpapers.length} wallpaper{wallpapers.length !== 1 ? "s" : ""}{" "}
+          available
         </div>
 
         <div className="flex justify-end">

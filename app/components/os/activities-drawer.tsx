@@ -1,6 +1,12 @@
 "use client";
 
-import { LayoutPanelLeft, X, Minimize2, XCircle, ChevronLeft } from "lucide-react";
+import {
+  LayoutPanelLeft,
+  X,
+  Minimize2,
+  XCircle,
+  ChevronLeft,
+} from "lucide-react";
 import { getWindowIcon, getWindowTitle } from "@/app/utils/window-content";
 import { useEffect, useState } from "react";
 
@@ -87,14 +93,18 @@ export function ActivitiesDrawer({
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
-          <h2 className="text-lg font-semibold text-white flex-1 text-center pr-10">Activities</h2>
+          <h2 className="text-lg font-semibold text-white flex-1 text-center pr-10">
+            Activities
+          </h2>
         </div>
 
         {/* Content */}
         <div className="flex-1 overflow-auto p-4 space-y-4">
           {/* Quick Actions */}
           <div>
-            <h3 className="text-sm font-medium text-gray-300 mb-3">Quick Actions</h3>
+            <h3 className="text-sm font-medium text-gray-300 mb-3">
+              Quick Actions
+            </h3>
             <div className="flex gap-2">
               <button
                 onClick={() => {
@@ -130,7 +140,9 @@ export function ActivitiesDrawer({
             {openWindows.length === 0 ? (
               <div className="text-center py-8 text-gray-500">
                 <div className="text-sm">No open windows</div>
-                <div className="text-xs mt-1 opacity-75">Use the dock to launch apps</div>
+                <div className="text-xs mt-1 opacity-75">
+                  Use the dock to launch apps
+                </div>
               </div>
             ) : (
               <div className="space-y-2">
@@ -148,7 +160,6 @@ export function ActivitiesDrawer({
                       onClick={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
-                        console.log('Activating window:', window.appName);
                         onActivateWindow(window.appName);
                         onClose();
                       }}
@@ -160,9 +171,11 @@ export function ActivitiesDrawer({
 
                       {/* App Name */}
                       <div className="flex-1 min-w-0">
-                        <div className={`text-sm font-medium truncate ${
-                          isActive ? "text-green-400" : "text-white"
-                        }`}>
+                        <div
+                          className={`text-sm font-medium truncate ${
+                            isActive ? "text-green-400" : "text-white"
+                          }`}
+                        >
                           {getWindowTitle(window.appName)}
                         </div>
                       </div>

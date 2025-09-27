@@ -29,12 +29,9 @@ export function SideDock({
     { app: "wallpaper", iconPath: "lucide:Image", label: "Wallpaper Settings" },
   ];
 
-  // Get default app names for filtering
-  const defaultAppNames = defaultApps.map(app => app.app);
-
   // Get non-default apps that are currently open
-  const openNonDefaultApps = nonDefaultApps.filter(app =>
-    openWindows.includes(app.app)
+  const openNonDefaultApps = nonDefaultApps.filter((app) =>
+    openWindows.includes(app.app),
   );
 
   // Helper function to render app icon
