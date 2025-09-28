@@ -82,6 +82,7 @@ export function UbuntuDesktop() {
               backgroundImage: `url(${wallpaperUrl})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
             }
           : {}
       }
