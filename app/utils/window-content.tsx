@@ -41,7 +41,7 @@ export const getWindowContent = (appName: string, props?: BaseProps) => {
   switch (appName) {
     case "terminal":
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return <TerminalWindow {...(props as any || {})} />;
+      return <TerminalWindow {...((props as any) || {})} />;
     case "files":
       return <ProjectsWindow />;
     case "editor":
@@ -52,10 +52,30 @@ export const getWindowContent = (appName: string, props?: BaseProps) => {
       return <ResumeWindow />;
     case "wallpaper":
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return props ? <WallpaperWindow {...(props as any)} /> : <WallpaperWindow onWallpaperChange={() => {}} currentWallpaper="" onCloseWindow={() => {}} />;
+      return props ? (
+        <WallpaperWindow {...(props as any)} />
+      ) : (
+        <WallpaperWindow
+          onWallpaperChange={() => {}}
+          currentWallpaper=""
+          onCloseWindow={() => {}}
+        />
+      );
     case "activities":
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return props ? <ActivitiesWindow {...(props as any)} /> : <ActivitiesWindow openWindows={[]} activeWindow={null} onActivateWindow={() => {}} onCloseWindow={() => {}} onMinimizeWindow={() => {}} onGridSnap={() => {}} onCloseAll={() => {}} />;
+      return props ? (
+        <ActivitiesWindow {...(props as any)} />
+      ) : (
+        <ActivitiesWindow
+          openWindows={[]}
+          activeWindow={null}
+          onActivateWindow={() => {}}
+          onCloseWindow={() => {}}
+          onMinimizeWindow={() => {}}
+          onGridSnap={() => {}}
+          onCloseAll={() => {}}
+        />
+      );
     default:
       return <div className="p-4">Unknown application</div>;
   }
