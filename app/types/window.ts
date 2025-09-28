@@ -22,6 +22,7 @@ export interface WindowManagerProps {
   wallpaperProps?: {
     onWallpaperChange: (wallpaper: string) => void;
     currentWallpaper: string;
+    onCloseWindow: (appName: string) => void;
   };
   activitiesProps?: {
     openWindows: WindowState[];
@@ -31,5 +32,8 @@ export interface WindowManagerProps {
     onMinimizeWindow: (appName: string) => void;
     onGridSnap: () => void;
     onCloseAll: () => void;
+  };
+  terminalProps?: {
+    onLaunchApp: (appName: string) => void;
   };
 }

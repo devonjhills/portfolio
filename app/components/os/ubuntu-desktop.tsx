@@ -38,7 +38,7 @@ export function UbuntuDesktop() {
   useEffect(() => {
     // Load saved wallpaper from localStorage or use default
     const savedWallpaper = localStorage.getItem("desktop-wallpaper");
-    const wallpaper = savedWallpaper || "/wallpapers/wallpaper.jpg";
+    const wallpaper = savedWallpaper || "/wallpapers/default.jpg";
     setWallpaperUrl(wallpaper);
     setIsWallpaperLoaded(true);
   }, []);
@@ -109,6 +109,10 @@ export function UbuntuDesktop() {
           wallpaperProps={{
             onWallpaperChange: handleWallpaperChange,
             currentWallpaper: wallpaperUrl,
+            onCloseWindow: handleCloseWindow,
+          }}
+          terminalProps={{
+            onLaunchApp: handleLaunchApp,
           }}
         />
       </div>

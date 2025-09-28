@@ -37,6 +37,9 @@ interface WindowComponentProps {
     onGridSnap: () => void;
     onCloseAll: () => void;
   };
+  terminalProps?: {
+    onLaunchApp: (appName: string) => void;
+  };
 }
 
 // Memoized window component to prevent unnecessary re-renders
@@ -51,6 +54,7 @@ const WindowComponent = memo(
     handleMouseDown,
     wallpaperProps,
     activitiesProps,
+    terminalProps,
   }: WindowComponentProps) => (
     <div
       className={`ubuntu-window absolute bg-gray-900 border rounded-lg shadow-2xl pointer-events-auto transition-opacity duration-200 ${
@@ -153,7 +157,9 @@ const WindowComponent = memo(
             ? wallpaperProps
             : window.appName === "activities"
               ? activitiesProps
-              : undefined,
+              : window.appName === "terminal"
+                ? terminalProps
+                : undefined,
         )}
       </div>
 
@@ -207,6 +213,7 @@ export function WindowManager({
   onMaximizeWindow,
   wallpaperProps,
   activitiesProps,
+  terminalProps,
 }: WindowManagerProps) {
   const { handleMouseDown } = useWindowDrag(
     openWindows,
@@ -228,6 +235,7 @@ export function WindowManager({
           handleMouseDown={handleMouseDown}
           wallpaperProps={wallpaperProps}
           activitiesProps={activitiesProps}
+          terminalProps={terminalProps}
         />
       ))}
     </div>

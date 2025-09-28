@@ -8,7 +8,6 @@ import { BrowserWindow } from "@/app/components/os/applications/browser-window";
 import { ResumeWindow } from "@/app/components/os/applications/resume-window";
 import { WallpaperWindow } from "@/app/components/os/applications/wallpaper-window";
 import { ActivitiesWindow } from "@/app/components/os/applications/activities-window";
-import { WindowState } from "@/app/types/window";
 
 export const getWindowIcon = (appName: string) => {
   const iconPath = WINDOW_ICONS[appName] || WINDOW_ICONS.terminal;
@@ -36,26 +35,13 @@ export const getWindowIcon = (appName: string) => {
   );
 };
 
-type WindowProps =
-  | {
-      onWallpaperChange: (wallpaper: string) => void;
-      currentWallpaper: string;
-    }
-  | {
-      openWindows: WindowState[];
-      activeWindow: string | null;
-      onActivateWindow: (appName: string) => void;
-      onCloseWindow: (appName: string) => void;
-      onMinimizeWindow: (appName: string) => void;
-      onGridSnap: () => void;
-      onCloseAll: () => void;
-    }
-  | undefined;
+type BaseProps = Record<string, unknown>;
 
-export const getWindowContent = (appName: string, props?: WindowProps) => {
+export const getWindowContent = (appName: string, props?: BaseProps) => {
   switch (appName) {
     case "terminal":
-      return <TerminalWindow />;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <TerminalWindow {...(props as any || {})} />;
     case "files":
       return <ProjectsWindow />;
     case "editor":
@@ -65,9 +51,11 @@ export const getWindowContent = (appName: string, props?: WindowProps) => {
     case "resume":
       return <ResumeWindow />;
     case "wallpaper":
-      return <WallpaperWindow {...props} />;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return props ? <WallpaperWindow {...(props as any)} /> : <WallpaperWindow onWallpaperChange={() => {}} currentWallpaper="" onCloseWindow={() => {}} />;
     case "activities":
-      return <ActivitiesWindow {...props} />;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return props ? <ActivitiesWindow {...(props as any)} /> : <ActivitiesWindow openWindows={[]} activeWindow={null} onActivateWindow={() => {}} onCloseWindow={() => {}} onMinimizeWindow={() => {}} onGridSnap={() => {}} onCloseAll={() => {}} />;
     default:
       return <div className="p-4">Unknown application</div>;
   }

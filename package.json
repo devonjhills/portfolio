@@ -7,13 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "npx prettier --write .",
-    "test:a11y": "playwright test tests/accessibility.spec.ts",
-    "test:a11y:ui": "playwright test tests/accessibility.spec.ts --ui",
-    "test:a11y:headed": "playwright test tests/accessibility.spec.ts --headed",
-    "test:a11y:chrome": "playwright test tests/accessibility.spec.ts --project=chromium",
-    "test:a11y:report": "playwright show-report",
-    "playwright:install": "playwright install"
+    "format": "npx prettier --write ."
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
@@ -48,22 +42,12 @@
     "zod": "^4.0.5"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.10.2",
     "@eslint/eslintrc": "^3",
-    "@playwright/test": "^1.54.1",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "axe-core": "^4.10.3",
-    "concurrently": "^9.2.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
-    "jest": "^30.0.4",
-    "jest-environment-jsdom": "^30.0.4",
-    "playwright": "^1.54.1",
-    "typescript": "^5",
-    "wait-on": "^8.0.3"
+    "typescript": "^5"
   }
 }

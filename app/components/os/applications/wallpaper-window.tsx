@@ -12,11 +12,13 @@ interface WallpaperInfo {
 interface WallpaperWindowProps {
   onWallpaperChange: (wallpaper: string) => void;
   currentWallpaper: string;
+  onCloseWindow: (appName: string) => void;
 }
 
 export function WallpaperWindow({
   onWallpaperChange,
   currentWallpaper,
+  onCloseWindow,
 }: WallpaperWindowProps) {
   const [wallpapers, setWallpapers] = useState<WallpaperInfo[]>([]);
   const [selectedWallpaper, setSelectedWallpaper] =
@@ -25,20 +27,41 @@ export function WallpaperWindow({
   useEffect(() => {
     // Get wallpapers from the public/wallpapers folder
     const loadWallpapers = async () => {
-      const wallpaperList: WallpaperInfo[] = [
-        { filename: "wallpaper.jpg", displayName: "Default Ubuntu" },
-        { filename: "matrix.jpg", displayName: "Matrix Code" },
+      // List of known wallpaper files (could be dynamically loaded from API)
+      const wallpaperFilenames = [
+        "default.jpg",
+        "matrix.jpg",
+        "planet_atom.jpg",
       ];
 
-      // Filter out wallpapers that don't exist
+      // Helper function to format filename to display name
+      const formatDisplayName = (filename: string): string => {
+        // Remove file extension
+        const nameWithoutExt = filename.replace(/\.[^/.]+$/, "");
+
+        // Replace underscores with spaces and capitalize each word
+        return nameWithoutExt
+          .replace(/_/g, " ")
+          .split(" ")
+          .map(
+            (word) =>
+              word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
+          )
+          .join(" ");
+      };
+
+      // Check which wallpapers exist and create display names
       const existingWallpapers: WallpaperInfo[] = [];
-      for (const wallpaper of wallpaperList) {
+      for (const filename of wallpaperFilenames) {
         try {
-          const response = await fetch(`/wallpapers/${wallpaper.filename}`, {
+          const response = await fetch(`/wallpapers/${filename}`, {
             method: "HEAD",
           });
           if (response.ok) {
-            existingWallpapers.push(wallpaper);
+            existingWallpapers.push({
+              filename,
+              displayName: formatDisplayName(filename),
+            });
           }
         } catch {
           // Skip wallpapers that don't exist
@@ -58,6 +81,7 @@ export function WallpaperWindow({
 
   const handleApply = () => {
     onWallpaperChange(selectedWallpaper);
+    onCloseWindow("wallpaper");
   };
 
   return (
@@ -136,11 +160,11 @@ export function WallpaperWindow({
 
         <div className="flex justify-end">
           <button
-            className="px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={handleApply}
             disabled={!selectedWallpaper}
           >
-            Apply
+            Apply and Close
           </button>
         </div>
       </div>

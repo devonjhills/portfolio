@@ -3,7 +3,13 @@
 import { useState, memo } from "react";
 import Image from "next/image";
 
-export const TerminalWindow = memo(function TerminalWindow() {
+interface TerminalWindowProps {
+  onLaunchApp?: (appName: string) => void;
+}
+
+export const TerminalWindow = memo(function TerminalWindow({
+  onLaunchApp,
+}: TerminalWindowProps = {}) {
   const [terminalTab, setTerminalTab] = useState("hero");
 
   return (
@@ -127,37 +133,63 @@ export const TerminalWindow = memo(function TerminalWindow() {
                 <span className="text-gray-400">:</span>
                 <span className="text-blue-400 font-semibold">~</span>
                 <span className="text-gray-400">$</span>
-                <span className="text-amber-300 font-semibold">
-                  cat README.md
-                </span>
+                <span className="text-amber-300 font-semibold">ls apps/</span>
               </div>
-              <div className="ml-4 p-4 bg-slate-800/50 rounded-lg border-l-4 border-primary">
-                <div className="text-lg font-bold text-primary mb-3">
-                  Building scalable web applications that millions depend on.
-                </div>
-                <div className="text-gray-300 leading-relaxed space-y-2 text-sm">
-                  <p>
-                    Full-stack engineer with{" "}
-                    <span className="text-primary font-semibold">7+ years</span>{" "}
-                    crafting mission-critical software. From healthcare
-                    platforms serving{" "}
-                    <span className="text-green-400">10M+ users</span> to
-                    defense systems requiring
-                    <span className="text-blue-400">
-                      {" "}
-                      bulletproof reliability
-                    </span>
-                    , I deliver production-grade solutions with modern
-                    <span className="text-purple-400">
-                      {" "}
-                      React, TypeScript,
-                    </span>{" "}
-                    and{" "}
-                    <span className="text-yellow-400">cloud architecture</span>.
-                  </p>
-                </div>
+              <div className="ml-4 space-y-2">
+                <button
+                  onClick={() => onLaunchApp?.("files")}
+                  className="flex items-center space-x-3 w-full text-left p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 border border-slate-600 hover:border-primary/50"
+                >
+                  <span className="text-xl">💼</span>
+                  <div>
+                    <div className="text-primary font-semibold">Projects</div>
+                    <div className="text-gray-400 text-xs">
+                      View my work and repositories
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => onLaunchApp?.("editor")}
+                  className="flex items-center space-x-3 w-full text-left p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 border border-slate-600 hover:border-primary/50"
+                >
+                  <span className="text-xl">💻</span>
+                  <div>
+                    <div className="text-primary font-semibold">Experience</div>
+                    <div className="text-gray-400 text-xs">
+                      Browse work history and skills
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => onLaunchApp?.("browser")}
+                  className="flex items-center space-x-3 w-full text-left p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 border border-slate-600 hover:border-primary/50"
+                >
+                  <span className="text-xl">📧</span>
+                  <div>
+                    <div className="text-primary font-semibold">Contact</div>
+                    <div className="text-gray-400 text-xs">
+                      Get in touch and social links
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => onLaunchApp?.("resume")}
+                  className="flex items-center space-x-3 w-full text-left p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 border border-slate-600 hover:border-primary/50"
+                >
+                  <span className="text-xl">📄</span>
+                  <div>
+                    <div className="text-primary font-semibold">Resume</div>
+                    <div className="text-gray-400 text-xs">
+                      Download PDF resume
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
+
             <div className="flex items-center space-x-1 mt-6 text-sm">
               <span className="text-primary font-semibold">
                 devon@portfolio
@@ -189,13 +221,21 @@ export const TerminalWindow = memo(function TerminalWindow() {
                 ],
               },
               {
-                cmd: "ls -la skills/",
-                title: "Core Skills",
+                cmd: "tree skills/ -L 2",
+                title: "Technical Stack",
                 lines: [
-                  "📁 frontend/ React, TypeScript",
-                  "📁 backend/ Ruby on Rails, Node.js",
-                  "📁 testing/ Playwright, RTL",
-                  "📁 devops/ Jenkins, CI/CD, AWS",
+                  "├── 🎨 frontend/",
+                  "│   ├── React 19, TypeScript, Next.js",
+                  "│   └── Tailwind CSS, HTML5/CSS3",
+                  "├── ⚙️  backend/",
+                  "│   ├── Ruby on Rails, Node.js",
+                  "│   └── PostgreSQL, MongoDB",
+                  "├── 🧪 testing/",
+                  "│   ├── Playwright, RTL, Jest",
+                  "│   └── CI/CD with Jenkins",
+                  "└── ☁️  devops/",
+                  "    ├── AWS, Docker, Kubernetes",
+                  "    └── Infrastructure as Code",
                 ],
               },
               {
@@ -236,6 +276,40 @@ export const TerminalWindow = memo(function TerminalWindow() {
                 </div>
               </div>
             ))}
+
+            {/* Navigation Command */}
+            <div className="mt-6">
+              <div className="flex items-center space-x-1 mb-2">
+                <span className="text-primary font-semibold">
+                  devon@portfolio
+                </span>
+                <span className="text-gray-400">:</span>
+                <span className="text-blue-400 font-semibold">~</span>
+                <span className="text-gray-400">$</span>
+                <span className="text-amber-300 font-semibold">
+                  find . -name &quot;*.portfolio&quot; -type f
+                </span>
+              </div>
+              <div className="ml-4 text-xs font-mono space-y-1">
+                <div className="text-blue-400">
+                  ./dock/files.portfolio → 💼 View my projects & repositories
+                </div>
+                <div className="text-blue-400">
+                  ./dock/editor.portfolio → 💻 Browse work experience & skills
+                </div>
+                <div className="text-blue-400">
+                  ./dock/browser.portfolio → 📧 Get in touch & social links
+                </div>
+                <div className="text-blue-400">
+                  ./dock/resume.portfolio → 📄 Download full resume PDF
+                </div>
+                <div className="text-gray-500 mt-2 italic">
+                  💡 Click the dock icons on the left to launch these
+                  applications
+                </div>
+              </div>
+            </div>
+
             <div className="flex items-center space-x-1 mt-4">
               <span className="text-primary font-semibold">
                 devon@portfolio
