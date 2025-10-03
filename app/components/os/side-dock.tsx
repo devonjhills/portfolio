@@ -59,11 +59,8 @@ export function SideDock({
 
   return (
     <div className="fixed left-0 top-0 h-full w-16 z-30 flex flex-col items-center py-4">
-      {/* Enhanced dock background with gradient and blur */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-800/90 to-slate-900/95 backdrop-blur-lg border-r border-ubuntu-mint/20 shadow-2xl"></div>
-
-      {/* Subtle inner glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-ubuntu-mint/5 to-transparent"></div>
+      {/* Darker silver-grey OS dock background */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#16161a] to-[#1a1a1d] border-r border-gray-900/80"></div>
 
       {/* Apps Container */}
       <div className="relative flex flex-col gap-3 mt-12 flex-1">
@@ -86,16 +83,16 @@ export function SideDock({
                     }
                   }}
                   className={`w-12 h-12 rounded-lg transition-all duration-200 flex items-center justify-center relative ${
-                    isOpen ? "bg-white/15" : "hover:bg-white/10 hover:scale-105"
+                    isOpen ? "bg-white/15 shadow-lg" : "hover:bg-white/10"
                   }`}
                 >
                   {renderAppIcon(iconPath, label)}
                 </button>
               </Tooltip>
 
-              {/* Simple indicator */}
+              {/* Active indicator */}
               {isOpen && (
-                <div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-1 h-1 bg-ubuntu-mint rounded-full"></div>
+                <div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-1 h-6 bg-ubuntu-mint rounded-full"></div>
               )}
             </div>
           );
@@ -125,16 +122,16 @@ export function SideDock({
                     }
                   }}
                   className={`w-12 h-12 rounded-lg transition-all duration-200 flex items-center justify-center relative ${
-                    isOpen ? "bg-white/15" : "hover:bg-white/10 hover:scale-105"
+                    isOpen ? "bg-white/15 shadow-lg" : "hover:bg-white/10"
                   }`}
                 >
                   {renderAppIcon(iconPath, label)}
                 </button>
               </Tooltip>
 
-              {/* Simple indicator */}
+              {/* Active indicator */}
               {isOpen && (
-                <div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-1 h-1 bg-ubuntu-mint rounded-full"></div>
+                <div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-1 h-6 bg-ubuntu-mint rounded-full"></div>
               )}
             </div>
           );
@@ -146,9 +143,9 @@ export function SideDock({
         <Tooltip content="Activities Overview" position="right" delay={0}>
           <button
             onClick={onActivitiesOpen}
-            className="w-12 h-12 rounded-lg transition-all duration-200 flex items-center justify-center hover:bg-white/10 hover:scale-105"
+            className="w-12 h-12 rounded-lg transition-all duration-200 flex items-center justify-center hover:bg-white/10 group"
           >
-            <Grip className="w-6 h-6 text-gray-200 hover:text-ubuntu-mint transition-colors" />
+            <Grip className="w-6 h-6 text-gray-200 group-hover:text-ubuntu-mint transition-colors" />
           </button>
         </Tooltip>
       </div>

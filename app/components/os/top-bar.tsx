@@ -38,8 +38,8 @@ export function TopBar({ onActivitiesOpen }: TopBarProps) {
 
   return (
     <div className="ubuntu-panel fixed top-0 left-0 right-0 h-8 z-50 text-sm flex items-center px-4">
-      {/* Solid dark background */}
-      <div className="absolute inset-0 bg-gray-950"></div>
+      {/* Darker silver-grey OS background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1d] to-[#16161a] border-b border-gray-900/80"></div>
 
       {/* Left Section - Logo and Activities */}
       <div className="relative flex items-center space-x-4">
@@ -52,7 +52,7 @@ export function TopBar({ onActivitiesOpen }: TopBarProps) {
         />
         <span
           onClick={onActivitiesOpen}
-          className="text-sm font-medium text-gray-200 hover:text-ubuntu-mint transition-colors duration-200 cursor-pointer"
+          className="text-sm font-medium text-gray-200 hover:bg-white/10 px-3 py-1 rounded transition-all duration-200 cursor-pointer hover:text-ubuntu-mint"
         >
           Activities
         </span>
@@ -69,15 +69,15 @@ export function TopBar({ onActivitiesOpen }: TopBarProps) {
       {/* Right Section - System tray */}
       <div className="relative flex items-center ml-auto">
         <div className="flex items-center space-x-1">
-          <div className="p-2 hover:bg-gradient-to-r hover:from-ubuntu-mint/15 hover:to-ubuntu-mint/5 rounded-lg transition-all duration-300 group">
-            <Wifi className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-300" />
-          </div>
-          <div className="p-2 hover:bg-gradient-to-r hover:from-ubuntu-mint/15 hover:to-ubuntu-mint/5 rounded-lg transition-all duration-300 group">
-            <Volume2 className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-300" />
-          </div>
-          <div className="p-2 hover:bg-gradient-to-r hover:from-ubuntu-mint/15 hover:to-ubuntu-mint/5 rounded-lg transition-all duration-300 group">
-            <BatteryFull className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-300" />
-          </div>
+          <button className="p-2 hover:bg-white/10 rounded transition-all duration-200 group">
+            <Wifi className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-200" />
+          </button>
+          <button className="p-2 hover:bg-white/10 rounded transition-all duration-200 group">
+            <Volume2 className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-200" />
+          </button>
+          <button className="p-2 hover:bg-white/10 rounded transition-all duration-200 group">
+            <BatteryFull className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-200" />
+          </button>
         </div>
       </div>
     </div>
