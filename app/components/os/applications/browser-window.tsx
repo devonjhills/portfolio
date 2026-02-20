@@ -13,20 +13,20 @@ import {
 
 export const BrowserWindow = memo(function BrowserWindow() {
   return (
-    <div className="h-full flex flex-col bg-gray-900 text-gray-100">
+    <div className="h-full flex flex-col bg-black text-gray-100">
       {/* Browser Header */}
-      <div className="bg-gray-800 border-b border-gray-700 px-4 py-2">
+      <div className="bg-neutral-900 border-b border-neutral-800 px-4 py-2">
         <div className="flex items-center space-x-2 text-sm text-gray-300">
           <div className="flex items-center space-x-1">
-            <button className="p-1 hover:bg-gray-700 rounded">
+            <button className="p-1 hover:bg-neutral-800 rounded">
               <ChevronLeft className="w-4 h-4 text-gray-300" />
             </button>
-            <button className="p-1 hover:bg-gray-700 rounded">
+            <button className="p-1 hover:bg-neutral-800 rounded">
               <ChevronRight className="w-4 h-4 text-gray-300" />
             </button>
           </div>
           <div className="flex-1 mx-4">
-            <div className="flex items-center px-3 py-1 bg-gray-700 border border-gray-600 rounded-lg">
+            <div className="flex items-center px-3 py-1 bg-neutral-800 border border-neutral-700 rounded-lg">
               <Globe className="w-4 h-4 text-primary mr-2" />
               <span className="text-gray-400">/home/devon/</span>
               <span className="text-primary font-medium">contact</span>
@@ -62,10 +62,10 @@ export const BrowserWindow = memo(function BrowserWindow() {
               href={contact.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-4 bg-gray-800 border border-gray-700 rounded-lg hover:border-primary/50 transition-all flex items-center justify-between"
+              className="group p-4 bg-neutral-900 border border-neutral-800 rounded-lg hover:border-primary/50 transition-all flex items-center justify-between"
             >
               <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center">
                   {contact.icon === "email" && (
                     <Mail className="w-5 h-5 text-primary" />
                   )}

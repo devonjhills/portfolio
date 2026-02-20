@@ -57,8 +57,8 @@ const WindowComponent = memo(
     terminalProps,
   }: WindowComponentProps) => (
     <div
-      className={`ubuntu-window absolute bg-gray-900 border rounded-lg shadow-2xl pointer-events-auto transition-opacity duration-200 ${
-        isActive ? "border-gray-500" : "border-gray-700"
+      className={`ubuntu-window absolute bg-black border rounded-lg shadow-2xl pointer-events-auto transition-opacity duration-200 ${
+        isActive ? "border-primary/50" : "border-neutral-800"
       }`}
       style={{
         left: window.x,
@@ -80,8 +80,8 @@ const WindowComponent = memo(
       <div
         className={`window-title-bar flex items-center justify-between h-12 rounded-t-lg px-4 select-none ${
           isActive
-            ? "bg-gradient-to-r from-gray-800 to-gray-900 text-white border-b border-gray-700"
-            : "bg-gradient-to-r from-gray-600 to-gray-700 text-gray-200 border-b border-gray-600"
+            ? "bg-gradient-to-r from-neutral-900 to-black text-white border-b border-neutral-800"
+            : "bg-gradient-to-r from-neutral-700 to-neutral-800 text-gray-200 border-b border-neutral-700"
         }`}
       >
         <div
@@ -102,7 +102,7 @@ const WindowComponent = memo(
         <div className="window-controls flex items-center space-x-2">
           <Tooltip content="Minimize" delay={0}>
             <button
-              className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-700"
+              className="w-6 h-6 flex items-center justify-center rounded hover:bg-neutral-800"
               onMouseDown={(e) => e.stopPropagation()}
               onClick={(e) => {
                 e.stopPropagation();
@@ -117,7 +117,7 @@ const WindowComponent = memo(
             delay={0}
           >
             <button
-              className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-700"
+              className="w-6 h-6 flex items-center justify-center rounded hover:bg-neutral-800"
               onMouseDown={(e) => e.stopPropagation()}
               onClick={(e) => {
                 e.stopPropagation();
@@ -148,7 +148,7 @@ const WindowComponent = memo(
 
       {/* Window Content */}
       <div
-        className="window-content overflow-auto rounded-b-lg bg-gray-900"
+        className="window-content overflow-auto rounded-b-lg bg-black"
         style={{ height: `calc(100% - 3rem)` }}
       >
         {getWindowContent(

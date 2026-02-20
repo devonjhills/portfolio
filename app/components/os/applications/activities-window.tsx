@@ -33,9 +33,9 @@ export function ActivitiesWindow({
   onCloseAll,
 }: ActivitiesWindowProps) {
   return (
-    <div className="h-full bg-gray-900 flex flex-col">
+    <div className="h-full bg-black flex flex-col">
       {/* Header */}
-      <div className="bg-gray-800 border-b border-gray-700 p-4">
+      <div className="bg-neutral-900 border-b border-neutral-800 p-4">
         <h2 className="text-lg font-semibold text-white">
           Activities Overview
         </h2>
@@ -54,15 +54,15 @@ export function ActivitiesWindow({
           <div className="grid grid-cols-2 gap-3">
             <button
               onClick={onGridSnap}
-              className="flex items-center justify-center gap-3 p-4 bg-gray-800 border border-gray-600 rounded-lg hover:bg-gray-700 hover:border-gray-500 transition-colors"
+              className="flex items-center justify-center gap-3 p-4 bg-neutral-900 border border-neutral-700 rounded-lg hover:bg-neutral-800 hover:border-neutral-600 transition-colors"
             >
-              <Grid3X3 className="w-5 h-5 text-green-400" />
+              <Grid3X3 className="w-5 h-5 text-primary" />
               <span className="text-white font-medium">Auto Grid</span>
             </button>
 
             <button
               onClick={onCloseAll}
-              className="flex items-center justify-center gap-3 p-4 bg-gray-800 border border-gray-600 rounded-lg hover:bg-gray-700 hover:border-red-500 transition-colors group"
+              className="flex items-center justify-center gap-3 p-4 bg-neutral-900 border border-neutral-700 rounded-lg hover:bg-neutral-800 hover:border-red-500 transition-colors group"
               disabled={openWindows.length === 0}
             >
               <XCircle className="w-5 h-5 text-red-400 group-hover:text-red-300" />
@@ -90,10 +90,10 @@ export function ActivitiesWindow({
                 return (
                   <div
                     key={window.appName}
-                    className={`flex items-center justify-between p-4 bg-gray-800 border rounded-lg transition-all ${
+                    className={`flex items-center justify-between p-4 bg-neutral-900 border rounded-lg transition-all ${
                       isActive
-                        ? "border-green-500 bg-green-900/20"
-                        : "border-gray-600 hover:border-gray-500 hover:bg-gray-700"
+                        ? "border-primary bg-primary/10"
+                        : "border-neutral-700 hover:border-neutral-600 hover:bg-neutral-800"
                     }`}
                   >
                     {/* Window Info */}
@@ -107,7 +107,7 @@ export function ActivitiesWindow({
                       <div className="flex-1 min-w-0">
                         <div
                           className={`font-medium truncate ${
-                            isActive ? "text-green-400" : "text-white"
+                            isActive ? "text-primary" : "text-white"
                           }`}
                         >
                           {getWindowTitle(window.appName)}
@@ -119,7 +119,7 @@ export function ActivitiesWindow({
                         </div>
                       </div>
                       {isActive && (
-                        <div className="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
                       )}
                     </div>
 
@@ -130,7 +130,7 @@ export function ActivitiesWindow({
                           e.stopPropagation();
                           onMinimizeWindow(window.appName);
                         }}
-                        className="p-2 text-gray-400 hover:text-white hover:bg-gray-600 rounded transition-colors"
+                        className="p-2 text-gray-400 hover:text-white hover:bg-neutral-700 rounded transition-colors"
                         title="Minimize"
                       >
                         <Minimize2 className="w-4 h-4" />

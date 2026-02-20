@@ -85,9 +85,9 @@ export function WallpaperWindow({
   };
 
   return (
-    <div className="h-full bg-gray-900 flex flex-col">
+    <div className="h-full bg-black flex flex-col">
       {/* Header */}
-      <div className="bg-gray-800 border-b border-gray-700 p-4">
+      <div className="bg-neutral-900 border-b border-neutral-800 p-4">
         <h2 className="text-lg font-semibold text-white">
           Change Desktop Background
         </h2>
@@ -109,13 +109,13 @@ export function WallpaperWindow({
                 key={wallpaper.filename}
                 className={`relative cursor-pointer rounded-lg border-2 overflow-hidden transition-all ${
                   isSelected
-                    ? "border-green-500 ring-2 ring-green-500/30"
-                    : "border-gray-600 hover:border-gray-500"
+                    ? "border-primary ring-2 ring-primary/30"
+                    : "border-neutral-700 hover:border-neutral-600"
                 }`}
                 onClick={() => handleWallpaperSelect(wallpaper.filename)}
               >
                 {/* Thumbnail */}
-                <div className="aspect-video relative bg-gray-800">
+                <div className="aspect-video relative bg-neutral-900">
                   <Image
                     src={wallpaperPath}
                     alt={wallpaper.displayName}
@@ -126,21 +126,21 @@ export function WallpaperWindow({
 
                   {/* Current indicator */}
                   {isCurrent && (
-                    <div className="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded">
+                    <div className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded">
                       Current
                     </div>
                   )}
 
                   {/* Selection indicator - just checkmark, no overlay */}
                   {isSelected && (
-                    <div className="absolute bottom-2 right-2 bg-green-600 rounded-full p-2">
+                    <div className="absolute bottom-2 right-2 bg-primary rounded-full p-2">
                       <Check className="w-4 h-4 text-white" />
                     </div>
                   )}
                 </div>
 
                 {/* Info */}
-                <div className="p-3 bg-gray-800">
+                <div className="p-3 bg-neutral-900">
                   <h3 className="font-medium text-white text-sm">
                     {wallpaper.displayName}
                   </h3>
@@ -152,7 +152,7 @@ export function WallpaperWindow({
       </div>
 
       {/* Footer */}
-      <div className="bg-gray-800 border-t border-gray-700 p-4 flex justify-between items-center">
+      <div className="bg-neutral-900 border-t border-neutral-800 p-4 flex justify-between items-center">
         <div className="text-sm text-gray-300">
           {wallpapers.length} wallpaper{wallpapers.length !== 1 ? "s" : ""}{" "}
           available
@@ -160,7 +160,7 @@ export function WallpaperWindow({
 
         <div className="flex justify-end">
           <button
-            className="px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 py-2 text-sm font-medium text-white bg-primary border border-transparent rounded-md hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={handleApply}
             disabled={!selectedWallpaper}
           >

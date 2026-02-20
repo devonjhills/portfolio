@@ -81,7 +81,7 @@ export function Tooltip({
         typeof document !== "undefined" &&
         createPortal(
           <div
-            className="fixed bg-slate-800 text-white text-sm px-3 py-2 rounded-lg shadow-xl border border-slate-600 z-[10000] backdrop-blur-sm pointer-events-none"
+            className="fixed bg-neutral-800 text-white text-sm px-3 py-2 rounded-lg shadow-xl border border-neutral-600 z-[10000] backdrop-blur-sm pointer-events-none"
             style={{
               top: position.top,
               left: position.left,
@@ -97,29 +97,29 @@ export function Tooltip({
             {/* Tooltip arrow */}
             {tooltipPosition === "right" ? (
               <div
-                className="absolute left-0 top-1/2 transform -translate-x-full -translate-y-1/2 w-0 h-0"
+                className="absolute left-0 top-1/2 transform -tranneutral-x-full -tranneutral-y-1/2 w-0 h-0"
                 style={{
                   borderTop: "6px solid transparent",
                   borderBottom: "6px solid transparent",
-                  borderRight: "6px solid #1e293b",
+                  borderRight: "6px solid #171717",
                 }}
               />
             ) : tooltipPosition === "bottom" ? (
               <div
-                className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0"
+                className="absolute bottom-full left-1/2 transform -tranneutral-x-1/2 w-0 h-0"
                 style={{
                   borderLeft: "6px solid transparent",
                   borderRight: "6px solid transparent",
-                  borderBottom: "6px solid #1e293b",
+                  borderBottom: "6px solid #171717",
                 }}
               />
             ) : (
               <div
-                className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0"
+                className="absolute top-full left-1/2 transform -tranneutral-x-1/2 w-0 h-0"
                 style={{
                   borderLeft: "6px solid transparent",
                   borderRight: "6px solid transparent",
-                  borderTop: "6px solid #1e293b",
+                  borderTop: "6px solid #171717",
                 }}
               />
             )}

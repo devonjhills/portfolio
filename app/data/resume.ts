@@ -21,7 +21,7 @@ export const resumeData = {
       company: "Ad Hoc LLC",
       location: "Remote",
       date: "Nov 2021 - Apr 2025",
-      color: "border-blue-400",
+      color: "border-primary",
       points: [
         "Built and maintained React/TypeScript applications for HealthCare.gov, serving millions of users.",
         "Redesigned health plan comparison cards using choice architecture principles based on customer feedback and UX research.",
@@ -39,7 +39,7 @@ export const resumeData = {
       company: "Raytheon Technologies",
       location: "Tewksbury, MA",
       date: "Jul 2018 - Nov 2021",
-      color: "border-orange-400",
+      color: "border-neutral-500",
       points: [
         "Architected and maintained mission-critical software components using C++.",
         "Led technical documentation initiatives and mentored junior developers.",
@@ -53,12 +53,12 @@ export const resumeData = {
     school: "University of Massachusetts Lowell",
     location: "Lowell, MA",
     date: "Dec 2017",
-    color: "border-indigo-400",
+    color: "border-primary",
     points: ["Graduated cum laude", "Achieved Dean's List recognition"],
   },
   skills: {
     "Frontend Development": {
-      color: "border-blue-400",
+      color: "border-primary",
       items: [
         "React",
         "TypeScript",
@@ -71,7 +71,7 @@ export const resumeData = {
       ],
     },
     "Backend & Full-Stack": {
-      color: "border-green-400",
+      color: "border-primary",
       items: [
         "Ruby on Rails",
         "Node.js",
@@ -83,7 +83,7 @@ export const resumeData = {
       ],
     },
     "Testing & Quality Assurance": {
-      color: "border-yellow-400",
+      color: "border-neutral-400",
       items: [
         "Playwright",
         "React Testing Library",
@@ -94,7 +94,7 @@ export const resumeData = {
       ],
     },
     "DevOps & Development Tools": {
-      color: "border-purple-400",
+      color: "border-neutral-600",
       items: [
         "Git",
         "Jenkins",
@@ -106,7 +106,7 @@ export const resumeData = {
       ],
     },
     "AI/ML & Data Integration": {
-      color: "border-cyan-400",
+      color: "border-accent",
       items: [
         "LLM Integration (OpenAI)",
         "Supabase",
@@ -116,7 +116,7 @@ export const resumeData = {
       ],
     },
     "Practices & Methodologies": {
-      color: "border-orange-400",
+      color: "border-neutral-500",
       items: [
         "Agile/SCRUM",
         "Test-Driven Development",

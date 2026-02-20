@@ -5,8 +5,8 @@ import { User, FileText, Download } from "lucide-react";
 
 export const ResumeWindow = memo(function ResumeWindow() {
   return (
-    <div className="h-full flex flex-col bg-slate-900">
-      <div className="flex items-center space-x-4 px-4 py-2 bg-slate-800 border-b border-slate-700">
+    <div className="h-full flex flex-col bg-black">
+      <div className="flex items-center space-x-4 px-4 py-2 bg-neutral-900 border-b border-neutral-800">
         <User className="w-5 h-5 text-primary" />
         <div className="text-sm font-medium text-white">
           Devon_Hills_Resume_2025_Newest.pdf
@@ -24,7 +24,7 @@ export const ResumeWindow = memo(function ResumeWindow() {
           <a
             href="/Devon_Hills_Resume_2025_Newest.pdf"
             download
-            className="inline-flex items-center space-x-2 px-4 py-2 bg-primary text-slate-900 rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm"
+            className="inline-flex items-center space-x-2 px-4 py-2 bg-primary text-black rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm"
           >
             <Download className="w-4 h-4" />
             <span>Download PDF</span>

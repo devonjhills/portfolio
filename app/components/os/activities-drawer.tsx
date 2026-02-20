@@ -57,9 +57,9 @@ export function ActivitiesDrawer({
       />
 
       {/* Drawer */}
-      <div className="fixed left-16 top-4 bottom-4 w-80 z-[9999] bg-[#16161a]/98 backdrop-blur-xl border border-gray-800/70 shadow-2xl rounded-xl">
+      <div className="fixed left-16 top-4 bottom-4 w-80 z-[9999] bg-[#16161a]/98 backdrop-blur-xl border border-neutral-900/70 shadow-2xl rounded-xl">
         {/* Header */}
-        <div className="flex items-center p-4 border-b border-gray-700/70">
+        <div className="flex items-center p-4 border-b border-neutral-800/70">
           <button
             onClick={onClose}
             className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg mr-2 transition-colors duration-200"
@@ -84,9 +84,9 @@ export function ActivitiesDrawer({
                   onGridSnap();
                   onClose();
                 }}
-                className="flex items-center gap-2 px-3 py-2 bg-gray-800/80 hover:bg-white/10 rounded-lg transition-all duration-200"
+                className="flex items-center gap-2 px-3 py-2 bg-neutral-900/80 hover:bg-white/10 rounded-lg transition-all duration-200"
               >
-                <LayoutPanelLeft className="w-4 h-4 text-ubuntu-mint" />
+                <LayoutPanelLeft className="w-4 h-4 text-primary" />
                 <span className="text-sm text-white">Snap to Grid</span>
               </button>
 
@@ -95,7 +95,7 @@ export function ActivitiesDrawer({
                   onCloseAll();
                   onClose();
                 }}
-                className="flex items-center gap-2 px-3 py-2 bg-gray-800/80 hover:bg-white/10 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                className="flex items-center gap-2 px-3 py-2 bg-neutral-900/80 hover:bg-white/10 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 disabled={openWindows.length === 0}
               >
                 <XCircle className="w-4 h-4 text-red-400" />
@@ -127,8 +127,8 @@ export function ActivitiesDrawer({
                       key={window.appName}
                       className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all duration-200 ${
                         isActive
-                          ? "bg-ubuntu-mint/20 border border-ubuntu-mint/50"
-                          : "bg-gray-800/50 hover:bg-white/10"
+                          ? "bg-primary/20 border border-primary/50"
+                          : "bg-neutral-900/50 hover:bg-white/10"
                       }`}
                       onClick={(e) => {
                         e.stopPropagation();
@@ -146,7 +146,7 @@ export function ActivitiesDrawer({
                       <div className="flex-1 min-w-0">
                         <div
                           className={`text-sm font-medium truncate ${
-                            isActive ? "text-ubuntu-mint" : "text-white"
+                            isActive ? "text-primary" : "text-white"
                           }`}
                         >
                           {getWindowTitle(window.appName)}

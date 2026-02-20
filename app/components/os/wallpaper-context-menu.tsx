@@ -37,7 +37,7 @@ export function DesktopContextMenu({
 
       {/* Main Context Menu */}
       <div
-        className="fixed z-[10000] bg-gray-800 border border-gray-600 rounded-md shadow-lg min-w-52"
+        className="fixed z-[10000] bg-neutral-900 border border-neutral-700 rounded-md shadow-lg min-w-52"
         style={{
           left: x,
           top: y,
@@ -48,7 +48,7 @@ export function DesktopContextMenu({
         <div className="py-1">
           {/* Grid Layout Option */}
           <button
-            className="w-full text-left px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 transition-colors flex items-center"
+            className="w-full text-left px-3 py-2 text-sm text-gray-200 hover:bg-neutral-800 transition-colors flex items-center"
             onClick={handleGridLayout}
           >
             <LayoutPanelLeft className="w-4 h-4 mr-3" />
@@ -56,11 +56,11 @@ export function DesktopContextMenu({
           </button>
 
           {/* Separator */}
-          <div className="h-px bg-gray-600 my-1" />
+          <div className="h-px bg-neutral-700 my-1" />
 
           {/* Change Wallpaper Option */}
           <button
-            className="w-full text-left px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 transition-colors flex items-center"
+            className="w-full text-left px-3 py-2 text-sm text-gray-200 hover:bg-neutral-800 transition-colors flex items-center"
             onClick={() => {
               onWallpaperWindow();
               onClose();
@@ -71,11 +71,11 @@ export function DesktopContextMenu({
           </button>
 
           {/* Separator */}
-          <div className="h-px bg-gray-600 my-1" />
+          <div className="h-px bg-neutral-700 my-1" />
 
           {/* Refresh Desktop Option */}
           <button
-            className="w-full text-left px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 transition-colors flex items-center"
+            className="w-full text-left px-3 py-2 text-sm text-gray-200 hover:bg-neutral-800 transition-colors flex items-center"
             onClick={onClose}
           >
             <RotateCcw className="w-4 h-4 mr-3" />

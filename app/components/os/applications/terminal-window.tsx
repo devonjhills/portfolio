@@ -2,6 +2,7 @@
 
 import { useState, memo } from "react";
 import Image from "next/image";
+import { useUptime } from "@/app/hooks/useUptime";
 
 interface TerminalWindowProps {
   onLaunchApp?: (appName: string) => void;
@@ -11,25 +12,26 @@ export const TerminalWindow = memo(function TerminalWindow({
   onLaunchApp,
 }: TerminalWindowProps = {}) {
   const [terminalTab, setTerminalTab] = useState("hero");
+  const uptime = useUptime();
 
   return (
-    <div className="bg-slate-900 text-gray-100 font-mono text-sm h-full flex flex-col">
+    <div className="bg-black text-gray-100 font-mono text-sm h-full flex flex-col">
       {/* Header and Tabs */}
-      <div className="bg-slate-800 px-4 py-2 text-gray-200 text-xs flex items-center border-b border-slate-700">
+      <div className="bg-neutral-900 px-4 py-2 text-gray-200 text-xs flex items-center border-b border-neutral-800">
         <div className="flex items-center space-x-2">
           <div className="w-2 h-2 bg-primary rounded-full"></div>
           <span className="text-primary font-semibold">Terminal</span>
           <span className="text-gray-400">devon@portfolio</span>
         </div>
       </div>
-      <div className="flex bg-slate-800 border-b border-slate-700">
+      <div className="flex bg-neutral-900 border-b border-neutral-800">
         {["hero", "profile"].map((tab) => (
           <div
             key={tab}
-            className={`px-4 py-2 text-sm border-r border-slate-600 cursor-pointer transition-colors ${
+            className={`px-4 py-2 text-sm border-r border-neutral-700 cursor-pointer transition-colors ${
               terminalTab === tab
-                ? "bg-slate-700 text-primary"
-                : "text-gray-400 hover:bg-slate-750"
+                ? "bg-neutral-800 text-primary"
+                : "text-gray-400 hover:bg-neutral-850"
             }`}
             onClick={() => setTerminalTab(tab)}
           >
@@ -47,7 +49,7 @@ export const TerminalWindow = memo(function TerminalWindow({
                 devon@portfolio
               </span>
               <span className="text-gray-400">:</span>
-              <span className="text-blue-400 font-semibold">~</span>
+              <span className="text-primary font-semibold">~</span>
               <span className="text-gray-400">$</span>
               <span className="text-amber-300 font-semibold">neofetch</span>
             </div>
@@ -67,7 +69,7 @@ export const TerminalWindow = memo(function TerminalWindow({
                   <div className="text-lg mb-1">
                     <span className="text-primary font-bold">devon</span>
                     <span className="text-gray-400">@</span>
-                    <span className="text-blue-400 font-bold">portfolio</span>
+                    <span className="text-primary font-bold">portfolio</span>
                   </div>
                   <div
                     className="w-fit border-t-2 border-dashed border-gray-500 mb-1"
@@ -78,7 +80,7 @@ export const TerminalWindow = memo(function TerminalWindow({
                       { label: "OS", value: "Portfolio OS 1.0" },
                       { label: "Host", value: "Livefront" },
                       { label: "Kernel", value: "React 19.0.0" },
-                      { label: "Uptime", value: "7 years, 2 months" },
+                      { label: "Uptime", value: uptime || "calculating...", isUptime: true },
                       { label: "Shell", value: "TypeScript" },
                       { label: "WM", value: "Next.js" },
                       { label: "Theme", value: "Follow the white rabbit" },
@@ -93,7 +95,9 @@ export const TerminalWindow = memo(function TerminalWindow({
                           {item.label}
                         </span>
                         <span className="text-gray-400 mr-2">:</span>
-                        <span className="text-gray-200">{item.value}</span>
+                        <span className={item.isUptime ? "text-green-400 font-mono tabular-nums" : "text-gray-200"}>
+                          {item.value}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -105,9 +109,9 @@ export const TerminalWindow = memo(function TerminalWindow({
                       <div className="w-4 h-2 bg-red-500"></div>
                       <div className="w-4 h-2 bg-green-400"></div>
                       <div className="w-4 h-2 bg-yellow-400"></div>
-                      <div className="w-4 h-2 bg-blue-400"></div>
-                      <div className="w-4 h-2 bg-purple-400"></div>
-                      <div className="w-4 h-2 bg-cyan-400"></div>
+                      <div className="w-4 h-2 bg-primary"></div>
+                      <div className="w-4 h-2 bg-neutral-600"></div>
+                      <div className="w-4 h-2 bg-primary"></div>
                       <div className="w-4 h-2 bg-gray-200"></div>
                     </div>
                     <div className="flex">
@@ -115,9 +119,9 @@ export const TerminalWindow = memo(function TerminalWindow({
                       <div className="w-4 h-2 bg-red-400"></div>
                       <div className="w-4 h-2 bg-ubuntu-mint"></div>
                       <div className="w-4 h-2 bg-yellow-300"></div>
-                      <div className="w-4 h-2 bg-blue-300"></div>
-                      <div className="w-4 h-2 bg-purple-300"></div>
-                      <div className="w-4 h-2 bg-cyan-300"></div>
+                      <div className="w-4 h-2 bg-primary/70"></div>
+                      <div className="w-4 h-2 bg-neutral-500"></div>
+                      <div className="w-4 h-2 bg-primary/70"></div>
                       <div className="w-4 h-2 bg-white"></div>
                     </div>
                   </div>
@@ -131,14 +135,14 @@ export const TerminalWindow = memo(function TerminalWindow({
                   devon@portfolio
                 </span>
                 <span className="text-gray-400">:</span>
-                <span className="text-blue-400 font-semibold">~</span>
+                <span className="text-primary font-semibold">~</span>
                 <span className="text-gray-400">$</span>
                 <span className="text-amber-300 font-semibold">ls apps/</span>
               </div>
               <div className="ml-4 space-y-2">
                 <button
                   onClick={() => onLaunchApp?.("files")}
-                  className="flex items-center space-x-3 w-full text-left p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 border border-slate-600 hover:border-primary/50"
+                  className="flex items-center space-x-3 w-full text-left p-3 bg-neutral-900/50 rounded-lg hover:bg-neutral-800/50 border border-neutral-700 hover:border-primary/50"
                 >
                   <span className="text-xl">💼</span>
                   <div>
@@ -151,7 +155,7 @@ export const TerminalWindow = memo(function TerminalWindow({
 
                 <button
                   onClick={() => onLaunchApp?.("editor")}
-                  className="flex items-center space-x-3 w-full text-left p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 border border-slate-600 hover:border-primary/50"
+                  className="flex items-center space-x-3 w-full text-left p-3 bg-neutral-900/50 rounded-lg hover:bg-neutral-800/50 border border-neutral-700 hover:border-primary/50"
                 >
                   <span className="text-xl">💻</span>
                   <div>
@@ -164,7 +168,7 @@ export const TerminalWindow = memo(function TerminalWindow({
 
                 <button
                   onClick={() => onLaunchApp?.("browser")}
-                  className="flex items-center space-x-3 w-full text-left p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 border border-slate-600 hover:border-primary/50"
+                  className="flex items-center space-x-3 w-full text-left p-3 bg-neutral-900/50 rounded-lg hover:bg-neutral-800/50 border border-neutral-700 hover:border-primary/50"
                 >
                   <span className="text-xl">📧</span>
                   <div>
@@ -177,7 +181,7 @@ export const TerminalWindow = memo(function TerminalWindow({
 
                 <button
                   onClick={() => onLaunchApp?.("resume")}
-                  className="flex items-center space-x-3 w-full text-left p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 border border-slate-600 hover:border-primary/50"
+                  className="flex items-center space-x-3 w-full text-left p-3 bg-neutral-900/50 rounded-lg hover:bg-neutral-800/50 border border-neutral-700 hover:border-primary/50"
                 >
                   <span className="text-xl">📄</span>
                   <div>
@@ -195,7 +199,7 @@ export const TerminalWindow = memo(function TerminalWindow({
                 devon@portfolio
               </span>
               <span className="text-gray-400">:</span>
-              <span className="text-blue-400 font-semibold">~</span>
+              <span className="text-primary font-semibold">~</span>
               <span className="text-gray-400">$</span>
               <span className="text-primary animate-pulse font-bold">█</span>
             </div>
@@ -253,13 +257,13 @@ export const TerminalWindow = memo(function TerminalWindow({
                     devon@portfolio
                   </span>
                   <span className="text-gray-400">:</span>
-                  <span className="text-blue-400 font-semibold">~</span>
+                  <span className="text-primary font-semibold">~</span>
                   <span className="text-gray-400">$</span>
                   <span className="text-amber-300 font-semibold">
                     {item.cmd}
                   </span>
                 </div>
-                <div className="ml-4 p-3 bg-slate-800/50 rounded-lg">
+                <div className="ml-4 p-3 bg-neutral-900/50 rounded-lg">
                   <div className="text-primary font-semibold">{item.title}</div>
                   {item.lines.map((line, i) => (
                     <div
@@ -268,7 +272,7 @@ export const TerminalWindow = memo(function TerminalWindow({
                       dangerouslySetInnerHTML={{
                         __html: line.replace(
                           /📁/g,
-                          '<span class="text-blue-400">📁</span>',
+                          '<span class="text-primary">📁</span>',
                         ),
                       }}
                     ></div>
@@ -284,23 +288,23 @@ export const TerminalWindow = memo(function TerminalWindow({
                   devon@portfolio
                 </span>
                 <span className="text-gray-400">:</span>
-                <span className="text-blue-400 font-semibold">~</span>
+                <span className="text-primary font-semibold">~</span>
                 <span className="text-gray-400">$</span>
                 <span className="text-amber-300 font-semibold">
                   find . -name &quot;*.portfolio&quot; -type f
                 </span>
               </div>
               <div className="ml-4 text-xs font-mono space-y-1">
-                <div className="text-blue-400">
+                <div className="text-primary">
                   ./dock/files.portfolio → 💼 View my projects & repositories
                 </div>
-                <div className="text-blue-400">
+                <div className="text-primary">
                   ./dock/editor.portfolio → 💻 Browse work experience & skills
                 </div>
-                <div className="text-blue-400">
+                <div className="text-primary">
                   ./dock/browser.portfolio → 📧 Get in touch & social links
                 </div>
-                <div className="text-blue-400">
+                <div className="text-primary">
                   ./dock/resume.portfolio → 📄 Download full resume PDF
                 </div>
                 <div className="text-gray-500 mt-2 italic">
@@ -315,7 +319,7 @@ export const TerminalWindow = memo(function TerminalWindow({
                 devon@portfolio
               </span>
               <span className="text-gray-400">:</span>
-              <span className="text-blue-400 font-semibold">~</span>
+              <span className="text-primary font-semibold">~</span>
               <span className="text-gray-400">$</span>
               <span className="text-primary animate-pulse font-bold">█</span>
             </div>
