@@ -6,12 +6,15 @@ import { WindowManager } from "./window-manager";
 import { SideDock } from "./side-dock";
 import { DesktopContextMenu } from "./wallpaper-context-menu";
 import { ActivitiesDrawer } from "./activities-drawer";
+import { KeyboardShortcutsHelp } from "./keyboard-shortcuts-help";
 import { useWindowManager } from "@/app/hooks/use-window-manager";
+import { useKeyboardShortcuts } from "@/app/hooks/use-keyboard-shortcuts";
 
 export function UbuntuDesktop() {
   const [wallpaperUrl, setWallpaperUrl] = useState<string>("");
   const [isWallpaperLoaded, setIsWallpaperLoaded] = useState(false);
   const [isActivitiesOpen, setIsActivitiesOpen] = useState(false);
+  const [isKeyboardShortcutsOpen, setIsKeyboardShortcutsOpen] = useState(false);
   const [contextMenu, setContextMenu] = useState<{
     x: number;
     y: number;
@@ -73,6 +76,23 @@ export function UbuntuDesktop() {
     setIsActivitiesOpen(false);
   };
 
+  const handleKeyboardShortcutsOpen = () => {
+    setIsKeyboardShortcutsOpen(true);
+  };
+
+  const handleKeyboardShortcutsClose = () => {
+    setIsKeyboardShortcutsOpen(false);
+  };
+
+  // Enable keyboard shortcuts
+  useKeyboardShortcuts({
+    onLaunchApp: handleLaunchApp,
+    onCloseWindow: handleCloseWindow,
+    onGridSnap: handleGridSnap,
+    activeWindow,
+    openWindows,
+  });
+
   return (
     <div
       className="ubuntu-desktop fixed inset-0 w-full h-full overflow-hidden bg-black"
@@ -99,7 +119,10 @@ export function UbuntuDesktop() {
           onActivitiesOpen={handleActivitiesOpen}
           openWindows={openWindows.map((w) => w.appName)}
         />
-        <TopBar onActivitiesOpen={handleActivitiesOpen} />
+        <TopBar
+          onActivitiesOpen={handleActivitiesOpen}
+          onKeyboardShortcutsOpen={handleKeyboardShortcutsOpen}
+        />
         <WindowManager
           openWindows={openWindows}
           activeWindow={activeWindow}
@@ -139,6 +162,11 @@ export function UbuntuDesktop() {
         }
         onGridSnap={handleGridSnap}
         onCloseAll={handleCloseAll}
+      />
+
+      <KeyboardShortcutsHelp
+        isOpen={isKeyboardShortcutsOpen}
+        onClose={handleKeyboardShortcutsClose}
       />
     </div>
   );

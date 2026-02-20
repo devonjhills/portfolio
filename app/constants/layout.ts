@@ -1,4 +1,5 @@
 export const SIDE_DOCK_WIDTH = 80;
+export const BOTTOM_DOCK_HEIGHT = 64;
 export const TOP_BAR_HEIGHT = 32;
 export const PADDING = 10;
 export const MIN_WINDOW_WIDTH = 400;

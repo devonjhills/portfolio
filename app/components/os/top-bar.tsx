@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Wifi, Volume2, BatteryFull } from "lucide-react";
+import { Wifi, Volume2, BatteryFull, Keyboard } from "lucide-react";
 
 interface TopBarProps {
   onActivitiesOpen: () => void;
+  onKeyboardShortcutsOpen?: () => void;
 }
 
-export function TopBar({ onActivitiesOpen }: TopBarProps) {
+export function TopBar({ onActivitiesOpen, onKeyboardShortcutsOpen }: TopBarProps) {
   const [currentTime, setCurrentTime] = useState("");
   const [currentDate, setCurrentDate] = useState("");
 
@@ -52,7 +53,7 @@ export function TopBar({ onActivitiesOpen }: TopBarProps) {
         />
         <span
           onClick={onActivitiesOpen}
-          className="text-sm font-medium text-gray-200 hover:bg-white/10 px-3 py-1 rounded transition-all duration-200 cursor-pointer hover:text-ubuntu-mint"
+          className="text-sm font-medium text-gray-200 hover:bg-white/10 px-3 py-1 rounded transition-all duration-200 cursor-pointer hover:text-primary"
         >
           Activities
         </span>
@@ -69,14 +70,24 @@ export function TopBar({ onActivitiesOpen }: TopBarProps) {
       {/* Right Section - System tray */}
       <div className="relative flex items-center ml-auto">
         <div className="flex items-center space-x-1">
+          {onKeyboardShortcutsOpen && (
+            <button
+              onClick={onKeyboardShortcutsOpen}
+              className="p-2 hover:bg-white/10 rounded transition-all duration-200 group"
+              aria-label="Keyboard shortcuts"
+              title="Keyboard shortcuts (Alt+1-5, Alt+G, etc.)"
+            >
+              <Keyboard className="w-4 h-4 text-gray-300 group-hover:text-primary transition-colors duration-200" />
+            </button>
+          )}
           <button className="p-2 hover:bg-white/10 rounded transition-all duration-200 group">
-            <Wifi className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-200" />
+            <Wifi className="w-4 h-4 text-gray-300 group-hover:text-primary transition-colors duration-200" />
           </button>
           <button className="p-2 hover:bg-white/10 rounded transition-all duration-200 group">
-            <Volume2 className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-200" />
+            <Volume2 className="w-4 h-4 text-gray-300 group-hover:text-primary transition-colors duration-200" />
           </button>
           <button className="p-2 hover:bg-white/10 rounded transition-all duration-200 group">
-            <BatteryFull className="w-4 h-4 text-gray-300 group-hover:text-ubuntu-mint transition-colors duration-200" />
+            <BatteryFull className="w-4 h-4 text-gray-300 group-hover:text-primary transition-colors duration-200" />
           </button>
         </div>
       </div>

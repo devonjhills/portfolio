@@ -3,6 +3,7 @@
 import React, { useState, useEffect, memo } from "react";
 import { FolderOpen, Star, GitFork, ExternalLink } from "lucide-react";
 import { useWindowResponsive } from "@/app/hooks/use-window-responsive";
+import { ProjectSkeleton } from "@/app/components/ui/skeleton";
 
 interface GitHubRepo {
   id: number;
@@ -98,8 +99,13 @@ export const ProjectsWindow = memo(function ProjectsWindow() {
       loading &&
         React.createElement(
           "div",
-          { className: "text-gray-400" },
-          "Loading repositories...",
+          {
+            className: "grid gap-4",
+            style: { gridTemplateColumns: getGridColumns(2, 1, 1, 1) },
+          },
+          Array.from({ length: 6 }).map((_, i) =>
+            React.createElement(ProjectSkeleton, { key: i }),
+          ),
         ),
       error &&
         React.createElement(

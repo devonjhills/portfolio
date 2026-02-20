@@ -7,6 +7,7 @@ import {
 } from "@/app/utils/window-layout";
 import {
   SIDE_DOCK_WIDTH,
+  BOTTOM_DOCK_HEIGHT,
   TOP_BAR_HEIGHT,
   PADDING,
 } from "@/app/constants/layout";
@@ -21,10 +22,26 @@ export function useWindowManager() {
     (windowsToArrange: WindowState[], forceRearrange = false) => {
       if (typeof window === "undefined") return windowsToArrange;
 
-      // If windows have been manually positioned, don't override unless forced (like grid snap button)
+      const isMobile = window.innerWidth < 768;
+
+      // Mobile: full-screen layout for all windows
+      if (isMobile) {
+        return windowsToArrange.map((win, index) => ({
+          ...win,
+          x: 0,
+          y: TOP_BAR_HEIGHT,
+          width: window.innerWidth,
+          height: window.innerHeight - TOP_BAR_HEIGHT - BOTTOM_DOCK_HEIGHT,
+          // Only show the most recently active window (highest zIndex)
+          isMinimized: index < windowsToArrange.length - 1,
+        }));
+      }
+
+      // Desktop: If windows have been manually positioned, don't override unless forced
       if (hasManuallyPositioned && !forceRearrange) {
         return windowsToArrange;
       }
+
       const gridPositions = calculateGridLayout(
         windowsToArrange.length,
         window.innerWidth,
@@ -80,24 +97,48 @@ export function useWindowManager() {
 
   const handleLaunchApp = useCallback(
     (appName: string) => {
+      if (typeof window === "undefined") return;
+
+      const isMobile = window.innerWidth < 768;
       const windowToActivate = appName;
+
       setOpenWindows((prev) => {
         const existingWindow = prev.find((w) => w.appName === appName);
         if (existingWindow) {
+          // On mobile, minimize all other windows when activating this one
+          if (isMobile) {
+            return prev.map((w) =>
+              w.appName === appName
+                ? { ...w, isMinimized: false }
+                : { ...w, isMinimized: true }
+            );
+          }
           return prev;
         }
 
         const newWindow: WindowState = {
           ...getWindowDefaultSize(appName),
           appName,
-          x: SIDE_DOCK_WIDTH + PADDING + prev.length * 30,
-          y: TOP_BAR_HEIGHT + PADDING + prev.length * 30,
+          x: isMobile ? 0 : SIDE_DOCK_WIDTH + PADDING + prev.length * 30,
+          y: isMobile ? TOP_BAR_HEIGHT : TOP_BAR_HEIGHT + PADDING + prev.length * 30,
+          width: isMobile ? window.innerWidth : getWindowDefaultSize(appName).width,
+          height: isMobile
+            ? window.innerHeight - TOP_BAR_HEIGHT - BOTTOM_DOCK_HEIGHT
+            : getWindowDefaultSize(appName).height,
           zIndex: Math.max(...prev.map((w) => w.zIndex || 1000), 999) + 1,
         };
-        const newWindows = [...prev, newWindow];
 
-        // Always auto-arrange new windows into grid layout
-        return rearrangeWindows(newWindows, true);
+        // On mobile, minimize all existing windows
+        let newWindows: WindowState[];
+        if (isMobile) {
+          newWindows = [...prev.map(w => ({ ...w, isMinimized: true })), newWindow];
+        } else {
+          newWindows = [...prev, newWindow];
+          // Desktop: Always auto-arrange new windows into grid layout
+          newWindows = rearrangeWindows(newWindows, true);
+        }
+
+        return newWindows;
       });
 
       handleActivateWindow(windowToActivate);
@@ -154,6 +195,8 @@ export function useWindowManager() {
     (appName: string) => {
       if (typeof window === "undefined") return;
 
+      const isMobile = window.innerWidth < 768;
+
       // Focus the window when maximizing
       handleActivateWindow(appName);
 
@@ -170,7 +213,7 @@ export function useWindowManager() {
               };
               return restored;
             } else {
-              // Maximize window with padding
+              // Maximize window with padding (account for mobile bottom dock)
               const maximized = {
                 ...w,
                 isMaximized: true,
@@ -180,10 +223,14 @@ export function useWindowManager() {
                   width: w.width,
                   height: w.height,
                 },
-                x: SIDE_DOCK_WIDTH + PADDING,
-                y: TOP_BAR_HEIGHT + PADDING,
-                width: window.innerWidth - SIDE_DOCK_WIDTH - PADDING * 2,
-                height: window.innerHeight - TOP_BAR_HEIGHT - PADDING * 2,
+                x: isMobile ? 0 : SIDE_DOCK_WIDTH + PADDING,
+                y: isMobile ? TOP_BAR_HEIGHT : TOP_BAR_HEIGHT + PADDING,
+                width: isMobile
+                  ? window.innerWidth
+                  : window.innerWidth - SIDE_DOCK_WIDTH - PADDING * 2,
+                height: isMobile
+                  ? window.innerHeight - TOP_BAR_HEIGHT - BOTTOM_DOCK_HEIGHT
+                  : window.innerHeight - TOP_BAR_HEIGHT - PADDING * 2,
               };
               // Mark as manually positioned to prevent auto-rearrangement
               setHasManuallyPositioned(true);
