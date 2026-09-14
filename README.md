@@ -1,261 +1,97 @@
-# Devon Hills - Portfolio
+# Devon Hills — Portfolio OS
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.11-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+An interactive, Ubuntu-inspired desktop built with React and TypeScript. Explore my projects, engineering experience, and résumé through a windowed interface with a custom window manager, application dock, and keyboard shortcuts.
 
-A sophisticated, modern portfolio website built with Next.js 15, showcasing my professional experience as a Software Engineer with expertise in React, TypeScript, and full-stack development.
+My background spans React/TypeScript applications for HealthCare.gov at Ad Hoc and LLM integration work at Livefront. This repo brings that frontend focus into a personal project: desktop-style interactions implemented in the browser.
 
-<img width="1472" height="999" alt="Screenshot 2026-09-14 at 3 35 51 PM" src="https://github.com/user-attachments/assets/faf8fe4e-e996-4fc0-a5ee-ea697df15bd1" />
+[Live portfolio](https://devonhills.dev) · [Résumé](public/Devon_Hills_Resume_2025_Newest.pdf) · [LinkedIn](https://linkedin.com/in/devonjhills) · [Email](mailto:devonjhills@gmail.com)
 
+<img width="1472" height="999" alt="Devon Hills portfolio: Ubuntu-inspired desktop with a dock and portfolio application windows" src="https://github.com/user-attachments/assets/faf8fe4e-e996-4fc0-a5ee-ea697df15bd1" />
 
-## 🚀 Live Site
+## Explore the desktop
 
-[![Website](https://img.shields.io/badge/Website-devonhills.dev-0078D4?style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://devonhills.dev)
+The desktop opens with a terminal-style introduction. Use its launch buttons or the dock to explore the portfolio:
 
-## ✨ Features
+| App | What you'll find |
+| --- | --- |
+| Terminal | A `neofetch`-inspired introduction, profile tab, and shortcuts to the other apps. |
+| Projects | Six recently updated public GitHub repositories, with descriptions, topics, languages, stars, and forks. |
+| Experience | Work history, skills, and education presented as an editor-style `resume.md` view. |
+| Contact | Email, LinkedIn, and GitHub links in a browser-style window. |
+| Résumé | A downloadable PDF. |
 
-### Modern Design & UX
+On desktop, windows automatically arrange into a grid and support dragging, resizing, minimizing, and maximizing. The Activities drawer lets you switch between windows, close them, or rearrange the grid. On mobile, apps use the available screen area above a bottom dock.
 
-- **Beautiful Animations** - Powered by Framer Motion with smooth transitions and micro-interactions
-- **Responsive Design** - Mobile-first approach optimized for all device sizes
-- **Dark/Light Mode** - Automatic theme switching with system preference detection
-- **Glassmorphism Effects** - Modern UI with backdrop blur and transparency
-- **Interactive Components** - Hover effects, 3D transformations, and scroll-triggered animations
+Right-click the desktop to change the wallpaper or arrange windows. Wallpaper selection persists in local storage, and the URL tracks which apps are open so you can share that selection. Keyboard shortcuts include `Alt + 1–5` to launch apps, `Alt + G` to arrange the grid, and `Alt + W` to close the active window.
 
-### Advanced UI Components
+## Engineering highlights
 
-- **Infinite Scrolling Project Cards** - Smooth horizontal scrolling with Aceternity UI
-- **Aceternity UI Timeline** - Professional experience showcase with detailed achievements
-- **Animated Backgrounds** - Shooting stars and twinkling stars effects
-- **Floating Dock** - Social media links with smooth animations
-- **shadcn/ui Components** - Consistent design system with cards, badges, and forms
+- **Window state separated from rendering.** `useWindowManager` owns application lifecycle, focus, stacking order, layout, and URL synchronization; `WindowManager` renders the window frames and controls.
+- **Frame-based drag and resize handling.** `useWindowDrag` uses refs, `requestAnimationFrame`, and direct DOM updates during movement, then commits the final geometry to React state.
+- **Layout adapts to both viewport and window size.** Grid calculations account for desktop chrome and app content complexity. A `ResizeObserver` hook lets content such as project cards respond to its own window width.
+- **Small client-side data surface.** Experience content lives in a typed source module. Projects fetch directly from GitHub's public API with loading skeletons and an error state; local setup needs no API key or database.
 
-### Technical Highlights
+## Tech stack
 
-- **Next.js 15** with App Router for optimal performance
-- **React 19** with modern hooks and patterns
-- **TypeScript** with strict mode for type safety
-- **Tailwind CSS v4** for responsive styling
-- **Performance Optimized** - Fast loading with Turbopack
+Versions below reflect the committed lockfile.
 
-## 🛠️ Tech Stack
+| Layer | Implementation |
+| --- | --- |
+| Framework | Next.js 16.1.6, App Router, React 19.2.4 |
+| Language | TypeScript 5.8.3 |
+| Styling | Tailwind CSS 3.4.19, custom CSS for the desktop and window chrome |
+| UI assets | Lucide icons, local application icons and wallpapers |
+| Typography | Ubuntu, Ubuntu Mono, and JetBrains Mono via `next/font` |
+| Browser APIs | `ResizeObserver`, `requestAnimationFrame`, History API, local storage |
+| Metadata | Next.js metadata, sitemap, and Open Graph image routes |
+| Deployment config | Netlify's Next.js plugin and asset caching/security headers |
 
-### Core Technologies
+## Run locally
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-
-### Animation & UI
-
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.11-0055FF?style=flat-square&logo=framer&logoColor=white)](https://www.framer.com/motion/)
-[![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-Latest-000000?style=flat-square&logo=shadcnui&logoColor=white)](https://ui.shadcn.com/)
-[![Aceternity UI](https://img.shields.io/badge/Aceternity_UI-Latest-FF6B6B?style=flat-square&logoColor=white)](https://ui.aceternity.com/)
-[![Lucide React](https://img.shields.io/badge/Lucide_React-Latest-F56565?style=flat-square&logo=lucide&logoColor=white)](https://lucide.dev/)
-
-### Development Tools
-
-[![Turbopack](https://img.shields.io/badge/Turbopack-Latest-000000?style=flat-square&logo=turbopack&logoColor=white)](https://turbo.build/pack)
-[![ESLint](https://img.shields.io/badge/ESLint-8.0-4B32C3?style=flat-square&logo=eslint&logoColor=white)](https://eslint.org/)
-[![Prettier](https://img.shields.io/badge/Prettier-Latest-F7B93E?style=flat-square&logo=prettier&logoColor=black)](https://prettier.io/)
-
-## 📱 Portfolio Sections
-
-### Hero Section
-
-- Animated shooting stars background
-- Professional introduction with call-to-action
-- Floating social media dock
-
-### About Me
-
-- Professional overview with quick info cards
-- Impact & achievements showcase
-- Technical expertise with categorized skill badges
-- Personal interests and downloadable resume
-
-### Experience
-
-- Interactive timeline with detailed work history
-- Complete professional journey from education to current role
-- Achievements, technologies, and responsibilities for each position
-
-### Projects
-
-- **Dynamic GitHub Integration** - Real-time project data fetched from GitHub API
-- **Infinite Scrolling Display** - Smooth horizontal scrolling project cards with pause on hover
-- **GitHub-style Language Statistics** - Visual language breakdown with color-coded bars
-- **Project Cards** - Compact and detailed views with live/code links
-- **Auto-updating Content** - Projects automatically sync with latest GitHub repositories
-
-### Contact
-
-- Animated stars background
-- Professional networking focus
-- Social media and professional links
-- Modern contact interface
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm, yarn, pnpm, or bun
-
-### Installation
-
-1. Clone the repository
+Requires Node.js **20.9+** and npm.
 
 ```bash
-git clone [repository-url]
-cd my_portfolio
-```
-
-2. Install dependencies
-
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
-
-3. Run the development server
-
-```bash
+git clone https://github.com/devonjhills/portfolio.git
+cd portfolio
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser
-
-### Available Scripts
+Open [localhost:3000](http://localhost:3000). No environment variables are required. The Projects app needs network access to GitHub's public API, and builds fetch Google Fonts through `next/font`.
 
 ```bash
-npm run dev      # Start development server with Turbopack
-npm run build    # Build for production
-npm run start    # Start production server
-npm run lint     # Run ESLint code quality checks
+npm run build   # Create a production build
+npm run start   # Serve the production build
+npx tsc --noEmit # Check TypeScript separately
 ```
 
-## 📁 Project Structure
+The current Next.js configuration skips type errors during builds, so a successful build alone does not verify type correctness.
 
-```
+## Code map
+
+```text
 app/
-├── api/
-│   ├── github-repos/      # GitHub API integration
-│   └── og/               # Open Graph image generation
+├── page.tsx                       # Desktop entry point
+├── layout.tsx                     # Fonts, providers, and site metadata
+├── globals.css                    # Desktop theme and global styles
 ├── components/
-│   ├── sections/          # Main portfolio sections
-│   │   ├── hero.tsx       # Landing hero with animations
-│   │   ├── about.tsx      # About section with skills
-│   │   ├── experience.tsx # Professional timeline
-│   │   ├── projects.tsx   # Dynamic GitHub project showcase
-│   │   └── contact.tsx    # Networking contact section
-│   └── ui/               # Reusable UI components
-│       ├── card.tsx      # shadcn/ui cards
-│       ├── timeline.tsx  # Aceternity timeline
-│       ├── infinite-moving-cards.tsx # Infinite scroll
-│       ├── stars-background.tsx
-│       └── floating-dock.tsx
-├── lib/                  # Utility functions and GitHub hooks
-├── globals.css          # Global styles with CSS custom properties
-├── layout.tsx           # Root layout
-└── page.tsx            # Main page
-
-components/ui/           # Shared Aceternity UI components
-public/
-└── Devon_Hills_Resume_2025_Newest.pdf
+│   ├── os/
+│   │   ├── ubuntu-desktop.tsx      # Desktop shell and UI wiring
+│   │   ├── window-manager.tsx      # Window frames and controls
+│   │   ├── side-dock.tsx           # Desktop/mobile app launcher
+│   │   ├── activities-drawer.tsx   # Open-window overview
+│   │   └── applications/          # Portfolio apps and wallpaper picker
+│   ├── layout/                    # Theme provider
+│   └── ui/                        # Tooltips, skeletons, favicon helper
+├── hooks/                         # Window state, drag/resize, shortcuts
+├── constants/layout.ts            # Dimensions, app titles, and icons
+├── types/window.ts                # Shared window types
+├── utils/                         # Grid geometry and app-to-window mapping
+├── data/resume.ts                 # Experience, education, and skills
+├── api/og/                        # Open Graph and Twitter image routes
+└── sitemap.ts
+public/                            # Résumé PDF, icons, avatar, wallpapers
+netlify.toml                       # Build and hosting configuration
 ```
 
-## 🎨 Design System
-
-### Colors
-
-- **Primary**: Used for accent colors and interactive elements
-- **Muted**: For secondary text and subtle backgrounds
-- **Background**: Adaptive light/dark theme support
-
-### Typography
-
-- **Font**: Geist Sans and Geist Mono
-- **Responsive**: Scales appropriately across devices
-- **Hierarchy**: Clear heading and body text distinction
-
-### Components
-
-- **Consistent Spacing**: Using Tailwind's spacing scale
-- **Interactive States**: Hover, focus, and active states
-- **Accessibility**: WCAG compliant with proper ARIA labels
-
-## 🔧 Customization
-
-### Updating Content
-
-- **Personal Info**: Update `app/components/sections/about.tsx`
-- **Experience**: Modify `app/components/sections/experience.tsx`
-- **Projects**: Edit `app/components/sections/projects.tsx`
-- **Contact**: Update `app/components/sections/contact.tsx`
-
-### Styling
-
-- **Colors**: Modify CSS custom properties in `app/globals.css` for easy theming
-- **Cyberpunk Synthwave Theme**: Electric magenta, neon cyan, and hot pink color scheme
-- **Components**: Customize shadcn/ui components in `app/components/ui/`
-- **Animations**: Adjust Framer Motion variants in component files
-- **Infinite Scroll Speed**: Configurable animation duration in `infinite-moving-cards.tsx`
-
-## 📈 Performance
-
-- **Lighthouse Score**: 95+ across all metrics
-- **Core Web Vitals**: Optimized for LCP, FID, and CLS
-- **Image Optimization**: Next.js automatic image optimization
-- **Code Splitting**: Automatic route-based code splitting
-
-## 🌐 Deployment
-
-### Vercel (Recommended)
-
-1. Push code to GitHub
-2. Connect repository to Vercel
-3. Deploy with automatic builds
-
-### Other Platforms
-
-The application can be deployed to any platform that supports Next.js:
-
-- Netlify
-- AWS Amplify
-- Railway
-- DigitalOcean App Platform
-
-## 👨‍💻 About the Developer
-
-**Devon Hills** - Software Engineer at Livefront
-
-- 7+ years building mission-critical React/TypeScript applications
-- Previously specialized in HealthCare.gov serving millions of users at Ad Hoc
-- Expert in accessibility, performance optimization, and modern web development
-- Currently focused on cutting-edge frontend development at Livefront
-
-### Contact
-
-- **Email**: devonjhills@gmail.com
-- **LinkedIn**: [linkedin.com/in/devonjhills](https://linkedin.com/in/devonjhills)
-- **GitHub**: [github.com/devonjhills](https://github.com/devonjhills)
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-**Built with ❤️ using Next.js, React, and modern web technologies**
+For a code walkthrough, start with [the desktop shell](app/components/os/ubuntu-desktop.tsx), then follow [window state](app/hooks/use-window-manager.ts), [drag and resize behavior](app/hooks/use-window-drag.ts), and [grid layout calculations](app/utils/window-layout.ts).
