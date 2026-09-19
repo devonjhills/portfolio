@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0b0d0b"/>
+  <rect width="1200" height="6" fill="#78b77f"/>
+  <rect x="70" y="70" width="1060" height="490" fill="#111411" stroke="#363b36" stroke-width="2"/>
+  <rect x="70" y="70" width="1060" height="54" fill="#161a16"/>
+  <circle cx="98" cy="97" r="6" fill="#78b77f"/>
+  <text x="118" y="105" fill="#a7aaa0" font-family="Courier New,monospace" font-size="18" letter-spacing="2">PORTFOLIO / 2026</text>
+  <text x="112" y="307" fill="#e8e6dc" font-family="Arial,Helvetica,sans-serif" font-size="100" font-weight="700" letter-spacing="-6">Devon Hills</text>
+  <text x="116" y="372" fill="#78b77f" font-family="Courier New,monospace" font-size="29">Software Engineer</text>
+  <path d="M112 454h976" stroke="#363b36"/>
+  <text x="116" y="508" fill="#a7aaa0" font-family="Courier New,monospace" font-size="20">devonhills.dev</text>
+  <text x="1086" y="508" fill="#a7aaa0" font-family="Courier New,monospace" font-size="20" text-anchor="end">SELECTED WORK · EXPERIENCE · CONTACT</text>
+</svg>

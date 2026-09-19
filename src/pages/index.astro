@@ -1,0 +1,171 @@
+---
+import "../styles/global.css";
+import {
+  Accessibility,
+  BriefcaseBusiness,
+  CodeXml,
+  ContactRound,
+  ExternalLink,
+  FileText,
+  FolderKanban,
+  GraduationCap,
+  Mail,
+  Sparkles,
+  Wrench,
+} from "@lucide/astro";
+import { capabilities, education, experience, profile, projects } from "../data/portfolio";
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const title = `${profile.name} — ${profile.role}`;
+const description = "Software engineer building accessible web applications, public services, and practical AI-powered tools.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#080c09" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://devonhills.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Devon Hills, Software Engineer" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://devonhills.dev/og-image.png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" aria-label="Site header">
+      <a class="site-name" href="#top" aria-label="Devon Hills, home">Devon Hills<span>.</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="#projects"><FolderKanban aria-hidden="true" />Projects</a>
+        <a href="#experience"><BriefcaseBusiness aria-hidden="true" />Experience</a>
+        <a href="#contact"><Mail aria-hidden="true" />Contact</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="intro-title">
+        <div class="hero-main">
+          <p class="eyebrow">Portfolio / 2026</p>
+          <h1 id="intro-title">Devon Hills</h1>
+          <p class="role">Software Engineer</p>
+          <p class="intro">{profile.introduction}</p>
+          <div class="hero-links" aria-label="Featured links">
+            <a class="primary-link" href="/resume.pdf"><FileText aria-hidden="true" />View résumé</a>
+            <a href={`mailto:${profile.email}`}><Mail aria-hidden="true" />Email me</a>
+          </div>
+        </div>
+        <aside class="hero-note" aria-label="Core areas">
+          <p>Core areas</p>
+          <ul>
+            <li><CodeXml aria-hidden="true" />Frontend development</li>
+            <li><Accessibility aria-hidden="true" />Accessible interfaces</li>
+            <li><Sparkles aria-hidden="true" />AI / LLM integration</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-title">
+        <header class="section-heading">
+          <p>01 / Selected work</p>
+          <div class="section-title">
+            <span class="section-icon"><FolderKanban aria-hidden="true" /></span>
+            <h2 id="projects-title">Projects</h2>
+          </div>
+        </header>
+        <div class="project-list">
+          {projects.map((project, index) => (
+            <article class="project">
+              <div class="project-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</div>
+              <div class="project-content">
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+                <ul class="technology-list" aria-label={`${project.name} technologies`}>
+                  {project.technologies.map((technology) => <li>{technology}</li>)}
+                </ul>
+              </div>
+              <div class="project-links">
+                {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer">Live <ExternalLink aria-hidden="true" /></a>}
+                <a href={project.repositoryUrl} target="_blank" rel="noreferrer">Source <CodeXml aria-hidden="true" /></a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p class="more-link"><a href={profile.github} target="_blank" rel="noreferrer"><CodeXml aria-hidden="true" />More work on GitHub <ExternalLink aria-hidden="true" /></a></p>
+      </section>
+
+      <section id="experience" aria-labelledby="experience-title">
+        <header class="section-heading">
+          <p>02 / Experience</p>
+          <div class="section-title">
+            <span class="section-icon"><BriefcaseBusiness aria-hidden="true" /></span>
+            <h2 id="experience-title">Experience</h2>
+          </div>
+        </header>
+        <div class="experience-list">
+          {experience.map((position) => (
+            <article class="position">
+              <div class="position-meta">
+                <p>{position.dates}</p>
+                <p>{position.location}</p>
+              </div>
+              <div>
+                <h3>{position.role}</h3>
+                <p class="company">@ {position.company}</p>
+                <ul>{position.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="supporting-info">
+          <div>
+            <h3><Wrench aria-hidden="true" />Capabilities</h3>
+            <p>{capabilities.join(" · ")}</p>
+          </div>
+          <div>
+            <h3><GraduationCap aria-hidden="true" />Education</h3>
+            <p>{education.degree}<br />{education.school} · {education.date}<br />{education.honors}</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact" aria-labelledby="contact-title">
+        <header class="section-heading">
+          <p>03 / Contact</p>
+          <div class="section-title">
+            <span class="section-icon"><Mail aria-hidden="true" /></span>
+            <h2 id="contact-title">Get in touch</h2>
+          </div>
+        </header>
+        <div class="contact-body">
+          <p>I’m always interested in thoughtful software, difficult problems, and good teams.</p>
+          <ul class="contact-links">
+            <li><a href={`mailto:${profile.email}`}><Mail aria-hidden="true" />{profile.email}</a></li>
+            <li><a href={profile.github} target="_blank" rel="noreferrer"><CodeXml aria-hidden="true" />GitHub <ExternalLink aria-hidden="true" /></a></li>
+            <li><a href={profile.linkedin} target="_blank" rel="noreferrer"><ContactRound aria-hidden="true" />LinkedIn <ExternalLink aria-hidden="true" /></a></li>
+            <li><a href="/resume.pdf"><FileText aria-hidden="true" />Résumé</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© {new Date().getFullYear()} Devon Hills</p>
+      <p>devonhills.dev</p>
+    </footer>
+  </body>
+</html>
