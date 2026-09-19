@@ -29,7 +29,9 @@ The full résumé lives at `public/resume.pdf`. The former filename redirects to
 
 ## Deployment and project subdomains
 
-Netlify builds the site with `npm run build` and publishes `dist/`. No Astro adapter, server process, API token, or environment variable is required.
+Cloudflare Pages deploys the `main` branch through its GitHub integration. It builds the site with `npm run build`, publishes `dist/`, and uses Node.js 22.19.0. No Astro adapter, server process, API token, or runtime environment variable is required.
+
+Production redirects and response headers are defined in `public/_redirects` and `public/_headers`. Astro copies both files into `dist/` for Cloudflare Pages to apply.
 
 Future projects should remain independent deployments. To publish one at `project1.devonhills.dev`:
 
