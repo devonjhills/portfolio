@@ -103,17 +103,11 @@ svg { flex: 0 0 auto; }
 
 .site-name:hover { color: var(--text); }
 
-.site-name span {
-  display: grid;
+.site-mark {
+  display: block;
   width: 2rem;
   height: 2rem;
-  place-items: center;
-  border: 1px solid var(--accent);
-  background: var(--accent);
-  box-shadow: 2px 2px 0 var(--highlight);
-  color: var(--background);
-  font-family: var(--mono);
-  font-size: 0.7rem;
+  flex: none;
 }
 
 nav, .action-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
